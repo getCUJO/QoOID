@@ -93,7 +93,7 @@ informative:
 
 --- abstract
 
-This document describes a new network quality framework named Quality of Outcome (QoO). The QoO framework is unique among network quality frameworks in satisfying all the requirements layed out in "Requirements for a Network Quality Framework Useful for Applications, Users and Operators".
+This document describes a new network quality framework named Quality of Outcome (QoO). The QoO framework is unique among network quality frameworks in satisfying all the requirements laid out in "Requirements for a Network Quality Framework Useful for Applications, Users and Operators".
 
 The framework proposes a way of sampling network quality, setting network quality requirements and a formula for calculating the probability for the sampled network to satisfy network requirements.
 
@@ -104,9 +104,9 @@ The framework proposes a way of sampling network quality, setting network qualit
 
 Quality attenuation is a network quality metric that meets most of the criteria set out in the requirements; it can capture the probability of a network satisfying application requirements, it is composable, and it can be compared to a variety of application requirements. The part that is yet missing is how to present quality attenuation results to end-users and application developers in an understandable way. We believe a per-application, per application-type, or per-SLA approach is appropriate here. The challenge lies in specifying how to simplify enough without losing too much in terms of precision and accuracy.
 
-We believe the probabilistic approach is key as the network stack and application's network quality adaptation can be highly complex. Applications and the underlying networking protocols makes separate optimizations based on their perceived network quality over time and saying something about an outcome with absolute certainty will be practically impossible. We can however make educated guesses on the probability of outcomes.
+We believe the probabilistic approach is key as the network stack and application's network quality adaptation can be highly complex. Applications and the underlying networking protocols make separate optimizations based on their perceived network quality over time and saying something about an outcome with absolute certainty will be practically impossible. We can however make educated guesses on the probability of outcomes.
 
-We propose representing network quality as minimum required throughput and set of latency and loss percentiles. Application developers, regulatory bodies and other interested parties can describe network requirements in the same manner. We propose a formula for a distance measure between perfect and useless quality. This distance measure can, with some assumptions, calculate something that can be simplified into statements such as “A Video Conference has a 93% chance of being lag free on this network” all while making it possible to use the framework both for end-to-end test and analysis from within the network.
+We propose representing network quality as a minimum required throughput and set of latency and loss percentiles. Application developers, regulatory bodies and other interested parties can describe network requirements in the same manner. We propose a formula for a distance measure between perfect and unusable. This distance measure can, with some assumptions, calculate something that can be simplified into statements such as “A Video Conference has a 93% chance of being lag free on this network” all while making it possible to use the framework both for end-to-end test and analysis from within the network.
 
 The work proposes a minimum viable framework, and often trades precision for simplicity. The justification for this is to ensure adoption and usability in many different contexts such as active testing from applications and monitoring from network equipment. To counter the loss of precision, we require some parameters that allow for analysis of the precision.
 
@@ -286,7 +286,7 @@ It takes quite a few samples to have a statistically significant distribution. M
 
 The framework is flexible when it comes to the direction of traffic that is being sampled, but does require that it is noted whether the latency distribution is measured one-way or two-way. The framework does not require an explicit throughput measurement, but does require a note on the maximal observed throughput in the time period.
 
-By not requiring a specific number of samples, this framework allows taking 10 samples and calling it a distribution, which of course is not ideal. On the other hand, making the framework overly complex and difficult to adhere to using real-world equipment and applications is the best way to ensure that this framework goes unused. Constraints will vary for different network equipment and applications.
+By not requiring a specific number of samples, this framework allows taking 10 samples and calling it a distribution, which of course is not ideal. On the other hand, making the framework overly complex and difficult to adhere to using real-world equipment and applications is likely to reduce willingness to adopt the framework. Constraints will vary for different network equipment and applications.
 
 To make sure we can trust measurements from others and analyze their precision, we require:
 
@@ -309,26 +309,26 @@ Applications do of course have throughput requirements. With classical TCP and t
 
 Whether the requirements are one-way or two-way must be specified. Where the requirement is one-way, the direction (uplink or downlink) must be specified. If two-way, a decomposition into uplink and downlink measurements may be specified.
 
-Until now, network requirements and measurements are what is already standardized in BBF TR-452 (aka QED) framework {{TR-452.1}}. The novel part of this work is what comes next. A method for going from Network Requirements and Network Measurements to probabilities of outcomes, or Quality of Outcomes if you will.
+Until now, network requirements and measurements are what is already standardized in the BBF TR-452 (aka QED) framework {{TR-452.1}}. The novel part of this work is what comes next. A method for going from Network Requirements and Network Measurements to probabilities of good application outcomes.
 
-To do that we need to make articulating the network requirements a little bit more complicated. A key design goal was to have a distance measure between perfect and useless, and have a way of quantifying what is ‘better’.
+To do that we need to make articulating the network requirements a little bit more complicated. A key design goal was to have a distance measure between perfect and unusable, and have a way of quantifying what is ‘better’.
 
-We extend the requirements to include the quality required for perfection and a quality threshold beyond which the application is considered useless.
+We extend the requirements to include the quality required for perfection and a quality threshold beyond which the application is considered unusable.
 
 This is named Network Requirements for Perfection (NRP). As an example: At 4 Mbps, 99% of packets need to arrive within 100ms, 99.9% within 200ms (implying that 0.1% packet loss is acceptable) for the outcome to be perfect.
-Network Requirement points of uselessness (NRPoU): If 99% of the packets have not arrived after 200ms, or 99.9% within 300ms, the outcome will be useless.
+Network Requirement Point of Unusableness (NRPoU): If 99% of the packets have not arrived after 200ms, or 99.9% within 300ms, the outcome will be unusable.
 
 Where the NRPoU percentiles and NRP are a required pair then neither should define a percentile not included in the other - i.e., if the 99.9th percentile is part of the NRPoU then the NRP must also include the 99.9th percentile.
 
 # Calculating Quality of Outcome (QoO)
 
-At this point we have everything we need to calculate the quality of the application outcome. The QoO. There are 3 scenarios:
+At this point we have everything we need to calculate the quality of the application outcome (QoO). There are 3 scenarios:
 
 1. The network meets all the requirements for perfection. There is a 100% chance that the application is not lagging because of the network
-2. The network does meet one of the criteria of uselessness, including bandwidth. There is a 0% chance that the application will work well, and it's because of the network
+2. The network does meet one of the criteria of the Point of Unusableness. There is a 0% chance that the application will work well, and it's because of the network
 3. The network does not meet NRP but is not beyond NRPoU.
 
-1 and 2 require nothing more from the framework. For 3, we will now specify the calculation between to translate these distances to a 0 to 100 measure. We use the percentile pair where the measured latency is the closest to the NRPoU as the application is only as good as its weakest link.
+1 and 2 require nothing more from the framework. For 3, we will now specify the calculation to translate these distances to a 0 to 100 measure. We use the percentile pair where the measured latency is the closest to the NRPoU as the application is only as good as its weakest link.
 
 Mathematically:
 
@@ -338,10 +338,10 @@ Where
 
 ML = Measured Latency in percentiles and milliseconds \\
 NRP = Network Requirement for Perfection, defined as minimum throughput and percentiles and milliseconds\\
-NRPoU = Network Requirement Point of Uselessness in percentiles and milliseconds \\
+NRPoU = Network Requirement Point of Unusableness in percentiles and milliseconds \\
 and i iterates over the list of percentiles and milliseconds
 
-Essentially, where on the relative distance between Network Requirement for Perfection (NRP) and Network Requirement Point of Uselessness (NRPoU) the Measured Latency (ML) lands, normalized to a percentage.
+Essentially, where on the relative distance between Network Requirement for Perfection (NRP) and Network Requirement Point of Unusableness (NRPoU) the Measured Latency (ML) lands, normalized to a percentage.
 
 ## Example requirements and measured latency:
 NRP: 4 Mbps {99%, 250 ms},{99.9%, 350 ms}
@@ -364,12 +364,14 @@ QoO
 
 
 In this example, we would say:
-This application/SLA/application category has a 33% chance of being lag-free on this network
+This application/SLA/application category has a 33% chance of being lag-free on this network.
+Note that packet loss is included as infinite latency, so if there is enough packet loss to breach the highest percentile requirement then the QoO is 0.
+
 
 # How to find network requirements
-A key advantage of having a measurement that stretches between perfect and useless, as opposed to having a binary (Good/Bad) or other low resolution (Superbad/Bad/OK/Great/Supergreat) metrics, is that we have some leeway. The leeway is useful, for instance: a lower than 20% chance of lag free experience is intuitively not good and a greater than 90% chance of lag free experience is intuitively good --- meaning we don’t have to find perfection for making the QoO metric useful.
+A key advantage of having a measurement that stretches between perfect and unusable, as opposed to having a binary (Good/Bad) or other low resolution (Superbad/Bad/OK/Great/Supergreat) metrics, is that we have some leeway. The leeway is useful, for instance: a lower than 20% chance of lag free experience is intuitively not good and a greater than 90% chance of lag free experience is intuitively good --- meaning we don’t have to find perfection for making the QoO metric useful.
 
-Nevertheless we have to find some points for uselessness and perfection. There is no strict definition of when the network is so bad that the application is useless. For perfect, we may have a definition for some apps, but for apps like web browsing and gaming, lower latency is simply better. But to assist those who wish to make a requirement, we can say that if the end-user experience does not change when reducing the latency, the network quality is sufficient for the Network Requirements for Perfection (NRP) .
+Nevertheless we have to find some points for unusableness and perfection. There is no strict definition of when the network is so bad that the application is unusable. For perfect, we may have a definition for some apps, but for apps like web browsing and gaming, lower latency is simply better. But to assist those who wish to make a requirement, we can say that if the end-user experience does not change when reducing the latency, the network quality is sufficient for the Network Requirements for Perfection (NRP) .
 
 Someone who wishes to make a network requirement for an application in the simplest possible way, should do something along these lines.
 
@@ -385,7 +387,7 @@ Someone who wishes to find sophisticated network requirements might proceed in t
 
 A QoO score at 94 can be communicated as "John's smartphone has a 94% chance of lag-free Video Conferencing", however, this does not mean that at any point of time there is a 6% chance of lag. It means there is a 6% chance of experiencing lag during the entire session/time-period, and the network requirements should be adjusted accordingly.
 
-The reason for making the QoO metric for a session or time-period is to make it understandable for an end-user, an end-user should not have to relate to the time period the metric is for.
+The reason for making the QoO metric for a session is to make it understandable for an end-user, an end-user should not have to relate to the time period the metric is for.
 
 ## An example
 Example.com's video-conferencing service requirements can be translated into the QoO Framework. For best performance for video meetings, they specify 4/4 Mbps, 100 ms latency, <1% packet loss, and <30 ms jitter. This can be translated to an NRP:
@@ -414,7 +416,7 @@ It will most likely be necessary to add a time-scale to the application requirem
 ## Subsampling the real distribution
 Additionally, we cannot capture latency on every packet that is sent. We can probe and sample, but there will always be unknowns. We are now in the realm of probability. Perfection is impossible, but instead of denying this, we should embrace it, which is why talking about the probability of outcomes is the way forward.
 
-## Assuming Linear Relationship between Perfect and useless (and that it is not really a probability)
+## Assuming Linear Relationship between Perfect and Unusable (and that it is not really a probability)
 One can conjure up scenarios where 50ms latency is actually worse than 51ms latency as developers may have chosen 50ms as the threshold for changing quality, and the threshold may be imperfect. Taking these scenarios into account would add another magnitude of complexity to determining network requirements and finding a distance measure (between requirement and actual measured capability).
 
 ## Binary Bandwidth threshold
