@@ -89,7 +89,17 @@ informative:
   Haeri22:
     title: "Mind Your Outcomes: The ΔQSD Paradigm for Quality-Centric Systems Development and Its Application to a Blockchain Case Study"
     target: https://www.mdpi.com/2073-431X/11/3/45
-
+  RFC5357: # TWAMP light
+  RFC8762: # STAMP
+  IRTT:
+    title: "Isochronous Round-Trip Tester"
+    target: https://github.com/heistp/irtt
+  Kelly:
+    title: "Networks of Queues"
+    author:
+      name: "Frank P. Kelly"
+    target: "https://www.cambridge.org/core/journals/advances-in-applied-probability/article/abs/networks-of-queues/38A1EA868A62B09C77A073BECA1A1B56"
+  RFC8239: # Refers to histogram of latency samples
 
 --- abstract
 
@@ -188,7 +198,7 @@ If these requirements are met, a network operator can monitor and test their net
 
 The foundation of the framework is Quality Attenuation {{TR-452.1}}. This work will not go into detail about how to measure Quality Attenuation, but some relevant techniques are:
 
-* Active probing with TWAMP Light / STAMP / IRTT
+* Active probing with TWAMP Light {{RFC5357}} / STAMP {{RFC8762}} / IRTT {{IRTT}}
 * Varying Latency Under Load Tests
 * Varying Speed Tests with latency measures
 * Simulating real traffic
@@ -196,9 +206,9 @@ The foundation of the framework is Quality Attenuation {{TR-452.1}}. This work w
 * TCP SYN ACK / DNS Lookup RTT Capture
 * Estimation
 
-Quality Attenuation represents quality measurements as distributions. Using Latency distributions to measure network quality is nothing new and has been proposed by various researchers/practitioners. The novelty of the Quality Attenuation metric is to view packet loss as infinite (or too late to be of use e.g. > 3 seconds) latency {{TR-452.1}}.
+Quality Attenuation represents quality measurements as distributions. Using Latency distributions to measure network quality is nothing new and has been proposed by various researchers/practitioners {{Kelly}}{{RFC8239}}{{RFC6049}}. The novelty of the Quality Attenuation metric is to view packet loss as infinite (or too late to be of use e.g. > 3 seconds) latency {{TR-452.1}}.
 
-Latency Distributions can be gathered via both passive monitoring and active testing. The active testing can use any type of IP traffic. It is OSI Layer and network technology independent, meaning it can be gathered in an end-user application, within some network equipment, or anywhere in between.
+Latency Distributions can be gathered via both passive monitoring and active testing. The active testing can use any type of IP traffic, such as TCP, UDP, or QUIC. It is OSI Layer and network technology independent, meaning it can be gathered in an end-user application, within some network equipment, or anywhere in between.
 
 A key assumption behind the choice of latency distribution is that different applications and application categories fail at different points of the latency distribution. Some applications, typically downloads, have lenient latency requirements. Video Conferences typically are sensitive to high 90th percentile latency and to the difference between the 90th and the 99th percentile. Online gaming typically has a low tolerance for high 99th percentile latency. All applications require a minumum level of throughput and a maximum packet loss rate. A network quality metric that aims to generalize network quality must take the latency distribution, throughput, and packet loss into consideration.
 
