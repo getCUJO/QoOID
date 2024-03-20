@@ -3,7 +3,7 @@ title: "Quality of Outcome"
 abbrev: "QoO"
 category: info
 
-docname: draft-olden-ippm-qoo-latest
+docname: draft-ietf-ippm-qoo-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
