@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Greek,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>Quality of Outcome</title>
+<meta content="Bjørn Ivar Teigen" name="author">
+<meta content="Magnus Olden" name="author">
+<meta content="
+       This document describes a new network quality framework named Quality of Outcome
+(QoO). The QoO framework is unique among network quality frameworks because it
+is designed to meet the needs of application developers, users and operators.
+This is achieved by basing the framework on Quality Attenuation, defining a
+simple format for specifying application requirements, and defining a way to
+compute a simple and intuitive user-facing metric. 
+       The framework proposes a way of sampling network quality, setting network
+quality requirements and a formula for calculating the probability for the
+sampled network to satisfy network requirements. 
+    " name="description">
+<meta content="xml2rfc 3.20.1" name="generator">
+<meta content="Quality Attenuation" name="keyword">
+<meta content="Application Outcomes" name="keyword">
+<meta content="Quality of Outcome" name="keyword">
+<meta content="Performance monitoring" name="keyword">
+<meta content="Network quality" name="keyword">
+<meta content="draft-ietf-ippm-qoo-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.20.1
+    Python 3.11.8
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.0
+    intervaltree 3.1.0
+    Jinja2 3.1.2
+    lxml 4.9.3
+    platformdirs 4.2.0
+    pycountry 22.3.5
+    PyYAML 6.0.1
+    requests 2.31.0
+    setuptools 68.2.2
+    six 1.16.0
+    wcwidth 0.2.13
+-->
+<link href="draft-ietf-ippm-qoo.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+}
+:is(ol, ul) :is(ol, ul) {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  line-height: 1;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+}
+dl.olPercent {
+  --indent: 5ch;
+}
+dl > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+dl.olPercent > dt {
+  min-width: calc(var(--indent) - 2ch);
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
+  margin-top: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
+  margin-bottom: 0;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+}
+a.pilcrow[href] { color: var(--pilcrow-weak); }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  min-width: var(--identifier-width);
+  clear: left;
+  float: left;
+  text-align: right;
+  margin-right: 1ch;
+}
+#identifiers dd {
+  margin: 0;
+  margin-left: calc(1em + var(--identifier-width)) !important;
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 2px 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 10ch;
+  margin-right: 1.5ch;
+}
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
+.references dd {
+  margin-left: 12ch !important;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #toc nav > ul  {
+    margin-bottom: 2em;
+  }
+  #toc ul {
+    margin: 0 0 0 4px;
+    font-size: var(--small-font-size);
+  }
+  #toc ul :is(p, li) {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+  .toplink {
+    display: none;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">QoO</td>
+<td class="right">March 2024</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Teigen &amp; Olden</td>
+<td class="center">Expires 21 September 2024</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">IP Performance Measurement</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-ippm-qoo-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2024-03-20" class="published">20 March 2024</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2024-09-21">21 September 2024</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">B. I. Teigen</div>
+<div class="org">Domos</div>
+</div>
+<div class="author">
+      <div class="author-name">M. Olden</div>
+<div class="org">Domos</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">Quality of Outcome</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document describes a new network quality framework named Quality of Outcome
+(QoO). The QoO framework is unique among network quality frameworks because it
+is designed to meet the needs of application developers, users and operators.
+This is achieved by basing the framework on Quality Attenuation, defining a
+simple format for specifying application requirements, and defining a way to
+compute a simple and intuitive user-facing metric.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">The framework proposes a way of sampling network quality, setting network
+quality requirements and a formula for calculating the probability for the
+sampled network to satisfy network requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        The latest revision of this draft can be found at <span><a href="https://domoslabs.github.io/QoOID/draft-olden-ippm-qoo.html">https://domoslabs.github.io/QoOID/draft-olden-ippm-qoo.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-ippm-qoo/">https://datatracker.ietf.org/doc/draft-ietf-ippm-qoo/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">
+        Discussion of this document takes place on the
+        IP Performance Measurement Working Group mailing list (<span><a href="mailto:ippm@ietf.org">mailto:ippm@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/ippm/">https://mailarchive.ietf.org/arch/browse/ippm/</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/ippm/">https://www.ietf.org/mailman/listinfo/ippm/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/domoslabs/QoOID">https://github.com/domoslabs/QoOID</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 21 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2024 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-motivation" class="internal xref">Motivation</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-introduction-2" class="internal xref">Introduction</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1" class="keepWithNext"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-design-goal" class="internal xref">Design Goal</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-requirements" class="internal xref">Requirements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.1">
+                    <p id="section-toc.1-1.2.2.3.2.1.1"><a href="#section-2.3.1" class="auto internal xref">2.3.1</a>.  <a href="#name-requirements-for-end-users" class="internal xref">Requirements for end-users</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.2">
+                    <p id="section-toc.1-1.2.2.3.2.2.1"><a href="#section-2.3.2" class="auto internal xref">2.3.2</a>.  <a href="#name-requirements-from-applicati" class="internal xref">Requirements from Application and Platform Developers</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.3">
+                    <p id="section-toc.1-1.2.2.3.2.3.1"><a href="#section-2.3.3" class="auto internal xref">2.3.3</a>.  <a href="#name-requirements-for-network-op" class="internal xref">Requirements for Network Operators and Network Solution Vendors</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-background" class="internal xref">Background</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-discussion-of-other-perform" class="internal xref">Discussion of other performance metrics</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-average-peak-throughput" class="internal xref">Average Peak Throughput</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-average-latency" class="internal xref">Average Latency</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.3">
+                    <p id="section-toc.1-1.3.2.1.2.3.1"><a href="#section-3.1.3" class="auto internal xref">3.1.3</a>.  <a href="#name-99th-percentile-of-latency" class="internal xref">99th Percentile of Latency</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.4">
+                    <p id="section-toc.1-1.3.2.1.2.4.1"><a href="#section-3.1.4" class="auto internal xref">3.1.4</a>.  <a href="#name-variance-of-latency" class="internal xref">Variance of latency</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.5">
+                    <p id="section-toc.1-1.3.2.1.2.5.1"><a href="#section-3.1.5" class="auto internal xref">3.1.5</a>.  <a href="#name-inter-packet-delay-variatio" class="internal xref">Inter-Packet Delay Variation (IPDV)</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.6">
+                    <p id="section-toc.1-1.3.2.1.2.6.1"><a href="#section-3.1.6" class="auto internal xref">3.1.6</a>.  <a href="#name-packet-delay-variation-pdv" class="internal xref">Packet Delay Variation (PDV)</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.7">
+                    <p id="section-toc.1-1.3.2.1.2.7.1"><a href="#section-3.1.7" class="auto internal xref">3.1.7</a>.  <a href="#name-trimmed-mean-of-latency" class="internal xref">Trimmed Mean of Latency</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.8">
+                    <p id="section-toc.1-1.3.2.1.2.8.1"><a href="#section-3.1.8" class="auto internal xref">3.1.8</a>.  <a href="#name-round-trips-per-minute" class="internal xref">Round-trips Per Minute</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.9">
+                    <p id="section-toc.1-1.3.2.1.2.9.1"><a href="#section-3.1.9" class="auto internal xref">3.1.9</a>.  <a href="#name-quality-attenuation" class="internal xref">Quality Attenuation</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.10">
+                    <p id="section-toc.1-1.3.2.1.2.10.1"><a href="#section-3.1.10" class="auto internal xref">3.1.10</a>. <a href="#name-summary-of-performance-metr" class="internal xref">Summary of performance metrics</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-sampling-requirements" class="internal xref">Sampling requirements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-describing-network-requirem" class="internal xref">Describing Network Requirements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-calculating-quality-of-outc" class="internal xref">Calculating Quality of Outcome (QoO)</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-example-requirements-and-me" class="internal xref">Example requirements and measured latency:</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-how-to-find-network-require" class="internal xref">How to find network requirements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-an-example" class="internal xref">An example</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-known-weaknesses-and-open-q" class="internal xref">Known Weaknesses and open questions</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-missing-temporal-informatio" class="internal xref">Missing Temporal Information in Distributions.</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-subsampling-the-real-distri" class="internal xref">Subsampling the real distribution</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-assuming-linear-relationshi" class="internal xref">Assuming Linear Relationship between Perfect and Unusable (and that it is not really a probability)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4">
+                <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="auto internal xref">8.4</a>.  <a href="#name-binary-bandwidth-threshold" class="internal xref">Binary Bandwidth threshold</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.5">
+                <p id="section-toc.1-1.8.2.5.1"><a href="#section-8.5" class="auto internal xref">8.5</a>.  <a href="#name-low-resolution-on-packet-lo" class="internal xref">Low resolution on Packet Loss</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.6">
+                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="auto internal xref">8.6</a>.  <a href="#name-arbitrary-selection-of-perc" class="internal xref">Arbitrary selection of percentiles</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-implementation-status" class="internal xref">Implementation status</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-qoo-c" class="internal xref">qoo-c</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-goresponsiveness" class="internal xref">goresponsiveness</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-13" class="auto internal xref">13</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.1">
+                <p id="section-toc.1-1.13.2.1.1"><a href="#section-13.1" class="auto internal xref">13.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.2">
+                <p id="section-toc.1-1.13.2.2.1"><a href="#section-13.2" class="auto internal xref">13.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">This document explores how the quality attenuation metric and framework
+<span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span> can be extended to meet the full set of requirements described in
+the Motivation section. The goal is to define a network requirement framework
+that allows application developers to specify their network requirements, along
+with a way to create a simple user-facing metric based on comparing application
+requirements to measurements of network performance. Basing this framework on
+quality attenuation <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span> ensures that network operators get the
+fault-isolation and network planning benefits of composability.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Quality attenuation is a network quality metric that meets most of the criteria
+set out in the requirements; it can capture the probability of a network
+satisfying application requirements, it is composable, and it can be compared to
+a variety of application requirements. The part that is yet missing is how to
+present quality attenuation results to end-users and application developers in
+an understandable way. We believe a per-application, per application-type, or
+per-SLA approach is appropriate here. The challenge lies in specifying how to
+simplify enough without losing too much in terms of precision and accuracy.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">We believe the probabilistic approach is key as the network stack and
+application's network quality adaptation can be highly complex. Applications and
+the underlying networking protocols make separate optimizations based on their
+perceived network quality over time and saying something about an outcome with
+absolute certainty will be practically impossible. We can however make educated
+guesses on the probability of outcomes.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">We propose representing network quality as a minimum required throughput and set
+of latency and loss percentiles. Application developers, regulatory bodies and
+other interested parties can describe network requirements in the same manner.
+We propose a formula for a distance measure between perfect and unusable. This
+distance measure can, with some assumptions, calculate something that can be
+simplified into statements such as “A Video Conference has a 93% chance of being
+lag free on this network” all while making it possible to use the framework both
+for end-to-end test and analysis from within the network.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The work proposes a minimum viable framework, and often trades precision for
+simplicity. The justification for this is to ensure adoption and usability in
+many different contexts such as active testing from applications and monitoring
+from network equipment. To counter the loss of precision, we require some
+parameters that allow for analysis of the precision.<a href="#section-1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="motivation">
+<section id="section-2">
+      <h2 id="name-motivation">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-motivation" class="section-name selfRef">Motivation</a>
+      </h2>
+<p id="section-2-1">This section describes the features and attributes a network quality framework
+must have to be useful for different stakeholders. The stakeholders included are
+Application developers, End-Users, and Network Operators and Vendors. At a high
+level, End-Users need an understandable network metric. Application developers
+need a network metric that allows them to evaluate how well their application is
+likely to perform given the measured network performance. Network Operators and
+Vendors need a metric that facilitates troubleshooting and optimization of their
+networks. Existing network quality metrics and frameworks typically address the
+needs of one or two of these stakeholders, but we have yet to find one that
+bridges the needs of all three.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<div id="introduction-1">
+<section id="section-2.1">
+        <h3 id="name-introduction-2">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-introduction-2" class="section-name selfRef">Introduction</a>
+        </h3>
+<p id="section-2.1-1">This section aims to describe the features a network performance framework must
+have to be understandable to end-users, useful for application developers, and
+actionable for network operators. One of the key motivations behind this
+initiative is to bridge the gap between the technical aspects of network
+performance and the practical needs of those who depend on it. While solutions
+exist for many of the problems causing high and unstable latency in the
+Internet, the incentives to deploy them have remained relatively weak. By
+creating a unifying framework for assessing network quality, we aim to
+strengthen these incentives significantly.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Bandwidth is necessary but not sufficient for high-quality modern network
+experiences. Idle latency, working latency, jitter, and unmitigated packet loss
+are major causes of poor application outcomes. The impact of latency is widely
+recognized in network engineering circles <span>[<a href="#BITAG" class="cite xref">BITAG</a>]</span>. Unfortunately, it is
+complicated to benchmark the quality of network transport. Most end-users are
+unable to relate to metrics other than Mbps, which they have long been
+conditioned to think of as the only dimension of network quality.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">Real Time Response under load tests<span>[<a href="#RRUL" class="cite xref">RRUL</a>]</span> and Responsiveness <span>[<a href="#RPM" class="cite xref">RPM</a>]</span> make huge
+strides in making a better network quality metric that is far closer to
+application outcomes than bandwidth is, and the latter is successful at being
+relatively relatable/understandable to end-users.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+<p id="section-2.1-4">As pointed out in <span>[<a href="#RPM" class="cite xref">RPM</a>]</span>, “Our networks remain unresponsive, not from a lack of
+technical solutions, but rather a lack of awareness of the problem.” The lack of
+awareness means a lack of incentives for operators to invest in improving
+network quality (beyond increasing the throughput). While Open Source solutions
+exist, vendors rarely implement them. And it all boils down to the lack of a
+universally accepted network quality framework that captures how well
+applications are likely to work.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.1-5">A recent IAB workshop on measuring internet quality for end users identified
+this important point: Users mostly care about application performance (as
+opposed to network performance). Among the conclusions is the statement, "A
+really meaningful metric for users is whether their application will work
+properly or fail because of a lack of a network with sufficient characteristics"
+<span>[<a href="#RFC9318" class="cite xref">RFC9318</a>]</span>. One of the requirements we set out here is, therefore, to be able
+to answer this question: "Will an application work properly?". An answer to this
+question requires a few things; First, we must acknowledge that the internet is
+stochastic (from the point-of-view of any given client), and we can never answer
+this question with certainty. Second, different applications have different
+needs and adapt differently to varying network conditions. Any framework aiming
+to answer this question must be able to cater to the needs of different
+applications. Thirdly, end users are individuals with different perception of,
+and levels of tolerance for, degradation of network conditions and the resulting
+effect on application experience.<a href="#section-2.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="design-goal">
+<section id="section-2.2">
+        <h3 id="name-design-goal">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-design-goal" class="section-name selfRef">Design Goal</a>
+        </h3>
+<p id="section-2.2-1">The overall goal is to describe the requirements for an objective network
+quality framework and metric that is useful for end-users, application
+developers, and network operators/vendors alike.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requirements">
+<section id="section-2.3">
+        <h3 id="name-requirements">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-requirements" class="section-name selfRef">Requirements</a>
+        </h3>
+<p id="section-2.3-1">This section describes the three main requirements and the motivation for each.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.3-2">In general, all stakeholders ultimately care about the success of applications
+running over the network. Application success depends not just on bandwidth but
+also on the delay of the network links and computational steps involved in
+making the application function.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
+<p id="section-2.3-3">These delays in turn depend on how the application places load on the network,
+how the network is affected by environmental conditions and the behavior of
+other users sharing the network resources.<a href="#section-2.3-3" class="pilcrow">¶</a></p>
+<p id="section-2.3-4">Different applications have different needs from the network, and they put
+different patterns of load on the network. To provide an answer to whether or
+not applications will work well or fail, a network quality framework must
+therefore be able to compare measurements of network performance to many
+different application requirements.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
+<p id="section-2.3-5">Flexibility in describing application requirements and the ability to capture
+the delay characteristics of the network in enough detail to compute how likely
+application success is with satisfactory accuracy and precision are necessary
+conditions.<a href="#section-2.3-5" class="pilcrow">¶</a></p>
+<p id="section-2.3-6">How can operators take action when measurements show that applications fail too
+often? We can answer this question if the measured metric(s) support spatial
+composition <span>[<a href="#RFC6049" class="cite xref">RFC6049</a>]</span>, <span>[<a href="#RFC6390" class="cite xref">RFC6390</a>]</span>. Spatial composition gives us the ability
+to divide results into sub-results, each measuring the performance of a required
+sub-milestone that must be reached in time for the application to succeed.<a href="#section-2.3-6" class="pilcrow">¶</a></p>
+<p id="section-2.3-7">To summarise, the framework and "meaningful metric" we're looking for should
+have the following properties:<a href="#section-2.3-7" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-2.3-8">
+<li id="section-2.3-8.1">
+            <p id="section-2.3-8.1.1">Capture the information necessary to compute the probability that
+applications will work well. (Useful for End-users and Application
+developers)<a href="#section-2.3-8.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-2.3-8.2">
+            <p id="section-2.3-8.2.1">Compare meaningfully to different application requirements.<a href="#section-2.3-8.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-2.3-8.3">
+            <p id="section-2.3-8.3.1">Compose. So that operators can isolate and quantify the contributions of
+different sub-outcomes and sub-paths of the network. (Useful for Operators
+and Vendors)<a href="#section-2.3-8.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<div id="requirements-for-end-users">
+<section id="section-2.3.1">
+          <h4 id="name-requirements-for-end-users">
+<a href="#section-2.3.1" class="section-number selfRef">2.3.1. </a><a href="#name-requirements-for-end-users" class="section-name selfRef">Requirements for end-users</a>
+          </h4>
+<p id="section-2.3.1-1">The quality framework should facilitate a metric that is objective, relatable,
+and relatively understandable for an end-user. We are looking for a middle
+ground between objective QoS metrics (Throughput, packet loss, jitter, average
+latency) and subjective but understandable QoE metrics (MOS, 5-star ratings).
+The ideal framework should be objective, like QoS metrics, and understandable,
+like QoE metrics.<a href="#section-2.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.3.1-2">If these requirements are met, the end-user can understand if a network can
+reliably deliver what they care about: the outcomes of applications. Examples
+are how quickly a web page loads, the smoothness of a video conference, or
+whether or not a video game has any lag.<a href="#section-2.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.3.1-3">Each end user will have an individual tolerance of session quality, below which
+their quality of experience becomes personally unacceptable. However it may not
+be feasible to capture and represent these tolerances <em>per user</em> as the user
+group scales. A compromise is for the quality of experience framework to place
+the responsibility for sourcing and representing end-user requirements onto the
+application developer. Application developers should perform user-acceptance
+testing (UAT) of their application across a range of users, terminals and
+network conditions to determine the terminal and network requirements that will
+meet the end-user quality threshold for an acceptable subset of their end users.
+Some real world examples where 'acceptable levels' have been derived by
+application developers include (note: developers of similar applications may
+have arrived at different figures):<a href="#section-2.3.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.3.1-4.1">
+              <p id="section-2.3.1-4.1.1">Remote music collaboration: 28ms latency note-to-ear for direct monitoring,
+&lt;2ms jitter<a href="#section-2.3.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2.3.1-4.2">
+              <p id="section-2.3.1-4.2.1">Online gaming: 6Mb/s downlink throughput and 30ms RTT to join a multiplayer
+game<a href="#section-2.3.1-4.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2.3.1-4.3">
+              <p id="section-2.3.1-4.3.1">Virtual reality: &lt;20ms RTT from head motion to rendered update in VR<a href="#section-2.3.1-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-2.3.1-5">Performing this UAT helps the developer understand what likelihood a new
+end-user has of an acceptable Quality of Experience based on the application's
+existing requirements towards the network. These requirements can evolve and
+improve based on feedback from end users, and in turn better inform the
+application's requirements towards the network.<a href="#section-2.3.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requirements-from-application-and-platform-developers">
+<section id="section-2.3.2">
+          <h4 id="name-requirements-from-applicati">
+<a href="#section-2.3.2" class="section-number selfRef">2.3.2. </a><a href="#name-requirements-from-applicati" class="section-name selfRef">Requirements from Application and Platform Developers</a>
+          </h4>
+<p id="section-2.3.2-1">The framework needs to give developers the ability to describe the network
+requirements of their applications. The format for specifying network
+requirements must include all relevant dimensions of network quality so that
+different applications which are sensitive to different network quality
+dimensions can all evaluate the network accurately. We can only expect some
+developers to have network expertise, so to make it easy for developers to use
+the framework, developers must be able to specify network requirements
+approximately. Therefore, it must be possible to describe both simple and
+complex network requirements. The framework also needs to be flexible so that it
+can be used with different kinds of traffic and that extreme network
+requirements which far exceed the needs of today's applications can also be
+articulated.<a href="#section-2.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.3.2-2">If these requirements are met, developers of applications or platforms can state
+or test their network requirements and evaluate if the network is sufficient for
+a great application outcome. Both the application developers with networking
+expertise and those without can use the framework.<a href="#section-2.3.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requirements-for-network-operators-and-network-solution-vendors">
+<section id="section-2.3.3">
+          <h4 id="name-requirements-for-network-op">
+<a href="#section-2.3.3" class="section-number selfRef">2.3.3. </a><a href="#name-requirements-for-network-op" class="section-name selfRef">Requirements for Network Operators and Network Solution Vendors</a>
+          </h4>
+<p id="section-2.3.3-1">From an operator perspective, the key is to have a framework that lets operators
+find the network quality bottlenecks and objectively compare different networks
+and technologies. The framework must support mathematically sound
+compositionality ('addition' and 'subtraction') to achieve this. Why? Network
+operators rarely manage network traffic end-to-end. If a test is purely
+end-to-end, the ability to find bottlenecks may be gone. If, however, we could
+measure end-to-end (e.g., a-b-c-d-e) and not-end-to-end (e.g., b-c-d-e) and
+subtract, we can isolate the areas outside the influence of the network
+operator. In other words, we could get the network quality of a-b and b-c-d-e
+separately. Compositionality is essential for fault detection and
+accountability.<a href="#section-2.3.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.3.3-2">By having mathematically correct composition, a network operator can measure two
+segments separately, perhaps even with different approaches, and add them
+together to understand the end-to-end network quality.<a href="#section-2.3.3-2" class="pilcrow">¶</a></p>
+<p id="section-2.3.3-3">For another example where spatial composition is useful, we can look at a
+typical web page load sequence. If we measure web page load times and find they
+are too often too slow, we may then separately measure DNS resolution time, TCP
+round-trip time, and the time it takes to establish TLS connections to get a
+better idea of where the problem is. A network quality framework should support
+this kind of analysis to be maximally useful for operators. The quality
+framework must be applicable in both lab testing and monitoring of production
+networks. It must be useful on different time scales, and it can't have a
+dependency on network technology or OSI layer.<a href="#section-2.3.3-3" class="pilcrow">¶</a></p>
+<p id="section-2.3.3-4">If these requirements are met, a network operator can monitor and test their
+network and understand where the true bottlenecks are, regardless of network
+technology.<a href="#section-2.3.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="background">
+<section id="section-3">
+      <h2 id="name-background">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-background" class="section-name selfRef">Background</a>
+      </h2>
+<p id="section-3-1">The foundation of the framework is Quality Attenuation <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>. This work
+will not go into detail about how to measure Quality Attenuation, but some
+relevant techniques are:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-2.1">
+          <p id="section-3-2.1.1">Active probing with TWAMP Light <span>[<a href="#RFC5357" class="cite xref">RFC5357</a>]</span> / STAMP <span>[<a href="#RFC8762" class="cite xref">RFC8762</a>]</span> / IRTT
+<span>[<a href="#IRTT" class="cite xref">IRTT</a>]</span><a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.2">
+          <p id="section-3-2.2.1">Varying Latency Under Load Tests<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.3">
+          <p id="section-3-2.3.1">Varying Speed Tests with latency measures<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.4">
+          <p id="section-3-2.4.1">Simulating real traffic<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.5">
+          <p id="section-3-2.5.1">End-to-end measurements of real traffic<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.6">
+          <p id="section-3-2.6.1">TCP SYN ACK / DNS Lookup RTT Capture<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.7">
+          <p id="section-3-2.7.1">Estimation<a href="#section-3-2.7.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-3-3">Quality Attenuation represents quality measurements as distributions. Using
+Latency distributions to measure network quality is nothing new and has been
+proposed by various researchers/practitioners <span>[<a href="#Kelly" class="cite xref">Kelly</a>]</span><span>[<a href="#RFC8239" class="cite xref">RFC8239</a>]</span><span>[<a href="#RFC6049" class="cite xref">RFC6049</a>]</span>.
+The novelty of the Quality Attenuation metric is to view packet loss as infinite
+(or too late to be of use e.g. &gt; 3 seconds) latency <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">Latency Distributions can be gathered via both passive monitoring and active
+testing. The active testing can use any type of IP traffic, such as TCP, UDP, or
+QUIC. It is OSI Layer and network technology independent, meaning it can be
+gathered in an end-user application, within some network equipment, or anywhere
+in between.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-5">A key assumption behind the choice of latency distribution is that different
+applications and application categories fail at different points of the latency
+distribution. Some applications, typically downloads, have lenient latency
+requirements. Video Conferences typically are sensitive to high 90th percentile
+latency and to the difference between the 90th and the 99th percentile. Online
+gaming typically has a low tolerance for high 99th percentile latency. All
+applications require a minumum level of throughput and a maximum packet loss
+rate. A network quality metric that aims to generalize network quality must take
+the latency distribution, throughput, and packet loss into consideration.<a href="#section-3-5" class="pilcrow">¶</a></p>
+<p id="section-3-6">Two distributions can be composed using convolution <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>.<a href="#section-3-6" class="pilcrow">¶</a></p>
+<div id="discussion-of-other-performance-metrics">
+<section id="section-3.1">
+        <h3 id="name-discussion-of-other-perform">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-discussion-of-other-perform" class="section-name selfRef">Discussion of other performance metrics</a>
+        </h3>
+<p id="section-3.1-1">Many network performance metrics and frameworks for reasoning about them have
+been proposed, used, and abused throughout the years. We present a brief
+description of some of the most relevant metrics.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">For each of the metrics below, we discuss whether or not they meet each of the
+three criteria set out in the requirements.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<div id="average-peak-throughput">
+<section id="section-3.1.1">
+          <h4 id="name-average-peak-throughput">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-average-peak-throughput" class="section-name selfRef">Average Peak Throughput</a>
+          </h4>
+<p id="section-3.1.1-1">Throughput is related to user-observable application outcomes because there must
+be <em>enough</em> bandwidth available. Adding extra bandwidth above a certain
+threshold will, at best, receive diminishing returns (and any returns are often
+due to reduced latency). It is not possible to compute the probability of
+application success or failure based on throughput alone for most applications.
+Throughput can be compared to a variety of application requirements, but since
+there is no direct correlation between throughput and application performance,
+it is not possible to conclude that an application will work well even if we
+know that enough throughput is available.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-2">Throughput cannot be composed.<a href="#section-3.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="average-latency">
+<section id="section-3.1.2">
+          <h4 id="name-average-latency">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-average-latency" class="section-name selfRef">Average Latency</a>
+          </h4>
+<p id="section-3.1.2-1">Average latency relates to user-observable application outcomes in the sense
+that the average latency must be low enough to support a good experience.
+However, it is not possible to conclude that a general application will work
+well based on the fact that the average latency is good enough <span>[<a href="#BITAG" class="cite xref">BITAG</a>]</span>.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-2">Average latency can be composed. If the average latency of links a-b and b-c is
+known, then the average latency of the composition a-b-c is the sum of a-b and
+b-c.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="th-percentile-of-latency">
+<section id="section-3.1.3">
+          <h4 id="name-99th-percentile-of-latency">
+<a href="#section-3.1.3" class="section-number selfRef">3.1.3. </a><a href="#name-99th-percentile-of-latency" class="section-name selfRef">99th Percentile of Latency</a>
+          </h4>
+<p id="section-3.1.3-1">The 99th percentile of latency relates to user-observable application outcomes
+because it captures some information about how bad the tail latency is. If an
+application can handle 1% of packets being too late, for instance by maintaining
+a playback buffer, then the 99th percentile can be a good metric for measuring
+application performance. It does not work as well for applications that are very
+sensitive to overly delayed packets because the 99th percentile disregards all
+information about the delays of the worst 1% of packets.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-2">It is not possible to compose 99th-percentile values.<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="variance-of-latency">
+<section id="section-3.1.4">
+          <h4 id="name-variance-of-latency">
+<a href="#section-3.1.4" class="section-number selfRef">3.1.4. </a><a href="#name-variance-of-latency" class="section-name selfRef">Variance of latency</a>
+          </h4>
+<p id="section-3.1.4-1">The variance of latency can be calculated from any collection of samples, but
+network latency is not necessarily normally distributed, and so it can be
+difficult to extrapolate from a measure of the variance of latency to how well
+specific applications will work.<a href="#section-3.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.4-2">The variance of latency can be composed. If the variance of links a-b and b-c is
+known, then the variance of the composition a-b-c is the sum of the variances
+a-b and b-c.<a href="#section-3.1.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="inter-packet-delay-variation-ipdv">
+<section id="section-3.1.5">
+          <h4 id="name-inter-packet-delay-variatio">
+<a href="#section-3.1.5" class="section-number selfRef">3.1.5. </a><a href="#name-inter-packet-delay-variatio" class="section-name selfRef">Inter-Packet Delay Variation (IPDV)</a>
+          </h4>
+<p id="section-3.1.5-1">The most common definition of IPDV <span>[<a href="#RFC5481" class="cite xref">RFC5481</a>]</span> measures the difference in
+one-delay between subsequent packets. Some applications are very sensitive to
+this because of time-outs that cause later-than-usual packets to be discarded.
+For some applications, IPDV can be useful in assessing application performance,
+especially when it is combined with other latency metrics. IPDV does not contain
+enough information to compute the probability that a wide range of applications
+will work well.<a href="#section-3.1.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.5-2">IPDV cannot be composed.<a href="#section-3.1.5-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="packet-delay-variation-pdv">
+<section id="section-3.1.6">
+          <h4 id="name-packet-delay-variation-pdv">
+<a href="#section-3.1.6" class="section-number selfRef">3.1.6. </a><a href="#name-packet-delay-variation-pdv" class="section-name selfRef">Packet Delay Variation (PDV)</a>
+          </h4>
+<p id="section-3.1.6-1">The most common definition of PDV <span>[<a href="#RFC5481" class="cite xref">RFC5481</a>]</span> measures the difference in
+one-delay between the smallest recorded latency and each value in a sample.<a href="#section-3.1.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.6-2">PDV cannot be composed.<a href="#section-3.1.6-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="trimmed-mean-of-latency">
+<section id="section-3.1.7">
+          <h4 id="name-trimmed-mean-of-latency">
+<a href="#section-3.1.7" class="section-number selfRef">3.1.7. </a><a href="#name-trimmed-mean-of-latency" class="section-name selfRef">Trimmed Mean of Latency</a>
+          </h4>
+<p id="section-3.1.7-1">The trimmed mean of latency is the average computed after the worst x percent of
+samples have been removed. Trimmed means are typically used in cases where there
+is a known rate of measurement errors that should be filtered out before
+computing results.<a href="#section-3.1.7-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.7-2">In the case where the trimmed mean simply removes measurement errors, the result
+can be composed in the same way as the average latency. In cases where the
+trimmed mean removes real measurements, the trimming operation introduces errors
+that may compound when composed.<a href="#section-3.1.7-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="round-trips-per-minute">
+<section id="section-3.1.8">
+          <h4 id="name-round-trips-per-minute">
+<a href="#section-3.1.8" class="section-number selfRef">3.1.8. </a><a href="#name-round-trips-per-minute" class="section-name selfRef">Round-trips Per Minute</a>
+          </h4>
+<p id="section-3.1.8-1">Round-trips per minute <span>[<a href="#RPM" class="cite xref">RPM</a>]</span> is a metric and test procedure specifically
+designed to measure delays as experienced by application-layer protocol
+procedures such as HTTP GET, establishing a TLS connection, and DNS lookups. It,
+therefore, measures something very close to the user-perceived application
+performance of HTTP-based applications. RPM loads the network before conducting
+latency measurements and is, therefore, a measure of loaded latency (also known
+as working latency) well-suited to detecting bufferbloat <span>[<a href="#Bufferbloat" class="cite xref">Bufferbloat</a>]</span>.<a href="#section-3.1.8-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.8-2">RPM is not composable.<a href="#section-3.1.8-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="quality-attenuation">
+<section id="section-3.1.9">
+          <h4 id="name-quality-attenuation">
+<a href="#section-3.1.9" class="section-number selfRef">3.1.9. </a><a href="#name-quality-attenuation" class="section-name selfRef">Quality Attenuation</a>
+          </h4>
+<p id="section-3.1.9-1">Quality Attenuation is a network performance metric that combines latency and
+packet loss into a single variable <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>.<a href="#section-3.1.9-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.9-2">Quality Attenuation relates to user-observable outcomes in the sense that
+user-observable outcomes can be measured using the Quality Attenuation metric
+directly, or the quality attenuation value describing the time-to-completion of
+a user-observable outcome can be computed if we know the quality attenuation of
+each sub-goal required to reach the desired outcome <span>[<a href="#Haeri22" class="cite xref">Haeri22</a>]</span>.<a href="#section-3.1.9-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.9-3">Quality Attenuation is composable because the convolution of quality attenuation
+values allows us to compute the time it takes to reach specific outcomes given
+the quality attenuation of each sub-goal <span>[<a href="#Haeri22" class="cite xref">Haeri22</a>]</span>.<a href="#section-3.1.9-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="summary-of-performance-metrics">
+<section id="section-3.1.10">
+          <h4 id="name-summary-of-performance-metr">
+<a href="#section-3.1.10" class="section-number selfRef">3.1.10. </a><a href="#name-summary-of-performance-metr" class="section-name selfRef">Summary of performance metrics</a>
+          </h4>
+<p id="section-3.1.10-1">This table summarizes the properties of each of the metrics we have surveyed.<a href="#section-3.1.10-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.10-2">The column "Capture probability of general applications working well" records
+whether each metric can, in principle, capture the information necessary to
+compute the probability that a general application will work well. We assume
+measurements capture the properties of the end-to-end network path that the
+application is using.<a href="#section-3.1.10-2" class="pilcrow">¶</a></p>
+<table class="center" id="table-1">
+            <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">Metric</th>
+                <th class="text-left" rowspan="1" colspan="1">Capture probability of general applications working well</th>
+                <th class="text-left" rowspan="1" colspan="1">Easy to articulate Application requirements</th>
+                <th class="text-left" rowspan="1" colspan="1">Composable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Average latency</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes for some applications</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Variance of latency</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPDV</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes for some applications</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">PDV</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes for some applications</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Average Peak Throughput</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes for some applications</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">99th Percentile of Latency</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Trimmed mean of latency</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes for some applications</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Round Trips Per Minute</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes for some applications</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Quality Attenuation</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes</td>
+                <td class="text-left" rowspan="1" colspan="1">No</td>
+                <td class="text-left" rowspan="1" colspan="1">Yes</td>
+              </tr>
+            </tbody>
+          </table>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="sampling-requirements">
+<section id="section-4">
+      <h2 id="name-sampling-requirements">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-sampling-requirements" class="section-name selfRef">Sampling requirements</a>
+      </h2>
+<p id="section-4-1">To reach the design goal of being useful in the contexts laid out in the
+Motivation section, this work imposes no requirement on the time period or the
+network loading situation. This choice has pros and cons. Latency under load is
+extremely important, but average or median latency has a role too. However, a
+network quality metric that does not take latency under load into account is
+bound to fail at predicting application outcome.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">This framework only requires a latency distribution. If the sampling is done
+while the network is loaded, latency under load will be part of the
+distribution, which is encouraged, but is not always possible, for example when
+passively monitoring the latency of real traffic.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">It takes quite a few samples to have a statistically significant distribution.
+Modeling a distribution may be a challenging software engineering task, hence we
+need to sample the latency distribution at certain percentiles. A list of 10
+percentiles in a logarithmic-esque fashion has already been suggested in
+industry [0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th, 100th] and
+seems adequate. We propose to define a shared set of percentile values to
+report.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">The framework is flexible when it comes to the direction of traffic that is
+being sampled, but does require that it is noted whether the latency
+distribution is measured one-way or two-way. The framework does not require an
+explicit throughput measurement, but does require a note on the maximal observed
+throughput in the time period.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">By not requiring a specific number of samples, this framework allows taking 10
+samples and calling it a distribution, which of course is not ideal. On the
+other hand, making the framework overly complex and difficult to adhere to using
+real-world equipment and applications is likely to reduce willingness to adopt
+the framework. Constraints will vary for different network equipment and
+applications.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">To make sure we can trust measurements from others and analyze their precision,
+we require:<a href="#section-4-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4-7.1">
+          <p id="section-4-7.1.1">Timestamp of first sample<a href="#section-4-7.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-4-7.2">
+          <p id="section-4-7.2.1">Duration of the sampling period<a href="#section-4-7.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-4-7.3">
+          <p id="section-4-7.3.1">Number of samples<a href="#section-4-7.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-4-7.4">
+          <p id="section-4-7.4.1">Type of measurement:<a href="#section-4-7.4.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4-7.4.2.1">
+              <p id="section-4-7.4.2.1.1">Cyclic (a sample every Nth ms) - Specify N<a href="#section-4-7.4.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4-7.4.2.2">
+              <p id="section-4-7.4.2.2.1">Bursts (X samples every Nth ms) - Specify X and N<a href="#section-4-7.4.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4-7.4.2.3">
+              <p id="section-4-7.4.2.3.1">Passive (observing traffic and therefore unevenly sampled)<a href="#section-4-7.4.2.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</li>
+      </ul>
+<p id="section-4-8">By requiring the report of these variables, we ensure that the network
+measurements can be analyzed for precision and confidence.<a href="#section-4-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="describing-network-requirements">
+<section id="section-5">
+      <h2 id="name-describing-network-requirem">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-describing-network-requirem" class="section-name selfRef">Describing Network Requirements</a>
+      </h2>
+<p id="section-5-1">This work builds upon the work already proposed in the Broadband Forum standard
+called Quality of Experience Delivered (QED/TR-452) <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>. In essence, it
+describes network requirements as a list of percentile and latency requirement
+tuples. In other words, a network requirement may be expressed as: The network
+requirement for this app quality level/app/app category/SLA is “at 4 Mbps, 90%
+of packets needs to arrive within 100 ms, 100% of packets needs to arrive within
+200ms”. This list can be as simple as “100% of packets need to arrive within
+200ms” or as long as you would like. For the sake of simplicity, the
+requirements percentiles must match one or more of the percentiles defined in
+the measurements, i.e., one can set requirements at the [0th, 10th, 25th, 50th,
+75th, 90th, 95th, 99th, 99.9th, 100th] percentiles. The last specified
+percentile marks the acceptable packet loss. I.e. if the 99th percentile is the
+highest percentile defined, 1% packet loss (100-99) is inferred.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">Applications do of course have throughput requirements. With classical TCP and
+typical UDP flows, latency and packet loss would be enough, as they are bound to
+create some latency or packet loss when ramping up throughput if subsequently
+they become hindered by insufficient bandwidth. However, we cannot always rely
+on monitoring latency exclusively, as low bandwidth may give poor application
+outcomes without necessarily inducing a lot of latency. Therefore, the network
+requirements should include a minimum throughput requirement.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">Whether the requirements are one-way or two-way must be specified. Where the
+requirement is one-way, the direction (uplink or downlink) must be specified. If
+two-way, a decomposition into uplink and downlink measurements may be specified.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">Until now, network requirements and measurements are what is already
+standardized in the BBF TR-452 (aka QED) framework <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>. The novel part
+of this work is what comes next. A method for going from Network Requirements
+and Network Measurements to probabilities of good application outcomes.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">To do that we need to make articulating the network requirements a little bit
+more complicated. A key design goal was to have a distance measure between
+perfect and unusable, and have a way of quantifying what is ‘better’.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<p id="section-5-6">We extend the requirements to include the quality required for perfection and a
+quality threshold beyond which the application is considered unusable.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">This is named Network Requirements for Perfection (NRP). As an example: At 4
+Mbps, 99% of packets need to arrive within 100ms, 99.9% within 200ms (implying
+that 0.1% packet loss is acceptable) for the outcome to be perfect. Network
+Requirement Point of Unusableness (NRPoU): If 99% of the packets have not
+arrived after 200ms, or 99.9% within 300ms, the outcome will be unusable.<a href="#section-5-7" class="pilcrow">¶</a></p>
+<p id="section-5-8">Where the NRPoU percentiles and NRP are a required pair then neither should
+define a percentile not included in the other - i.e., if the 99.9th percentile
+is part of the NRPoU then the NRP must also include the 99.9th percentile.<a href="#section-5-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="calculating-quality-of-outcome-qoo">
+<section id="section-6">
+      <h2 id="name-calculating-quality-of-outc">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-calculating-quality-of-outc" class="section-name selfRef">Calculating Quality of Outcome (QoO)</a>
+      </h2>
+<p id="section-6-1">At this point we have everything we need to calculate the quality of the
+application outcome (QoO). There are 3 scenarios:<a href="#section-6-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6-2">
+<li id="section-6-2.1">
+          <p id="section-6-2.1.1">The network meets all the requirements for perfection. There is a 100% chance
+that the application is not lagging because of the network<a href="#section-6-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-6-2.2">
+          <p id="section-6-2.2.1">The network does meet one of the criteria of the Point of Unusableness. There
+is a 0% chance that the application will work well, and it's because of the
+network<a href="#section-6-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-6-2.3">
+          <p id="section-6-2.3.1">The network does not meet NRP but is not beyond NRPoU.<a href="#section-6-2.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ol>
+<p id="section-6-3">1 and 2 require nothing more from the framework. For 3, we will now specify the
+calculation to translate these distances to a 0 to 100 measure. We use the
+percentile pair where the measured latency is the closest to the NRPoU as the
+application is only as good as its weakest link.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">Mathematically:<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">QoO = min_{i}(min(max((1-((ML-NRP)/(NRPoU-NRP))) * 100, 0), 100))<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">Where<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-7">ML = Measured Latency in percentiles and milliseconds <br>
+NRP = Network Requirement for Perfection, defined as minimum throughput and
+percentiles and milliseconds<br>
+NRPoU = Network Requirement Point of Unusableness in percentiles and
+milliseconds <br>
+and i iterates over the list of percentiles and milliseconds<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-8">Essentially, where on the relative distance between Network Requirement for
+Perfection (NRP) and Network Requirement Point of Unusableness (NRPoU) the
+Measured Latency (ML) lands, normalized to a percentage.<a href="#section-6-8" class="pilcrow">¶</a></p>
+<div id="example-requirements-and-measured-latency">
+<section id="section-6.1">
+        <h3 id="name-example-requirements-and-me">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-example-requirements-and-me" class="section-name selfRef">Example requirements and measured latency:</a>
+        </h3>
+<p id="section-6.1-1">NRP: 4 Mbps {99%, 250 ms},{99.9%, 350 ms} NRPoU: {99%, 400 ms},{99.9%, 401 ms}
+Measured Latency: .... 99% = 350ms, 99.9% = 352 ms Measured Minumum bandwidth:
+32 Mbps / 28 Mbps<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">Then the QoO is defined:<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">QoO<a href="#section-6.1-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1-4">
+<pre>
+= min(
+ (min(max((1-(350 ms - 250 ms)/(400 ms - 250 ms))*100), 0), 100),
+ (min(max((1-(352 ms - 350 ms)/(401 ms - 350 ms))*100), 0), 100)
+ )
+
+= min(33.33,96.08)
+
+= 33.33
+</pre><a href="#section-6.1-4" class="pilcrow">¶</a>
+</div>
+<p id="section-6.1-5">In this example, we would say: This application/SLA/application category has a
+33% chance of being lag-free on this network. Note that packet loss is included
+as infinite latency, so if there is enough packet loss to breach the highest
+percentile requirement then the QoO is 0.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="how-to-find-network-requirements">
+<section id="section-7">
+      <h2 id="name-how-to-find-network-require">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-how-to-find-network-require" class="section-name selfRef">How to find network requirements</a>
+      </h2>
+<p id="section-7-1">A key advantage of having a measurement that stretches between perfect and
+unusable, as opposed to having a binary (Good/Bad) or other low resolution
+(Superbad/Bad/OK/Great/Supergreat) metrics, is that we have some leeway. The
+leeway is useful, for instance: a lower than 20% chance of lag free experience
+is intuitively not good and a greater than 90% chance of lag free experience is
+intuitively good --- meaning we don’t have to find perfection for making the QoO
+metric useful.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">Nevertheless we have to find some points for unusableness and perfection. There
+is no strict definition of when the network is so bad that the application is
+unusable. For perfect, we may have a definition for some apps, but for apps like
+web browsing and gaming, lower latency is simply better. But to assist those who
+wish to make a requirement, we can say that if the end-user experience does not
+change when reducing the latency, the network quality is sufficient for the
+Network Requirements for Perfection (NRP) .<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">Someone who wishes to make a network requirement for an application in the
+simplest possible way, should do something along these lines.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7-4.1">
+          <p id="section-7-4.1.1">Simulate increasing levels of latency<a href="#section-7-4.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-4.2">
+          <p id="section-7-4.2.1">Observe the application and note the threshold where the application stops
+working perfectly<a href="#section-7-4.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-4.3">
+          <p id="section-7-4.3.1">Observe the application and note the threshold where the application stops
+being useful at all<a href="#section-7-4.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-7-5">Someone who wishes to find sophisticated network requirements might proceed in
+this way<a href="#section-7-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7-6.1">
+          <p id="section-7-6.1.1">Set thresholds for acceptable fps, animation fluidity, i/o latency (voice,
+video, actions), or other metrics capturing outcomes that directly affects the
+user experience<a href="#section-7-6.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-6.2">
+          <p id="section-7-6.2.1">Create a tool for measuring these user-facing metrics<a href="#section-7-6.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-6.3">
+          <p id="section-7-6.3.1">Simulate varying latency distribution with increasing levels of latency while
+measuring the user facing metrics.<a href="#section-7-6.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-7-7">A QoO score at 94 can be communicated as "John's smartphone has a 94% chance of
+lag-free Video Conferencing", however, this does not mean that at any point of
+time there is a 6% chance of lag. It means there is a 6% chance of experiencing
+lag during the entire session/time-period, and the network requirements should
+be adjusted accordingly.<a href="#section-7-7" class="pilcrow">¶</a></p>
+<p id="section-7-8">The reason for making the QoO metric for a session is to make it understandable
+for an end-user, an end-user should not have to relate to the time period the
+metric is for.<a href="#section-7-8" class="pilcrow">¶</a></p>
+<div id="an-example">
+<section id="section-7.1">
+        <h3 id="name-an-example">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-an-example" class="section-name selfRef">An example</a>
+        </h3>
+<p id="section-7.1-1">Example.com's video-conferencing service requirements can be translated into the
+QoO Framework. For best performance for video meetings, they specify 4/4 Mbps,
+100 ms latency, &lt;1% packet loss, and &lt;30 ms jitter. This can be translated to an
+NRP:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">NRP example.com video conferencing service: At minimum 4/4 Mbps.
+{0p=70ms,99p=100ms}<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<p id="section-7.1-3">For minimum requirements example.com does not specify anything, but at 500ms
+latency or 1000ms 99p latency, a video conference is very unlikely to work in a
+remotely satisfactory way.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+<p id="section-7.1-4">NRPoU {0p=500,99p=1000ms}<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+<p id="section-7.1-5">Of course, it is possible to specify network requirements for Example.com with
+multiple NRP/NRPoU, for different quality levels, one/two way video, and so on.
+Then one can calculate the QoO at each level.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="known-weaknesses-and-open-questions">
+<section id="section-8">
+      <h2 id="name-known-weaknesses-and-open-q">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-known-weaknesses-and-open-q" class="section-name selfRef">Known Weaknesses and open questions</a>
+      </h2>
+<p id="section-8-1">We have described a way of simplifying how the network requirements of
+applications can be compared to quality attenuation measurements. The
+simplification introduces several artifacts that may or may not be significant.
+If new information emerges that indicate other tradeoffs are more fit for our
+purpose, we should switch before this Internet Draft moves further. In this
+section we discuss some known limitations.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">Volatile networks - in particular, mobile cellular networks - pose a challenge
+for network quality prediction, with the level of assurance of the prediction
+likely to decrease as session duration increases. Historic network conditions
+for a given cell may help indicate times of network load or reduced transmission
+power, and their effect on throughput/latency/loss. However: as terminals are
+mobile, the signal bandwidth available to a given terminal can change by an
+order of magnitude within seconds due to physical radio factors. These include
+whether the terminal is at the edge of cell, or undergoing cell handover, the
+interference and fading from the local environment, and any switch between radio
+bearers with differing signal bandwidth and transmission-time intervals (e.g. 4G
+and 5G). This suggests a requirement for measuring quality attenuation to and
+from an individual terminal, as that can account for the factors described
+above. How that facility is provisioned onto indiviudal terminals, and how
+terminal-hosted applications can trigger a quality attenuation query, is an open
+question.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<div id="missing-temporal-information-in-distributions">
+<section id="section-8.1">
+        <h3 id="name-missing-temporal-informatio">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-missing-temporal-informatio" class="section-name selfRef">Missing Temporal Information in Distributions.</a>
+        </h3>
+<p id="section-8.1-1">These two latency series: 1,200,1,200,1,200,1,200,1,200 and
+1,1,1,1,1,200,200,200,200,200 will have identical distributions, but may have
+different application performance. Ignoring this information is a tradeoff
+between simplicity and precision. To capture all information necessary to
+perfectly capture outcomes we are getting into extreme computational complexity.
+As an application's performance is bound by how the developers react to varying
+network performance, meaning nearly all different series of latencies may have
+different application outcomes.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<p id="section-8.1-2">It will most likely be necessary to add a time-scale to the application
+requirement specifications.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="subsampling-the-real-distribution">
+<section id="section-8.2">
+        <h3 id="name-subsampling-the-real-distri">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-subsampling-the-real-distri" class="section-name selfRef">Subsampling the real distribution</a>
+        </h3>
+<p id="section-8.2-1">Additionally, we cannot capture latency on every packet that is sent. We can
+probe and sample, but there will always be unknowns. We are now in the realm of
+probability. Perfection is impossible, but instead of denying this, we should
+embrace it, which is why talking about the probability of outcomes is the way
+forward.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="assuming-linear-relationship-between-perfect-and-unusable-and-that-it-is-not-really-a-probability">
+<section id="section-8.3">
+        <h3 id="name-assuming-linear-relationshi">
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-assuming-linear-relationshi" class="section-name selfRef">Assuming Linear Relationship between Perfect and Unusable (and that it is not really a probability)</a>
+        </h3>
+<p id="section-8.3-1">One can conjure up scenarios where 50ms latency is actually worse than 51ms
+latency as developers may have chosen 50ms as the threshold for changing
+quality, and the threshold may be imperfect. Taking these scenarios into account
+would add another magnitude of complexity to determining network requirements
+and finding a distance measure (between requirement and actual measured
+capability).<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="binary-bandwidth-threshold">
+<section id="section-8.4">
+        <h3 id="name-binary-bandwidth-threshold">
+<a href="#section-8.4" class="section-number selfRef">8.4. </a><a href="#name-binary-bandwidth-threshold" class="section-name selfRef">Binary Bandwidth threshold</a>
+        </h3>
+<p id="section-8.4-1">Choosing this is to reduce complexity, but we do acknowledge that the
+applications are not that simple. The defence for this trade off is that
+insufficient bandwidth will cause queues and therefore latency, and it should be
+possible to see this. Additionally, network requirements can be set up per
+quality level (resolution, fps etc.) for the application. However, having too
+many network requirements also increases the complexity for users of the
+framework, and it is still unclear if this is the optimal tradeoff.<a href="#section-8.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="low-resolution-on-packet-loss">
+<section id="section-8.5">
+        <h3 id="name-low-resolution-on-packet-lo">
+<a href="#section-8.5" class="section-number selfRef">8.5. </a><a href="#name-low-resolution-on-packet-lo" class="section-name selfRef">Low resolution on Packet Loss</a>
+        </h3>
+<p id="section-8.5-1">To ensure simplicity, packet loss is described as infinite latency and the
+resolution will be bound to the percentiles we chose to sample. There is a good
+argument that some applications need higher resolution on packet loss for
+sufficiently describing application outcomes. If this good evidence is presented
+for this, packet loss should be measured separately and added to the QoO
+formula.<a href="#section-8.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="arbitrary-selection-of-percentiles">
+<section id="section-8.6">
+        <h3 id="name-arbitrary-selection-of-perc">
+<a href="#section-8.6" class="section-number selfRef">8.6. </a><a href="#name-arbitrary-selection-of-perc" class="section-name selfRef">Arbitrary selection of percentiles</a>
+        </h3>
+<p id="section-8.6-1">There is a need for a selection of percentiles, as we in the name of simplicity
+can’t use them all. But how should we select them? The 0th (minimal) and 50th
+(median) percentile have implicit usage by themselves. <span>[<a href="#BITAG" class="cite xref">BITAG</a>]</span> discusses that
+the 90th, 98th and 99th percentiles are key for some apps. In general the wisdom
+is that the higher percentiles are more useful for interactive applications, but
+only to a certain point. At this point an application sees it as packet loss and
+may adapt to it. Should we pick the 95th, 96th percentile, the 96.5th or the
+97th? We don’t know, and as this is likely not universal across applications and
+applications classes, we simply have to choose arbitrarily, and to the best of
+our knowledge.<a href="#section-8.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="implementation-status">
+<section id="section-9">
+      <h2 id="name-implementation-status">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-implementation-status" class="section-name selfRef">Implementation status</a>
+      </h2>
+<p id="section-9-1">Note to RFC Editor: This section <span class="bcp14">MUST</span> be removed before publication of the
+document.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-2">This section records the status of known implementations of the protocol defined
+by this specification at the time of posting of this Internet-Draft, and is
+based on a proposal described in <span>[<a href="#RFC7942" class="cite xref">RFC7942</a>]</span>. The description of implementations
+in this section is intended to assist the IETF in its decision processes in
+progressing drafts to RFCs. Please note that the listing of any individual
+implementation here does not imply endorsement by the IETF. Furthermore, no
+effort has been spent to verify the information presented here that was supplied
+by IETF contributors. This is not intended as, and must not be construed to be,
+a catalog of available implementations or their features. Readers are advised to
+note that other implementations may exist.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-9-3">According to <span>[<a href="#RFC7942" class="cite xref">RFC7942</a>]</span>, "this will allow reviewers and working groups to assign
+due consideration to documents that have the benefit of running code, which may
+serve as evidence of valuable experimentation and feedback that have made the
+implemented protocols more mature. It is up to the individual working groups to
+use this information as they see fit".<a href="#section-9-3" class="pilcrow">¶</a></p>
+<div id="qoo-c">
+<section id="section-9.1">
+        <h3 id="name-qoo-c">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-qoo-c" class="section-name selfRef">qoo-c</a>
+        </h3>
+<ul class="normal">
+<li class="normal" id="section-9.1-1.1">
+            <p id="section-9.1-1.1.1">Link to the open-source repository:<a href="#section-9.1-1.1.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.1.2">
+https://github.com/domoslabs/qoo-c<a href="#section-9.1-1.1.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.1-1.2">
+            <p id="section-9.1-1.2.1">The organization responsible for the implementation:<a href="#section-9.1-1.2.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.2.2">
+Domos<a href="#section-9.1-1.2.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.1-1.3">
+            <p id="section-9.1-1.3.1">A brief general description:<a href="#section-9.1-1.3.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.3.2">
+A C library for calculating Quality of Outcome<a href="#section-9.1-1.3.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.1-1.4">
+            <p id="section-9.1-1.4.1">The implementation's level of maturity:<a href="#section-9.1-1.4.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.4.2">
+A complete implentation of the specification described in this document<a href="#section-9.1-1.4.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.1-1.5">
+            <p id="section-9.1-1.5.1">Coverage:<a href="#section-9.1-1.5.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.5.2">
+The library is tested with unit tests<a href="#section-9.1-1.5.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.1-1.6">
+            <p id="section-9.1-1.6.1">Licensing:<a href="#section-9.1-1.6.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.6.2">
+GPL 2.0<a href="#section-9.1-1.6.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.1-1.7">
+            <p id="section-9.1-1.7.1">Implementation experience:<a href="#section-9.1-1.7.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.7.2">
+Tested by the author. Needs additional testing by third parties.<a href="#section-9.1-1.7.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.1-1.8">
+            <p id="section-9.1-1.8.1">Contact information:<a href="#section-9.1-1.8.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.8.2">
+Bjørn Ivar Teigen: bjorn@domos.no<a href="#section-9.1-1.8.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.1-1.9">
+            <p id="section-9.1-1.9.1">The date when information about this particular implementation was last
+updated:<a href="#section-9.1-1.9.1" class="pilcrow">¶</a></p>
+<p id="section-9.1-1.9.2">
+10th of January 2024<a href="#section-9.1-1.9.2" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="goresponsiveness">
+<section id="section-9.2">
+        <h3 id="name-goresponsiveness">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-goresponsiveness" class="section-name selfRef">goresponsiveness</a>
+        </h3>
+<ul class="normal">
+<li class="normal" id="section-9.2-1.1">
+            <p id="section-9.2-1.1.1">Link to the open-source repository:<a href="#section-9.2-1.1.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.1.2">
+https://github.com/network-quality/goresponsiveness<a href="#section-9.2-1.1.2" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.1.3">
+The specific pull-request:
+https://github.com/network-quality/goresponsiveness/pull/56<a href="#section-9.2-1.1.3" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.2-1.2">
+            <p id="section-9.2-1.2.1">The organization responsible for the implementation:<a href="#section-9.2-1.2.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.2.2">
+University of Cincinatti for goresponsiveness as a whole, Domos for the QoO
+part.<a href="#section-9.2-1.2.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.2-1.3">
+            <p id="section-9.2-1.3.1">A brief general description:<a href="#section-9.2-1.3.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.3.2">
+A network quality test written in Go. Capable of measuring RPM and QoO.<a href="#section-9.2-1.3.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.2-1.4">
+            <p id="section-9.2-1.4.1">The implementation's level of maturity:<a href="#section-9.2-1.4.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.4.2">
+In active development<a href="#section-9.2-1.4.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.2-1.5">
+            <p id="section-9.2-1.5.1">Coverage:<a href="#section-9.2-1.5.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.5.2">
+The QoO part is tested with unit tests<a href="#section-9.2-1.5.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.2-1.6">
+            <p id="section-9.2-1.6.1">Licensing:<a href="#section-9.2-1.6.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.6.2">
+GPL 2.0<a href="#section-9.2-1.6.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.2-1.7">
+            <p id="section-9.2-1.7.1">Implementation experience:<a href="#section-9.2-1.7.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.7.2">
+Needs testing by third parties<a href="#section-9.2-1.7.2" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.2-1.8">
+            <p id="section-9.2-1.8.1">Contact information:<a href="#section-9.2-1.8.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.8.2">
+Bjørn Ivar Teigen: bjorn@domos.no<a href="#section-9.2-1.8.2" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.8.3">
+William Hawkins III: hawkinwh@ucmail.uc.edu<a href="#section-9.2-1.8.3" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-9.2-1.9">
+            <p id="section-9.2-1.9.1">The date when information about this particular implementation was last
+updated:<a href="#section-9.2-1.9.1" class="pilcrow">¶</a></p>
+<p id="section-9.2-1.9.2">
+10th of January 2024<a href="#section-9.2-1.9.2" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="conventions-and-definitions">
+<section id="section-10">
+      <h2 id="name-conventions-and-definitions">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
+      </h2>
+<p id="section-10-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+"<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
+described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
+appear in all capitals, as shown here.<a href="#section-10-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-11">
+      <h2 id="name-security-considerations">
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-11-1">TODO Security<a href="#section-11-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-12">
+      <h2 id="name-iana-considerations">
+<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-12-1">This document has no IANA actions.<a href="#section-12-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-13">
+      <h2 id="name-references">
+<a href="#section-13" class="section-number selfRef">13. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-13.1">
+        <h3 id="name-normative-references">
+<a href="#section-13.1" class="section-number selfRef">13.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+      <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-13.2">
+        <h3 id="name-informative-references">
+<a href="#section-13.2" class="section-number selfRef">13.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="BITAG">[BITAG]</dt>
+        <dd>
+<span class="refAuthor">BITAG</span>, <span class="refTitle">"Latency Explained"</span>, <time datetime="2022-10" class="refDate">October 2022</time>, <span>&lt;<a href="https://www.bitag.org/documents/BITAG_latency_explained.pdf">https://www.bitag.org/documents/BITAG_latency_explained.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Bufferbloat">[Bufferbloat]</dt>
+        <dd>
+<span class="refTitle">"Bufferbloat: Dark buffers in the Internet"</span>, <span>n.d.</span>, <span>&lt;<a href="https://queue.acm.org/detail.cfm?id=2071893">https://queue.acm.org/detail.cfm?id=2071893</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="draft-teigen-ippm-app-quality-metric-reqs">[draft-teigen-ippm-app-quality-metric-reqs]</dt>
+        <dd>
+<span class="refTitle">"Requirements for a Network Quality Framework Useful for Applications, Users, and Operators"</span>, <span>n.d.</span>. </dd>
+<dd class="break"></dd>
+<dt id="Haeri22">[Haeri22]</dt>
+        <dd>
+<span class="refTitle">"Mind Your Outcomes: The ΔQSD Paradigm for Quality-Centric Systems Development and Its Application to a Blockchain Case Study"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.mdpi.com/2073-431X/11/3/45">https://www.mdpi.com/2073-431X/11/3/45</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IRTT">[IRTT]</dt>
+        <dd>
+<span class="refTitle">"Isochronous Round-Trip Tester"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/heistp/irtt">https://github.com/heistp/irtt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Kelly">[Kelly]</dt>
+        <dd>
+<span class="refAuthor">Kelly, F. P.</span>, <span class="refTitle">"Networks of Queues"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.cambridge.org/core/journals/advances-in-applied-probability/article/abs/networks-of-queues/38A1EA868A62B09C77A073BECA1A1B56">https://www.cambridge.org/core/journals/advances-in-applied-probability/article/abs/networks-of-queues/38A1EA868A62B09C77A073BECA1A1B56</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5357">[RFC5357]</dt>
+        <dd>
+<span class="refAuthor">Hedayat, K.</span>, <span class="refAuthor">Krzanowski, R.</span>, <span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Yum, K.</span>, and <span class="refAuthor">J. Babiarz</span>, <span class="refTitle">"A Two-Way Active Measurement Protocol (TWAMP)"</span>, <span class="seriesInfo">RFC 5357</span>, <span class="seriesInfo">DOI 10.17487/RFC5357</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5357">https://www.rfc-editor.org/rfc/rfc5357</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5481">[RFC5481]</dt>
+        <dd>
+<span class="refAuthor">Morton, A.</span> and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"Packet Delay Variation Applicability Statement"</span>, <span class="seriesInfo">RFC 5481</span>, <span class="seriesInfo">DOI 10.17487/RFC5481</span>, <time datetime="2009-03" class="refDate">March 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5481">https://www.rfc-editor.org/rfc/rfc5481</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6049">[RFC6049]</dt>
+        <dd>
+<span class="refAuthor">Morton, A.</span> and <span class="refAuthor">E. Stephan</span>, <span class="refTitle">"Spatial Composition of Metrics"</span>, <span class="seriesInfo">RFC 6049</span>, <span class="seriesInfo">DOI 10.17487/RFC6049</span>, <time datetime="2011-01" class="refDate">January 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6049">https://www.rfc-editor.org/rfc/rfc6049</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6390">[RFC6390]</dt>
+        <dd>
+<span class="refAuthor">Clark, A.</span> and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"Guidelines for Considering New Performance Metric Development"</span>, <span class="seriesInfo">BCP 170</span>, <span class="seriesInfo">RFC 6390</span>, <span class="seriesInfo">DOI 10.17487/RFC6390</span>, <time datetime="2011-10" class="refDate">October 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6390">https://www.rfc-editor.org/rfc/rfc6390</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7942">[RFC7942]</dt>
+        <dd>
+<span class="refAuthor">Sheffer, Y.</span> and <span class="refAuthor">A. Farrel</span>, <span class="refTitle">"Improving Awareness of Running Code: The Implementation Status Section"</span>, <span class="seriesInfo">BCP 205</span>, <span class="seriesInfo">RFC 7942</span>, <span class="seriesInfo">DOI 10.17487/RFC7942</span>, <time datetime="2016-07" class="refDate">July 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7942">https://www.rfc-editor.org/rfc/rfc7942</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8239">[RFC8239]</dt>
+        <dd>
+<span class="refAuthor">Avramov, L.</span> and <span class="refAuthor">J. Rapp</span>, <span class="refTitle">"Data Center Benchmarking Methodology"</span>, <span class="seriesInfo">RFC 8239</span>, <span class="seriesInfo">DOI 10.17487/RFC8239</span>, <time datetime="2017-08" class="refDate">August 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8239">https://www.rfc-editor.org/rfc/rfc8239</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8762">[RFC8762]</dt>
+        <dd>
+<span class="refAuthor">Mirsky, G.</span>, <span class="refAuthor">Jun, G.</span>, <span class="refAuthor">Nydell, H.</span>, and <span class="refAuthor">R. Foote</span>, <span class="refTitle">"Simple Two-Way Active Measurement Protocol"</span>, <span class="seriesInfo">RFC 8762</span>, <span class="seriesInfo">DOI 10.17487/RFC8762</span>, <time datetime="2020-03" class="refDate">March 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8762">https://www.rfc-editor.org/rfc/rfc8762</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9318">[RFC9318]</dt>
+        <dd>
+<span class="refAuthor">Hardaker, W.</span> and <span class="refAuthor">O. Shapira</span>, <span class="refTitle">"IAB Workshop Report: Measuring Network Quality for End-Users"</span>, <span class="seriesInfo">RFC 9318</span>, <span class="seriesInfo">DOI 10.17487/RFC9318</span>, <time datetime="2022-10" class="refDate">October 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9318">https://www.rfc-editor.org/rfc/rfc9318</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RPM">[RPM]</dt>
+        <dd>
+<span class="refTitle">"Responsiveness under Working Conditions"</span>, <time datetime="2022-07" class="refDate">July 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ippm-responsiveness">https://datatracker.ietf.org/doc/html/draft-ietf-ippm-responsiveness</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RRUL">[RRUL]</dt>
+        <dd>
+<span class="refTitle">"Real-time response under load test specification"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.bufferbloat.net/projects/bloat/wiki/RRUL_Spec/">https://www.bufferbloat.net/projects/bloat/wiki/RRUL_Spec/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TR-452.1">[TR-452.1]</dt>
+      <dd>
+<span class="refAuthor">Broadband Forum</span>, <span class="refTitle">"TR-452.1: Quality Attenuation Measurement Architecture and Requirements"</span>, <time datetime="2020-09" class="refDate">September 2020</time>, <span>&lt;<a href="https://www.broadband-forum.org/download/TR-452.1.pdf">https://www.broadband-forum.org/download/TR-452.1.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+<div id="acknowledgments">
+<section id="appendix-A">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-B">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Bjørn Ivar Teigen</span></div>
+<div dir="auto" class="left"><span class="org">Domos</span></div>
+<div dir="auto" class="left"><span class="street-address">Gaustadalléen 21</span></div>
+<div dir="auto" class="left">
+<span class="postal-code">0349</span> </div>
+<div dir="auto" class="left"><span class="country-name">Norway</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:bjorn@domos.no" class="email">bjorn@domos.no</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Magnus Olden</span></div>
+<div dir="auto" class="left"><span class="org">Domos</span></div>
+<div dir="auto" class="left"><span class="street-address">Gaustadalléen 21</span></div>
+<div dir="auto" class="left">
+<span class="postal-code">0349</span> </div>
+<div dir="auto" class="left"><span class="country-name">Norway</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:magnus@domos.no" class="email">magnus@domos.no</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>

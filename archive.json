@@ -1,0 +1,168 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-03-23T00:03:20.914478+00:00",
+  "repo": "domoslabs/QoOID",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 3,
+      "id": "I_kwDOItQjb85hTvJp",
+      "title": "Metrics in equation",
+      "url": "https://github.com/domoslabs/QoOID/issues/3",
+      "state": "CLOSED",
+      "author": "Kevsy",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Please can the equation in section 5 include the metrics inline?",
+      "createdAt": "2023-03-20T17:29:35Z",
+      "updatedAt": "2023-03-22T15:23:30Z",
+      "closedAt": "2023-03-22T15:23:30Z",
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOItQjb85MA6Ks",
+      "title": "Typos and nits",
+      "url": "https://github.com/domoslabs/QoOID/pull/1",
+      "state": "MERGED",
+      "author": "Kevsy",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-14T15:53:57Z",
+      "updatedAt": "2023-03-16T11:30:52Z",
+      "baseRepository": "domoslabs/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "4a34a085fdbebbd870d63079688e0c308349e0d3",
+      "headRepository": "Kevsy/QoOID",
+      "headRefName": "patch-1",
+      "headRefOid": "cd54b972cea55b2aa09e9a075d33afde705c7913",
+      "closedAt": "2023-03-16T11:30:51Z",
+      "mergedAt": "2023-03-16T11:30:51Z",
+      "mergedBy": "bjornite",
+      "mergeCommit": {
+        "oid": "5ebc02e931e0e00a49d16db68608d90527e5b86e"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOItQjb85MeY07",
+      "title": "Suggested additions inc. mobile considerations",
+      "url": "https://github.com/domoslabs/QoOID/pull/2",
+      "state": "CLOSED",
+      "author": "Kevsy",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-20T17:28:59Z",
+      "updatedAt": "2023-03-20T17:30:34Z",
+      "baseRepository": "domoslabs/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "5ebc02e931e0e00a49d16db68608d90527e5b86e",
+      "headRepository": "Kevsy/QoOID",
+      "headRefName": "patch-2",
+      "headRefOid": "0faf999a460c2f41c1a8b66d25a74c02c2c98863",
+      "closedAt": "2023-03-20T17:30:34Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOItQjb85MozBB",
+      "title": "Added cellular network considerations",
+      "url": "https://github.com/domoslabs/QoOID/pull/4",
+      "state": "MERGED",
+      "author": "Kevsy",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Also changed 'bandwidth' to 'throughput' where necessary, to avoid ambiguity.",
+      "createdAt": "2023-03-22T12:13:54Z",
+      "updatedAt": "2023-03-22T15:16:19Z",
+      "baseRepository": "domoslabs/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "5ebc02e931e0e00a49d16db68608d90527e5b86e",
+      "headRepository": "Kevsy/QoOID",
+      "headRefName": "main",
+      "headRefOid": "77a70c41b73beb93b0850c6f6c8e69a22dbae0fe",
+      "closedAt": "2023-03-22T15:16:18Z",
+      "mergedAt": "2023-03-22T15:16:18Z",
+      "mergedBy": "bjornite",
+      "mergeCommit": {
+        "oid": "722c93032d0cf503a87d55fd4b410781b4732b68"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb85Qoq9b",
+          "commit": {
+            "abbreviatedOid": "77a70c4"
+          },
+          "author": "bjornite",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-22T15:16:11Z",
+          "updatedAt": "2023-03-22T15:16:11Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
+}
