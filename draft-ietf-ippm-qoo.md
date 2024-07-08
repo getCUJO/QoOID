@@ -23,7 +23,7 @@ venue:
   mail: "ippm@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ippm/"
   github: "domoslabs/QoOID"
-  latest: "https://domoslabs.github.io/QoOID/draft-olden-ippm-qoo.html"
+  latest: "https://github.com/domoslabs/QoOID"
 
 author:
  -
