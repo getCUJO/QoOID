@@ -47,8 +47,6 @@ informative:
   #RFC8290: # FQ_CoDel
   #RFC8033: # PIE
   RFC7942: # Implementation details section
-  draft-teigen-ippm-app-quality-metric-reqs:
-    title: "Requirements for a Network Quality Framework Useful for Applications, Users, and Operators"
   TR-452.1:
     title: "TR-452.1: Quality Attenuation Measurement Architecture and Requirements"
     author:
@@ -522,6 +520,11 @@ application is using.
 | Round Trips Per Minute         | Yes for some applications                                | Yes                                           | No         |
 | Quality Attenuation            | Yes                                                      | No                                            | Yes        |
 
+Explanations:
+
+- "Captures probability" refers to whether the metric captures enough information to compute the likelihood of an application succeeding.
+- "Articulate requirements" refers to the ease with which application-specific requirements can be expressed using the metric.
+- "Composable" means whether the metric supports mathematical composition to allow for detailed network analysis.
 
 # Sampling requirements
 To reach the design goal of being useful in the contexts laid out in the
@@ -575,7 +578,8 @@ measurements can be analyzed for precision and confidence.
 
 # Describing Network Requirements
 This work builds upon the work already proposed in the Broadband Forum standard
-called Quality of Experience Delivered (QED/TR-452) {{TR-452.1}}. In essence, it
+called Quality of Experience Delivered (QED/TR-452) {{TR-452.1}}, which defines
+the Quality Attenuation metric. In essence, QoO
 describes network requirements as a list of percentile and latency requirement
 tuples. In other words, a network requirement may be expressed as: The network
 requirement for this app quality level/app/app category/SLA is “at 4 Mbps, 90%
@@ -584,17 +588,18 @@ of packets needs to arrive within 100 ms, 100% of packets needs to arrive within
 200ms” or as long as you would like. For the sake of simplicity, the
 requirements percentiles must match one or more of the percentiles defined in
 the measurements, i.e., one can set requirements at the \[0th, 10th, 25th, 50th,
-75th, 90th, 95th, 99th, 99.9th, 100th\] percentiles. The last specified
-percentile marks the acceptable packet loss. I.e. if the 99th percentile is the
-highest percentile defined, 1% packet loss (100-99) is inferred.
+75th, 90th, 95th, 99th, 99.9th, 100th\] percentiles. Packet loss must be
+reported as a separate value.
 
-Applications do of course have throughput requirements. With classical TCP and
-typical UDP flows, latency and packet loss would be enough, as they are bound to
-create some latency or packet loss when ramping up throughput if subsequently
-they become hindered by insufficient bandwidth. However, we cannot always rely
-on monitoring latency exclusively, as low bandwidth may give poor application
+Applications do of course have throughput requirements. We cannot rely
+on monitoring latency exclusively, because low bandwidth may give poor application
 outcomes without necessarily inducing a lot of latency. Therefore, the network
-requirements should include a minimum throughput requirement.
+requirements should include a minimum throughput requirement. A fully specified
+requirement can be thought of as specifying the latency and loss requirements to
+be met while the end-to-end network path is loaded in a way that is at least as
+demanding of the network as the application itself. This may be achieved by
+running the actual application and measuring delay and loss alongside it, or by
+generating artificial traffic to a level at least equivalent to the application traffic load.
 
 Whether the requirements are one-way or two-way must be specified. Where the
 requirement is one-way, the direction (uplink or downlink) must be specified. If
@@ -623,63 +628,69 @@ define a percentile not included in the other - i.e., if the 99.9th percentile
 is part of the NRPoU then the NRP must also include the 99.9th percentile.
 
 # Calculating Quality of Outcome (QoO)
+The QoO metric calculates the likelihood of application success based on network performance, incorporating both latency and packet loss. There are three key scenarios:
 
-At this point we have everything we need to calculate the quality of the
-application outcome (QoO). There are 3 scenarios:
+- The network meets all the requirements for perfection. Probability of success: 100%.
+- The network fails one or more criteria at the Point of Unusableness (NRPoU). Probability of success: 0%.
+- The network performance falls between perfection and unusable. In this case, a
+  QoO score is computed. The QoO score is calculated by taking the worst score
+  derived from latency and packet loss.
 
-1. The network meets all the requirements for perfection. There is a 100% chance
-   that the application is not lagging because of the network
-2. The network does meet one of the criteria of the Point of Unusableness. There
-   is a 0% chance that the application will work well, and it's because of the
-   network
-3. The network does not meet NRP but is not beyond NRPoU.
+Latency Component
+The latency-based QoO score is computed as follows:
 
-1 and 2 require nothing more from the framework. For 3, we will now specify the
-calculation to translate these distances to a 0 to 100 measure. We use the
-percentile pair where the measured latency is the closest to the NRPoU as the
-application is only as good as its weakest link.
+QoO_latency = min_{i}(min(max((1 - ((ML_i - NRP_i) / (NRPoU_i - NRP_i))) * 100, 0), 100))
 
-Mathematically:
+Where:
 
- QoO = min_{i}(min(max((1-((ML-NRP)/(NRPoU-NRP))) * 100, 0), 100))
+- ML_i is the Measured Latency at percentile i.
+- NRP_i is the Network Requirement for Perfection at percentile i.
+- NRPoU_i is the Network Requirement Point of Unusableness at percentile i.
 
-Where
+Packet Loss Component
+Packet loss is considered as a separate, single measurement that applies across the entire traffic sample, not at each percentile. The packet loss score is calculated using a similar interpolation formula, but based on the total measured packet loss (MLoss) and the packet loss thresholds defined in the NRP and NRPoU:
 
-ML = Measured Latency in percentiles and milliseconds \\
-NRP = Network Requirement for Perfection, defined as minimum throughput and
-percentiles and milliseconds\\
-NRPoU = Network Requirement Point of Unusableness in percentiles and
-milliseconds \\
-and i iterates over the list of percentiles and milliseconds
+QoO_loss = min(max((1 - ((MLoss - NRP_Loss) / (NRPoU_Loss - NRP_Loss))) * 100, 0), 100)
 
-Essentially, where on the relative distance between Network Requirement for
-Perfection (NRP) and Network Requirement Point of Unusableness (NRPoU) the
-Measured Latency (ML) lands, normalized to a percentage.
+Where:
 
-## Example requirements and measured latency:
-NRP: 4 Mbps {99%, 250 ms},{99.9%, 350 ms} NRPoU: {99%, 400 ms},{99.9%, 401 ms}
-Measured Latency: .... 99% = 350ms, 99.9% = 352 ms Measured Minumum bandwidth:
-32 Mbps / 28 Mbps
+- MLoss is the Measured Packet Loss.
+- NRP_Loss is the acceptable packet loss for perfection.
+- NRPoU_Loss is the packet loss threshold beyond which the application becomes unusable.
+
+Final QoO Calculation
+The overall QoO score is the minimum of the latency and packet loss scores:
+
+QoO = min(QoO_latency, QoO_loss)
+
+Example Requirements and Measured Data:
+
+- NRP: 4 Mbps {99%, 250 ms, 0.1% loss}, {99.9%, 350 ms, 0.1% loss}
+- NRPoU: {99%, 400 ms, 1% loss}, {99.9%, 401 ms, 1% loss}
+- Measured Latency: 99% = 350 ms, 99.9% = 352 ms
+- Measured Packet Loss: 0.5%
+- Measured Minimum Bandwidth: 32 Mbps / 28 Mbps
 
 Then the QoO is defined:
 
-QoO
+QoO_latency
+= min(
+(min(max((1 - (350 ms - 250 ms) / (400 ms - 250 ms)) * 100, 0), 100),
+(min(max((1 - (352 ms - 350 ms) / (401 ms - 350 ms)) * 100, 0), 100))
+)
+= min(33.33, 96.08)
+= 33.33
 
-    = min(
-     (min(max((1-(350 ms - 250 ms)/(400 ms - 250 ms))*100), 0), 100),
-     (min(max((1-(352 ms - 350 ms)/(401 ms - 350 ms))*100), 0), 100)
-     )
+QoO_loss
+= min(max((1 - (0.5% - 0.1%) / (1% - 0.1%)) * 100, 0), 100)
+= 55.56
 
-    = min(33.33,96.08)
+Finally, the overall QoO score is:
 
-    = 33.33
+QoO = min(33.33, 55.56)
+= 33.33
 
-
-In this example, we would say: This application/SLA/application category has a
-33% chance of being lag-free on this network. Note that packet loss is included
-as infinite latency, so if there is enough packet loss to breach the highest
-percentile requirement then the QoO is 0.
-
+In this example, the application has a 33% chance of meeting the quality expectations on this network, considering both latency and packet loss.
 
 # How to find network requirements
 A key advantage of having a measurement that stretches between perfect and
