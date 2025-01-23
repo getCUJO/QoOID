@@ -27,7 +27,7 @@ venue:
 
 author:
  -
-    fullname: Bjørn Ivar Teigen
+    fullname: Bjørn Ivar Teigen Monclair
     organization: Domos
     email: bjorn@domos.no
     street: Gaustadalléen 21
@@ -98,31 +98,37 @@ informative:
       name: "Frank P. Kelly"
     target: "https://www.cambridge.org/core/journals/advances-in-applied-probability/article/abs/networks-of-queues/38A1EA868A62B09C77A073BECA1A1B56"
   RFC8239: # Refers to histogram of latency samples
+  QoOSimStudy:
+    title: "Quality of Outcome Simulation Study"
+    author:
+      name: "Bjørn Ivar Teigen Monclair"
+    target: "https://github.com/domoslabs/qoosim"   # <--- Replace with actual URL
+  QoOUserStudy:
+    title: "Application Outcome Aware Root Cause Analysis"
+    author:
+      name: "Bjørn Ivar Teigen Monclair"
+    target: "https://assets.ycodeapp.com/assets/app24919/Documents/LaiW4tJQ2kj4OOTiZbnf48MbS22rQHcZQmCriih9-published.pdf"
 
 --- abstract
 
-This document describes a new network quality framework named Quality of Outcome
-(QoO). The QoO framework is unique among network quality frameworks because it
-is designed to meet the needs of application developers, users and operators.
-This is achieved by basing the framework on Quality Attenuation, defining a
-simple format for specifying application requirements, and defining a way to
-compute a simple and intuitive user-facing metric.
-
-The framework proposes a way of sampling network quality, setting network
-quality requirements and a formula for calculating the probability for the
-sampled network to satisfy network requirements.
+This document introduces the Quality of Outcome (QoO) framework, a novel
+approach to network quality assessment designed to align with the needs of
+application developers, users, and operators. By leveraging the Quality Attenuation
+metric, QoO provides a unified method for defining and evaluating
+application-specific network requirements while ensuring actionable insights
+for network optimization and simple quality scores for end-users.
 
 --- middle
 
 # Introduction
-This document explores how the quality attenuation metric and framework
+This document explores how the Quality Attenuation metric and framework
 {{TR-452.1}} can be extended to meet the full set of requirements described in
 the Motivation section. The goal is to define a network requirement framework
 that allows application developers to specify their network requirements, along
 with a way to create a simple user-facing metric based on comparing application
-requirements to measurements of network performance. Basing this framework on
-quality attenuation {{TR-452.1}} ensures that network operators get the
-fault-isolation and network planning benefits of composability.
+requirements to measurements of network performance. The framework builds on
+Quality Attenuation {{TR-452.1}}, enabling network operators to achieve fault
+isolation and effective network planning through composability.
 
 Quality attenuation is a network quality metric that meets most of the criteria
 set out in the requirements; it can capture the probability of a network
@@ -137,8 +143,8 @@ We believe the probabilistic approach is key as the network stack and
 application's network quality adaptation can be highly complex. Applications and
 the underlying networking protocols make separate optimizations based on their
 perceived network quality over time and saying something about an outcome with
-absolute certainty will be practically impossible. We can however make educated
-guesses on the probability of outcomes.
+absolute certainty will be practically impossible. We can, however, make
+educated guesses on the probability of outcomes.
 
 We propose representing network quality as a minimum required throughput and set
 of latency and loss percentiles. Application developers, regulatory bodies and
@@ -156,111 +162,103 @@ from network equipment. To counter the loss of precision, we require some
 parameters that allow for analysis of the precision.
 
 # Motivation
+
 This section describes the features and attributes a network quality framework
-must have to be useful for different stakeholders. The stakeholders included are
-Application developers, End-Users, and Network Operators and Vendors. At a high
-level, End-Users need an understandable network metric. Application developers
-need a network metric that allows them to evaluate how well their application is
-likely to perform given the measured network performance. Network Operators and
-Vendors need a metric that facilitates troubleshooting and optimization of their
-networks. Existing network quality metrics and frameworks typically address the
-needs of one or two of these stakeholders, but we have yet to find one that
-bridges the needs of all three.
+must have to be useful for different stakeholders: application developers,
+end-users, and network operators/vendors. At a high level, end-users need an
+understandable network metric. Application developers require a network metric
+that allows them to evaluate how well their application is likely to perform
+given the measured network performance. Network operators and vendors need a
+metric that facilitates troubleshooting and optimization of their networks.
+Existing network quality metrics and frameworks typically address the needs of
+one or two of these stakeholders, but we have yet to find one that bridges the
+needs of all three.
 
-## Introduction
-This section aims to describe the features a network performance framework must
-have to be understandable to end-users, useful for application developers, and
-actionable for network operators. One of the key motivations behind this
-initiative is to bridge the gap between the technical aspects of network
-performance and the practical needs of those who depend on it. While solutions
-exist for many of the problems causing high and unstable latency in the
-Internet, the incentives to deploy them have remained relatively weak. By
-creating a unifying framework for assessing network quality, we aim to
-strengthen these incentives significantly.
+A key motivation for the Quality of Outcome (QoO) framework is to bridge the
+gap between the technical aspects of network performance and the practical
+needs of those who depend on it. While solutions exist for many of the problems
+causing high and unstable latency in the Internet, the incentives to deploy
+them have remained relatively weak. By creating a unifying framework for
+assessing network quality, we aim to strengthen these incentives significantly.
 
-Bandwidth is necessary but not sufficient for high-quality modern network
+Bandwidth alone is necessary but not sufficient for high-quality modern network
 experiences. Idle latency, working latency, jitter, and unmitigated packet loss
 are major causes of poor application outcomes. The impact of latency is widely
-recognized in network engineering circles {{BITAG}}. Unfortunately, it is
-complicated to benchmark the quality of network transport. Most end-users are
-unable to relate to metrics other than Mbps, which they have long been
-conditioned to think of as the only dimension of network quality.
+recognized in network engineering circles {{BITAG}}, but benchmarking the
+quality of network transport remains complex. Most end-users are unable to
+relate to metrics other than Mbps, which they have long been conditioned to
+think of as the only dimension of network quality.
 
-Real Time Response under load tests{{RRUL}} and Responsiveness {{RPM}} make huge
-strides in making a better network quality metric that is far closer to
-application outcomes than bandwidth is, and the latter is successful at being
-relatively relatable/understandable to end-users.
+Real Time Response under load tests {{RRUL}} and Responsiveness {{RPM}} make
+significant strides toward creating a network quality metric that is far closer
+to application outcomes than bandwidth alone. The latter, in particular, is
+successful at being relatively relatable and understandable to end-users.
+However, as noted in {{RPM}}, “Our networks remain unresponsive, not from a
+lack of technical solutions, but rather a lack of awareness of the problem.”
+This lack of awareness means operators have little incentive to improve network
+quality beyond increasing throughput. Despite the availability of open-source
+solutions, vendors rarely implement them. The root cause lies in the absence of
+a universally accepted network quality framework that captures how well
+applications are likely to perform.
 
-As pointed out in {{RPM}}, “Our networks remain unresponsive, not from a lack of
-technical solutions, but rather a lack of awareness of the problem.” The lack of
-awareness means a lack of incentives for operators to invest in improving
-network quality (beyond increasing the throughput). While Open Source solutions
-exist, vendors rarely implement them. And it all boils down to the lack of a
-universally accepted network quality framework that captures how well
-applications are likely to work.
+A recent IAB workshop on measuring internet quality for end-users identified a
+key insight: users care primarily about application performance rather than
+network performance. Among the conclusions was the statement, "A really
+meaningful metric for users is whether their application will work properly or
+fail because of a lack of a network with sufficient characteristics"
+{{RFC9318}}. Therefore, one critical requirement of a meaningful framework is
+its ability to answer the question, "Will an application work properly?"
 
-A recent IAB workshop on measuring internet quality for end users identified
-this important point: Users mostly care about application performance (as
-opposed to network performance). Among the conclusions is the statement, "A
-really meaningful metric for users is whether their application will work
-properly or fail because of a lack of a network with sufficient characteristics"
-{{RFC9318}}. One of the requirements we set out here is, therefore, to be able
-to answer this question: "Will an application work properly?". An answer to this
-question requires a few things; First, we must acknowledge that the internet is
-stochastic (from the point-of-view of any given client), and we can never answer
-this question with certainty. Second, different applications have different
-needs and adapt differently to varying network conditions. Any framework aiming
-to answer this question must be able to cater to the needs of different
-applications. Thirdly, end users are individuals with different perception of,
-and levels of tolerance for, degradation of network conditions and the resulting
-effect on application experience.
+Answering this question requires several considerations. First, the Internet is
+inherently stochastic from the perspective of any given client, so certainty i
+unattainable. Second, different applications have varying needs and adapt
+differently to network conditions. A framework aiming to answer this question
+must accommodate diverse application requirements. Third, end-users have
+individual tolerances for degradation in network conditions and the resulting
+effects on application experience. These variations must be factored into the
+framework's design.
 
 ## Design Goal
+
 The overall goal is to describe the requirements for an objective network
 quality framework and metric that is useful for end-users, application
 developers, and network operators/vendors alike.
 
 ## Requirements
-This section describes the three main requirements and the motivation for each.
+
+This section outlines the three main requirements and their motivation.
 
 In general, all stakeholders ultimately care about the success of applications
 running over the network. Application success depends not just on bandwidth but
-also on the delay of the network links and computational steps involved in
-making the application function.
+also on the delay of network links and computational steps involved in making
+the application function. These delays depend on how the application places
+load on the network, how the network is affected by environmental conditions,
+and the behavior of other users sharing the network resources.
 
-These delays in turn depend on how the application places load on the network,
-how the network is affected by environmental conditions and the behavior of
-other users sharing the network resources.
-
-Different applications have different needs from the network, and they put
-different patterns of load on the network. To provide an answer to whether or
-not applications will work well or fail, a network quality framework must
-therefore be able to compare measurements of network performance to many
-different application requirements.
-
-Flexibility in describing application requirements and the ability to capture
-the delay characteristics of the network in enough detail to compute how likely
-application success is with satisfactory accuracy and precision are necessary
-conditions.
+Different applications have different needs from the network, and they place
+different patterns of load on it. To determine whether applications will work
+well or fail, a network quality framework must compare measurements of network
+performance to a wide variety of application requirements. Flexibility in
+describing application requirements and the ability to capture the delay
+characteristics of the network in sufficient detail are necessary to compute
+application success with satisfactory accuracy and precision.
 
 How can operators take action when measurements show that applications fail too
-often? We can answer this question if the measured metric(s) support spatial
-composition {{RFC6049}}, {{RFC6390}}. Spatial composition gives us the ability
-to divide results into sub-results, each measuring the performance of a required
-sub-milestone that must be reached in time for the application to succeed.
+often? The framework must support spatial composition {{RFC6049}}, {{RFC6390}}
+to answer this question. Spatial composition allows results to be divided into
+sub-results, each measuring the performance of a required sub-milestone that
+must be reached in time for the application to succeed.
 
-To summarise, the framework and "meaningful metric" we're looking for should
+To summarize, the framework and "meaningful metric" we're looking for should
 have the following properties:
 
- 1. Capture the information necessary to compute the probability that
-    applications will work well. (Useful for End-users and Application
-    developers)
-
- 2. Compare meaningfully to different application requirements.
-
- 3. Compose. So that operators can isolate and quantify the contributions of
-    different sub-outcomes and sub-paths of the network. (Useful for Operators
-    and Vendors)
+1. **Capture the information necessary to compute the probability that
+  applications will work well.** (Useful for end-users and application
+  developers.)
+2. **Compare meaningfully to different application requirements.**
+3. **Compose.** Allow operators to isolate and quantify the contributions of
+   different sub-outcomes and sub-paths of the network. (Useful for operators
+   and vendors.)
 
 
 ### Requirements for end-users
@@ -522,9 +520,12 @@ application is using.
 
 Explanations:
 
-- "Captures probability" refers to whether the metric captures enough information to compute the likelihood of an application succeeding.
-- "Articulate requirements" refers to the ease with which application-specific requirements can be expressed using the metric.
-- "Composable" means whether the metric supports mathematical composition to allow for detailed network analysis.
+- "Captures probability" refers to whether the metric captures enough
+  information to compute the likelihood of an application succeeding.
+- "Articulate requirements" refers to the ease with which
+  application-specific requirements can be expressed using the metric.
+- "Composable" means whether the metric supports mathematical composition to
+  allow for detailed network analysis.
 
 # Sampling requirements
 To reach the design goal of being useful in the contexts laid out in the
@@ -566,15 +567,15 @@ we require:
 * Timestamp of first sample
 * Duration of the sampling period
 * Number of samples
-
 * Type of measurement:
-
   * Cyclic (a sample every Nth ms) - Specify N
   * Bursts (X samples every Nth ms) - Specify X and N
   * Passive (observing traffic and therefore unevenly sampled)
 
-By requiring the report of these variables, we ensure that the network
-measurements can be analyzed for precision and confidence.
+By requiring these values, the network measurements can be analyzed for
+precision and confidence. In particular, the simulation study [QoOSimStudy]
+demonstrates that lower sampling frequencies and short measurement durations can
+lead to overly optimistic or imprecise QoO scores.
 
 # Describing Network Requirements
 This work builds upon the work already proposed in the Broadband Forum standard
@@ -620,7 +621,7 @@ quality threshold beyond which the application is considered unusable.
 This is named Network Requirements for Perfection (NRP). As an example: At 4
 Mbps, 99% of packets need to arrive within 100ms, 99.9% within 200ms (implying
 that 0.1% packet loss is acceptable) for the outcome to be perfect. Network
-Requirement Point of Unusableness (NRPoU): If 99% of the packets have not
+Requirements Point of Unusability (NRPoU): If 99% of the packets have not
 arrived after 200ms, or 99.9% within 300ms, the outcome will be unusable.
 
 Where the NRPoU percentiles and NRP are a required pair then neither should
@@ -692,10 +693,21 @@ QoO = min(33.33, 55.56)
 
 In this example, the application has a 33% chance of meeting the quality expectations on this network, considering both latency and packet loss.
 
+**Implementation Note: Sensitivity to Sampling Accuracy**
+
+Based on the simulation results in [QoOSimStudy], overly noisy or inaccurate
+latency samples can artificially inflate worst-case percentiles, thereby driving
+QoO scores lower than actual network conditions would warrant. Conversely,
+coarse measurement intervals can miss short-lived spikes entirely, resulting in
+an inflated QoO. Users of this framework should consider hardware/software
+measurement jitter, clock offset, or other system-level noise sources when
+collecting data, and configure sampling frequency and duration to suit their
+specific needs.
+
 # How to find network requirements
 A key advantage of having a measurement that stretches between perfect and
 unusable, as opposed to having a binary (Good/Bad) or other low resolution
-(Superbad/Bad/OK/Great/Supergreat) metrics, is that we have some leeway. The
+(Terrible/Bad/OK/Great/Excellent) metrics, is that we have some leeway. The
 leeway is useful, for instance: a lower than 20% chance of lag free experience
 is intuitively not good and a greater than 90% chance of lag free experience is
 intuitively good --- meaning we don’t have to find perfection for making the QoO
@@ -756,6 +768,49 @@ NRPoU {0p=500,99p=1000ms}
 Of course, it is possible to specify network requirements for Example.com with
 multiple NRP/NRPoU, for different quality levels, one/two way video, and so on.
 Then one can calculate the QoO at each level.
+
+# Insights from Simulation Results  {#simulation-insights}
+
+While the QoO framework itself places no strict requirement on sampling patterns
+or measurement technology, a recent simulation study {{QoOSimStudy}} examined the
+metric’s real-world applicability under varying conditions of:
+
+1. **Sampling Frequency**: Slow sampling rates (e.g., <1 Hz) risk missing rare,
+   short-lived latency spikes, resulting in overly optimistic QoO scores.
+2. **Measurement Noise**: Measurement errors on the same scale as the thresholds
+   (NRP, NRPoU) can distort high-percentile latencies and cause artificially lower QoO.
+3. **Requirement Specification**: Slightly adjusting the latency thresholds or
+   target percentiles can cause significant changes in QoO, especially when the
+   measurement distribution is near a threshold.
+4. **Measurement Duration**: Shorter tests with sparse sampling tend to
+   underestimate worst-case behavior for heavy-tailed latency distributions,
+   biasing QoO in a positive direction.
+
+In practice, these findings mean:
+
+- Calibrate the combination of sampling rate and total measurement period to
+  capture fat-tailed distributions of latency with sufficient accuracy.
+- Avoid significant measurement noise where possible (e.g., by calibrating time
+  sources, accounting for clock drift).
+- Thorougly test application requirement thresholds so that the resulting QoO
+  scores accurately reflect application performance.
+
+These guidelines are *non-normative* but reflect empirical evidence on how QoO
+performs.
+
+# Insights from user testing {#user-testing}
+
+A study involving 25 participants tested the Quality of Outcome (QoO) framework
+in a real-world settings {{QoOUserStudy}}. Participants used specially equipped
+routers in their homes for 10 days, providing both network performance data and
+feedback through pre- and post-trial surveys.
+
+Participants found QoO metrics more intuitive and
+actionable than traditional metrics (e.g., speed tests). QoO directly aligned
+with their self-reported experiences, increasing trust and engagement.
+
+These results provide supporting evidence for QoO's value as a user-focused
+tool, bridging technical metrics with real-world application performance to enhance end-user satisfaction.
 
 # Known Weaknesses and open questions
 We have described a way of simplifying how the network requirements of
