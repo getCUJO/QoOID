@@ -121,14 +121,16 @@ for network optimization and simple quality scores for end-users.
 --- middle
 
 # Introduction
-This document explores how the Quality Attenuation metric and framework
-{{TR-452.1}} can be extended to meet the full set of requirements described in
-the Motivation section. The goal is to define a network requirement framework
-that allows application developers to specify their network requirements, along
-with a way to create a simple user-facing metric based on comparing application
-requirements to measurements of network performance. The framework builds on
-Quality Attenuation {{TR-452.1}}, enabling network operators to achieve fault
-isolation and effective network planning through composability.
+This document introduces the Quality of Outcome network score. Quality of
+Outcome is a network quality score designed to be easy to understand, while at
+the same time being objective, adaptable to different network quality needs, and
+allowing advanced analysis to identify the root cause of network problems. We
+define a network requirement framework that allows application developers to
+specify their network requirements, along with a way to create a simple
+user-facing metric based on comparing application requirements to measurements
+of network performance. The framework builds on Quality Attenuation
+{{TR-452.1}}, enabling network operators to achieve fault isolation and
+effective network planning through composability.
 
 Quality attenuation is a network quality metric that meets most of the criteria
 set out in the requirements; it can capture the probability of a network
