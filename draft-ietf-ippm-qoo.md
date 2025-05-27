@@ -379,7 +379,7 @@ Latency Distributions can be gathered via both passive monitoring and active
 testing. The active testing can use any type of traffic, such as TCP, UDP, or
 QUIC. It is OSI Layer and network technology independent, meaning it can be
 gathered in an end-user application, within some network equipment, or anywhere
-in between.
+in between. Passive methods rely on observing and time-stamping packets traversing the network. Examples of this include TCP SYN and SYN/ACK packets and the QUIC spin bit.
 
 A key assumption behind the choice of latency distribution is that different
 applications and application categories fail at different points of the latency
