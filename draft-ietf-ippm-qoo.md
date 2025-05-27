@@ -115,11 +115,11 @@ informative:
     target: "https://assets.ycodeapp.com/assets/app24919/Documents/U6TlxIlbcl1dQfcNhnCleziJWF23P5w0xWzOARh8-published.pdf"
 
 --- abstract
-
 This document introduces the Quality of Outcome (QoO) framework, a novel
 approach to network quality assessment designed to align with the needs of
-application developers, users, and operators. By leveraging the Quality
-Attenuation metric, QoO provides a unified method for defining and evaluating
+application developers, users, and operators.
+
+By leveraging the Quality Attenuation metric, QoO provides a unified method for defining and evaluating
 application-specific network requirements while ensuring actionable insights for
 network optimization and simple quality scores for end-users.
 
@@ -552,8 +552,8 @@ adoption of the framework, and reporting latency at selected percentiles offers
 a practical compromise between accuracy and deployment considerations. A
 commonly accepted set of percentiles spanning from the 0th to the 100th in a
 logarithmic-like progression has been suggested by others {{BITAG}} and is
-recommended here: [0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
-100th].
+recommended here: \[0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
+100th\].
 
 The framework is agnostic to traffic direction but mandates that measurements
 specify whether latency is one-way or round-trip.
@@ -935,7 +935,7 @@ use this information as they see fit".
 
 * Link to the open-source repository:
 
-  https://github.com/getCujo/qoo-c
+  https://github.com/getCUJO/qoo-c
 
 * The organization responsible for the implementation:
 
@@ -955,7 +955,7 @@ use this information as they see fit".
 
 * Licensing:
 
-  GPL 2.0
+  MIT
 
 * Implementation experience:
 
@@ -963,12 +963,12 @@ use this information as they see fit".
 
 * Contact information:
 
-  Bjørn Ivar Teigen: bjorn@domos.no
+  Bjørn Ivar Teigen Monclair: bjorn.moncalir@cujo.com
 
 * The date when information about this particular implementation was last
 updated:
 
-  10th of January 2024
+  27th of May 2025
 
 ## goresponsiveness
 
@@ -1006,7 +1006,7 @@ updated:
 
 * Contact information:
 
-  Bjørn Ivar Teigen: bjorn.monclair@cujo.com
+  Bjørn Ivar Teigen Monclair: bjorn.monclair@cujo.com
 
   William Hawkins III: hawkinwh@ucmail.uc.edu
 
@@ -1028,7 +1028,7 @@ throughput measurements. While the framework itself is primarily analytical and
 does not define a new protocol, some security considerations arise from its
 deployment and use.
 
-## Measurement Integrity and Authenticity
+**Measurement Integrity and Authenticity**
 
 QoO relies on accurate and trustworthy measurements of network performance. If
 an attacker can manipulate these measurements—either by injecting falsified data
@@ -1045,7 +1045,7 @@ To mitigate this risk:
 - Digital signatures may be used to verify the authenticity of measurement
   reports.
 
-## Risk of Misuse and Gaming
+**Risk of Misuse and Gaming**
 
 As QoO scores may influence regulatory decisions, service-level agreements
 (SLAs), or user trust, there is a risk that network operators or application
@@ -1060,7 +1060,7 @@ Mitigations include:
 - Use of randomized or blind testing procedures.
 - Transparency in how QoO scores are derived and what assumptions are made.
 
-## Privacy Considerations
+**Privacy Considerations**
 
 QoO measurements may involve collecting detailed performance data from end-user
 devices or applications. Depending on the deployment model, this could include
@@ -1075,7 +1075,7 @@ To protect user privacy:
 - Users should be informed about what data is collected and how it is used, in
   accordance with applicable privacy regulations (e.g., GDPR).
 
-## Denial of Service (DoS) Risks
+**Denial of Service (DoS) Risks**
 
 Active measurement techniques used to gather QoO data (e.g., TWAMP, STAMP,
 synthetic traffic generation) can place additional load on the network. If not
@@ -1088,7 +1088,7 @@ Recommendations:
 - Ensure that measurement traffic does not interfere with critical services.
 - Monitor for abnormal measurement patterns that may indicate abuse.
 
-## Trust in Application Requirements
+**Trust in Application Requirements**
 
 QoO depends on application developers to define Network Requirements for
 Perfection (NRP) and Network Requirements Point of Unusableness (NRPoU). If
