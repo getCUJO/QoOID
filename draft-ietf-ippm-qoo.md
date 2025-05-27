@@ -108,6 +108,11 @@ informative:
     author:
       name: "Bjørn Ivar Teigen Monclair"
     target: "https://assets.ycodeapp.com/assets/app24919/Documents/LaiW4tJQ2kj4OOTiZbnf48MbS22rQHcZQmCriih9-published.pdf"
+  QoOAppQualityReqs:
+    title: "Performance Measurement of Web Applications"
+    author:
+      name: "Torjus Østensen"
+    target: "https://assets.ycodeapp.com/assets/app24919/Documents/U6TlxIlbcl1dQfcNhnCleziJWF23P5w0xWzOARh8-published.pdf"
 
 --- abstract
 
@@ -568,7 +573,7 @@ the measurements, i.e., one can set requirements at the \[0th, 10th, 25th, 50th,
 75th, 90th, 95th, 99th, 99.9th, 100th\] percentiles. Packet loss must be
 reported as a separate value.
 
-Applications do of course have throughput requirements, and thus a complete framework for application-level network quality cannot rely on monitoring latency exclusively. Insufficient bandwidth may give poor application
+Applications do of course have throughput requirements, and thus a complete framework for application-level network quality must also take capacity into account. Insufficient bandwidth may give poor application
 outcomes without necessarily inducing a lot of latency. Therefore, the network
 requirements should include a minimum throughput requirement. A fully specified
 requirement can be thought of as specifying the latency and loss requirements to
@@ -602,6 +607,13 @@ arrived after 200ms, or 99.9% within 300ms, the outcome will be unusable.
 Where the NRPoU percentiles and NRP are a required pair then neither should
 define a percentile not included in the other - i.e., if the 99.9th percentile
 is part of the NRPoU then the NRP must also include the 99.9th percentile.
+
+# Creating network requirement specifications
+A detailed description of how to create a network requirement specification is out of scope for this document, but this section will provide a rough outline for how it can be achieved. Additional information about this topic can be found in {{QoOAppQualityReqs}}.
+
+When searching for an appropriate network requirement description for an application, the goal is to identify the points of perfection and uselessness for the application. This can be thought of as a search process. Run the application across a network connection with adjustable quality. Gradually adjust the network performance while observing the application-level performance. The application performance can be observed manually by the person performing the testing, or using automated methods such as recording video stall duration from within a video player.
+
+Establish a baseline under excellent network conditions. Then gradually add delay, packet loss or decrease network capacity until the application no longer performs perfectly. Continue adding network quality attenuation until the application fails completely. The corresponding network quality levels are the points of perfection and unusability.
 
 # Calculating Quality of Outcome (QoO)
 The QoO metric calculates the likelihood of application success based on network performance, incorporating both latency and packet loss. There are three key scenarios:
