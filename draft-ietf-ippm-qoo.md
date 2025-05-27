@@ -947,7 +947,57 @@ updated:
 
 # Security Considerations
 
-TODO Security
+The Quality of Outcome (QoO) framework introduces a method for assessing network quality based on probabilistic outcomes derived from latency, packet loss, and throughput measurements. While the framework itself is primarily analytical and does not define a new protocol, some security considerations arise from its deployment and use.
+
+## Measurement Integrity and Authenticity
+
+QoO relies on accurate and trustworthy measurements of network performance. If an attacker can manipulate these measurements—either by injecting falsified data or tampering with the measurement process—they could distort the resulting QoO scores. This could mislead users, operators, or regulators into making incorrect assessments of network quality.
+
+To mitigate this risk:
+
+- Measurement agents can authenticate with the systems collecting or analyzing QoO data.
+- Measurement data can be transmitted over secure channels (e.g., TLS) to ensure confidentiality and integrity.
+- Digital signatures may be used to verify the authenticity of measurement reports.
+
+## Risk of Misuse and Gaming
+
+As QoO scores may influence regulatory decisions, service-level agreements (SLAs), or user trust, there is a risk that network operators or application developers might attempt to "game" the system. For example, they might optimize performance only for known test conditions or falsify requirement thresholds to inflate QoO scores.
+
+Mitigations include:
+
+- Independent verification of application requirements and measurement methodologies.
+- Use of randomized or blind testing procedures.
+- Transparency in how QoO scores are derived and what assumptions are made.
+
+## Privacy Considerations
+
+QoO measurements may involve collecting detailed performance data from end-user devices or applications. Depending on the deployment model, this could include metadata such as IP addresses, timestamps, or application usage patterns.
+
+To protect user privacy:
+
+- Data collection should follow the principle of data minimization, only collecting what is strictly necessary.
+- Personally identifiable information (PII) should be anonymized or pseudonymized where possible.
+- Users should be informed about what data is collected and how it is used, in accordance with applicable privacy regulations (e.g., GDPR).
+
+## Denial of Service (DoS) Risks
+
+Active measurement techniques used to gather QoO data (e.g., TWAMP, STAMP, synthetic traffic generation) can place additional load on the network. If not properly rate-limited, this could inadvertently degrade service or be exploited by malicious actors to launch DoS attacks.
+
+Recommendations:
+
+- Implement rate limiting and access control for active measurement tools.
+- Ensure that measurement traffic does not interfere with critical services.
+- Monitor for abnormal measurement patterns that may indicate abuse.
+
+## Trust in Application Requirements
+
+QoO depends on application developers to define Network Requirements for Perfection (NRP) and Network Requirements Point of Unusableness (NRPoU). If these are defined inaccurately—either unintentionally or maliciously—the resulting QoO scores may be misleading.
+
+To address this:
+
+- Encourage peer review and publication of application requirement profiles.
+- Where QoO is used for regulatory or SLA enforcement, require independent validation of requirement definitions.
+
 
 
 # IANA Considerations
