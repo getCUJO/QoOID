@@ -118,10 +118,10 @@ informative:
 
 This document introduces the Quality of Outcome (QoO) framework, a novel
 approach to network quality assessment designed to align with the needs of
-application developers, users, and operators. By leveraging the Quality Attenuation
-metric, QoO provides a unified method for defining and evaluating
-application-specific network requirements while ensuring actionable insights
-for network optimization and simple quality scores for end-users.
+application developers, users, and operators. By leveraging the Quality
+Attenuation metric, QoO provides a unified method for defining and evaluating
+application-specific network requirements while ensuring actionable insights for
+network optimization and simple quality scores for end-users.
 
 --- middle
 
@@ -132,9 +132,9 @@ Outcome is a network quality score designed to be easy to understand, while at
 the same time being objective, adaptable to different network quality needs, and
 allowing advanced analysis to identify the root cause of network problems. This
 document defines a network requirement framework that allows application
-developers to specify their network requirements, along with a way to create a simple
-user-facing metric based on comparing application requirements to measurements
-of network performance. The framework builds on Quality Attenuation
+developers to specify their network requirements, along with a way to create a
+simple user-facing metric based on comparing application requirements to
+measurements of network performance. The framework builds on Quality Attenuation
 {{TR-452.1}}, enabling network operators to achieve fault isolation and
 effective network planning through composability.
 
@@ -143,8 +143,8 @@ set out in the requirements; it can capture the probability of a network
 satisfying application requirements, it is composable, and it can be compared to
 a variety of application requirements. The part that is yet missing is how to
 present quality attenuation results to end-users and application developers in
-an understandable way. A per-application, per application-type, or
-per-SLA approach is most appropriate here. The challenge lies in specifying how to
+an understandable way. A per-application, per application-type, or per-SLA
+approach is most appropriate here. The challenge lies in specifying how to
 simplify enough without losing too much in terms of precision and accuracy.
 
 Taking a probabilistic approach is key because the network stack and
@@ -155,20 +155,20 @@ absolute certainty is practically impossible. It is possible, however, to make
 educated guesses on the probability of outcomes.
 
 This document proposes representing network quality as a minimum required
-throughput and set
-of latency and loss percentiles. Application developers, regulatory bodies and
-other interested parties can describe network requirements in the same manner.
-This document defines a distance measure between perfect and unusable. This
-distance measure can, with some assumptions, calculate something that can be
-simplified into statements such as “A Video Conference has a 93% chance of being
-lag free on this network” all while making it possible to use the framework both
-for end-to-end test and analysis from within the network.
+throughput and set of latency and loss percentiles. Application developers,
+regulatory bodies and other interested parties can describe network requirements
+in the same manner. This document defines a distance measure between perfect and
+unusable. This distance measure can, with some assumptions, calculate something
+that can be simplified into statements such as “A Video Conference has a 93%
+chance of being lag free on this network” all while making it possible to use
+the framework both for end-to-end test and analysis from within the network.
 
 The work proposes a minimum viable framework, and often trades precision for
 simplicity. The justification for this is to ensure adoption and usability in
 many different contexts such as active testing from applications and monitoring
-from network equipment. To counter the loss of precision, is it necessary to combine measurement results with a description of the measurement approach that allow
-for analysis of the precision.
+from network equipment. To counter the loss of precision, is it necessary to
+combine measurement results with a description of the measurement approach that
+allow for analysis of the precision.
 
 # Motivation
 
@@ -183,12 +183,12 @@ Existing network quality metrics and frameworks typically address the needs of
 one or two of these stakeholders, but the authors have yet to find one that
 bridges the needs of all three.
 
-A key motivation for the Quality of Outcome (QoO) framework is to bridge the
-gap between the technical aspects of network performance and the practical
-needs of those who depend on it. While solutions exist for many of the problems
-causing high and unstable latency in the Internet, the incentives to deploy
-them have remained relatively weak. A unifying framework for
-assessing network quality, can serve to strengthen these incentives significantly.
+A key motivation for the Quality of Outcome (QoO) framework is to bridge the gap
+between the technical aspects of network performance and the practical needs of
+those who depend on it. While solutions exist for many of the problems causing
+high and unstable latency in the Internet, the incentives to deploy them have
+remained relatively weak. A unifying framework for assessing network quality,
+can serve to strengthen these incentives significantly.
 
 Bandwidth alone is necessary but not sufficient for high-quality modern network
 experiences. Idle latency, working latency, jitter, and unmitigated packet loss
@@ -202,9 +202,9 @@ Real Time Response under load tests {{RRUL}} and Responsiveness {{RPM}} make
 significant strides toward creating a network quality metric that is far closer
 to application outcomes than bandwidth alone. The latter, in particular, is
 successful at being relatively relatable and understandable to end-users.
-However, as noted in {{RPM}}, “Our networks remain unresponsive, not from a
-lack of technical solutions, but rather a lack of awareness of the problem.”
-This lack of awareness means operators have little incentive to improve network
+However, as noted in {{RPM}}, “Our networks remain unresponsive, not from a lack
+of technical solutions, but rather a lack of awareness of the problem.” This
+lack of awareness means operators have little incentive to improve network
 quality beyond increasing throughput. Despite the availability of open-source
 solutions, vendors rarely implement them. The root cause lies in the absence of
 a universally accepted network quality framework that captures how well
@@ -240,9 +240,9 @@ This section outlines the three main requirements and their motivation.
 In general, all stakeholders ultimately care about the success of applications
 running over the network. Application success depends not just on bandwidth but
 also on the delay of network links and computational steps involved in making
-the application function. These delays depend on how the application places
-load on the network, how the network is affected by environmental conditions,
-and the behavior of other users sharing the network resources.
+the application function. These delays depend on how the application places load
+on the network, how the network is affected by environmental conditions, and the
+behavior of other users sharing the network resources.
 
 Different applications have different needs from the network, and they place
 different patterns of load on it. To determine whether applications will work
@@ -258,8 +258,8 @@ to answer this question. Spatial composition allows results to be divided into
 sub-results, each measuring the performance of a required sub-milestone that
 must be reached in time for the application to succeed.
 
-To summarize, the framework and "meaningful metric" should
-have the following properties:
+To summarize, the framework and "meaningful metric" should have the following
+properties:
 
 1. **Capture the information necessary to compute the probability that
   applications will work well.** (Useful for end-users and application
@@ -272,11 +272,10 @@ have the following properties:
 
 ### Requirements for end-users
 The quality framework should facilitate a metric that is objective, relatable,
-and relatively understandable for an end-user. A middle
-ground between objective QoS metrics (Throughput, packet loss, jitter, average
-latency) and subjective but understandable QoE metrics (MOS, 5-star ratings).
-The ideal framework should be objective, like QoS metrics, and understandable,
-like QoE metrics.
+and relatively understandable for an end-user. A middle ground between objective
+QoS metrics (Throughput, packet loss, jitter, average latency) and subjective
+but understandable QoE metrics (MOS, 5-star ratings). The ideal framework should
+be objective, like QoS metrics, and understandable, like QoE metrics.
 
 If these requirements are met, the end-user can understand if a network can
 reliably deliver what they care about: the outcomes of applications. Examples
@@ -314,14 +313,13 @@ The framework needs to give developers the ability to describe the network
 requirements of their applications. The format for specifying network
 requirements must include all relevant dimensions of network quality so that
 different applications which are sensitive to different network quality
-dimensions can all evaluate the network accurately. Not all
-developers have network expertise, so to make it easy for developers to use
-the framework, developers must be able to specify network requirements
-approximately. Therefore, it must be possible to describe both simple and
-complex network requirements. The framework also needs to be flexible so that it
-can be used with different kinds of traffic and that extreme network
-requirements which far exceed the needs of today's applications can also be
-articulated.
+dimensions can all evaluate the network accurately. Not all developers have
+network expertise, so to make it easy for developers to use the framework,
+developers must be able to specify network requirements approximately.
+Therefore, it must be possible to describe both simple and complex network
+requirements. The framework also needs to be flexible so that it can be used
+with different kinds of traffic and that extreme network requirements which far
+exceed the needs of today's applications can also be articulated.
 
 If these requirements are met, developers of applications or platforms can state
 or test their network requirements and evaluate if the network is sufficient for
@@ -336,24 +334,24 @@ and technologies. The framework must support mathematically sound
 compositionality ('addition' and 'subtraction') to achieve this. Why? Network
 operators rarely manage network traffic end-to-end. If a test is purely
 end-to-end, the ability to find bottlenecks may be gone. If, however,
-measurements can be taken both end-to-end (e.g., a-b-c-d-e) and not-end-to-end (e.g., a-b-c), the results can be
-subtracted to isolate the areas outside the influence of the network
-operator. In other words, the network quality of a-b-c and d-e can be
-separated. Compositionality is essential for fault detection and
+measurements can be taken both end-to-end (e.g., a-b-c-d-e) and not-end-to-end
+(e.g., a-b-c), the results can be subtracted to isolate the areas outside the
+influence of the network operator. In other words, the network quality of a-b-c
+and d-e can be separated. Compositionality is essential for fault detection and
 accountability.
 
 By having mathematically correct composition, a network operator can measure two
 segments separately, perhaps even with different approaches, and add them
 together to understand the end-to-end network quality.
 
-For another example where composition is useful, look at a
-typical web page load sequence. If web page load times are too slow, DNS resolution time, TCP
-round-trip time, and the time it takes to establish TLS connections can be measured separately to get a
-better idea of where the problem is. A network quality framework should support
-this kind of analysis to be maximally useful for operators. The quality
-framework must be applicable in both lab testing and monitoring of production
-networks. It must be useful on different time scales, and it can't have a
-dependency on network technology or OSI layer.
+For another example where composition is useful, look at a typical web page load
+sequence. If web page load times are too slow, DNS resolution time, TCP
+round-trip time, and the time it takes to establish TLS connections can be
+measured separately to get a better idea of where the problem is. A network
+quality framework should support this kind of analysis to be maximally useful
+for operators. The quality framework must be applicable in both lab testing and
+monitoring of production networks. It must be useful on different time scales,
+and it can't have a dependency on network technology or OSI layer.
 
 If these requirements are met, a network operator can monitor and test their
 network and understand where the true bottlenecks are, regardless of network
@@ -384,36 +382,39 @@ Latency Distributions can be gathered via both passive monitoring and active
 testing. The active testing can use any type of traffic, such as TCP, UDP, or
 QUIC. It is OSI Layer and network technology independent, meaning it can be
 gathered in an end-user application, within some network equipment, or anywhere
-in between. Passive methods rely on observing and time-stamping packets traversing the network. Examples of this include TCP SYN and SYN/ACK packets and the QUIC spin bit.
+in between. Passive methods rely on observing and time-stamping packets
+traversing the network. Examples of this include TCP SYN and SYN/ACK packets and
+the QUIC spin bit.
 
 A key assumption behind the choice of latency distribution is that different
 applications and application categories fail at different points of the latency
 distribution. Some applications, such as downloads, have lenient latency
 requirements when compared to real-time application. Video Conferences are
-typically sensitive to high 90th percentile
-latency and to the difference between the 90th and the 99th percentile. Online
-gaming typically has a low tolerance for high 99th percentile latency. All
-applications require a minumum level of throughput and a maximum packet loss
-rate. A network quality metric that aims to generalize network quality must take
-the latency distribution, throughput, and packet loss into consideration.
+typically sensitive to high 90th percentile latency and to the difference
+between the 90th and the 99th percentile. Online gaming typically has a low
+tolerance for high 99th percentile latency. All applications require a minumum
+level of throughput and a maximum packet loss rate. A network quality metric
+that aims to generalize network quality must take the latency distribution,
+throughput, and packet loss into consideration.
 
 Two distributions can be composed using convolution {{TR-452.1}}.
 
 ## Discussion of other performance metrics
-Numerous network performance metrics and associated frameworks have been proposed,
-adopted, and, at times, misapplied over the years.
-The following is a brief overview of several key network quality metrics.
+Numerous network performance metrics and associated frameworks have been
+proposed, adopted, and, at times, misapplied over the years. The following is a
+brief overview of several key network quality metrics.
 
-Each metric is evaluated against the three criteria established in the requirements section.
-Throughput is related to user-observable application outcomes because there must
-be *enough* bandwidth available. Adding extra bandwidth above a certain
-threshold will, at best, receive diminishing returns (and any returns are often
-due to reduced latency). It is not possible to compute the probability of
-application success or failure based on throughput alone for most applications.
-Throughput can be compared to a variety of application requirements, but since
-there is no direct correlation between throughput and application performance,
-it is not possible to conclude that an application will work well even if it is
-known that enough throughput is available.
+Each metric is evaluated against the three criteria established in the
+requirements section. Throughput is related to user-observable application
+outcomes because there must be *enough* bandwidth available. Adding extra
+bandwidth above a certain threshold will, at best, receive diminishing returns
+(and any returns are often due to reduced latency). It is not possible to
+compute the probability of application success or failure based on throughput
+alone for most applications. Throughput can be compared to a variety of
+application requirements, but since there is no direct correlation between
+throughput and application performance, it is not possible to conclude that an
+application will work well even if it is known that enough throughput is
+available.
 
 Throughput cannot be composed.
 
@@ -494,12 +495,13 @@ packet loss into a single variable {{TR-452.1}}.
 Quality Attenuation relates to user-observable outcomes in the sense that
 user-observable outcomes can be measured using the Quality Attenuation metric
 directly, or the quality attenuation value describing the time-to-completion of
-a user-observable outcome can be computed if the quality attenuation of
-each sub-goal required to reach the desired outcome are known {{Haeri22}}.
+a user-observable outcome can be computed if the quality attenuation of each
+sub-goal required to reach the desired outcome are known {{Haeri22}}.
 
 Quality Attenuation is composable because the convolution of quality attenuation
 values allows us to compute the time it takes to reach specific outcomes given
-the quality attenuation of each sub-goal and the causal dependency conditions between them {{Haeri22}}.
+the quality attenuation of each sub-goal and the causal dependency conditions
+between them {{Haeri22}}.
 
 ### Summary of performance metrics
 
@@ -528,24 +530,42 @@ Explanations:
 
 - "Captures probability" refers to whether the metric captures enough
   information to compute the likelihood of an application succeeding.
-- "Articulate requirements" refers to the ease with which
-  application-specific requirements can be expressed using the metric.
+- "Articulate requirements" refers to the ease with which application-specific
+  requirements can be expressed using the metric.
 - "Composable" means whether the metric supports mathematical composition to
   allow for detailed network analysis.
 
 # Sampling requirements
-To ensure broad applicability across diverse use cases, this framework deliberately avoids prescribing specific conditions for sampling such as fixed time intervals or defined network load levels. This flexibility enables deployment in both controlled and real-world environments.
+To ensure broad applicability across diverse use cases, this framework
+deliberately avoids prescribing specific conditions for sampling such as fixed
+time intervals or defined network load levels. This flexibility enables
+deployment in both controlled and real-world environments.
 
-At its core, the framework requires only a latency distribution. When measurements are taken during periods of network load, the result naturally includes latency under load. In scenarios such as passive monitoring of production traffic, capturing artificially loaded conditions may not always be feasible, whereas passively observing the actual network load may be possible.
+At its core, the framework requires only a latency distribution. When
+measurements are taken during periods of network load, the result naturally
+includes latency under load. In scenarios such as passive monitoring of
+production traffic, capturing artificially loaded conditions may not always be
+feasible, whereas passively observing the actual network load may be possible.
 
-Modeling the full latency distribution may be too complex to allow for easy adoption of the framework, and reporting latency at selected percentiles offers a practical compromise between accuracy and deployment considerations. A commonly accepted set of percentiles spanning from the 0th to the 100th in a logarithmic-like progression has been suggested by others {{BITAG}} and is recommended here:
-[0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th, 100th].
+Modeling the full latency distribution may be too complex to allow for easy
+adoption of the framework, and reporting latency at selected percentiles offers
+a practical compromise between accuracy and deployment considerations. A
+commonly accepted set of percentiles spanning from the 0th to the 100th in a
+logarithmic-like progression has been suggested by others {{BITAG}} and is
+recommended here: [0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
+100th].
 
-The framework is agnostic to traffic direction but mandates that measurements specify whether latency is one-way or round-trip.
+The framework is agnostic to traffic direction but mandates that measurements
+specify whether latency is one-way or round-trip.
 
-Importantly, the framework does not enforce a minimum sample count. This means that even a small number of samples (e.g., 10) could technically constitute a distribution—though such cases are clearly insufficient for statistical confidence. The intent is to balance rigor with practicality, recognizing that constraints vary across devices, applications, and deployment environments.
+Importantly, the framework does not enforce a minimum sample count. This means
+that even a small number of samples (e.g., 10) could technically constitute a
+distribution—though such cases are clearly insufficient for statistical
+confidence. The intent is to balance rigor with practicality, recognizing that
+constraints vary across devices, applications, and deployment environments.
 
-To support reproducibility and enable confidence analysis, each measurement must be accompanied by the following metadata:
+To support reproducibility and enable confidence analysis, each measurement must
+be accompanied by the following metadata:
 
 * Description of the measurement path
 * Timestamp of first sample
@@ -556,31 +576,36 @@ To support reproducibility and enable confidence analysis, each measurement must
   * Burst: X samples every N milliseconds (specify X and N)
   * Passive: Opportunistic sampling of live traffic (non-uniform intervals)
 
-These metadata elements are essential for interpreting the precision and reliability of the measurements. As demonstrated in [QoOSimStudy], low sampling frequencies and short measurement durations can lead to misleadingly optimistic or imprecise Quality of Outcome (QoO) scores.
+These metadata elements are essential for interpreting the precision and
+reliability of the measurements. As demonstrated in [QoOSimStudy], low sampling
+frequencies and short measurement durations can lead to misleadingly optimistic
+or imprecise Quality of Outcome (QoO) scores.
 
 # Describing Network Requirements
 This work builds upon the work already proposed in the Broadband Forum standard
 called Quality of Experience Delivered (QED/TR-452) {{TR-452.1}}, which defines
-the Quality Attenuation metric. In essence, QoO
-describes network requirements as a list of percentile and latency requirement
-tuples. In other words, a network requirement may be expressed as: The network
-requirement for this app quality level/app/app category/SLA is “at 4 Mbps, 90%
-of packets needs to arrive within 100 ms, 100% of packets needs to arrive within
-200ms”. This list can be as simple as “100% of packets need to arrive within
-200ms” or as long as you would like. For the sake of simplicity, the
-requirements percentiles must match one or more of the percentiles defined in
-the measurements, i.e., one can set requirements at the \[0th, 10th, 25th, 50th,
-75th, 90th, 95th, 99th, 99.9th, 100th\] percentiles. Packet loss must be
-reported as a separate value.
+the Quality Attenuation metric. In essence, QoO describes network requirements
+as a list of percentile and latency requirement tuples. In other words, a
+network requirement may be expressed as: The network requirement for this app
+quality level/app/app category/SLA is “at 4 Mbps, 90% of packets needs to arrive
+within 100 ms, 100% of packets needs to arrive within 200ms”. This list can be
+as simple as “100% of packets need to arrive within 200ms” or as long as you
+would like. For the sake of simplicity, the requirements percentiles must match
+one or more of the percentiles defined in the measurements, i.e., one can set
+requirements at the \[0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
+100th\] percentiles. Packet loss must be reported as a separate value.
 
-Applications do of course have throughput requirements, and thus a complete framework for application-level network quality must also take capacity into account. Insufficient bandwidth may give poor application
-outcomes without necessarily inducing a lot of latency. Therefore, the network
-requirements should include a minimum throughput requirement. A fully specified
-requirement can be thought of as specifying the latency and loss requirements to
-be met while the end-to-end network path is loaded in a way that is at least as
+Applications do of course have throughput requirements, and thus a complete
+framework for application-level network quality must also take capacity into
+account. Insufficient bandwidth may give poor application outcomes without
+necessarily inducing a lot of latency. Therefore, the network requirements
+should include a minimum throughput requirement. A fully specified requirement
+can be thought of as specifying the latency and loss requirements to be met
+while the end-to-end network path is loaded in a way that is at least as
 demanding of the network as the application itself. This may be achieved by
 running the actual application and measuring delay and loss alongside it, or by
-generating artificial traffic to a level at least equivalent to the application traffic load.
+generating artificial traffic to a level at least equivalent to the application
+traffic load.
 
 Whether the requirements are one-way or two-way must be specified. Where the
 requirement is one-way, the direction (uplink or downlink) must be specified. If
@@ -591,12 +616,13 @@ standardized in the BBF TR-452 (aka QED) framework {{TR-452.1}}. The novel part
 of this work is what comes next. A method for going from Network Requirements
 and Network Measurements to probabilities of good application outcomes.
 
-To do that it is necessary to make articulating the network requirements a little bit
-more complicated. A key design goal was to have a distance measure between
-perfect and unusable, and have a way of quantifying what is ‘better’.
+To do that it is necessary to make articulating the network requirements a
+little bit more complicated. A key design goal was to have a distance measure
+between perfect and unusable, and have a way of quantifying what is ‘better’.
 
-The requirements specification is extended to include the quality required for perfection and a
-quality threshold beyond which the application is considered unusable.
+The requirements specification is extended to include the quality required for
+perfection and a quality threshold beyond which the application is considered
+unusable.
 
 This is named Network Requirements for Perfection (NRP). As an example: At 4
 Mbps, 99% of packets need to arrive within 100ms, 99.9% within 200ms (implying
@@ -609,25 +635,43 @@ define a percentile not included in the other - i.e., if the 99.9th percentile
 is part of the NRPoU then the NRP must also include the 99.9th percentile.
 
 # Creating network requirement specifications
-A detailed description of how to create a network requirement specification is out of scope for this document, but this section will provide a rough outline for how it can be achieved. Additional information about this topic can be found in {{QoOAppQualityReqs}}.
+A detailed description of how to create a network requirement specification is
+out of scope for this document, but this section will provide a rough outline
+for how it can be achieved. Additional information about this topic can be found
+in {{QoOAppQualityReqs}}.
 
-When searching for an appropriate network requirement description for an application, the goal is to identify the points of perfection and uselessness for the application. This can be thought of as a search process. Run the application across a network connection with adjustable quality. Gradually adjust the network performance while observing the application-level performance. The application performance can be observed manually by the person performing the testing, or using automated methods such as recording video stall duration from within a video player.
+When searching for an appropriate network requirement description for an
+application, the goal is to identify the points of perfection and uselessness
+for the application. This can be thought of as a search process. Run the
+application across a network connection with adjustable quality. Gradually
+adjust the network performance while observing the application-level
+performance. The application performance can be observed manually by the person
+performing the testing, or using automated methods such as recording video stall
+duration from within a video player.
 
-Establish a baseline under excellent network conditions. Then gradually add delay, packet loss or decrease network capacity until the application no longer performs perfectly. Continue adding network quality attenuation until the application fails completely. The corresponding network quality levels are the points of perfection and unusability.
+Establish a baseline under excellent network conditions. Then gradually add
+delay, packet loss or decrease network capacity until the application no longer
+performs perfectly. Continue adding network quality attenuation until the
+application fails completely. The corresponding network quality levels are the
+points of perfection and unusability.
 
 # Calculating Quality of Outcome (QoO)
-The QoO metric calculates the likelihood of application success based on network performance, incorporating both latency and packet loss. There are three key scenarios:
+The QoO metric calculates the likelihood of application success based on network
+performance, incorporating both latency and packet loss. There are three key
+scenarios:
 
-- The network meets all the requirements for perfection. Probability of success: 100%.
-- The network fails one or more criteria at the Point of Unusableness (NRPoU). Probability of success: 0%.
+- The network meets all the requirements for perfection. Probability of success:
+  100%.
+- The network fails one or more criteria at the Point of Unusableness (NRPoU).
+  Probability of success: 0%.
 - The network performance falls between perfection and unusable. In this case, a
   QoO score is computed. The QoO score is calculated by taking the worst score
   derived from latency and packet loss.
 
-Latency Component
-The latency-based QoO score is computed as follows:
+Latency Component The latency-based QoO score is computed as follows:
 
-QoO_latency = min_{i}(min(max((1 - ((ML_i - NRP_i) / (NRPoU_i - NRP_i))) * 100, 0), 100))
+QoO_latency = min_{i}(min(max((1 - ((ML_i - NRP_i) / (NRPoU_i - NRP_i))) * 100,
+0), 100))
 
 Where:
 
@@ -635,19 +679,24 @@ Where:
 - NRP_i is the Network Requirement for Perfection at percentile i.
 - NRPoU_i is the Network Requirement Point of Unusableness at percentile i.
 
-Packet Loss Component
-Packet loss is considered as a separate, single measurement that applies across the entire traffic sample, not at each percentile. The packet loss score is calculated using a similar interpolation formula, but based on the total measured packet loss (MLoss) and the packet loss thresholds defined in the NRP and NRPoU:
+Packet Loss Component Packet loss is considered as a separate, single
+measurement that applies across the entire traffic sample, not at each
+percentile. The packet loss score is calculated using a similar interpolation
+formula, but based on the total measured packet loss (MLoss) and the packet loss
+thresholds defined in the NRP and NRPoU:
 
-QoO_loss = min(max((1 - ((MLoss - NRP_Loss) / (NRPoU_Loss - NRP_Loss))) * 100, 0), 100)
+QoO_loss = min(max((1 - ((MLoss - NRP_Loss) / (NRPoU_Loss - NRP_Loss))) * 100,
+0), 100)
 
 Where:
 
 - MLoss is the Measured Packet Loss.
 - NRP_Loss is the acceptable packet loss for perfection.
-- NRPoU_Loss is the packet loss threshold beyond which the application becomes unusable.
+- NRPoU_Loss is the packet loss threshold beyond which the application becomes
+  unusable.
 
-Final QoO Calculation
-The overall QoO score is the minimum of the latency and packet loss scores:
+Final QoO Calculation The overall QoO score is the minimum of the latency and
+packet loss scores:
 
 QoO = min(QoO_latency, QoO_loss)
 
@@ -661,24 +710,18 @@ Example Requirements and Measured Data:
 
 Then the QoO is defined:
 
-QoO_latency
-= min(
-(min(max((1 - (350 ms - 250 ms) / (400 ms - 250 ms)) * 100, 0), 100),
-(min(max((1 - (352 ms - 350 ms) / (401 ms - 350 ms)) * 100, 0), 100))
-)
-= min(33.33, 96.08)
-= 33.33
+QoO_latency = min( (min(max((1 - (350 ms - 250 ms) / (400 ms - 250 ms)) * 100,
+0), 100), (min(max((1 - (352 ms - 350 ms) / (401 ms - 350 ms)) * 100, 0), 100))
+) = min(33.33, 96.08) = 33.33
 
-QoO_loss
-= min(max((1 - (0.5% - 0.1%) / (1% - 0.1%)) * 100, 0), 100)
-= 55.56
+QoO_loss = min(max((1 - (0.5% - 0.1%) / (1% - 0.1%)) * 100, 0), 100) = 55.56
 
 Finally, the overall QoO score is:
 
-QoO = min(33.33, 55.56)
-= 33.33
+QoO = min(33.33, 55.56) = 33.33
 
-In this example, the application has a 33% chance of meeting the quality expectations on this network, considering both latency and packet loss.
+In this example, the application has a 33% chance of meeting the quality
+expectations on this network, considering both latency and packet loss.
 
 **Implementation Note: Sensitivity to Sampling Accuracy**
 
@@ -692,9 +735,21 @@ collecting data, and configure sampling frequency and duration to suit their
 specific needs.
 
 # How to find network requirements
-A key advantage of a measurement that spans the range from perfect to unusable, rather than relying on binary (Good/Bad) or other low-resolution (Terrible/Bad/OK/Great/Excellent) metrics, is the flexibility it provides. For example, a chance of lag-free experience below 20% is intuitively undesirable, while a chance above 90% is intuitively favorable—demonstrating that absolute perfection is not required for the QoO metric to be meaningful.
+A key advantage of a measurement that spans the range from perfect to unusable,
+rather than relying on binary (Good/Bad) or other low-resolution
+(Terrible/Bad/OK/Great/Excellent) metrics, is the flexibility it provides. For
+example, a chance of lag-free experience below 20% is intuitively undesirable,
+while a chance above 90% is intuitively favorable—demonstrating that absolute
+perfection is not required for the QoO metric to be meaningful.
 
-However, it remains necessary to define points representing unusableness and perfection. There is no universally strict threshold at which network conditions render an application unusable. For perfection, some applications may have clear definitions, but for others, such as web browsing and gaming, lower latency is always preferable. To assist in establishing requirements, it is recommended that the Network Requirements for Perfection (NRP) be set at the point where further reductions in latency do not result in a perceivable improvement in end-user experience.
+However, it remains necessary to define points representing unusableness and
+perfection. There is no universally strict threshold at which network conditions
+render an application unusable. For perfection, some applications may have clear
+definitions, but for others, such as web browsing and gaming, lower latency is
+always preferable. To assist in establishing requirements, it is recommended
+that the Network Requirements for Perfection (NRP) be set at the point where
+further reductions in latency do not result in a perceivable improvement in
+end-user experience.
 
 Someone who wishes to make a network requirement for an application in the
 simplest possible way, should do something along these lines.
@@ -747,13 +802,14 @@ Then one can calculate the QoO at each level.
 # Insights from Simulation Results  {#simulation-insights}
 
 While the QoO framework itself places no strict requirement on sampling patterns
-or measurement technology, a recent simulation study {{QoOSimStudy}} examined the
-metric’s real-world applicability under varying conditions of:
+or measurement technology, a recent simulation study {{QoOSimStudy}} examined
+the metric’s real-world applicability under varying conditions of:
 
 1. **Sampling Frequency**: Slow sampling rates (e.g., <1 Hz) risk missing rare,
    short-lived latency spikes, resulting in overly optimistic QoO scores.
 2. **Measurement Noise**: Measurement errors on the same scale as the thresholds
-   (NRP, NRPoU) can distort high-percentile latencies and cause artificially lower QoO.
+   (NRP, NRPoU) can distort high-percentile latencies and cause artificially
+   lower QoO.
 3. **Requirement Specification**: Slightly adjusting the latency thresholds or
    target percentiles can cause significant changes in QoO, especially when the
    measurement distribution is near a threshold.
@@ -780,15 +836,19 @@ in a real-world settings {{QoOUserStudy}}. Participants used specially equipped
 routers in their homes for 10 days, providing both network performance data and
 feedback through pre- and post-trial surveys.
 
-Participants found QoO metrics more intuitive and
-actionable than traditional metrics (e.g., speed tests). QoO directly aligned
-with their self-reported experiences, increasing trust and engagement.
+Participants found QoO metrics more intuitive and actionable than traditional
+metrics (e.g., speed tests). QoO directly aligned with their self-reported
+experiences, increasing trust and engagement.
 
 These results provide supporting evidence for QoO's value as a user-focused
-tool, bridging technical metrics with real-world application performance to enhance end-user satisfaction.
+tool, bridging technical metrics with real-world application performance to
+enhance end-user satisfaction.
 
 # Known Weaknesses and open questions
-A method has been described for simplifying the comparison between application network requirements and quality attenuation measurements. This simplification introduces several artifacts, the significance of which may vary depending on context. The following section discusses some known limitations.
+A method has been described for simplifying the comparison between application
+network requirements and quality attenuation measurements. This simplification
+introduces several artifacts, the significance of which may vary depending on
+context. The following section discusses some known limitations.
 
 Volatile networks - in particular, mobile cellular networks - pose a challenge
 for network quality prediction, with the level of assurance of the prediction
@@ -811,13 +871,18 @@ These two latency series: 1,200,1,200,1,200,1,200,1,200 and
 1,1,1,1,1,200,200,200,200,200 will have identical distributions, but may have
 different application performance. Ignoring this information is a tradeoff
 between simplicity and precision. To capture all information necessary to
-perfectly capture outcomes quickly gets into extreme levels of overhead and high computational complexity.
-An application's performance depends on reactions to varying
-network performance, meaning nearly all different series of latencies may have
-different application outcomes.
+perfectly capture outcomes quickly gets into extreme levels of overhead and high
+computational complexity. An application's performance depends on reactions to
+varying network performance, meaning nearly all different series of latencies
+may have different application outcomes.
 
 ## Subsampling the real distribution
-Additionally, it is not feasible to capture latency for every packet transmitted. Probing and sampling can be performed, but some aspects will always remain unknown. This introduces an element of probability. Absolute perfection cannot be achieved; rather than disregarding this reality, it is more practical to acknowledge it. Therefore, discussing the probability of outcomes provides a more accurate and meaningful approach.
+Additionally, it is not feasible to capture latency for every packet
+transmitted. Probing and sampling can be performed, but some aspects will always
+remain unknown. This introduces an element of probability. Absolute perfection
+cannot be achieved; rather than disregarding this reality, it is more practical
+to acknowledge it. Therefore, discussing the probability of outcomes provides a
+more accurate and meaningful approach.
 
 ## Assuming Linear Relationship between Perfect and Unusable (and that it is not really a probability)
 One can conjure up scenarios where 50ms latency is actually worse than 51ms
@@ -829,11 +894,21 @@ capability).
 
 ## Binary Bandwidth threshold
 Choosing this is to reduce complexity, but it must be acknowledged that the
-applications are not that simple. Network requirements can be set up per
-quality level (resolution, fps etc.) for the application if necessary.
+applications are not that simple. Network requirements can be set up per quality
+level (resolution, fps etc.) for the application if necessary.
 
 ## Arbitrary selection of percentiles
-A selection of percentiles is necessary for simplicity, because more complex methods may slow adoption of the framework. The 0th (minimum) and 50th (median) percentiles are commonly used for their inherent significance. According to {{BITAG}}, the 90th, 98th, and 99th percentiles are particularly important for certain applications. Generally, higher percentiles provide more insight for interactive applications, but only up to a certain threshold—beyond which applications may treat excessive delays as packet loss and adapt accordingly. The choice between percentiles such as the 95th, 96th, 96.5th, or 97th is not universally prescribed and may vary between application types. Therefore, percentiles must be selected arbitrarily, based on the best available knowledge and the intended use case.
+A selection of percentiles is necessary for simplicity, because more complex
+methods may slow adoption of the framework. The 0th (minimum) and 50th (median)
+percentiles are commonly used for their inherent significance. According to
+{{BITAG}}, the 90th, 98th, and 99th percentiles are particularly important for
+certain applications. Generally, higher percentiles provide more insight for
+interactive applications, but only up to a certain threshold—beyond which
+applications may treat excessive delays as packet loss and adapt accordingly.
+The choice between percentiles such as the 95th, 96th, 96.5th, or 97th is not
+universally prescribed and may vary between application types. Therefore,
+percentiles must be selected arbitrarily, based on the best available knowledge
+and the intended use case.
 
 # Implementation status
 Note to RFC Editor: This section MUST be removed before publication of the
@@ -947,41 +1022,65 @@ updated:
 
 # Security Considerations
 
-The Quality of Outcome (QoO) framework introduces a method for assessing network quality based on probabilistic outcomes derived from latency, packet loss, and throughput measurements. While the framework itself is primarily analytical and does not define a new protocol, some security considerations arise from its deployment and use.
+The Quality of Outcome (QoO) framework introduces a method for assessing network
+quality based on probabilistic outcomes derived from latency, packet loss, and
+throughput measurements. While the framework itself is primarily analytical and
+does not define a new protocol, some security considerations arise from its
+deployment and use.
 
 ## Measurement Integrity and Authenticity
 
-QoO relies on accurate and trustworthy measurements of network performance. If an attacker can manipulate these measurements—either by injecting falsified data or tampering with the measurement process—they could distort the resulting QoO scores. This could mislead users, operators, or regulators into making incorrect assessments of network quality.
+QoO relies on accurate and trustworthy measurements of network performance. If
+an attacker can manipulate these measurements—either by injecting falsified data
+or tampering with the measurement process—they could distort the resulting QoO
+scores. This could mislead users, operators, or regulators into making incorrect
+assessments of network quality.
 
 To mitigate this risk:
 
-- Measurement agents can authenticate with the systems collecting or analyzing QoO data.
-- Measurement data can be transmitted over secure channels (e.g., TLS) to ensure confidentiality and integrity.
-- Digital signatures may be used to verify the authenticity of measurement reports.
+- Measurement agents can authenticate with the systems collecting or analyzing
+  QoO data.
+- Measurement data can be transmitted over secure channels (e.g., TLS) to ensure
+  confidentiality and integrity.
+- Digital signatures may be used to verify the authenticity of measurement
+  reports.
 
 ## Risk of Misuse and Gaming
 
-As QoO scores may influence regulatory decisions, service-level agreements (SLAs), or user trust, there is a risk that network operators or application developers might attempt to "game" the system. For example, they might optimize performance only for known test conditions or falsify requirement thresholds to inflate QoO scores.
+As QoO scores may influence regulatory decisions, service-level agreements
+(SLAs), or user trust, there is a risk that network operators or application
+developers might attempt to "game" the system. For example, they might optimize
+performance only for known test conditions or falsify requirement thresholds to
+inflate QoO scores.
 
 Mitigations include:
 
-- Independent verification of application requirements and measurement methodologies.
+- Independent verification of application requirements and measurement
+  methodologies.
 - Use of randomized or blind testing procedures.
 - Transparency in how QoO scores are derived and what assumptions are made.
 
 ## Privacy Considerations
 
-QoO measurements may involve collecting detailed performance data from end-user devices or applications. Depending on the deployment model, this could include metadata such as IP addresses, timestamps, or application usage patterns.
+QoO measurements may involve collecting detailed performance data from end-user
+devices or applications. Depending on the deployment model, this could include
+metadata such as IP addresses, timestamps, or application usage patterns.
 
 To protect user privacy:
 
-- Data collection should follow the principle of data minimization, only collecting what is strictly necessary.
-- Personally identifiable information (PII) should be anonymized or pseudonymized where possible.
-- Users should be informed about what data is collected and how it is used, in accordance with applicable privacy regulations (e.g., GDPR).
+- Data collection should follow the principle of data minimization, only
+  collecting what is strictly necessary.
+- Personally identifiable information (PII) should be anonymized or
+  pseudonymized where possible.
+- Users should be informed about what data is collected and how it is used, in
+  accordance with applicable privacy regulations (e.g., GDPR).
 
 ## Denial of Service (DoS) Risks
 
-Active measurement techniques used to gather QoO data (e.g., TWAMP, STAMP, synthetic traffic generation) can place additional load on the network. If not properly rate-limited, this could inadvertently degrade service or be exploited by malicious actors to launch DoS attacks.
+Active measurement techniques used to gather QoO data (e.g., TWAMP, STAMP,
+synthetic traffic generation) can place additional load on the network. If not
+properly rate-limited, this could inadvertently degrade service or be exploited
+by malicious actors to launch DoS attacks.
 
 Recommendations:
 
@@ -991,12 +1090,16 @@ Recommendations:
 
 ## Trust in Application Requirements
 
-QoO depends on application developers to define Network Requirements for Perfection (NRP) and Network Requirements Point of Unusableness (NRPoU). If these are defined inaccurately—either unintentionally or maliciously—the resulting QoO scores may be misleading.
+QoO depends on application developers to define Network Requirements for
+Perfection (NRP) and Network Requirements Point of Unusableness (NRPoU). If
+these are defined inaccurately—either unintentionally or maliciously—the
+resulting QoO scores may be misleading.
 
 To address this:
 
 - Encourage peer review and publication of application requirement profiles.
-- Where QoO is used for regulatory or SLA enforcement, require independent validation of requirement definitions.
+- Where QoO is used for regulatory or SLA enforcement, require independent
+  validation of requirement definitions.
 
 
 
