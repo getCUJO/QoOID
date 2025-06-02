@@ -1113,4 +1113,4 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+The authors would like to thank Will Hawkins, Stuart Cheshire, Jason Livingood, Olav Nedrelid, Greg Mirsky, Tommy Pauly, Marcus Ihlar, Tal Mizrahi, Ruediger Geib, Mehmet Şükrü Kuran and Neil Davies for their feedback and input to this document.
