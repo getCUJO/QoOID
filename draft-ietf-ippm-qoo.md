@@ -166,7 +166,7 @@ the framework both for end-to-end test and analysis from within the network.
 The work proposes a minimum viable framework, and often trades precision for
 simplicity. The justification for this is to ensure adoption and usability in
 many different contexts such as active testing from applications and monitoring
-from network equipment. To counter the loss of precision, is it necessary to
+from network equipment. To counter the loss of precision, it is necessary to
 combine measurement results with a description of the measurement approach that
 allow for analysis of the precision.
 
@@ -187,7 +187,7 @@ A key motivation for the Quality of Outcome (QoO) framework is to bridge the gap
 between the technical aspects of network performance and the practical needs of
 those who depend on it. While solutions exist for many of the problems causing
 high and unstable latency in the Internet, the incentives to deploy them have
-remained relatively weak. A unifying framework for assessing network quality,
+remained relatively weak. A unifying framework for assessing network quality
 can serve to strengthen these incentives significantly.
 
 Bandwidth alone is necessary but not sufficient for high-quality modern network
@@ -219,7 +219,7 @@ fail because of a lack of a network with sufficient characteristics"
 its ability to answer the question, "Will an application work properly?"
 
 Answering this question requires several considerations. First, the Internet is
-inherently stochastic from the perspective of any given client, so certainty i
+inherently stochastic from the perspective of any given client, so certainty is
 unattainable. Second, different applications have varying needs and adapt
 differently to network conditions. A framework aiming to answer this question
 must accommodate diverse application requirements. Third, end-users have
@@ -378,7 +378,7 @@ proposed by various researchers/practitioners {{Kelly}}{{RFC8239}}{{RFC6049}}.
 The novelty of the Quality Attenuation metric is to view packet loss as infinite
 (or too late to be of use e.g. > 3 seconds) latency {{TR-452.1}}.
 
-Latency Distributions can be gathered via both passive monitoring and active
+Latency distributions can be gathered via both passive monitoring and active
 testing. The active testing can use any type of traffic, such as TCP, UDP, or
 QUIC. It is OSI Layer and network technology independent, meaning it can be
 gathered in an end-user application, within some network equipment, or anywhere
@@ -389,7 +389,7 @@ the QUIC spin bit.
 A key assumption behind the choice of latency distribution is that different
 applications and application categories fail at different points of the latency
 distribution. Some applications, such as downloads, have lenient latency
-requirements when compared to real-time application. Video Conferences are
+requirements when compared to real-time applications. Video conferences are
 typically sensitive to high 90th percentile latency and to the difference
 between the 90th and the 99th percentile. Online gaming typically has a low
 tolerance for high 99th percentile latency. All applications require a minumum
@@ -496,7 +496,7 @@ Quality Attenuation relates to user-observable outcomes in the sense that
 user-observable outcomes can be measured using the Quality Attenuation metric
 directly, or the quality attenuation value describing the time-to-completion of
 a user-observable outcome can be computed if the quality attenuation of each
-sub-goal required to reach the desired outcome are known {{Haeri22}}.
+sub-goal required to reach the desired outcome is known {{Haeri22}}.
 
 Quality Attenuation is composable because the convolution of quality attenuation
 values allows us to compute the time it takes to reach specific outcomes given
