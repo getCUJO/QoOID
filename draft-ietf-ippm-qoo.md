@@ -176,7 +176,7 @@ use the framework both for end-to-end test and analysis from within the network.
 The work proposes a minimum viable framework, and often trades precision for
 simplicity. The justification for this is to ensure adoption and usability in
 many different contexts such as active testing from applications and monitoring
-from network equipment. To counter the loss of precision, is it necessary to
+from network equipment. To counter the loss of precision, it is necessary to
 combine measurement results with a description of the measurement approach that
 allow for analysis of the precision.
 
@@ -472,7 +472,7 @@ seconds) latency {{TR-452.1}}. The novelty of TR-452.1 lies in its unified
 treatment of latency and loss within a single distributional framework, enabling
 mathematical composition of network segments.
 
-Latency Distributions can be gathered via both passive monitoring and active
+Latency distributions can be gathered via both passive monitoring and active
 testing. The active testing can use any type of traffic, such as TCP, UDP, or
 QUIC. It can be applied across different layers of the protocol stack and is
 network technology independent, meaning it can be gathered in an end-user
@@ -483,7 +483,7 @@ Examples of this include TCP SYN and SYN/ACK packets and the QUIC spin bit.
 A key assumption behind the choice of latency distribution is that different
 applications and application categories fail at different points of the latency
 distribution. Some applications, such as downloads, have lenient latency
-requirements when compared to real-time application. Video Conferences are
+requirements when compared to real-time applications. Video conferences are
 typically sensitive to high 90th percentile latency and to the difference
 between the 90th and the 99th percentile. Online gaming typically has a low
 tolerance for high 99th percentile latency. All applications require a minimum
@@ -589,7 +589,7 @@ Quality Attenuation relates to user-observable outcomes in the sense that
 user-observable outcomes can be measured using the Quality Attenuation metric
 directly, or the Quality Attenuation value describing the time-to-completion of
 a user-observable outcome can be computed if the Quality Attenuation of each
-sub-goal required to reach the desired outcome are known {{Haeri22}}.
+sub-goal required to reach the desired outcome is known {{Haeri22}}.
 
 Quality Attenuation is composable because the convolution of Quality Attenuation
 values allows us to compute the time it takes to reach specific outcomes given
