@@ -709,7 +709,7 @@ deployment in both controlled and production environments.
 
 At its core, the QoO framework requires a latency distribution. However, for
 complete QoO assessment, packet loss measurements and throughput estimates are
-also needed, as described in the section on "Describing Network Performance Requirements" below. When measurements are taken
+also needed, as described in {{describing_requirements}}. When measurements are taken
 during periods of network load, the result naturally includes latency under
 load. In scenarios such as passive monitoring of production traffic, capturing
 artificially loaded conditions may not always be feasible, whereas passively
@@ -757,7 +757,7 @@ To assess the precision of QoO measurements, implementers should consider:
 
 Acceptable levels of precision depend on the use case. Implementers should document their precision assessment methodology and report precision metrics alongside QoO scores when precision is critical for the use case.
 
-## Describing Network Performance Requirements
+## Describing Network Performance Requirements {#describing_requirements}
 The QoO framework builds upon the work already proposed in the Broadband Forum standard
 called Quality of Experience Delivered (QED) {{TR-452.1}}, which defines
 the Quality Attenuation metric. Correspondingly, QoO expresses network performance
