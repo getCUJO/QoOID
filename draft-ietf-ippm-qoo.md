@@ -23,7 +23,6 @@ venue:
   mail: "ippm@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/ippm/"
   github: "getCUJO/QoOID"
-  latest: "https://github.com/getCUJO/QoOID"
 
 author:
  -
@@ -89,13 +88,13 @@ informative:
   RFC8033: # PIE
   RFC8239: # Refers to histogram of latency samples
   RFC8290: # FQ_CoDel
-  RFC8321: #Alternate-Marking Method for Passive and Hybrid Performance Monitoring
   RFC8517: #An Inventory of Transport-Centric Functions Provided by Middleboxes: An Operator Perspective
   RFC8762: # STAMP
   RFC9000: # QUIC
   RFC9197: # Data Fields for In Situ Operations, Administration, and Maintenance (IOAM)
   RFC9312: # QUIC Manageability
   RFC9318: # IAB Workshop report
+  RFC9341: #Alternate-Marking Method for Passive and Hybrid Performance Monitoring
   RFC9817: # COIN Use Cases
   I-D.draft-ietf-opsawg-rfc5706bis:
   # SHARED:
@@ -553,7 +552,7 @@ relevant techniques are:
 * Simulating real traffic
 * End-to-end measurements of real traffic
 * TCP SYN ACK or DNS Lookup RTT Capture
-* On-Path Telemetry methods (IOAM {{RFC9197}}, AltMark {{RFC8321}})
+* On-Path Telemetry methods (IOAM {{RFC9197}}, AltMark {{RFC9341}})
 * Estimation
 
 Quality Attenuation represents quality measurements as distributions. Using
@@ -777,7 +776,7 @@ The QoO framework builds upon the work already proposed in the Broadband Forum s
 called Quality of Experience Delivered (QED) {{TR-452.1}}, which defines
 the Quality Attenuation metric.
 Correspondingly, QoO expresses network performance
-requirements as a set of percentile–latency tuples with corresponding packet loss thresholds and a minimum required throughput.
+requirements as a set of percentile-latency tuples with corresponding packet loss thresholds and a minimum required throughput.
 For example, a requirement might state:
 at 4Mbps, 90% of packets must arrive within 100ms, and 100% within 200ms, implying 0% packet loss.
 This list can be minimal (e.g., 100% within 200ms) or extended as needed and different percentiles may be used to characterize different applications.
@@ -1174,7 +1173,7 @@ To mitigate these risks, the following is recommended:
 ## Trust in Application Requirements
 
 QoO depends on application developers to define ROP and CPUP. If
-these are defined inaccurately—either unintentionally or maliciously—the
+these are defined inaccurately-either unintentionally or maliciously-the
 resulting QoO scores may be misleading.
 
 To address such risks, the following recommendations are made:
