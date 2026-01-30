@@ -96,7 +96,7 @@ informative:
   RFC9318: # IAB Workshop report
   RFC9341: #Alternate-Marking Method for Passive and Hybrid Performance Monitoring
   RFC9817: # COIN Use Cases
-  I-D.draft-ietf-opsawg-rfc5706bis:
+  I-D.ietf-opsawg-rfc5706bis:
   # SHARED:
   #   title: "The Internet is a Shared Network"
   #   author:
@@ -213,7 +213,7 @@ By leveraging the Quality Attenuation metric, QoO provides a method for defining
 
 This document introduces the Quality of Outcome (QoO) network quality score.
 It is designed to be easy to understand, while at the same time being objective, adaptable to different network quality needs, and
-allowing advanced analyses to identify the root cause of network problems {{I-D.draft-ietf-opsawg-rfc5706bis}}.
+allowing advanced analyses to identify the root cause of network problems ({{Section 5.4.3 of I-D.ietf-opsawg-rfc5706bis}}).
 Centered around the QoO score, this
 document defines the QoO framework which allows application
 developers to specify quality-focused network performance requirements (for example, regarding latency,
@@ -221,7 +221,7 @@ throughput, and packet loss) and provides a way to derive the user-facing QoO
 score by comparing the quality-focused performance requirements of applications to measurements of network
 performance.
 
-The QoO framework builds on Quality Attenuation {{TR-452.1}}, a network quality metric that enables network operators to achieve fault isolation {{I-D.draft-ietf-opsawg-rfc5706bis}} and effective network planning through
+The QoO framework builds on Quality Attenuation {{TR-452.1}}, a network quality metric that enables network operators to achieve fault isolation ({{Section 5.4.4 of I-D.ietf-opsawg-rfc5706bis}}) and effective network planning through
 composability {{RFC6049}}.
 Quality Attenuation meets most of the requirements for a meaningful network quality score
 set out in {{requirements}}: it is composable, captures the
@@ -255,57 +255,68 @@ Note that this document focuses specifically on the general framework of using q
 
 # Terminology
 
-This document uses the following terminology.
+This document uses the following terminology:
 
-Network: The
+Network:
+: The
 communication infrastructure that facilitates data transmission between
 endpoints, including all intermediate devices, links, and protocols that affect
 the transmission of data. This encompasses both the physical infrastructure and
 the logical protocols that govern data transmission. The network may support
 various communication patterns and may span multiple administrative domains.
 
-Network Segment: A portion of the complete end-to-end network path between application
+Network Segment:
+: A portion of the complete end-to-end network path between application
 endpoints. A network segment may represent a specific administrative domain (e.g., access network,
-transit network, server-side infrastructure), a particular technology domain (e.g., WiFi, cellular),
+transit network, or server-side infrastructure), a particular technology domain (e.g., Wi-Fi or cellular),
 or any subset of the path for which independent quality measurements and analysis are desired.
 
-Quality Attenuation: A network quality metric defined in {{TR-452.1}} that combines latency and packet loss distributions in a unified approach to
+Quality Attenuation:
+: A network quality metric defined in {{TR-452.1}} that combines latency and packet loss distributions in a unified approach to
 jointly assess latency and loss characteristics of network performance.
 
-Quality of Experience (QoE): The degree of delight or annoyance of the user of
-an application or service as defined in {{P.10}}.
+Quality of Experience (QoE):
+: The degree of delight or annoyance of the user of
+an application or service. See also {{P.10}}.
 
-Quality of Service (QoS): The totality of characteristics of a
+Quality of Service (QoS):
+: The totality of characteristics of a
 telecommunications service that bear on its ability to satisfy stated and
-implied needs of the user of the service as defined in {{P.10}}.
+implied needs of the user of the service. See also {{P.10}}.
 
-Quality of Outcome (QoO): A network quality framework and metric that evaluates network quality
+Quality of Outcome (QoO):
+: A network quality framework and metric that evaluates network quality
 based on how closely measured network conditions meet application-specific, quality-focused
 performance requirements. QoO is a QoS indicator that may be
 related to, but cannot be considered the same as, the actual QoE of end-users.
 
-QoO Score: A numerical value that represents the distance-based assessment of
+QoO Score:
+: A numerical value that represents the distance-based assessment of
 network quality relative to network performance requirements for optimal and unacceptable application performance on a
 given network for a specific application, typically expressed as a percentage.
 
-Requirements for Optimal Performance (ROP): The network performance
+Requirements for Optimal Performance (ROP):
+: The network performance
 characteristics at which an application achieves optimal performance and quality, beyond
 which further improvements in network conditions do not result in perceptible
 improvements in application performance or user experience. When network performance exceeds ROP thresholds, any sub-optimal user
 experience can be assumed not to be caused by the part of the network path that
 has been measured for QoO calculations.
 
-Conditions at the Point of Unacceptable Performance (CPUP): The network performance
+Conditions at the Point of Unacceptable Performance (CPUP):
+: The network performance
 threshold below which an application fails to provide acceptable user experience.
 Note that 'unacceptable' in this context refers to degraded performance quality
 rather than complete technical failure of the application. There is no universally
 strict threshold defining when network conditions become unacceptable for applications.
 
-Composability: The mathematical property that allows network quality
+Composability:
+: The mathematical property that allows network quality
 measurements to be combined across different network segments or decomposed to
 isolate specific network components for analysis and troubleshooting.
 
-Accuracy and Precision: "Accuracy" refers to how close measurements are to
+Accuracy and Precision:
+: "Accuracy" refers to how close measurements are to
 the value that reflects the real conditions. "Precision" refers to the consistency
 and repeatability of measurements. These terms are used with their standard
 statistical meanings and are not interchangeable {{ISO5725-1}}.
@@ -313,7 +324,7 @@ statistical meanings and are not interchangeable {{ISO5725-1}}.
 # Overview
 
 The QoO framework produces simple percentage scores that express the network quality in relation to pre-defined network performance requirements of applications.
-For example: "This network provides 94% of optimal conditions for video conferencing.".
+For example: "This network provides 94% of optimal conditions for video conferencing".
 This way, QoO conveys an intuition for how well an application is expected to perform in the described network with higher scores intended to convey that applications are more likely to have optimal performance.
 
 The QoO framework compares measured network performance against application-specific, quality-focused network performance requirements. Applications define two thresholds:
@@ -393,7 +404,7 @@ of technical solutions, but rather a lack of awareness of the problem". This
 lack of awareness means that some operators might have little incentive to improve network
 quality beyond increasing bandwidth. For example, despite the availability of open-source
 solutions such as FQ_CoDel {{RFC8290}}, which has been available for over a
-decade, vendors rarely implement them in widely deployed equipment (e.g., WiFi
+decade, vendors rarely implement them in widely deployed equipment (e.g., Wi-Fi
 routers still commonly exhibit bufferbloat). A universally accepted network quality
 framework that successfully captures the degree to which networks provide the quality required by applications
 may help to increase the willingness of vendors to implement such solutions.
@@ -405,7 +416,7 @@ meaningful metric for users is whether their application will work properly or
 fail because of a lack of a network with sufficient characteristics"
 {{RFC9318}}. Therefore, one critical requirement for a meaningful framework is
 its ability to answer the following question: "Will networking conditions prevent an
-application from working properly?".
+application from working as intended?".
 
 Answering this question requires several considerations. First, the Internet is
 inherently stochastic from the perspective of any given client, so absolute
@@ -426,7 +437,7 @@ In general, all stakeholders ultimately care about the performance of applicatio
 running over a network.
 Application performance does not only depend on bandwidth but also on the delay and delay variation of network links and computational steps involved in making the application function.
 These delays depend on how the application places load on the network, how the network is affected by environmental conditions, and the behavior of other users and applications sharing the network resources.
-Likewise, packet loss, e.g., caused by congestion, can also negatively impact application performance in different ways depending on the class of application.
+Likewise, packet loss (e.g., caused by congestion) can also negatively impact application performance in different ways depending on the class of application.
 
 Different applications may have different needs from a network and may impose
 different patterns of load. To determine whether an application will likely work
@@ -455,8 +466,8 @@ Next, the document focuses on the requirements of each of the mentioned target g
 
 ### Requirements for End-Users
 The QoO framework should facilitate a metric that is based on objective QoS
-measurements (such as throughput,
-packet loss {{RFC6673}}, {{RFC7680}}, delays {{RFC2681}},{{RFC7679}}, and (one-way) delay variations {{RFC3393}}), correlated to application performance, and relatively understandable
+measurements (such as throughput {{?RFC6349}},
+packet loss {{RFC6673}}{{RFC7680}}, delays {{RFC2681}}{{RFC7679}}, and (one-way) delay variations {{RFC3393}}), correlated to application performance, and relatively understandable
 for end-users, similar to QoE metrics, such as Mean Opinion Score (MOS) {{P.800.1}}.
 
 If these requirements are met, QoO is a middle ground between QoS and QoE metrics and allows end-users to understand if a network is a
@@ -570,8 +581,8 @@ testing {{RFC7799}}. The active testing can use any type of traffic, such as con
 network technology independent, meaning it can be gathered in an end-user
 application, within some network equipment, or anywhere in between. Passive
 methods rely on observing and time-stamping packets traversing the network.
-Examples of this include TCP SYN and SYN/ACK packets {{RFC8517}} and
-the QUIC spin bit {{RFC9000}}, {{RFC9312}}.
+Examples of this include TCP SYN and SYN/ACK packets ({{Section 2.2 of RFC8517}}) and
+the QUIC spin bit {{RFC9000}}{{RFC9312}}.
 
 A key assumption behind the choice of latency distribution is that different
 applications and application categories fail at different points of the latency
@@ -950,8 +961,8 @@ This section discusses general operational considerations concerning the use of 
 
 The QoO framework assumes that measurements reflect the actual connectivity
 service that will be provided to application flows. However, networks may offer
-multiple connectivity service levels (e.g., VPN services, corporate customer
-tiers, network slicing configurations). In such deployments, it is important to
+multiple connectivity service levels (e.g., VPN services {{?RFC2764}}, corporate customer
+tiers, and network slicing configurations {{?RFC9543}}). In such deployments, it is important to
 ensure that:
 
 - Measurements are taken using the same connectivity service level that will be
@@ -1030,7 +1041,7 @@ performs.
 ## Insights From User Testing {#user-testing}
 
 While subjective QoE testing as specified in the ITU-T P-series recommendations
-({{P.800}}, {{P.910}}, {{P.1401}}) is out of scope of this document, a study
+({{P.800}}, {{P.910}}, and {{P.1401}}) is out of scope of this document, a study
 involving 25 participants tested the QoO framework in real-world settings
 {{QoOUserStudy}}. Participants used specially equipped routers in their homes
 for ten days, providing both network performance data and feedback through pre-
@@ -1157,7 +1168,7 @@ Mitigations include:
 - Use of randomized testing procedures.
 - Transparency in how QoO scores are derived and what assumptions are made.
 
-## Denial of Service (DoS) Risks
+## Denial-of-Service (DoS) Risks
 
 Active measurement techniques used to gather QoO data (e.g., TWAMP, STAMP, and
 synthetic traffic generation) can place additional load on a network. If not
@@ -1166,7 +1177,7 @@ by malicious actors to launch DoS attacks.
 
 To mitigate these risks, the following is recommended:
 
-- Implement rate limiting and access control for active measurement tools.
+- Implement rate-limiting and access control for active measurement tools.
 - Ensure that measurement traffic does not interfere with critical services.
 - Monitor for abnormal measurement patterns that may indicate abuse.
 
@@ -1194,10 +1205,10 @@ To protect user privacy:
 data.
 - Data collection should follow the principle of data minimization, only
   collecting what is strictly necessary.
-- Personally Identifiable Information (PII) should be anonymized or
+- Privacy-sensitive information (e.g., Personally Identifiable Information (PII)) should be anonymized or
   pseudonymized where possible.
 - Users should be informed about what data is collected and how it is used, in
-  accordance with applicable privacy regulations (e.g., GDPR).
+  accordance with applicable privacy regulations (e.g., General Data Protection Regulation (GDPR)).
 
 # IANA Considerations
 
@@ -1210,7 +1221,7 @@ document.
 
 This section records the status of known implementations of the protocol defined
 by this specification at the time of posting of this Internet-Draft, and is
-based on a proposal described in [RFC7942]. The description of implementations
+based on a proposal described in {{?RFC7942}}. The description of implementations
 in this section is intended to assist the IETF in its decision processes in
 progressing drafts to RFCs. Please note that the listing of any individual
 implementation here does not imply endorsement by the IETF. Furthermore, no
@@ -1219,7 +1230,7 @@ by IETF contributors. This is not intended as, and must not be construed to be,
 a catalog of available implementations or their features. Readers are advised to
 note that other implementations may exist.
 
-According to [RFC7942], "this will allow reviewers and working groups to assign
+According to {{?RFC7942}}, "this will allow reviewers and working groups to assign
 due consideration to documents that have the benefit of running code, which may
 serve as evidence of valuable experimentation and feedback that have made the
 implemented protocols more mature. It is up to the individual working groups to
