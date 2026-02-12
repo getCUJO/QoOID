@@ -31,21 +31,21 @@ author:
     email: bjorn.monclair@cujo.com
     street: Gaustadalléen 21
     code: 0349
-    country: NORWAY
+    country: Norway
  -
     fullname: Magnus Olden
     organization: CUJO AI
     email: magnus.olden@cujo.com
     street: Gaustadalléen 21
     code: 0349
-    country: NORWAY
+    country: Norway
  -
     fullname: Ike Kunze
     organization: CUJO AI
     email: ike.kunze@cujo.com
     street: Gaustadalléen 21
     code: 0349
-    country: NORWAY
+    country: Norway
     role: editor
 
 normative:
