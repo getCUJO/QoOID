@@ -243,7 +243,7 @@ performance requirements.
 The QoO framework gives structure to this approach by defining two network quality thresholds: one for optimal application performance and one for unacceptable application performance.
 The QoO score serves as a linear distance measure between the two distinct thresholds and allows network conditions to be expressed in easily understood terms such as "This network provides 94% of optimal conditions for video conferencing (relative to the threshold for unacceptable performance)" while supporting both comprehensive end-to-end tests and analyses from within the network.
 
-The framework is designed to be flexible in its application scope. 
+The framework is designed to be flexible in its application scope.
 QoO scores may be calculated for the complete end-to-end path (from application client to server), or focused on specific network segments, such as the customer-facing access network, intermediate transit networks, or server-side infrastructure. Through the composability properties of the underlying Quality Attenuation metric, measurements from different segments can be combined or decomposed to isolate performance issues regardless of where they occur in the network path.
 
 This document defines a minimum viable framework, and often trades precision for
@@ -324,23 +324,24 @@ statistical meanings and are not interchangeable {{ISO5725-1}}.
 
 # Overview
 
-The QoO framework produces simple percentage scores that express the network quality in relation to pre-defined network performance requirements of applications.
+The QoO framework produces simple percentage scores that express network quality in relation to pre-defined, application-specific network performance requirements.
 For example: "This network provides 94% of optimal conditions for video conferencing".
-This way, QoO conveys an intuition for how well an application is expected to perform in the described network with higher scores intended to convey that applications are more likely to have optimal performance.
+This way, QoO conveys an intuition for how well an application is expected to perform in the assessed network with higher scores intended to convey that applications are more likely to have optimal performance.
 
-The QoO framework compares measured network performance against application-specific, quality-focused network performance requirements. Applications define two thresholds:
 
-- Optimal performance (ROP): Network conditions where application performance becomes optimal
-- Unacceptable performance (CPUP): Network conditions where application performance becomes unacceptable
+The QoO framework builds upon Quality Attenuation and evaluates network conditions using latency distributions, packet loss rates, and achievable bandwidths.
+These measured conditions are compared against application-specific, quality-focused network performance requirements along multiple dimensions (such as 90th or 95th latency percentiles or mean packet loss rates) at two thresholds:
 
-The framework calculates QoO scores when measured network performance falls between these
-thresholds, expressing the network quality as a relative position (percentage) on the linear scale between the thresholds.
+- Optimal performance (ROP): Network conditions under which application performance becomes optimal
+- Unacceptable performance (CPUP): Network conditions under which application performance becomes unacceptable
 
-The key innovation is using dual thresholds rather than binary pass/fail
-criteria, providing meaningful scores even when networks are not perfect while
+When the measured network conditions fall between the defined thresholds for any of the assessed performance dimensions,
+the QoO framework calculates a score for each dimension by expressing network quality as a relative position (percentage) on the linear scale between the corresponding ROP and CPUP thresholds.
+The minimum score across all dimensions serves as the overall QoO score for the assessed network based on the rationale that the most degraded performance dimension is likely to determine the application's perceived quality.
+
+The dual-threshold approach enables meaningful scores even when networks are not perfect while
 accounting for different application sensitivities.
-
-QoO calculations are mathematically composable, enabling network operators to
+The underlying Quality Attenuation measurements are mathematically composable, enabling network operators to
 isolate performance bottlenecks across different network segments for precise
 fault diagnosis and network planning.
 
