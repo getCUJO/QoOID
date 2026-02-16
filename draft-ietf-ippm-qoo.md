@@ -237,13 +237,14 @@ perceived network quality over time, making absolute certainty about outcomes pr
 However, educated assessments of expected outcomes remain achievable for which the QoO framework uses a per-application, per application-type, or per-Service Level Agreement (SLA) granularity.
 
 This document assumes that network quality can be represented by a
-minimum required throughput and a set of latency percentiles with corresponding packet loss thresholds. Application
+minimum required throughput, a set of latency percentiles, and packet loss rates. Application
 developers, regulatory bodies, and other interested parties can then use this representation to describe quality-focused network
 performance requirements.
 The QoO framework gives structure to this approach by defining two network quality thresholds: one for optimal application performance and one for unacceptable application performance.
 The QoO score serves as a linear distance measure between the two distinct thresholds and allows network conditions to be expressed in easily understood terms such as "This network provides 94% of optimal conditions for video conferencing (relative to the threshold for unacceptable performance)" while supporting both comprehensive end-to-end tests and analyses from within the network.
 
-The framework is designed to be flexible in its application scope. QoO measurements may be performed across the complete end-to-end path (from application client to server), or focused on specific network segments such as the customer-facing access network, intermediate transit networks, or server-side infrastructure. Through its composability properties, measurements from different segments can be combined or decomposed to isolate performance issues regardless of where they occur in the network path.
+The framework is designed to be flexible in its application scope. 
+QoO scores may be calculated for the complete end-to-end path (from application client to server), or focused on specific network segments, such as the customer-facing access network, intermediate transit networks, or server-side infrastructure. Through the composability properties of the underlying Quality Attenuation metric, measurements from different segments can be combined or decomposed to isolate performance issues regardless of where they occur in the network path.
 
 This document defines a minimum viable framework, and often trades precision for
 simplicity to facilitate adoption and usability in
