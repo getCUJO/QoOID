@@ -738,21 +738,28 @@ one-way measurements, the same direction (uplink or downlink).
 ### Overall QoO Calculation
 The overall QoO score is the minimum of a latency (QoO_latency) and a packet loss (QoO_loss) score:
 
+~~~
 QoO = min(QoO_latency, QoO_loss)
+~~~
 
 with QoO_latency and QoO_loss as defined in the following.
 
 ### Latency Component
-The QoO latency score bases on linear interpolations of the latency values at all latency percentiles defined in the ROP and CPUP and represents the minimum value for all percentiles:
+The QoO latency score bases on linear interpolations of the latency values at all latency percentiles defined in ROP / CPUP and represents the minimum value for all percentiles:
 
-QoO_latency = min_{i}(min(max((1 - ((ML_i - ROP_i) / (CPUP_i - ROP_i))) * 100,
-0), 100))
+~~~
+for i in latency_percentiles:
+  m = (ML[i] - ROP[i]) / (CPUP[i] - ROP[i])
+  metrics[i] = clamp(0, m, 1)
+QoO_latency = find_min(metrics) * 100
+~~~
 
 Where:
 
-- ML_i is the Measured Latency at percentile i.
-- ROP_i is the latency as indicated in the Requirement for Optimal Performance at percentile i.
-- CPUP_i is the latency as indicated in the Condition at the Point of Unacceptable Performance at percentile i.
+- latency_percentiles are the latency percentiles contained in the ROP and CPUP definitions
+- ML\[i\] is the measured latency at percentile i.
+- ROP\[i\] is the latency as indicated in the requirement for optimal performance at percentile i.
+- CPUP\[i\] is the latency as indicated in the condition at the point of unacceptable performance at percentile i.
 
 ### Packet Loss Component
 Packet loss is considered as a separate, single
@@ -761,12 +768,14 @@ percentile. The packet loss score is calculated using a similar interpolation
 formula, but based on the total measured packet loss (MLoss) and the packet loss
 thresholds defined in the ROP and CPUP:
 
-QoO_loss = min(max((1 - ((MLoss - ROP_Loss) / (CPUP_Loss - ROP_Loss))) * 100,
-0), 100)
+~~~
+m = (M_Loss - ROP_Loss) / (CPUP_Loss - ROP_Loss)
+QoO_loss = clamp(0, m, 1) * 100
+~~~
 
 Where:
 
-- MLoss is the Measured Packet Loss.
+- M_Loss is the measured packet loss.
 - ROP_Loss is the acceptable packet loss for optimal performance.
 - CPUP_Loss is the packet loss threshold beyond which the application becomes
   unacceptable.
@@ -774,20 +783,39 @@ Where:
 ## Example {#example}
 The following example illustrates the QoO calculations.
 
-Example requirements and measured data:
+Example requirements:
 
-- ROP: 4Mbps {99%, 200ms}, {99.9%, 300ms} 1% loss
-- CPUP: {99%, 500ms}, {99.9%, 600ms} 5% loss
-- Measured Latency: 99% = 350ms, 99.9% = 375ms
-- Measured Packet Loss: 2%
-- Measured Minimum Bandwidth: 32Mbps / 28Mbps
+- Minimum bandwidth: 4 Mbps
+- ROP: {99%, 200ms}, {99.9%, 300ms}, 1% packet loss
+- CPUP: {99%, 500ms}, {99.9%, 600ms}, 5% packet loss
 
-QoO_latency = min(min(max((1 - (350ms - 200ms) / (500ms - 200ms)) * 100, 0), 100), min(max((1 - (375ms - 300ms) / (600ms - 300ms)) * 100, 0), 100)) = min(50.00, 75.00) = 50.00
+Example measured conditions:
 
-QoO_loss = min(max((1 - (2% - 1%) / (5% - 1%))
-* 100, 0), 100) = 75.00
+- Measured latency: 99% = 350ms, 99.9% = 375ms
+- Measured packet loss: 2%
+- Measured minimum bandwidth: 32Mbps / 28Mbps
 
+Latency component:
+
+~~~
+m1 = (350ms - 200ms) / (500ms - 200ms)
+m2 = (375ms - 300ms) / (600ms - 300ms)
+metrics = [clamp(0, m1, 1), clamp(0, m2, 1)]
+QoO_latency = find_min(metrics) * 100 = 50.00
+~~~
+
+Packet loss component:
+
+~~~
+m = (2% - 1%) / (5% - 1%)
+QoO_loss = clamp(0, m, 1) * 100 = 75.00
+~~~
+
+Overall QoO score:
+
+~~~
 QoO = min(QoO_latency, QoO_loss) = min(50.00, 75.00) = 50.00
+~~~
 
 In this example, the network scores 50% on the QoO assessment range between unacceptable and optimal for the given application
 when using the measured network and considering both latency and packet loss.
@@ -835,12 +863,12 @@ As stated at the beginning of this section, this document does not define a stan
 ## Composability and Use Cases {#composability}
 
 One of the key strengths of the QoO framework is its mathematical composability, allowing network quality measurements to be combined across segments.
-However, this approach requires all measurements to use the same metrics, such as percentiles for latency distributions, which can be challenging to align across different operators or networks. 
+However, this approach requires all measurements to use the same metrics, such as percentiles for latency distributions, which can be challenging to align across different operators or networks.
 BITAG recommendations {{BITAG}} (see {{sampling_requirements}}) offer a useful starting point for latency percentiles, and operational experience with QoO is expected to guide further convergence.
 
-Even without full alignment, QoO remains valuable for analyzing and troubleshooting individual network segments. 
+Even without full alignment, QoO remains valuable for analyzing and troubleshooting individual network segments.
 Operators can use QoO to assess specific segments within their networks, and end-users can gain insights into their own connectivity as long as their network providers support QoO.
-Finally, application developers can publish network performance requirements for their applications using common or individual percentiles, as operators may naturally align their measurement practices to support popular applications. 
+Finally, application developers can publish network performance requirements for their applications using common or individual percentiles, as operators may naturally align their measurement practices to support popular applications.
 
 ## Deployment Considerations {#deployment-considerations}
 
