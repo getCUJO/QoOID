@@ -1389,7 +1389,8 @@ updated:
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to thank Will Hawkins, Stuart Cheshire, Jason Livingood,
-Olav Nedrelid, Greg Mirsky, Tommy Pauly, Marcus Ihlar, Tal Mizrahi, Ruediger
-Geib, Mehmet Şükrü Kuran, Michael Welzl, Kevin Smith, Luis Miguel Contreras
-Murillo, Guiseppe Fioccola, Neil Davies, Paul Aitken, Werner Robitza, and Alexander Raake for their feedback and input to this document.
+The authors would like to thank Karl Magnus Kalvik, Olav Nedrelid, and Knut Joar Strømmen for their conceptual and technical contributions to the QoO framework.
+
+The authors would like to thank Gavin Young, Brendan Black, Kevin Smith, Gino Dion, Mayur Sarode, Greg Mirsky, Wim De Ketelaere, Peter Thompson, and Neil Davies for their contributions to the initial version of this document.
+
+The authors would like to thank Paul Aitken, Mohamed Boucadair, Stuart Cheshire, Neil Davies, Guiseppe Fioccola, Ruediger Geib, Will Hawkins, Marcus Ihlar, Mehmet Şükrü Kuran, Paul Kyzivat, Jason Livingood, Greg Mirsky, Tal Mizrahi, Luis Miguel Contreras Murillo, Tommy Pauly, Alexander Raake, Werner Robitza, Kevin Smith, Martin Thomson, and Michael Welzl for their feedback and input to this document throughout the IETF process.
