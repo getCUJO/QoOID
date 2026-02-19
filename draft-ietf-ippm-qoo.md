@@ -659,7 +659,7 @@ at 4Mbps, 90% of packets must arrive within 100ms, and 100% within 200ms, implyi
 This list can be minimal (e.g., 100% within 200ms) or extended as needed and different percentiles may be used to characterize different applications.
 Still, it might be beneficial for future standardization activities to converge on a fixed set of general percentiles or for specific applications / application classes to make QoO measurements between different networks or providers more comparable.
 For the sake of simplicity, this document only states that the latency percentiles specified in the requirements must match the information provided by the measurements.
-This means that when the measurements report full distributions, requirements can use arbitrary percentiles while the requirement percentiles need to match one or more of the percentiles reported by the measurements in case the simplification described in {{describing_requirements}} is used, i.e., one can set
+This means that when the measurements report full distributions, requirements can use arbitrary percentiles while the requirement percentiles need to match one or more of the percentiles reported by the measurements in case the simplification described in {{sampling_requirements}} is used, i.e., one can set
 requirements at the \[0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
 100th\] percentiles.
 Packet loss rates and bandwidth must be reported as separate values.
