@@ -757,9 +757,9 @@ QoO_latency = find_min(metrics) * 100
 Where:
 
 - latency_percentiles are the latency percentiles contained in the ROP and CPUP definitions
-- ML\[i\] is the measured latency at percentile i.
-- ROP\[i\] is the latency as indicated in the requirement for optimal performance at percentile i.
-- CPUP\[i\] is the latency as indicated in the condition at the point of unacceptable performance at percentile i.
+- ML\[i\] is the measured latency at percentile latency_percentiles\[i\].
+- ROP\[i\] is the latency as indicated in the requirement for optimal performance at percentile latency_percentiles\[i\].
+- CPUP\[i\] is the latency as indicated in the condition at the point of unacceptable performance at percentile latency_percentiles\[i\].
 
 ### Packet Loss Component
 Packet loss is considered as a separate, single
