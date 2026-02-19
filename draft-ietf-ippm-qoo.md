@@ -598,7 +598,7 @@ However, in addition to measurement approaches standardized in the QED framework
 
 Modeling full latency distributions may be too complex to allow for easy
 adoption of the framework. Instead, reporting latency at selected percentiles offers
-a practical compromise between accuracy and deployment considerations. A
+a practical compromise between accuracy and deployment considerations, trading off composability, which is only possible with distributions, for an easier deployment. A
 commonly accepted set of percentiles spanning from the 0th to the 100th in a
 logarithmic-like progression has been suggested by others {{BITAG}} and is
 recommended here: \[0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
@@ -658,8 +658,8 @@ For example, a requirement might state:
 at 4Mbps, 90% of packets must arrive within 100ms, and 100% within 200ms, implying 0% packet loss.
 This list can be minimal (e.g., 100% within 200ms) or extended as needed and different percentiles may be used to characterize different applications.
 Still, it might be beneficial for future standardization activities to converge on a fixed set of general percentiles or for specific applications / application classes to make QoO measurements between different networks or providers more comparable.
-For the sake of simplicity, this document only states that the latency percentiles in the requirements must match
-one or more of the percentiles defined in the measurements, i.e., one can set
+For the sake of simplicity, this document only states that the latency percentiles specified in the requirements must match the information provided by the measurements.
+This means that when the measurements report full distributions, requirements can use arbitrary percentiles while the requirement percentiles need to match one or more of the percentiles reported by the measurements in case the simplification described in {{describing_requirements}} is used, i.e., one can set
 requirements at the \[0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
 100th\] percentiles.
 Packet loss rates and bandwidth must be reported as separate values.
@@ -862,13 +862,12 @@ As stated at the beginning of this section, this document does not define a stan
 
 ## Composability and Use Cases {#composability}
 
-One of the key strengths of the QoO framework is its mathematical composability, allowing network quality measurements to be combined across segments.
-However, this approach requires all measurements to use the same metrics, such as percentiles for latency distributions, which can be challenging to align across different operators or networks.
-BITAG recommendations {{BITAG}} (see {{sampling_requirements}}) offer a useful starting point for latency percentiles, and operational experience with QoO is expected to guide further convergence.
+One of the key strengths of the QoO framework is the mathematical composability of the underlying Quality Attenuation metric, allowing network quality measurements to be combined across segments using convolution {{TR-452.1}}.
+This approach requires sharing the measured distributions for the involved segments among relevant stakeholders, which can be challenging across different operators or networks.
 
-Even without full alignment, QoO remains valuable for analyzing and troubleshooting individual network segments.
-Operators can use QoO to assess specific segments within their networks, and end-users can gain insights into their own connectivity as long as their network providers support QoO.
-Finally, application developers can publish network performance requirements for their applications using common or individual percentiles, as operators may naturally align their measurement practices to support popular applications.
+However, even without sharing distributions across all networks of an end-to-end path, QoO remains valuable for analyzing and troubleshooting individual network segments.
+Operators can use QoO to assess specific segments within their own networks, and end-users can gain insights into their own connectivity as long as their network providers support QoO.
+Hence, QoO is well-suited for incremental deployment.
 
 ## Deployment Considerations {#deployment-considerations}
 
