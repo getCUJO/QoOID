@@ -217,7 +217,7 @@ allowing advanced analyses to identify the root cause of network problems ({{Sec
 Centered around the QoO score, this
 document defines the QoO framework which allows application
 developers to specify quality-focused network performance requirements (for example, regarding latency,
-throughput, and packet loss) and provides a way to derive the user-facing QoO
+throughput, and packet loss) and provides a method to derive the user-facing QoO
 score by comparing these application-specific performance requirements to network
 performance measurements.
 
@@ -244,7 +244,7 @@ The QoO framework gives structure to this approach by defining two network quali
 The QoO score serves as a linear distance measure between the two distinct thresholds and allows network conditions to be expressed in easily understood terms such as "This network provides 94% of optimal conditions for video conferencing (relative to the threshold for unacceptable performance)" while supporting both comprehensive end-to-end tests and analyses from within the network.
 
 The QoO framework is designed to be flexible in its application scope.
-QoO scores may be calculated for the complete end-to-end path (from application client to server), or focused on specific network segments, such as the customer-facing access network, intermediate transit networks, or server-side infrastructure. Through the composability properties of the underlying Quality Attenuation metric, measurements from different segments can be combined or decomposed to isolate performance issues regardless of where they occur in the network path.
+QoO scores may be calculated for the complete end-to-end path (from application clients to servers), or focused on specific network segments, such as the customer-facing access network, intermediate transit networks, or server-side infrastructure. Through the composability properties of the underlying Quality Attenuation metric, measurements from different segments can be combined or decomposed to isolate performance issues regardless of where they occur in a network path.
 
 This document defines a minimum viable framework, and often trades precision for
 simplicity to facilitate adoption and usability in
@@ -252,7 +252,11 @@ many different contexts, such as active testing from applications and monitoring
 from network equipment.
 Assessing the corresponding loss of precision is important and requires combining measurement results with a description of the measurement approach; {{sampling_requirements}} provides corresponding guidelines.
 
-Note that this document focuses specifically on the general framework of using quality-focused network performance requirements and corresponding network performance measurements to calculate QoO network quality scores. How applications define and share their network performance requirements, which format is used to publish such requirement information, how operators retrieve such data from applications or services, how the precision of the resulting QoO scores is assessed, and what levels of precision are considered acceptable is out of the scope of this document.
+## What's In? What's Out?
+
+This document focuses specifically on the general framework of using quality-focused network performance requirements and corresponding network performance measurements to calculate QoO network quality scores.
+
+How applications define and share their network performance requirements, which format is used to publish such requirement information, how operators retrieve such data from applications or services, how the precision of the resulting QoO scores is assessed, and what levels of precision are considered acceptable are out of the scope of this document.
 
 # Terminology
 
@@ -322,13 +326,13 @@ the value that reflects the real conditions. "Precision" refers to the consisten
 and repeatability of measurements. These terms are used with their standard
 statistical meanings and are not interchangeable {{ISO5725-1}}.
 
-# Overview
+# QoO Framework Overview
 
 The QoO framework produces simple percentage scores that express network quality in relation to pre-defined, application-specific network performance requirements.
 For example: "This network provides 94% of optimal conditions for video conferencing".
 This way, QoO conveys an intuition for how well an application is expected to perform in the assessed network with higher scores intended to convey that applications are more likely to have optimal performance.
 
-The QoO framework builds upon Quality Attenuation and evaluates network conditions using latency distributions, packet loss rates, and throughput rates.
+The QoO framework builds upon Quality Attenuation  {{TR-452.1}} and evaluates network conditions using latency distributions, packet loss rates, and throughput rates.
 These measured conditions are compared against application-specific, quality-focused network performance requirements along multiple dimensions (such as 90th or 95th latency percentiles or mean packet loss rate) at two thresholds:
 
 - Optimal performance (ROP): Network conditions under which application performance becomes optimal
@@ -445,7 +449,7 @@ well or fail, a network quality framework must compare measurements of network
 performance to a wide variety of application requirements. It is important that these measurements reflect the actual network service configuration that will handle the application flows, including any traffic prioritization, network slicing, VPN services, or other differentiated service mechanisms (see {{deployment-considerations}}). Flexibility in
 describing application requirements and the ability to capture the delay and loss characteristics of a network with sufficient accuracy and precision are necessary to compute a meaningful QoO network quality score that can be used to better estimate application performance.
 
-The framework must also support spatial composition {{RFC6049}}, {{RFC6390}}
+The framework must also support spatial composition {{RFC6049}}{{RFC6390}}
 to enable operators to take actions when measurements show that applications fail too
 often.
 In particular, spatial composition allows results to be divided into
@@ -677,6 +681,7 @@ demanding of the network as the application itself. This may be achieved by
 running the actual application and measuring delay and loss alongside it, or by
 generating artificial traffic to a level at least equivalent to the application
 traffic load.
+
 The QoO framework focuses on latency, packet loss, and throughput under the assumption that other factors which could in principle be
 measured but are not explicitly captured by QoO will inevitably influence the observed latency and
 packet loss behavior, so that QoO indirectly accounts for their effects through
@@ -867,7 +872,7 @@ This approach requires sharing the measured distributions for the involved segme
 
 However, even without sharing distributions across all networks of an end-to-end path, QoO remains valuable for analyzing and troubleshooting individual network segments.
 Operators can use QoO to assess specific segments within their own networks, and end-users can gain insights into their own connectivity as long as their network providers support QoO.
-Hence, QoO is well-suited for incremental deployment.
+Hence, QoO is well-suited for incremental deployment ({{Section 2.1.2 of ?RFC5218}}).
 
 ## Deployment Considerations {#deployment-considerations}
 
@@ -937,8 +942,8 @@ QoO scores lower than actual network conditions would warrant. Conversely,
 coarse measurement intervals can miss short-lived spikes entirely, resulting in
 an inflated QoO.
 
-From these findings, we deduce the following guidelines for practical
-application:
+From these findings, following guidelines for practical
+application are deduced:
 
 - Calibrate the combination of sampling rate and total measurement period to
   capture fat-tailed distributions of latency with sufficient accuracy.
@@ -994,7 +999,9 @@ order of magnitude within seconds due to physical radio factors. These include
 whether the terminal is at the edge of a cell for a radio network, or undergoing cell handover, the radio
 interference and fading from the local environment, and any switch between radio
 bearers with differing signal bandwidth and transmission-time intervals (e.g., 3GPP 4G
-and 5G). This suggests a requirement for measuring Quality Attenuation to and
+and 5G).
+
+The above suggests a requirement for measuring Quality Attenuation to and
 from an individual terminal, as that can account for the factors described
 above. How that facility is provisioned onto individual terminals and how
 terminal-hosted applications can trigger a Quality Attenuation query, is an open
@@ -1128,7 +1135,121 @@ data.
 - Users should be informed about what data is collected and how it is used, in
   accordance with applicable privacy regulations (e.g., General Data Protection Regulation (GDPR)).
 
+# IANA Considerations
+
+This document has no IANA actions.
+
+
+# Implementation status
+Note to RFC Editor: This section must be removed before publication of the
+document.
+
+This section records the status of known implementations of the protocol defined
+by this specification at the time of posting of this Internet-Draft, and is
+based on a proposal described in {{?RFC7942}}. The description of implementations
+in this section is intended to assist the IETF in its decision processes in
+progressing drafts to RFCs. Please note that the listing of any individual
+implementation here does not imply endorsement by the IETF. Furthermore, no
+effort has been spent to verify the information presented here that was supplied
+by IETF contributors. This is not intended as, and must not be construed to be,
+a catalog of available implementations or their features. Readers are advised to
+note that other implementations may exist.
+
+According to {{?RFC7942}}, "this will allow reviewers and working groups to assign
+due consideration to documents that have the benefit of running code, which may
+serve as evidence of valuable experimentation and feedback that have made the
+implemented protocols more mature. It is up to the individual working groups to
+use this information as they see fit".
+
+## qoo-c
+
+* Link to the open-source repository:
+
+  https://github.com/getCUJO/qoo-c
+
+* The organization responsible for the implementation:
+
+  CUJO AI
+
+* A brief general description:
+
+  A C library for calculating Quality of Outcome
+
+* The implementation's level of maturity:
+
+  A complete implementation of the specification described in this document
+
+* Coverage:
+
+  The library is tested with unit tests
+
+* Licensing:
+
+  MIT
+
+* Implementation experience:
+
+  Tested by the author. Needs additional testing by third parties.
+
+* Contact information:
+
+  Bjørn Ivar Teigen Monclair: bjorn.monclair@cujo.com
+
+* The date when information about this particular implementation was last
+updated:
+
+  27th of May 2025
+
+## goresponsiveness
+
+* Link to the open-source repository:
+
+  https://github.com/network-quality/goresponsiveness
+
+  The specific pull-request:
+  https://github.com/network-quality/goresponsiveness/pull/56
+
+* The organization responsible for the implementation:
+
+  University of Cincinatti for goresponsiveness as a whole, Domos for the QoO
+  part.
+
+* A brief general description:
+
+  A network quality test written in Go. Capable of measuring RPM and QoO.
+
+* The implementation's level of maturity:
+
+  Under active development; partial QoO support integrated.
+
+* Coverage:
+
+  The QoO part is tested with unit tests
+
+* Licensing:
+
+  GPL 2.0
+
+* Implementation experience:
+
+  Needs testing by third parties
+
+* Contact information:
+
+  Bjørn Ivar Teigen Monclair: bjorn.monclair@cujo.com
+
+  William Hawkins III: hawkinwh@ucmail.uc.edu
+
+* The date when information about this particular implementation was last
+updated:
+
+  10th of January 2024
+
+
+--- back
+
 # Comparison To Other Network Quality Metrics {#comparison}
+
 Numerous network quality metrics and associated frameworks have been
 proposed, adopted, and, at times, misapplied over the years. The following is a
 brief overview of several key network quality metrics in comparison to QoO.
@@ -1272,118 +1393,6 @@ that operators can measure individual network segments, compose the
 underlying Quality Attenuation distributions, and then compute QoO scores
 from the composed result.
 
-# IANA Considerations
-
-This document has no IANA actions.
-
-
-# Implementation status
-Note to RFC Editor: This section must be removed before publication of the
-document.
-
-This section records the status of known implementations of the protocol defined
-by this specification at the time of posting of this Internet-Draft, and is
-based on a proposal described in {{?RFC7942}}. The description of implementations
-in this section is intended to assist the IETF in its decision processes in
-progressing drafts to RFCs. Please note that the listing of any individual
-implementation here does not imply endorsement by the IETF. Furthermore, no
-effort has been spent to verify the information presented here that was supplied
-by IETF contributors. This is not intended as, and must not be construed to be,
-a catalog of available implementations or their features. Readers are advised to
-note that other implementations may exist.
-
-According to {{?RFC7942}}, "this will allow reviewers and working groups to assign
-due consideration to documents that have the benefit of running code, which may
-serve as evidence of valuable experimentation and feedback that have made the
-implemented protocols more mature. It is up to the individual working groups to
-use this information as they see fit".
-
-## qoo-c
-
-* Link to the open-source repository:
-
-  https://github.com/getCUJO/qoo-c
-
-* The organization responsible for the implementation:
-
-  CUJO AI
-
-* A brief general description:
-
-  A C library for calculating Quality of Outcome
-
-* The implementation's level of maturity:
-
-  A complete implementation of the specification described in this document
-
-* Coverage:
-
-  The library is tested with unit tests
-
-* Licensing:
-
-  MIT
-
-* Implementation experience:
-
-  Tested by the author. Needs additional testing by third parties.
-
-* Contact information:
-
-  Bjørn Ivar Teigen Monclair: bjorn.monclair@cujo.com
-
-* The date when information about this particular implementation was last
-updated:
-
-  27th of May 2025
-
-## goresponsiveness
-
-* Link to the open-source repository:
-
-  https://github.com/network-quality/goresponsiveness
-
-  The specific pull-request:
-  https://github.com/network-quality/goresponsiveness/pull/56
-
-* The organization responsible for the implementation:
-
-  University of Cincinatti for goresponsiveness as a whole, Domos for the QoO
-  part.
-
-* A brief general description:
-
-  A network quality test written in Go. Capable of measuring RPM and QoO.
-
-* The implementation's level of maturity:
-
-  Under active development; partial QoO support integrated.
-
-* Coverage:
-
-  The QoO part is tested with unit tests
-
-* Licensing:
-
-  GPL 2.0
-
-* Implementation experience:
-
-  Needs testing by third parties
-
-* Contact information:
-
-  Bjørn Ivar Teigen Monclair: bjorn.monclair@cujo.com
-
-  William Hawkins III: hawkinwh@ucmail.uc.edu
-
-* The date when information about this particular implementation was last
-updated:
-
-  10th of January 2024
-
-
---- back
 
 # Acknowledgments
 {:numbered="false"}
