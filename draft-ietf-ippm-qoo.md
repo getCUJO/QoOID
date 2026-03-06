@@ -301,7 +301,7 @@ network quality relative to network performance requirements for optimal and una
 given network for a specific application, typically expressed as a percentage.
 
 Optimal performance:
-: A performance beyong which further improvements in network conditions do not result in perceptible
+: A level of performance beyond which further improvements in network conditions do not result in perceptible
 improvements in application performance or user experience.
 
 Requirements for Optimal Performance (ROP):
