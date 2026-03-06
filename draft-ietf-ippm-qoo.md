@@ -300,11 +300,13 @@ QoO Score:
 network quality relative to network performance requirements for optimal and unacceptable application performance on a
 given network for a specific application, typically expressed as a percentage.
 
+Optimal performance:
+: A performance beyong which further improvements in network conditions do not result in perceptible
+improvements in application performance or user experience.
+
 Requirements for Optimal Performance (ROP):
 : The network performance
-characteristics at which an application achieves optimal performance and quality, beyond
-which further improvements in network conditions do not result in perceptible
-improvements in application performance or user experience. When network performance exceeds ROP thresholds, any sub-optimal user
+characteristics at which an application achieves optimal performance. When network performance exceeds ROP thresholds, any sub-optimal user
 experience can be assumed not to be caused by the part of the network path that
 has been measured for QoO calculations.
 
