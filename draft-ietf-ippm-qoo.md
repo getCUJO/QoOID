@@ -334,7 +334,7 @@ The QoO framework produces simple percentage scores that express network quality
 For example: "This network provides 94% of optimal conditions for video conferencing".
 This way, QoO conveys an intuition for how well an application is expected to perform in the assessed network with higher scores intended to convey that applications are more likely to have optimal performance.
 
-The QoO framework builds upon Quality Attenuation  {{TR-452.1}} and evaluates network conditions using latency distributions, packet loss rates, and throughput rates.
+The QoO framework builds upon Quality Attenuation  {{TR-452.1}} and evaluates network conditions using latency distributions, packet loss rates, and throughput.
 These measured conditions are compared against application-specific, quality-focused network performance requirements along multiple dimensions (such as 90th or 95th latency percentiles or mean packet loss rate) at two thresholds:
 
 - Optimal performance (ROP): Network conditions under which application performance becomes optimal
@@ -393,7 +393,7 @@ the incentives to deploy them have remained relatively weak. A unifying
 framework for assessing network quality can serve to strengthen these
 incentives significantly.
 
-Bandwidth alone is necessary but not sufficient for high-quality modern network
+Network capacity alone is necessary but not sufficient for high-quality modern network
 experiences. High idle and working latencies, large delay variations, and unmitigated packet loss
 are major causes of poor application outcomes. The impact of latency is widely
 recognized in network engineering circles {{BITAG}}, but benchmarking the
@@ -403,12 +403,12 @@ think of as the only dimension of network quality.
 
 Real Time Response under load tests {{RRUL}} and Responsiveness tests {{RPM}} make
 significant strides toward creating a network quality metric that is intended to be closer
-to application outcomes than bandwidth alone. The latter, in particular, is
+to application outcomes than network capacity alone. {{RPM}}, in particular, is
 successful at being relatively relatable and understandable to end-users.
 However, as noted in {{RPM}}, "Our networks remain unresponsive, not from a lack
 of technical solutions, but rather a lack of awareness of the problem". This
 lack of awareness means that some operators might have little incentive to improve network
-quality beyond increasing bandwidth. For example, despite the availability of open-source
+quality beyond increasing network capacity. For example, despite the availability of open-source
 solutions such as FQ_CoDel {{RFC8290}}, which has been available for over a
 decade, vendors rarely implement them in widely deployed equipment (e.g., Wi-Fi
 routers still commonly exhibit bufferbloat). A universally accepted network quality
@@ -441,7 +441,7 @@ Specifically, this section outlines the three main general requirements for such
 
 In general, all stakeholders ultimately care about the performance of applications
 running over a network.
-Application performance does not only depend on bandwidth but also on the delay and delay variation of network links and computational steps involved in making the application function.
+Application performance does not only depend on available network capacity but also on the delay and delay variation of network links and computational steps involved in making the application function.
 These delays depend on how the application places load on the network, how the network is affected by environmental conditions, and the behavior of other users and applications sharing the network resources.
 Likewise, packet loss (e.g., caused by congestion) can also negatively impact application performance in different ways depending on the class of application.
 
@@ -668,11 +668,11 @@ For the sake of simplicity, this document only states that the latency percentil
 This means that when the measurements report full distributions, requirements can use arbitrary percentiles while the requirement percentiles need to match one or more of the percentiles reported by the measurements in case the simplification described in {{sampling_requirements}} is used, i.e., one can set
 requirements at the \[0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
 100th\] percentiles.
-Packet loss rates and bandwidth must be reported as separate values.
+Packet loss rates and throughput must be reported as separate values.
 
 Applications do of course have throughput requirements, and thus a complete
-framework for application-level network quality must also take capacity into
-account. Insufficient bandwidth may give unacceptable application outcomes without
+framework for application-level network quality must also account for throughput.
+Insufficient available capacity may give unacceptable application outcomes without
 necessarily inducing a lot of latency or packet loss. Therefore, the network requirements
 must include a minimum throughput requirement.
 
@@ -792,7 +792,7 @@ The following example illustrates the QoO calculations.
 
 Example requirements:
 
-- Minimum bandwidth: 4 Mbps
+- Minimum throughput: 4 Mbps
 - ROP: {99%, 200ms}, {99.9%, 300ms}, 1% packet loss
 - CPUP: {99%, 500ms}, {99.9%, 600ms}, 5% packet loss
 
@@ -800,7 +800,7 @@ Example measured conditions:
 
 - Measured latency: 99% = 350ms, 99.9% = 375ms
 - Measured packet loss: 2%
-- Measured minimum bandwidth: 32Mbps / 28Mbps
+- Measured throughput: 32Mbps / 28Mbps
 
 Latency component:
 
@@ -899,7 +899,7 @@ scores that do not accurately reflect the application's expected performance.
 
 Many modern applications are adaptive, meaning they can adjust their behavior
 based on network conditions. For example, video streaming applications may
-reduce bit rate when bandwidth is limited, or increase buffer size when latency
+reduce bit rate when available network capacity is limited, or increase buffer size when latency
 is high.
 
 For adaptive applications, there are typically different levels of optimal performance
@@ -985,7 +985,7 @@ introduces several artifacts, the significance of which may vary depending on th
 context. The following section discusses some known limitations. A general
 assumption underlying the framework is that factors which could in principle be
 measured but are not explicitly captured by QoO (such as temporal packet
-ordering, fine-grained bandwidth variations, or the full shape of
+ordering, fine-grained throughput variations, or the full shape of
 the latency distribution) will inevitably influence the observed latency and
 packet loss behavior, so that QoO indirectly accounts for their effects through
 the measured distributions.
@@ -996,11 +996,11 @@ for network quality prediction, with the level of assurance of the prediction
 likely to decrease as session duration increases. Historic network conditions
 for a given cell may help indicate times of network load or reduced transmission
 power, and their effect on throughput/latency/loss. However, as terminals are
-mobile, the signal bandwidth available to a given terminal can change by an
+mobile, the available capacity for a given terminal can change by an
 order of magnitude within seconds due to physical radio factors. These include
 whether the terminal is at the edge of a cell for a radio network, or undergoing cell handover, the radio
 interference and fading from the local environment, and any switch between radio
-bearers with differing signal bandwidth and transmission-time intervals (e.g., 3GPP 4G
+bearers with differing capacity and transmission-time intervals (e.g., 3GPP 4G
 and 5G).
 
 The above suggests a requirement for measuring Quality Attenuation to and
@@ -1038,8 +1038,8 @@ would add another magnitude of complexity to determining network performance req
 and finding a distance measure (between requirement and actual measured
 capability).
 
-## Binary Bandwidth Threshold
-Choosing a binary bandwidth threshold is to reduce complexity, but it must be acknowledged that many
+## Binary Network Capacity Threshold
+Choosing a binary network capacity threshold is to reduce complexity, but it must be acknowledged that many
 applications are not that simple. Network requirements can be set up per quality
 level (resolution, frames per-second, etc.) for the application if necessary.
 
@@ -1287,15 +1287,15 @@ to enable detailed network analysis.
 ## Throughput
 
 Throughput is related to user-observable application
-outcomes because there must be enough bandwidth available. Adding extra
-bandwidth above a certain threshold will, at best, receive diminishing returns
+outcomes because there must be enough available capacity in the network. Adding extra
+available capacity above a certain threshold will, at best, receive diminishing returns
 (and any returns are often due to reduced latency). It is not possible to
 assess optimal or unacceptable application performance based on throughput
 alone for most applications. Throughput can be compared to a variety of
 application requirements, but since there is no direct correlation between
 throughput and application performance, it is not possible to conclude that an
-application will work well even if it is known that enough throughput is
-available.
+application will work well even if it is known that sufficient throughput is
+achievable.
 
 Throughput cannot be composed.
 
