@@ -403,12 +403,12 @@ think of as the only dimension of network quality.
 
 Real Time Response under load tests {{RRUL}} and Responsiveness tests {{RPM}} make
 significant strides toward creating a network quality metric that is intended to be closer
-to application outcomes than network capacity alone. {{RPM}}, in particular, is
+to application outcomes than available network capacity alone. {{RPM}}, in particular, is
 successful at being relatively relatable and understandable to end-users.
 However, as noted in {{RPM}}, "Our networks remain unresponsive, not from a lack
 of technical solutions, but rather a lack of awareness of the problem". This
 lack of awareness means that some operators might have little incentive to improve network
-quality beyond increasing network capacity. For example, despite the availability of open-source
+quality beyond increasing the available network capacity. For example, despite the availability of open-source
 solutions such as FQ_CoDel {{RFC8290}}, which has been available for over a
 decade, vendors rarely implement them in widely deployed equipment (e.g., Wi-Fi
 routers still commonly exhibit bufferbloat). A universally accepted network quality
@@ -441,7 +441,7 @@ Specifically, this section outlines the three main general requirements for such
 
 In general, all stakeholders ultimately care about the performance of applications
 running over a network.
-Application performance does not only depend on available network capacity but also on the delay and delay variation of network links and computational steps involved in making the application function.
+Application performance does not only depend on the available network capacity but also on the delay and delay variation of network links and computational steps involved in making the application function.
 These delays depend on how the application places load on the network, how the network is affected by environmental conditions, and the behavior of other users and applications sharing the network resources.
 Likewise, packet loss (e.g., caused by congestion) can also negatively impact application performance in different ways depending on the class of application.
 
@@ -1038,8 +1038,8 @@ would add another magnitude of complexity to determining network performance req
 and finding a distance measure (between requirement and actual measured
 capability).
 
-## Binary Network Capacity Threshold
-Choosing a binary network capacity threshold is to reduce complexity, but it must be acknowledged that many
+## Binary Throughput Threshold
+Choosing a binary throughput threshold is to reduce complexity, but it must be acknowledged that many
 applications are not that simple. Network requirements can be set up per quality
 level (resolution, frames per-second, etc.) for the application if necessary.
 
