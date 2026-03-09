@@ -832,7 +832,7 @@ Aiming to ensure broad and easy applicability of the QoO framework across divers
 Instead, this section provides general guidance concerning the operation of the QoO framework based on intuitions and assumptions that guided the development of the framework.
 Future standardization activities are expected to capture and refine best practices once more operational experience has been gained.
 
-Some preliminary insights from a user testing campaign are provided in {{user-testing}}. More comprehensive and large scale testing are needed to assess the QoO framework.
+Some preliminary insights from a small-scale user testing campaign are provided in {{user-testing}}. More comprehensive and large-scale testing are needed to assess the QoO framework.
 
 ## Creating Network Performance Requirement Specifications {#spec-creation}
 This document does not define a standardized approach for creating a quality-focused network performance requirement specification.
@@ -955,27 +955,6 @@ application are deduced:
 
 These guidelines are non-normative but reflect empirical evidence on how QoO
 performs.
-
-## Insights From a Sample User Testing {#user-testing}
-
-While subjective QoE testing as specified in the ITU-T P-series recommendations
-({{P.800}}, {{P.910}}, and {{P.1401}}) is out of scope of this document, a study
-involving 25 participants tested the QoO framework in real-world settings
-{{QoOUserStudy}}. Participants used specially equipped routers in their homes
-for ten days, providing both network performance data and feedback through pre-
-and post-trial surveys.
-
-Participants found QoO scores more intuitive and actionable than traditional
-metrics (e.g., speed tests). QoO directly aligned with their self-reported
-experiences, increasing trust and engagement.
-
-These results indicate that users find it easier to correlate QoO scores with
-real-world application performance than, for example, a speed test. As such,
-QoO is expected to help bridge technical metrics with application performance.
-However, the specific impact of QoO should be studied further, for example, via
-comparative studies with blinded methodologies that compare QoO to
-other QoS-type approaches or application-provided QoE ratings as the mentioned
-study's design might have introduced different forms of bias.
 
 # Known Weaknesses and Open Questions {#weakness-questions}
 The described QoO framework simplifies the comparison between
@@ -1393,6 +1372,29 @@ convolution {{TR-452.1}}. This composability extends to QoO in the sense
 that operators can measure individual network segments, compose the
 underlying Quality Attenuation distributions, and then compute QoO scores
 from the composed result.
+
+
+# Preliminary Insights From a Small-Scale User Testing Campaign {#user-testing}
+
+While subjective QoE testing as specified in the ITU-T P-series recommendations
+({{P.800}}, {{P.910}}, and {{P.1401}}) is out of scope of this document, a study
+involving 25 participants tested the QoO framework in real-world settings
+{{QoOUserStudy}}. Participants used specially equipped routers in their homes
+for ten days, providing both network performance data and feedback through pre-
+and post-trial surveys.
+
+Participants found QoO scores more intuitive and actionable than traditional
+metrics (e.g., speed tests). QoO directly aligned with their self-reported
+experiences, increasing trust and engagement.
+
+These results indicate that users find it easier to correlate QoO scores with
+real-world application performance than, for example, a speed test. As such,
+QoO is expected to help bridge technical metrics with application performance.
+However, the specific impact of QoO should be studied further, for example, via
+comparative studies with blinded methodologies that compare QoO to
+other QoS-type approaches or application-provided QoE ratings as the mentioned
+study's design might have introduced different forms of bias.
+
 
 
 # Acknowledgments
