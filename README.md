@@ -2,10 +2,10 @@
 
 This is the working area for the IPPM WG Internet-Draft, "Quality of Outcome".
 
-* [Editor's Copy](https://domoslabs.github.io/QoOID/#go.draft-ietf-ippm-qoo.html)
+* [Editor's Copy](https://getCUJO.github.io/QoOID/#go.draft-ietf-ippm-qoo.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-ippm-qoo)
 * [Individual Draft](https://datatracker.ietf.org/doc/html/draft-ietf-ippm-qoo)
-* [Compare Editor's Copy to Individual Draft](https://domoslabs.github.io/QoOID/#go.draft-ietf-ippm-qoo.diff)
+* [Compare Editor's Copy to Individual Draft](https://getCUJO.github.io/QoOID/#go.draft-ietf-ippm-qoo.diff)
 
 
 ## Contributing
