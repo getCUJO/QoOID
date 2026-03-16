@@ -633,16 +633,21 @@ constraints vary across devices, applications, and deployment environments.
 To support reproducibility and enable confidence analysis, each measurement must
 be accompanied by the following metadata:
 
-* Description of the measurement path, including the endpoints (source and destination), network segments traversed, measurement points (if applicable), and direction (uplink, downlink, or bidirectional)
-* Timestamp of first sample
-* Total duration of the sampling period
+* Measurement method (e.g., TWAMP, STAMP, ...)
+* Description of the measurement path, including
+  * Endpoints (source and destination)
+  * Network segments traversed
+  * Measurement points (if applicable)
+  * Direction (uplink, downlink, or bidirectional)
+* Timestamp of first sample (e.g., in the format used in TWAMP {{?RFC5357}}{{?RFC8877}})
+* Total duration of the sampling period (in milliseconds)
 * Number of samples collected
-* Sampling method, including:
+* Sampling method, including but not limited to:
   * Cyclic: One sample every N milliseconds (specify N)
   * Burst: X samples every N milliseconds (specify X and N)
   * Passive: Opportunistic sampling of live traffic (non-uniform intervals)
 
-These metadata elements are essential for interpreting the precision and
+These metadata elements are required for interpreting the precision and
 reliability of the measurements. As demonstrated in {{QoOSimStudy}}, low
 sampling frequencies and short measurement durations can lead to misleadingly
 optimistic or imprecise QoO scores.
