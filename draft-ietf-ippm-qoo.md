@@ -677,17 +677,18 @@ Aiming to ensure broad and easy applicability of the QoO framework across divers
 Instead, this section provides general guidance concerning the operation of the QoO framework based on intuitions and assumptions that guided the development of the framework.
 Future documents are expected to capture and refine best practices once more operational experience has been gathered.
 
-Some preliminary insights from a small-scale user testing campaign are provided in {{user-testing}}. More comprehensive and large-scale testing are needed to assess the QoO framework.
+Some preliminary insights from a small-scale user testing campaign are provided in {{user-testing}}.
+More comprehensive and large-scale testing are needed to assess the QoO framework.
 
 
 ## QoO in the Quality Assessment Landscape {#quality-assessment-landscape}
 
 QoS, QoO, and QoE, as well as Quality Attenuation occupy different positions on a spectrum from raw network characterization to subjective user experience.
 QoS characterizes raw network behavior (latency, packet loss, throughput), usually without direct reference to any particular application or user.
-QoE, on the other hand captures subjective user perception directly.
+QoE, on the other hand, focuses on the subjective user perception directly.
 
 QoO, by design, measures network service quality, not subjective user experience.
-However, as QoO scores are anchored to application-defined thresholds, they are expected to correlate with QoE metrics, such as Mean Opinion Score (MOS) {{P.800.1}}, positioning QoO somewhere between QoS and QoE.
+However, as QoO scores are anchored to application-defined thresholds, they are expected to correlate with QoE metrics, such as Mean Opinion Score (MOS) {{P.800.1}}, positioning QoO between QoS and QoE.
 The QoO framework itself does not define where QoO scores fall on this spectrum.
 Instead, the exact position primarly depends on how the ROP and
 CPUP thresholds are chosen.
@@ -708,8 +709,8 @@ One of the key strengths of the QoO framework is the mathematical composability 
 The composability also enables flexible deployment scopes as QoO scores may be computed for the complete end-to-end path (from application clients to servers), or focused on specific network segments, such as the customer-facing access network, intermediate transit networks, or server-side infrastructure.
 The network performance requirement specifications provide another dimension of flexibility as specifications can have different scopes, such as per-application, per application-type, or per-Service Level Agreement (SLA),
 
-A holistic use of QoO with a fine-grained attribution of per-segment contributions requires sharing the measured distributions for the involved segments among all relevant stakeholders, which can be challenging across different operators or networks.
-However, even without sharing distributions across all networks of an end-to-end path, QoO remains valuable for analyzing and troubleshooting individual network segments.
+A holistic use of QoO with a fine-grained attribution of per-segment contributions requires sharing the measured distributions and probabilities for the involved segments among all relevant stakeholders, which can be challenging across different operators or networks.
+However, even without sharing raw data across all networks of an end-to-end path, QoO remains valuable for analyzing and troubleshooting individual network segments.
 Operators can use QoO to assess specific segments within their own networks, and end-users can gain insights into their own connectivity as long as their network providers support QoO.
 Hence, QoO is well-suited for incremental deployment ({{Section 2.1.2 of ?RFC5218}}).
 
