@@ -437,7 +437,9 @@ during periods of network load, the result naturally includes latency under
 load. In scenarios such as passive monitoring of production traffic, capturing
 artificially loaded conditions may not always be feasible, whereas passively
 observing the actual network load may be possible.
+Internet forwarding paths can also shift on a variety of timescales due to routing changes, load balancing, or traffic engineering, meaning a measurement reflects the network's state only during the sampling period.
 Such factors need to be considered when conducting performance measurements.
+See {{path-stability}} for a discussion of the operational implications, and {{volatile-networks}} for the more severe case of volatile environments such as mobile cellular networks.
 
 ### Reporting Measurement Results
 
@@ -460,13 +462,12 @@ optimistic or imprecise QoO scores.
 
 To assess the precision of network performance measurements, implementers should consider:
 
-- The repeatability of measurements under similar network conditions
+- The repeatability of measurements under similar network conditions, which can also be affected by path variation across multiple protocol layers (see {{path-stability}})
 - The impact of sampling frequency and duration on percentile estimates, particularly for high percentiles (e.g., 99th, 99.9th)
 - The measurement uncertainty introduced by hardware/software timing jitter, clock synchronization errors, and other system-level noise sources
 - The statistical confidence intervals for percentile estimates based on sample size
 
 Acceptable levels of precision depend on the use case. Implementers should document their precision assessment methodology and report precision metrics alongside QoO scores when precision is critical for the use case.
-
 
 ## Describing Network Performance Requirements {#describing_requirements}
 
@@ -723,13 +724,37 @@ ensure that:
 - Measurements are taken using the same connectivity service level that will be
   used by the application
 - The measurement methodology accounts for any traffic prioritization,
-  differentiated services, or quality-of-service mechanisms that may affect
+  differentiated services, or QoS mechanisms that may affect
   application performance
 - Network configurations and policies that will apply to application traffic are
   reflected in the measurement conditions
 
 Failing to align measurements with the actual service delivery may result in QoO
 scores that do not accurately reflect the application's expected performance.
+
+## Path Stability and Temporal Validity {#path-stability}
+
+Even when measurements are correctly aligned with the intended service delivery level, network behavior can vary within that service level over time.
+
+Network conditions along a given path can fluctuate with varying traffic load: congestion, for example, can cause latency to increase and packet loss to rise transiently.
+The multi-percentile representation of latency in the QoO requirements specifications naturally captures such fluctuations within a measurement window, although the shape of the distribution depends on the load conditions present during that window.
+
+Beyond load-driven fluctuation, forwarding paths themselves can also shift on a variety of timescales: routing changes, load balancing decisions, and traffic engineering policies may cause packets or flows to traverse different physical paths, each with potentially different latency, loss, and capacity characteristics.
+Load balancing, such as Equal-Cost Multi-Path (ECMP), can even mean that measurements represent a mixture of the characteristics across all active routes rather than those of a single coherent path.
+
+Together, congestion-driven variation and path diversity mean that a QoO assessment captures a snapshot of network behavior during the sampling period, and conditions may differ significantly at other times.
+Operators should therefore repeat measurements periodically, and interpret individual QoO scores in light of when and under what load conditions they were obtained.
+Implementers also need to decide whether measurement traffic is steered consistently (e.g., by tuning flow tuples to follow specific ECMP paths) or deliberately varied to sample full path diversity, and document which approach was used in the measurement metadata.
+
+These challenges are even more pronounced for mobile cellular networks, where path and capacity can change by an order of magnitude within seconds (see also {{volatile-networks}}).
+
+
+## Multipath Protocols {#multipath-protocols}
+A related challenge arises when the application itself uses a transport protocol that exploits multiple paths concurrently, such as Multipath TCP (MPTCP) {{?RFC8684}} or Multipath QUIC {{?I-D.ietf-quic-multipath}}.
+In such cases, application traffic can be spread across several paths simultaneously, and a single-flow measurement necessarily follows only one of them.
+Such single-path QoO measurements may therefore underestimate aggregate capacity and fail to represent the full latency and loss distribution that the application actually experiences across its concurrent paths.
+Implementers deploying QoO alongside multipath-capable applications should account for this by measuring across multiple representative flow tuples or by using passive monitoring of the actual application traffic.
+As with path diversity and load-driven variation, this means that a QoO score reflects only the conditions observable on the measured path subset during the sampling period.
 
 ## Adaptive Applications
 
@@ -837,7 +862,7 @@ the latency distribution) will inevitably influence the observed latency and
 packet loss behavior, so that QoO indirectly accounts for their effects through
 the measured distributions.
 
-## Volatile Networks
+## Volatile Networks {#volatile-networks}
 Volatile networks - in particular, mobile cellular networks - pose a challenge
 for network quality prediction, with the level of assurance of the prediction
 likely to decrease as session duration increases. Historic network conditions
