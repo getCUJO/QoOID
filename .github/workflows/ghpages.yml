@@ -1,6 +1,7 @@
 name: "Update Editor's Copy"
 
 on:
+  workflow_dispatch:
   push:
     paths-ignore:
     - README.md
