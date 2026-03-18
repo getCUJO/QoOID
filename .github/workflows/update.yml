@@ -27,7 +27,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: "Update Generated Files"
-      uses: martinthomson/i-d-template@v1
+      uses: martinthomson/i-d-template@0bc4b608ae41182aae46cbc51463f6bbf12ce845
       with:
         make: update-files
         token: ${{ github.token }}
