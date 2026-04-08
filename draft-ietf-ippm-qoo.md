@@ -958,6 +958,39 @@ application are deduced:
 These guidelines are non-normative but reflect empirical evidence on how QoO
 performs.
 
+## Continuous Measurements {#continuous-measurements}
+
+The QoO framework does not define measurement periods: it can be applied to
+measurements taken over a specific, bounded interval (e.g., when conducting
+a scheduled test run) as well as to continuous measurements collected from
+live traffic over an extended period. Deployments may use
+either mode depending on the use case and available infrastructure {{?RFC6703}}.
+
+When measurements are collected continuously, implementations must decide how
+to window or aggregate samples into the latency distribution and packet loss
+estimate used to compute a QoO score.
+Several approaches are possible, and each involves trade-offs:
+
+Fixed time windows (e.g., last hour, last day, last week) are simple to implement
+and compare across operators. Longer windows smooth out short-term
+anomalies but may obscure recent degradation; shorter windows are more
+responsive but less stable.
+
+Rolling or sliding windows of the most recent N samples or
+the most recent T seconds provide a continuously updated view of network quality,
+balancing responsiveness with stability.
+
+Measurements can also be grouped around specific events, such as user sessions or
+application usage periods. This approach can improve relevance for end-user-facing
+scores but may introduce selection bias.
+
+The choice of windowing strategy affects which percentiles are observed and
+therefore the resulting QoO score. Implementations should document the windowing
+strategy used alongside the reported QoO scores and the measurement approach
+to ensure results are interpretable and comparable.
+Standardization of specific windowing approaches is considered
+out of scope for this document and left for future work.
+
 # Known Weaknesses and Open Questions {#weakness-questions}
 The described QoO framework simplifies the comparison between
 network performance requirements from applications and Quality Attenuation measurements. This simplification
