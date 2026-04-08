@@ -84,7 +84,6 @@ informative:
   RFC7679: # A One-Way Delay Metric for IP Performance Metrics (IPPM)
   RFC7680: # One-Way Loss Metric for IPPM
   RFC7799: # Active and Passive Metrics and Methods (with Hybrid Types In-Between)
-  RFC7942: # Implementation details section
   RFC8033: # PIE
   RFC8239: # Refers to histogram of latency samples
   RFC8290: # FQ_CoDel
@@ -92,11 +91,11 @@ informative:
   RFC8762: # STAMP
   RFC9000: # QUIC
   RFC9197: # Data Fields for In Situ Operations, Administration, and Maintenance (IOAM)
-  RFC9312: # QUIC Manageability
   RFC9318: # IAB Workshop report
   RFC9341: #Alternate-Marking Method for Passive and Hybrid Performance Monitoring
   RFC9817: # COIN Use Cases
   I-D.ietf-opsawg-rfc5706bis:
+  I-D.ietf-ippm-responsiveness:
   # SHARED:
   #   title: "The Internet is a Shared Network"
   #   author:
@@ -198,7 +197,10 @@ informative:
     seriesinfo:
       ITU-T: P.1401
     date: January 2020
-
+  TCPHandshake: DOI.10.1145/3482898.3483366
+  TCPContinuous: DOI.10.1145/3544216.3544222
+  Throughputtest: DOI.10.1145/3579448
+  LatencyEstimation: DOI.10.1145/3651890.3672243
 
 --- abstract
 This document introduces the Quality of Outcome (QoO) network quality score and the corresponding QoO framework as an
@@ -586,7 +588,7 @@ network technology independent, meaning it can be gathered in an end-user
 application, within some network equipment, or anywhere in between. Passive
 methods rely on observing and time-stamping packets traversing the network.
 Examples of this include TCP SYN and SYN/ACK packets ({{Section 2.2 of RFC8517}}) and
-the QUIC spin bit {{RFC9000}}{{RFC9312}}.
+the QUIC spin bit {{RFC9000}}{{?RFC9312}}.
 Similar considerations apply to packet loss measurements while throughput measurements usually involve active testing.
 
 This document does not mandate the use of specific measurement approaches.
@@ -594,13 +596,13 @@ However, in addition to measurement approaches standardized in the QED framework
 
 * Active probing with the Two-Way Active Measurement Protocol (TWAMP) Light {{RFC5357}}, the Simple Two-Way Active Measurement Protocol (STAMP) {{RFC8762}}, or the Isochronous Round-Trip Tester (IRTT)
   {{IRTT}}
-* Latency Under Load Tests
-* Speed Tests with latency measures
-* Simulating real traffic
-* End-to-end measurements of real traffic
-* TCP SYN ACK or DNS Lookup RTT Capture
-* On-Path Telemetry methods (IOAM {{RFC9197}}, AltMark {{RFC9341}})
-* Estimation
+* On-path telemetry methods (IOAM {{RFC9197}}, AltMark {{RFC9341}})
+* Latency tests under loaded network conditions {{I-D.ietf-ippm-responsiveness}}
+* Throughput tests with included latency measures {{Throughputtest}}
+* DNS response latency measurements {{Section 2.8 of RFC8517}}{{?RFC8912}}
+* Passive TCP / QUIC handshake measurements {{TCPHandshake}}{{?RFC9312}}
+* Continuous passive TCP / QUIC measurements {{TCPContinuous}}{{?RFC9312}}
+* Simulating or estimating real traffic {{LatencyEstimation}}
 
 Modeling full latency distributions may be too complex to allow for easy
 adoption of the framework. Instead, reporting latency at selected percentiles offers
