@@ -635,19 +635,26 @@ constraints vary across devices, applications, and deployment environments.
 To support reproducibility and enable confidence analysis, each measurement must
 be accompanied by the following metadata:
 
-* Measurement method (e.g., TWAMP, STAMP, ...)
+* Description of the measurement method, including
+  * Standard name (if applicable) or reference
+  * Measurement class (Active, Passive, Hybrid {{RFC7799}})
+  * Protocol layer used for measurements (e.g., ICMP, TCP, UDP, ...)
+* Measurement configuration, including
+  * Probe packet size  (if applicable)
+  * Traffic class of probed traffic
+  * Sampling method, including but not limited to
+    * Cyclic: One sample every N milliseconds (specify N)
+    * Burst: X samples every N milliseconds (specify X and N)
+    * Passive: Opportunistic sampling of live traffic (non-uniform intervals)
 * Description of the measurement path, including
   * Endpoints (source and destination)
   * Network segments traversed
   * Measurement points (if applicable)
-  * Direction (uplink, downlink, or bidirectional)
-* Timestamp of first sample (e.g., in the format used in TWAMP {{?RFC5357}}{{?RFC8877}})
-* Total duration of the sampling period (in milliseconds)
-* Number of samples collected
-* Sampling method, including but not limited to:
-  * Cyclic: One sample every N milliseconds (specify N)
-  * Burst: X samples every N milliseconds (specify X and N)
-  * Passive: Opportunistic sampling of live traffic (non-uniform intervals)
+  * Direction (two-way, one-way uplink, one-way downlink)
+* Description of the measurement duration, including
+  * Timestamp of first sample (e.g., in the format used in TWAMP {{?RFC5357}}{{?RFC8877}})
+  * Total duration of the sampling period (in milliseconds)
+  * Number of samples collected
 
 These metadata elements are required for interpreting the precision and
 reliability of the measurements. As demonstrated in {{QoOSimStudy}}, low
