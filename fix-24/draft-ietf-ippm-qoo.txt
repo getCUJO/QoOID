@@ -5,8 +5,8 @@
 IP Performance Measurement                             B. I. T. Monclair
 Internet-Draft                                                  M. Olden
 Intended status: Informational                             I. Kunze, Ed.
-Expires: 10 October 2026                                         CUJO AI
-                                                            8 April 2026
+Expires: 15 October 2026                                         CUJO AI
+                                                           13 April 2026
 
 
                         Quality of Outcome (QoO)
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 October 2026.
+   This Internet-Draft will expire on 15 October 2026.
 
 Copyright Notice
 
@@ -686,8 +686,8 @@ Table of Contents
 
    *  Throughput tests with included latency measures [Throughputtest]
 
-   *  DNS response latency measurements Section 2.8 of
-      [RFC8517][RFC8912]
+   *  DNS response latency measurements (Section 2.8 of [RFC8517],
+      [RFC8912])
 
    *  Passive TCP / QUIC handshake measurements [TCPHandshake][RFC9312]
 
