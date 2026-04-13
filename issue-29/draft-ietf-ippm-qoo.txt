@@ -736,7 +736,7 @@ Table of Contents
 
       -  Protocol layer used for measurements (ICMP, TCP, UDP, ...)
 
-   *  Measurement configuration, including
+   *  Measurement configuration, including:
 
       -  Probe packet size (if applicable)
 
