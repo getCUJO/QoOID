@@ -732,7 +732,7 @@ Table of Contents
 
       -  Standard name (if applicable) or reference
 
-      -  Measurement class (Active, Passive, Hybrid [RFC7799])
+      -  Measurement class (Active, Passive, or Hybrid) [RFC7799]
 
       -  Protocol layer used for measurements (ICMP, TCP, UDP, ...)
 
