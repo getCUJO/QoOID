@@ -644,7 +644,7 @@ be accompanied by the following metadata:
     * Cyclic: One sample every N milliseconds (specify N)
     * Burst: X samples every N milliseconds (specify X and N)
     * Passive: Opportunistic sampling of live traffic (non-uniform intervals)
-* Description of the measurement path, including
+* Description of the measurement path, including:
   * Endpoints (source and destination)
   * Network segments traversed
   * Measurement points (if applicable)
