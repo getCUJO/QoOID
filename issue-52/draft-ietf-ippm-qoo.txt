@@ -5,8 +5,8 @@
 IP Performance Measurement                             B. I. T. Monclair
 Internet-Draft                                                  M. Olden
 Intended status: Informational                             I. Kunze, Ed.
-Expires: 10 October 2026                                         CUJO AI
-                                                            8 April 2026
+Expires: 15 October 2026                                         CUJO AI
+                                                           13 April 2026
 
 
                         Quality of Outcome (QoO)
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 October 2026.
+   This Internet-Draft will expire on 15 October 2026.
 
 Copyright Notice
 
@@ -1202,10 +1202,10 @@ Table of Contents
    distribution and packet loss estimate used to compute a QoO score.
    Several approaches are possible, and each involves trade-offs:
 
-   Fixed time windows (e.g., last hour, last day, last week) are simple
-   to implement and compare across operators.  Longer windows smooth out
-   short-term anomalies but may obscure recent degradation; shorter
-   windows are more responsive but less stable.
+   Fixed time windows (e.g., last hour, last day, or last week) are
+   simple to implement and compare across operators.  Longer windows
+   smooth out short-term anomalies but may obscure recent degradation;
+   shorter windows are more responsive but less stable.
 
    Rolling or sliding windows of the most recent N samples or the most
    recent T seconds provide a continuously updated view of network
