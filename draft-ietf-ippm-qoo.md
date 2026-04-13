@@ -436,12 +436,14 @@ logarithmic-like progression has been suggested by others {{BITAG}} and is
 recommended here: \[0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
 100th\].
 
-Depending on the measurement conditions, results also have different implications.
-When measurements are taken
-during periods of network load, the result naturally includes latency under
-load. In scenarios such as passive monitoring of production traffic, capturing
-artificially loaded conditions may not always be feasible, whereas passively
-observing the actual network load may be possible.
+The choice of measurement methodology also needs to account for network conditions and their variability.
+Idle-state measurements capture baseline characteristics unaffected by competing traffic, whereas measurements taken under load reflect conditions that are more likely to challenge application performance, such as elevated latencies and queuing.
+Both active and passive methods can capture either state, although with different degrees of control.
+Passive monitoring of production traffic usually reflects actual network load but may not always allow capturing artificially loaded conditions.
+Active measurements can target artificially loaded conditions by generating synthetic traffic equivalent to the application load alongside the probes but capturing the actual or idle network conditions may not be possible depending on the footprint of the measurement method.
+Furthermore, when performing active measurements or generating artificial load, care must be taken not to degrade the network under test or inadvertently enable denial-of-service abuse {{?RFC2330}}{{?RFC4656}}.
+See {{dos-risks}} for specific mitigations.
+
 Internet forwarding paths can also shift on a variety of timescales due to routing changes, load balancing, or traffic engineering, meaning a measurement reflects the network's state only during the sampling period.
 Such factors need to be considered when conducting performance measurements.
 See {{path-stability}} for a discussion of the operational implications, and {{volatile-networks}} for the more severe case of volatile environments such as mobile cellular networks.
@@ -988,6 +990,8 @@ quality based on probabilistic outcomes derived from latency, packet loss, and
 throughput measurements. While the framework itself is primarily analytical and
 does not define a new protocol, some security considerations arise from its
 deployment and use.
+In addition to the considerations discussed below, implementers are also encouraged to consider
+the security considerations outlined in {{?RFC7594}}.
 
 ## Measurement Integrity and Authenticity
 
@@ -1020,16 +1024,17 @@ Mitigations include:
 - Use of randomized testing procedures.
 - Transparency in how QoO scores are derived and what assumptions are made.
 
-## Denial-of-Service (DoS) Risks
+## Denial-of-Service (DoS) Risks {#dos-risks}
 
 Active measurement techniques used to gather QoO data (e.g., TWAMP, STAMP, and
 synthetic traffic generation) can place additional load on a network. If not
 properly rate-limited, this may inadvertently degrade services offered by a network or be exploited
-by malicious actors to launch DoS attacks.
+by malicious actors to launch DoS attacks {{?RFC2330}}.
 
 To mitigate these risks, the following is recommended:
 
-- Implement rate-limiting and access control for active measurement tools.
+- Implement rate-limiting and access control for active measurement tools, e.g., similar to recommendations
+for the One-way Active Measurement Protocol {{?RFC4656}}.
 - Ensure that measurement traffic does not interfere with critical services.
 - Monitor for abnormal measurement patterns that may indicate abuse.
 
@@ -1048,8 +1053,8 @@ To address such risks, the following recommendations are made:
 # Privacy Considerations
 
 QoO measurements may involve collecting detailed performance data from end-user
-devices or applications. Depending on the deployment model, this includes
-metadata such as IP addresses, timestamps, or application usage patterns.
+devices or applications, especially in the context of passive measurements {{?RFC2330}}.
+Depending on the deployment model, this includes metadata such as IP addresses, timestamps, or application usage patterns.
 
 To protect user privacy:
 
