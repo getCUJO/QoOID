@@ -751,7 +751,7 @@ Table of Contents
          o  Passive: Opportunistic sampling of live traffic (non-uniform
             intervals)
 
-   *  Description of the measurement path, including
+   *  Description of the measurement path, including:
 
       -  Endpoints (source and destination)
 
