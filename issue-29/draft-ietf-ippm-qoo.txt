@@ -734,8 +734,7 @@ Table of Contents
 
       -  Measurement class (Active, Passive, Hybrid [RFC7799])
 
-      -  Protocol layer used for measurements (e.g., ICMP, TCP, UDP,
-         ...)
+      -  Protocol layer used for measurements (ICMP, TCP, UDP, ...)
 
    *  Measurement configuration, including
 
