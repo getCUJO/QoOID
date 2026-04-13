@@ -638,7 +638,7 @@ be accompanied by the following metadata:
 * Description of the measurement method, including:
   * Standard name (if applicable) or reference
   * Measurement class (Active, Passive, Hybrid {{RFC7799}})
-  * Protocol layer used for measurements (e.g., ICMP, TCP, UDP, ...)
+  * Protocol layer used for measurements (ICMP, TCP, UDP, ...)
 * Measurement configuration, including
   * Probe packet size  (if applicable)
   * Traffic class of probed traffic
