@@ -599,7 +599,7 @@ However, in addition to measurement approaches standardized in the QED framework
 * On-path telemetry methods (IOAM {{RFC9197}}, AltMark {{RFC9341}})
 * Latency tests under loaded network conditions {{I-D.ietf-ippm-responsiveness}}
 * Throughput tests with included latency measures {{Throughputtest}}
-* DNS response latency measurements {{Section 2.8 of RFC8517}}{{?RFC8912}}
+* DNS response latency measurements ({{Section 2.8 of RFC8517}}, {{?RFC8912}})
 * Passive TCP / QUIC handshake measurements {{TCPHandshake}}{{?RFC9312}}
 * Continuous passive TCP / QUIC measurements {{TCPContinuous}}{{?RFC9312}}
 * Simulating or estimating real traffic {{LatencyEstimation}}
