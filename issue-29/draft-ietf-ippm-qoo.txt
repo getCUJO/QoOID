@@ -761,7 +761,7 @@ Table of Contents
 
       -  Direction (two-way, one-way uplink, one-way downlink)
 
-   *  Description of the measurement duration, including
+   *  Description of the measurement duration, including:
 
       -  Timestamp of first sample (e.g., in the format used in TWAMP
          [RFC5357][RFC8877])
