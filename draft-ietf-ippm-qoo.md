@@ -635,7 +635,7 @@ constraints vary across devices, applications, and deployment environments.
 To support reproducibility and enable confidence analysis, each measurement must
 be accompanied by the following metadata:
 
-* Description of the measurement method, including
+* Description of the measurement method, including:
   * Standard name (if applicable) or reference
   * Measurement class (Active, Passive, Hybrid {{RFC7799}})
   * Protocol layer used for measurements (e.g., ICMP, TCP, UDP, ...)
