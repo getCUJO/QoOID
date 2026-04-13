@@ -538,7 +538,7 @@ Finally, the network performance requirement specification must specify if the r
 If the requirement is one-way, the direction (user-to-network or network-to-user) must be specified.
 In case of a two-way requirement, a decomposition into uplink and downlink components may be specified.
 
-### Creating a Network Performance Requirement Specification
+### Creating a Network Performance Requirement Specification {#qoo-spec-creation}
 
 This document does not define a standardized approach for creating quality-focused network performance requirement specifications.
 Instead, this section provides general considerations for deriving requirement specifications.
@@ -1319,8 +1319,8 @@ application developers include:
 * Cloud gaming: >15Mbps downlink throughput and 80ms round-trip time (RTT) {{XboxNetReqs}} (specific requirements vary by game and platform; see {{CSGO}} for an example study on the impact of latency on Counter Strike: Global Offensive)
 * Virtual reality (VR): <20ms RTT from head motion to rendered update in VR ({{RFC9817}}; see {{G.1051}} for latency measurement and interactivity scoring)
 
-Note that developers of similar applications may have arrived at different figures.
-
+These numbers only serve as examples and their exact value depends on the specific application and the test methodology used to derive them, such that they are not to be interpreted as universally applicable (see also {{qoo-spec-creation}} and {{spec-creation}}).
+Instead, additional standardization efforts are needed to derive more universally applicable thresholds for different classes of applications.
 
 ## Requirements from Application and Platform Developers {#req-apps}
 The QoO framework needs to provide developers the ability to describe the quality-focused network
