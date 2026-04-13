@@ -649,7 +649,7 @@ be accompanied by the following metadata:
   * Network segments traversed
   * Measurement points (if applicable)
   * Direction (two-way, one-way uplink, one-way downlink)
-* Description of the measurement duration, including
+* Description of the measurement duration, including:
   * Timestamp of first sample (e.g., in the format used in TWAMP {{?RFC5357}}{{?RFC8877}})
   * Total duration of the sampling period (in milliseconds)
   * Number of samples collected
