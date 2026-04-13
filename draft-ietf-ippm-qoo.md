@@ -639,7 +639,7 @@ be accompanied by the following metadata:
   * Standard name (if applicable) or reference
   * Measurement class (Active, Passive, or Hybrid) {{RFC7799}}
   * Protocol layer used for measurements (ICMP, TCP, UDP, ...)
-* Measurement configuration, including
+* Measurement configuration, including:
   * Probe packet size  (if applicable)
   * Traffic class of probed traffic
   * Sampling method, including but not limited to
