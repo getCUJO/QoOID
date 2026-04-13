@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout"
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: "Update Generated Files"
       uses: martinthomson/i-d-template@0bc4b608ae41182aae46cbc51463f6bbf12ce845
