@@ -971,7 +971,7 @@ to window or aggregate samples into the latency distribution and packet loss
 estimate used to compute a QoO score.
 Several approaches are possible, and each involves trade-offs:
 
-Fixed time windows (e.g., last hour, last day, last week) are simple to implement
+Fixed time windows (e.g., last hour, last day, or last week) are simple to implement
 and compare across operators. Longer windows smooth out short-term
 anomalies but may obscure recent degradation; shorter windows are more
 responsive but less stable.
