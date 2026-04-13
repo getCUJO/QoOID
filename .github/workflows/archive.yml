@@ -21,7 +21,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: "Update Archive"
-      uses: martinthomson/i-d-template@0bc4b608ae41182aae46cbc51463f6bbf12ce845
+      uses: martinthomson/i-d-template@7b8eb97cf0daa28cc14be5c87ec4c35b10577974
       env:
         ARCHIVE_FULL: ${{ inputs.archive_full }}
       with:
@@ -29,7 +29,7 @@ jobs:
         token: ${{ github.token }}
 
     - name: "Update GitHub Pages"
-      uses: martinthomson/i-d-template@0bc4b608ae41182aae46cbc51463f6bbf12ce845
+      uses: martinthomson/i-d-template@7b8eb97cf0daa28cc14be5c87ec4c35b10577974
       with:
         make: gh-archive
         token: ${{ github.token }}
