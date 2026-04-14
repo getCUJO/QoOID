@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-23T00:03:20.914478+00:00",
-  "repo": "domoslabs/QoOID",
+  "timestamp": "2026-04-14T00:30:53.675076+00:00",
+  "repo": "getCUJO/QoOID",
   "labels": [
     {
       "name": "bug",
@@ -47,6 +47,26 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "discuss",
+      "description": "",
+      "color": "b60205"
+    },
+    {
+      "name": "comment",
+      "description": "",
+      "color": "bfdadc"
+    },
+    {
+      "name": "dependencies",
+      "description": "Pull requests that update a dependency file",
+      "color": "0366d6"
+    },
+    {
+      "name": "github_actions",
+      "description": "Pull requests that update GitHub Actions code",
+      "color": "000000"
     }
   ],
   "issues": [
@@ -54,7 +74,7 @@
       "number": 3,
       "id": "I_kwDOItQjb85hTvJp",
       "title": "Metrics in equation",
-      "url": "https://github.com/domoslabs/QoOID/issues/3",
+      "url": "https://github.com/getCUJO/QoOID/issues/3",
       "state": "CLOSED",
       "author": "Kevsy",
       "authorAssociation": "CONTRIBUTOR",
@@ -65,6 +85,772 @@
       "updatedAt": "2023-03-22T15:23:30Z",
       "closedAt": "2023-03-22T15:23:30Z",
       "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOItQjb858a_pw",
+      "title": "Nit: Extra \"the\"",
+      "url": "https://github.com/getCUJO/QoOID/issues/6",
+      "state": "CLOSED",
+      "author": "hawkinsw",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/domoslabs/QoOID/blob/ac7202863d96f896117ac6a5ffbaa4c3d5873ad9/draft-olden-ippm-qoo.md?plain=1#L93\r\n\r\n> Quality attenuation is a network quality metric that meets the most of the criteria set out in the requirements; it can capture the probability of a network satisfying application requirements, it is composable, and it can be compared to a variety of application ...\r\n\r\nRemoving the extra `the`:\r\n\r\n> Quality attenuation is a network quality metric that meets most of the criteria set out in the requirements; it can capture the probability of a network satisfying application requirements, it is composable, and it can be compared to a variety of application ...",
+      "createdAt": "2024-01-18T04:05:47Z",
+      "updatedAt": "2024-01-19T10:06:49Z",
+      "closedAt": "2024-01-19T10:06:49Z",
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOItQjb859EFQB",
+      "title": "Make section on how to create a network requirement",
+      "url": "https://github.com/getCUJO/QoOID/issues/7",
+      "state": "CLOSED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Ref discussion on the mailing list.\r\n\r\n\"Is there a systematic way of converting packet loss, max. delay, max. jitter into P90, P99, P99,9 NRP and NRPoU values? Also, how to combine throughput requirements into this QoO?\r\nYou have an example in the document but the details are not clearly laid out. I believe such a conversion method, formulation would be pretty useful.\r\nIn the long run, if application vendors define P90, P99, P99,9 NRP and NRPoU values; this will stop being a problem. However, for a wide-spread use of QoO I believe such a \"conversion formulations\" will be very, very valuable.\"",
+      "createdAt": "2024-01-24T13:02:04Z",
+      "updatedAt": "2025-05-27T09:32:16Z",
+      "closedAt": "2025-05-27T09:32:16Z",
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOItQjb859EInw",
+      "title": "Improve explanation of QoO calculation",
+      "url": "https://github.com/getCUJO/QoOID/issues/8",
+      "state": "CLOSED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-24T13:09:54Z",
+      "updatedAt": "2024-09-20T09:41:09Z",
+      "closedAt": "2024-09-20T09:41:09Z",
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOItQjb859EJU5",
+      "title": "Limit QoO formula to the [0, 100] range",
+      "url": "https://github.com/getCUJO/QoOID/issues/9",
+      "state": "CLOSED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Ref mailing list comment from Mehmet Sukru Kuran:\r\n\r\n6. On page 7, there is a formulation as\r\n\r\n    QoO = (1-(ML-NRP)/(NRPoU-NRP))*100\r\n\r\n        - This formulation \"I thought\" should give values between 100 (perfect) and 0 (unacceptable). However, if ML < NRP the result is more than 100.\r\n        - In case I'm not making a mistake and the intention is the QoO to have a value of [0,100], the formulation can be changed into\r\n\r\n    MIN( 100, (1-(ML-NRP)/(NRPoU-NRP))*100 )",
+      "createdAt": "2024-01-24T13:11:29Z",
+      "updatedAt": "2024-03-12T14:15:55Z",
+      "closedAt": "2024-03-12T14:15:55Z",
+      "comments": []
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOItQjb85-Ehdv",
+      "title": "Address comments from Michael Welzl",
+      "url": "https://github.com/getCUJO/QoOID/issues/10",
+      "state": "CLOSED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "bjornite"
+      ],
+      "labels": [],
+      "body": "- [x] Replace \"useless\" with \"unusable\" or similar wording\r\n- [x]  the relationship to packet loss should again be stated just with a sentence in section 5\r\n- [x] Fix typos:\r\n\r\n    - [x]   abstract: s/layed out/laid out\r\n    - [x]   intro par 2: I think it would be better to remove \u201cthe\u201d before \"most of the criteria\u201d\r\n    - [x]   intro par 3: \u201cmakes\u201d should be \u201cmake\u201d in \"Applications and the underlying networking protocols makes separate optimizations based on their perceived network quality over time\u201d\r\n    - [x]   Intro par 4: suggest: s/We propose representing network quality as minimum required throughput and set of latency and loss percentiles./We propose representing network quality as a minimum required throughput and a set of latency and loss percentiles.\r\n    - [x]  \"We propose a formula for a distance measure between perfect and useless quality.\u201d - I just find the word combination of \u201cuseless quality\u201d odd; I think the word \u201cquality\u201d could just be removed here.\r\n    - [x]  section 4: \"Until now, network requirements and measurements are what is already standardized in BBF TR-452 (aka QED) framework [TR-452.1].\u201d  missing \u201cthe\u201d before \u201cBBF\u201d.\r\n    - [x] sec 7 par 2 s/precition/precision\r\n    - [x] Last sentence of sec. 5.1. misses a full stop.\r\n\r\n- [x]  Fix stylistic issues:\r\n\r\n- [x] There are a few stylistic elements in this document that strike me as somewhat inappropriate for the spec that it\u2019s meant to be. E.g. the use of irony in: \"On the other hand, making the framework overly complex and difficult to adhere to using real-world equipment and applications is the best way to ensure that this framework goes unused.\u201d\r\n- [x] and this: \"A method for going from Network Requirements and Network Measurements to probabilities of outcomes, or Quality of Outcomes if you will.\u201d\r\n- [x] section 5: \u201cThe QoO.\u201d is not a sentence. suggest to connect it with the preceding sentence, e.g. with a dash.\r\n- [x] \"For 3, we will now specify the calculation between to translate these distances to a 0 to 100 measure. \u201c  - I think \u201cbetween\u201d should be removed here.\r\n- [x] Next par: \u201cEssentially, where\u2026\u201d is not a complete sentence (misses a verb).\r\n- [x] Next sentence: \u201cWhere: \u2026\u201d - this is also not really a sentence.\r\n- [x] The next sentence is also broken \u201cis the points\u201d is wrong, and I\u2019m not sure if the sentence is complete or what\u2019s wrong here, somehow. Same for the next. This whole paragraph is just grammatically broken somehow.\r\n- [x] The end of section 6 is a bit odd: The reason for making the QoO metric for a session or time-period is to make it understandable for an end-user, an end-user should not have to relate to the time period the metric is for.\r\n- [x] The first use of \u201ctime-period\u201d makes this seems self-contradictory. Perhaps just say \u201cfor a session\u201d, and maybe add something like \u201c that is considered typical for the application\u201d ?",
+      "createdAt": "2024-02-02T14:52:00Z",
+      "updatedAt": "2024-03-14T09:43:03Z",
+      "closedAt": "2024-03-14T09:43:02Z",
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOItQjb85-iErJ",
+      "title": "Address comments from Greg Mirsky",
+      "url": "https://github.com/getCUJO/QoOID/issues/12",
+      "state": "CLOSED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "bjornite"
+      ],
+      "labels": [],
+      "body": "- [x] It seems like the perspective of 'we' is not usually used in IETF documents. It would be helpful to re-word passages like \"we believe\", \"we can\", and \"we propose\".\n- [x] I think it would be helpful to add references to the measurement methods listed in Section 2, e.g., STAMP, IRTT, etc.\n- [x] Also, a reference (or more than one) would be helpful in the following:\n          Using Latency distributions to measure network quality is nothing new and has been proposed by various researchers/practitioners.\n- [x] Do you mention a passive measurement method as defined in RFC 7799 in the following: Latency Distributions can be gathered via both passive monitoring and active testing. What is an example of the passive measurement method that supports the measurement of latency distribution?\n- [x] It is stated in the draft that: The active testing can use any type of IP traffic. It would be helpful if this statement is expanded and supported by some examples, e.g., TCP-based measurements, raw IP, etc.\n- [x] It seems that an additional information on whether the list of the measurement parameters in Section 3 is sufficient to \"ensure network measurements can be analyzed for precision and confidence\".\n- [x] The document introduces notions of \"perfection\" and \"usefulness\". What are your thoughts about the work on the [Precision Availability Metrics](https://datatracker.ietf.org/doc/draft-ietf-ippm-pam/), and its metrics that express a service availability/unavailability. I am interested further discussing if the terms from PAM can be used in QoO.",
+      "createdAt": "2024-02-07T11:53:40Z",
+      "updatedAt": "2025-05-27T09:32:10Z",
+      "closedAt": "2025-05-27T09:32:10Z",
+      "comments": []
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOItQjb86CBwcR",
+      "title": "Include contents of draft-teigen-ippm-app-quality-metric-reqs as background",
+      "url": "https://github.com/getCUJO/QoOID/issues/13",
+      "state": "CLOSED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "bjornite"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-12T12:28:21Z",
+      "updatedAt": "2024-03-12T14:15:40Z",
+      "closedAt": "2024-03-12T14:15:40Z",
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOItQjb86CMKan",
+      "title": "The throughput aspect of both the measurements and the requirements need more work. ",
+      "url": "https://github.com/getCUJO/QoOID/issues/14",
+      "state": "CLOSED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-13T14:57:48Z",
+      "updatedAt": "2025-05-27T09:10:09Z",
+      "closedAt": "2025-05-27T09:10:09Z",
+      "comments": []
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOItQjb86CMK7w",
+      "title": "Clarify that latency can be measured in different ways (i.e. not TR-452.1 exclusive)",
+      "url": "https://github.com/getCUJO/QoOID/issues/15",
+      "state": "CLOSED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-13T14:58:42Z",
+      "updatedAt": "2025-05-26T12:42:38Z",
+      "closedAt": "2025-05-26T12:42:38Z",
+      "comments": []
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOItQjb864XtiG",
+      "title": "Add security section",
+      "url": "https://github.com/getCUJO/QoOID/issues/16",
+      "state": "CLOSED",
+      "author": "cj-bjorn-monclair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "cj-bjorn-monclair"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-05-27T09:10:43Z",
+      "updatedAt": "2025-05-27T09:32:04Z",
+      "closedAt": "2025-05-27T09:32:04Z",
+      "comments": []
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOItQjb87uz75C",
+      "title": "Erik Kline Comments (IESG Review)",
+      "url": "https://github.com/getCUJO/QoOID/issues/23",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Per https://datatracker.ietf.org/doc/draft-ietf-ippm-qoo/ballot/#draft-ietf-ippm-qoo_erik-kline\n\n> ## Comments\n> \n> * Thank you for S7.4.\n> \n> * I wonder if (end-to-end/effective) MTU/MSS might be a factor to\n>   incorporate in future work.\n",
+      "createdAt": "2026-03-01T07:47:29Z",
+      "updatedAt": "2026-03-02T15:40:59Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@ekline\nYes, incorporating MTU/MSS is a good suggestion for future work.\nPersonally, I see the most value in incorporating info on MTU/MSS into the \"troubleshooting\" once QoO measurements have already been performed.\nSo, for example, if we see low QoO values, we could check MTU/MSS and other network signals (maybe SCONE for low bandwidth? maybe ECN/L4S for congestion?) to try and identify causes for the low performance.\n\nSpeaking as an employee of CUJO, I can say that we are planning to explore these dimensions and contribute recommendations based on the experience we are currently gathering from the first large-scale deployment of QoO in follow-up IDs.",
+          "createdAt": "2026-03-02T15:40:59Z",
+          "updatedAt": "2026-03-02T15:40:59Z"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOItQjb87wFsuE",
+      "title": "[IESG Review Gorry] Add references for the additional \"relevant techniques\"",
+      "url": "https://github.com/getCUJO/QoOID/issues/24",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "> Please provide citable references for each technique!\n\nhttps://github.com/getCUJO/QoOID/blob/da0c139c9a695a9277e88d433bc85441930a6066/draft-ietf-ippm-qoo.md?plain=1#L591",
+      "createdAt": "2026-03-05T12:49:19Z",
+      "updatedAt": "2026-03-05T13:20:48Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOItQjb87wFuzT",
+      "title": "[IESG Review Gorry] (Introduction of) Section 5 - Clarify QoO Framework",
+      "url": "https://github.com/getCUJO/QoOID/issues/25",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "`- Can you instead make clear what the IETF-defined framework includes?`\n\n",
+      "createdAt": "2026-03-05T12:51:08Z",
+      "updatedAt": "2026-03-13T15:44:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOItQjb87wFxP5",
+      "title": "IESG Review Gorry",
+      "url": "https://github.com/getCUJO/QoOID/issues/26",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/ippm/JL50JEHvxOvsjMBG22cdS65FX6w/",
+      "createdAt": "2026-03-05T12:53:04Z",
+      "updatedAt": "2026-03-05T12:53:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 27,
+      "id": "I_kwDOItQjb87wF2vr",
+      "title": "[IESG Review Gorry] Enhance clarity of requirements-related text",
+      "url": "https://github.com/getCUJO/QoOID/issues/27",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "> ## S4 and S5 - DISCUSS\n> The document uses a lot of descriptive language to indicate requirements, but\n> does not use any requirements language - RFC2119 language is acceptable in an\n> Informational document, should the working group require this. At the moment I\n> feel many of the requirements are just expressed as aspirations, and not\n> sufficiently well-defined to allow someone to know whether a specific instance\n> complies with the framework. I think this needs to be addressed, because\n> without this the value of this being archived in the RFC series is doubtful.\n> For example, this seems a strong requirement: \u201c   The framework is agnostic to\n> traffic direction but mandates that measurements specify whether latency is\n> one-way or round-trip.\u201d There are further instances (see also my review\n> comments).\n\n\n> ##  S5.1 - DISCUSS\n> Why is this not a requirement: \u201cImplementers should document their precision\n> assessment methodology\u201d - It would seem without this, the other requirements\n> are moot, if I misunderstood, please help to understand and find better text.\n\n\n> ## S 5.2 - Comment\n> Why is this not \u201cMUST\u201d:\n> \u201cTherefore, the network requirements must include a minimum throughput\n> requirement.\u201d\n\n\n> ## S 5.2 - Comment\n> Why is this not \u201cMUST\u201d:\n> \u201cWhether the requirements are one-way or two-way must be specified.\u201d",
+      "createdAt": "2026-03-05T12:57:11Z",
+      "updatedAt": "2026-03-05T13:21:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOItQjb87wF4xL",
+      "title": "[IESG Review Gorry] Add references / Discuss safety of the measurements",
+      "url": "https://github.com/getCUJO/QoOID/issues/28",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "> ## S5 - DISCUSS\n> \u201c   When measurements are taken during periods of network load, the\n>    result naturally includes latency under load.  In scenarios such as\n>    passive monitoring of production traffic, capturing artificially\n>    loaded conditions may not always be feasible, whereas passively\n>    observing the actual network load may be possible.\u201d\n> - This general statement could be true, but seems to lack any IETF statement\n> around the safety of such measurements. Please update the text to provide this,\n> for example by citing other IPPM work where this has been stated. Similarly the\n> later statement: \u201cby generating artificial traffic to a level at least\n> equivalent to the application traffic load\u201c.",
+      "createdAt": "2026-03-05T12:58:44Z",
+      "updatedAt": "2026-03-05T13:21:06Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 29,
+      "id": "I_kwDOItQjb87wF9h2",
+      "title": "[IESG Review Gorry] Add metadata specification + clarify language",
+      "url": "https://github.com/getCUJO/QoOID/issues/29",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "> ## S5.1 - DISCUSS\n> I suggest the essential \u201cmetadata\u201d is under-specified (sometimes omitting units\n> and details), please check carefully. \n> Section 5 discusses composable metrics.\n> Please revise the text to address the TSVART review on the intention of this\n> text. For instance why is the following requirement not  at least a\u201cSHOULD\u201d :\n> \u201ceach measurement must be accompanied by the following metadata:\u201d\n>         \u2043       In some cases. the stated metadata provides no units or\n>         expected accuracy for the listed elements. Please specify.\n> The section is followed  by text that says:\n> \u201cThese metadata elements are essential for interpreting the precision\n>    and reliability of the measurements.\u201d\n>         \u2043       Is this really required, i.e. essential - making this a\n>         normative list of required meta data, or \u201cuseful\u201d? - Please clarify the\n>         language.\n",
+      "createdAt": "2026-03-05T13:02:25Z",
+      "updatedAt": "2026-03-05T13:21:10Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "I_kwDOItQjb87wF_qE",
+      "title": "[IESG Review Gorry] Clarify Composable Metrics (Waiting for Clarification)",
+      "url": "https://github.com/getCUJO/QoOID/issues/30",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "> Section 5 discusses composable metrics.\n> Please revise the text to address the TSVART review on the intention of this\n> text.\n\nClarification question:\n\n> One clarification question regarding our discussion of composable metrics: as far as I understand J\u00f6rg\u2019s review (which you seem to pick up here), he refers to the \u201ccomparison to other network quality metrics\u201d which used to be in Section 5 and is now in Section 10.\n> Could you perhaps clarify what exact \u201cdiscussion\u201d of composable metrics in Section 5.1 you are referring to? As far as I can tell, the only mention of composability in that paragraph is about the composability-\u201ceasier deployment\u201d trade-off and I am unsure about what exact text revisions you have in mind for this paragraph. \n\n\n[GF] Sorry: I read multiple versions, I will re-read the next version and see if this comment can disappear in the light of the previous change.",
+      "createdAt": "2026-03-05T13:04:04Z",
+      "updatedAt": "2026-03-06T14:44:06Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 31,
+      "id": "I_kwDOItQjb87wGBwP",
+      "title": "[IESG Review Gorry] Discuss Path Variation",
+      "url": "https://github.com/getCUJO/QoOID/issues/31",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "> ##  S5.1 - DISCUSS\n> The requirement: \u201cThe repeatability of measurements under similar network\n> conditions\u201d does not seem to discuss path variation - either at L2, L3 (e.g.\n> ECMP/Routing) and L4 - multi-path and cos mechanisms. Please clarify how this\n> impact this requirement.\n\nIke: The considerations in S5.1 focus on the measurement capabilities in general with the underlying assumption of a \u201cstable\u201d measurement path. We cover the path variation aspect to some extent in 4.1 and 6.3 but I would agree that it could make sense to discuss path variation more explicitly. We\u2019ll check to see where it makes the most sense to discuss this aspect and where cross-referencing in the document is appropriate.",
+      "createdAt": "2026-03-05T13:05:40Z",
+      "updatedAt": "2026-03-05T13:21:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 32,
+      "id": "I_kwDOItQjb87wGJce",
+      "title": "[IESG Review Gorry] Clarify load balancing impact",
+      "url": "https://github.com/getCUJO/QoOID/issues/32",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "> ## S6.1 - DISCUSS\n> Does a  measurement consider  load balancing along the forwarding path? (I\n> think the referenced work in TR-452.1 is about a network segment, rather than\n> an Internet Path, and hence this seems an important part of ensuring this is\n> relevant as an Internet metric).\n\n[IK] I am a bit confused what \u201cmeasurement\u201d you are referring to here as S6.1 focuses on considerations for the network performance spec and not on the measurements. \nCould you perhaps clarify the intention of your comment and what exactly you refer to? ",
+      "createdAt": "2026-03-05T13:11:13Z",
+      "updatedAt": "2026-03-16T14:28:30Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "[GF] I was hoping for text that is caveat the Internet segments can change their characteristics, that forwarding paths can change on a variety of timescales.",
+          "createdAt": "2026-03-16T14:26:37Z",
+          "updatedAt": "2026-03-16T14:26:37Z"
+        },
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is about S5.1 in -07",
+          "createdAt": "2026-03-16T14:28:30Z",
+          "updatedAt": "2026-03-16T14:28:30Z"
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "id": "I_kwDOItQjb87wGKdM",
+      "title": "[IESG Review Gorry] Align \"framework\" description",
+      "url": "https://github.com/getCUJO/QoOID/issues/33",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S1 - Comment\n> \u201cThis document defines a \u201cminimum viable framework,\u201d and later the \u201cgeneral\n> framework\u201d - please update the text to explain which is intended. - \n> ",
+      "createdAt": "2026-03-05T13:11:56Z",
+      "updatedAt": "2026-03-05T13:22:36Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 34,
+      "id": "I_kwDOItQjb87wGdQy",
+      "title": "[IESG Review Gorry] Condense Introduction & Section 2",
+      "url": "https://github.com/getCUJO/QoOID/issues/34",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> Overall I\n> found the introduction and section 2 were not clear and likely were far too\n> verbose, which seemed to mask the salient points that were being introduced. A\n> more concise introduction focussed on the key points would be easier to\n> understand. There is already a detailed overview in section 2.\n\nIke: \nI am a bit confused about the points you make about section 2.\nAre you saying that it is unclear and too verbose (as you say at the beginning of this comment) or is it a detailed overview (as you say at the end)?\nAs the overview is actually in Section 3, are you mainly saying that the Terminology section is too verbose? If yes, which of the definitions do you feel are too verbose? Happy to try and condense the definitions, too, but would be good to know which we should focus on.",
+      "createdAt": "2026-03-05T13:26:04Z",
+      "updatedAt": "2026-03-05T13:26:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 35,
+      "id": "I_kwDOItQjb87wGecw",
+      "title": "[IESG Review Gorry] Condensing Section 1 - 4",
+      "url": "https://github.com/getCUJO/QoOID/issues/35",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S1 - Comment\n> There is some repeated discussion across sections 1-4. I found that this\n> obscured, rather than provided background and these section would certainly\n> benefit from more review and revision to condense the material. \n",
+      "createdAt": "2026-03-05T13:27:03Z",
+      "updatedAt": "2026-03-05T13:27:03Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 36,
+      "id": "I_kwDOItQjb87wGfbS",
+      "title": "[IESG Review Gorry] Add brief description of TR-452.1 in Section 5(?)",
+      "url": "https://github.com/getCUJO/QoOID/issues/36",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> Please consider\n> if they could be more focussed on the essential background points. TR-452.1 is\n> mentioned, but this is not an IETF standard, please add a brief description of\n> the key relevant details relating to the present specification.",
+      "createdAt": "2026-03-05T13:27:52Z",
+      "updatedAt": "2026-03-05T13:27:52Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 37,
+      "id": "I_kwDOItQjb87wGhVr",
+      "title": "[IESG Review Gorry] Reduce \"sales-pitch\" style",
+      "url": "https://github.com/getCUJO/QoOID/issues/37",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S1 - Comment\n> The statement: \" Quality\n>    Attenuation meets most of the requirements for a meaningful network\n>    quality score set out in Section 4.1: it is composable, captures the\n>    ability of a network to satisfy application requirements, and can be\n>    compared to a variety of application needs.\"\n> - This text reads like a very strong statement for an IETF document, and more\n> like a sales-pitch. If there was strong consensus within the WG on this item,\n> please provide some reference - the Shepherd report suggests not - in which\n> case, please revise this statement, to simple facts. Similarly, \"owever,\n> educated assessments of expected outcomes remain achievable\". Similarly\n> asserting optimality is a very strong statement, much more than stating that\n> this can be used to \"optimise\", see: \"one for optimal application performance\".\n> Similarly, this looks like a significant over-statement for a standards\n> document: \" If these requirements are met, network operators can monitor and\n> test their network and understand where the true bottlenecks are, regardless of\n> network technology.\" \u201cThe novelty of Quality Attenuation lies in its unified\n> treatment of latency and loss within a single distributional framework.\u201c Please\n> remove the word novelty, this is not applicable to an SDO document. Please\n> simply state: \u201cThe Quality Attenuation framework provides unified treatment of\n> latency and loss within a single distributional framework.\u201c Please consider\n> changing: \u201c   Importantly, the framework does not enforce a minimum sample\n> count.\u201d to \u201cThis framework does not enforce a minimum sample count.\u201d - Please\n> do check the entire document carefully to avoid inadvertently making marketing\n> statements, that might be acceptable in a published paper, but are\n> inappropriate for an RFC.\n\n> ##  S5 - Comment.\n> I was very surprised to see the statement on \u201cnovelty\u201d in this sentence. The\n> IETF does not normally make claims on the novelty of its protocols, rather\n> specifications and other documents are normally based on their utility. Please\n> re-consider this statement:\n>      \u201cThe novelty of Quality Attenuation lies in\n>    its unified treatment of latency and loss within a single\n>    distributional framework...\u201d",
+      "createdAt": "2026-03-05T13:29:27Z",
+      "updatedAt": "2026-03-05T13:29:27Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 38,
+      "id": "I_kwDOItQjb87wGiSf",
+      "title": "[IESG Review Gorry] Describe intent for requirements more precisely",
+      "url": "https://github.com/getCUJO/QoOID/issues/38",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S4 - Comment\n> Sections 4 and 5 discuss topics around requirements but do not actually provide\n> clear requirements. There are requirements in the related specification of\n> TR-452.1, but the current text included in the document seems to motivate the\n> idea rather than specify things.  At least this needs to be explained what are\n> these requirements for? - specifying metrics? the framework itself? something\n> else?\n",
+      "createdAt": "2026-03-05T13:30:15Z",
+      "updatedAt": "2026-03-05T13:30:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 39,
+      "id": "I_kwDOItQjb87wGjCC",
+      "title": "[IESG Review Gorry] Omit Paragraphs (Clarification Needed)",
+      "url": "https://github.com/getCUJO/QoOID/issues/39",
+      "state": "CLOSED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ##  - Comment\n> The content of these paragraphs are motivational. Ought this to be omitted or\n> moved to section 1 and reduced, it does not appear to be part of the defined\n> framework.\n\n[IK] Which exact paragraphs are you referring to here?",
+      "createdAt": "2026-03-05T13:30:54Z",
+      "updatedAt": "2026-03-06T11:09:54Z",
+      "closedAt": "2026-03-06T11:09:53Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "[GF] I'm sorry this is a duplicate comment from me.",
+          "createdAt": "2026-03-06T11:09:53Z",
+          "updatedAt": "2026-03-06T11:09:53Z"
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "id": "I_kwDOItQjb87wGn1P",
+      "title": "[IESG Review Gorry] Update/Align Bandwidth/Throughput/Capacity Wording",
+      "url": "https://github.com/getCUJO/QoOID/issues/40",
+      "state": "CLOSED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S4 Term: bandwidth - Comment\n> The term bandwidth, rather than \u201cavailable capacity\u201d seems wrong in the context\n> of an end-to-end Internet path.\n\n> ## S7.5  - Comment\n> - See earlier note that this is likely not a measure of bandwidth, but the path\n> capacity.\n\n> ## S 5.2 - Comment\n> The following mixes the terms bandwidth and capacity. For an Internet path, I\n> think the \u201cavailable capacity\u201d is the term that is needed: \u201cApplications do of\n> course have throughput requirements, and thus a\n>    complete framework for application-level network quality must also\n>    take capacity into account.  Insufficient bandwidth may give\n>    unacceptable application outcomes without necessarily inducing a lot\n>    of latency or packet loss.  Therefore, the network requirements must\n>    include a minimum throughput requirement.\u201d",
+      "createdAt": "2026-03-05T13:34:46Z",
+      "updatedAt": "2026-03-09T08:04:19Z",
+      "closedAt": "2026-03-09T08:04:19Z",
+      "comments": []
+    },
+    {
+      "number": 41,
+      "id": "I_kwDOItQjb87wGr_o",
+      "title": "[IESG Review Gorry] Consider rewording / realigning \"different figures\" statement",
+      "url": "https://github.com/getCUJO/QoOID/issues/41",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S4.3 - Comment\n> I found the following statement rather odd: \u201cNote that developers of similar\n> applications may have arrived at different figures.\u201d This may be true how does\n> it impact the framework being defined and the need for standards?\n\n[IK] This note was mainly added to address previous comments requesting us to emphasise that the presented numbers are only examples, so it is not directly focused on the QoO framework. \nWe could, however, cross-reference to Section 6.1 to highlight that such aspects need to be considered when defining network performance requirements. ",
+      "createdAt": "2026-03-05T13:38:03Z",
+      "updatedAt": "2026-03-05T13:38:03Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 42,
+      "id": "I_kwDOItQjb87wGtDk",
+      "title": "[IESG Review Gorry] Clarify intent / considerations for \"future standardization activities\"",
+      "url": "https://github.com/getCUJO/QoOID/issues/42",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> > ## S 5.2 - Comment\n> I am unsure what to understand by \u201cStill, it might be beneficial for future\n>    standardization activities to converge on a fixed set of general\n>    percentiles or for specific applications / application classes to\n>    make QoO measurements between different networks or providers more\n>    comparable.\u201d\n> - Please explain in text.",
+      "createdAt": "2026-03-05T13:38:56Z",
+      "updatedAt": "2026-03-05T13:38:56Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 43,
+      "id": "I_kwDOItQjb87wGuTu",
+      "title": "[IESG Review Gorry] Rephrase Paragraph in Section 5.2",
+      "url": "https://github.com/getCUJO/QoOID/issues/43",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S 5.2 - Comment\n> This text seems to require additional work to render it suitable for an RFC:\n> \u201cTo that aim, first recall the key design goal of establishing a\n>    quantifiable distance between optimal and unacceptable network\n>    conditions, thereby enabling an objective assessment of relative\n>    quality.  Accordingly, the requirements specification is extended to\n>    define both the network performance required for achieving optimal\n>    application performance and the lower network performance threshold\n>    below which the application performance is considered unacceptable.\u201d\n>         \u2043       Please avoid the style of a technical paper, and simply state\n>         what is required, or must be clarified,\n\n> ## S5.2 - Comment\n> Please reconsider this accademic argument and replace by specification text:\n> \u201c To that aim, first recall the key design goal of establishing..\u201d",
+      "createdAt": "2026-03-05T13:39:57Z",
+      "updatedAt": "2026-03-05T13:40:57Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 44,
+      "id": "I_kwDOItQjb87wGvGk",
+      "title": "[IESG Review Gorry] Reword sentence in Section 5.2",
+      "url": "https://github.com/getCUJO/QoOID/issues/44",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S5.2 - Comment\n> \u201cA fully specified requirement can be thought of as specifying\u201d - This is not\n> good text for an RFC, please reword as either an example or a clear statement.\n",
+      "createdAt": "2026-03-05T13:40:37Z",
+      "updatedAt": "2026-03-05T13:40:37Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 45,
+      "id": "I_kwDOItQjb87wGwnN",
+      "title": "[IESG Review Gorry] Remove redundant \"one-way\" requirement",
+      "url": "https://github.com/getCUJO/QoOID/issues/45",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "##\nThe requirement to specify if a measurement was \u201cone-way\u201d seems to be defined\nin two places. Please remove one.",
+      "createdAt": "2026-03-05T13:41:51Z",
+      "updatedAt": "2026-04-08T08:10:22Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "One is here:\nhttps://github.com/getCUJO/QoOID/blob/main/draft-ietf-ippm-qoo.md?plain=1#L611\n\nThe other is here:\nhttps://github.com/getCUJO/QoOID/blob/main/draft-ietf-ippm-qoo.md?plain=1#L690\n\n\n",
+          "createdAt": "2026-03-05T13:56:16Z",
+          "updatedAt": "2026-03-05T13:56:16Z"
+        },
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "After re-checking this issue, one of the \"one-way\" requirements relates to measurements (i.e., that measurements need to specify if they are one-way) and the other relates to network performance requirements (i.e., if the performance requirements are one-way).\nSo no changes needed.",
+          "createdAt": "2026-04-08T08:10:22Z",
+          "updatedAt": "2026-04-08T08:10:22Z"
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "id": "I_kwDOItQjb87wGxmB",
+      "title": "[IESG Review Gorry] Add context why using approach in 6.1 is discouraged",
+      "url": "https://github.com/getCUJO/QoOID/issues/46",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S6.1  - Comment\n> \u201cDirect use of the approach described below in production scenarios is\n> discouraged.\u201d - This needs to be explained.",
+      "createdAt": "2026-03-05T13:42:39Z",
+      "updatedAt": "2026-03-05T13:42:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 47,
+      "id": "I_kwDOItQjb87wGySh",
+      "title": "[IESG Review Gorry] Consider switching away from \"optimal\"",
+      "url": "https://github.com/getCUJO/QoOID/issues/47",
+      "state": "CLOSED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S6.1  - Comment\n> \u201capplication performance is optimal\u201d\n> AND\n> \u201cthere are typically different levels of optimal performance\u201d\n> - The IETF is not generally in a position to discuss optimality, please\n> rephrase or justify how this optimum.\n\nWe would need to have a suitable alternative.",
+      "createdAt": "2026-03-05T13:43:15Z",
+      "updatedAt": "2026-03-06T11:02:27Z",
+      "closedAt": "2026-03-06T11:02:27Z",
+      "comments": []
+    },
+    {
+      "number": 48,
+      "id": "I_kwDOItQjb87wGy03",
+      "title": "[IESG Review Gorry] Remove User Study references",
+      "url": "https://github.com/getCUJO/QoOID/issues/48",
+      "state": "CLOSED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S6.6 - Comment\n> \u201ca study involving 25 participants tested the QoO\n>    framework in real-world settings [QoOUserStudy].  Participants used\n>    specially equipped routers in their homes for ten days, providing\n>    both network performance data and feedback through pre- and post-\n>    trial surveys.\n>    Participants found QoO scores more intuitive and actionable than\n>    traditional metrics (e.g., speed tests).  QoO directly aligned with\n>    their self-reported experiences, increasing trust and engagement.\n>    These results indicate that users find it easier to correlate QoO\n>    scores with real-world application performance than, for example, a\n>    speed test.  As such, QoO is expected to help... should be studied further, \u201d\n> It seems to me to be decidedly odd to make such a statement in a RFC based on a\n> small sample size. I\u2019d strongly urge removing this example and replacing this\n> by more robust analysis (*or completely removing this text*)",
+      "createdAt": "2026-03-05T13:43:42Z",
+      "updatedAt": "2026-03-09T08:25:58Z",
+      "closedAt": "2026-03-09T08:25:58Z",
+      "comments": []
+    },
+    {
+      "number": 49,
+      "id": "I_kwDOItQjb87wGzQ6",
+      "title": "[IESG Review Gorry] Provide Reference",
+      "url": "https://github.com/getCUJO/QoOID/issues/49",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S7.1 - Comment\n> - Please provide a citable reference.",
+      "createdAt": "2026-03-05T13:44:01Z",
+      "updatedAt": "2026-04-08T08:12:41Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This issue refers to Section 7.1. Volatile Networks.",
+          "createdAt": "2026-04-08T08:12:41Z",
+          "updatedAt": "2026-04-08T08:12:41Z"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "id": "I_kwDOItQjb87wG0PS",
+      "title": "[IESG Review Gorry] Update Security Considerations",
+      "url": "https://github.com/getCUJO/QoOID/issues/50",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## S8 - Comment\n> - Other IPPM documents have included detailed security considerations. Relevant\n> security considerations need to be cited here.\n> ## S8 - Comment\n> \u201cIf not properly rate-limited, this may inadvertently\n>    degrade services offered by a network or be exploited by malicious\n>    actors to launch DoS attacks.\u201d\n> - This is very true, and the relevant security considerations need to be cited\n> here.\n\nCheck for clear omissions.",
+      "createdAt": "2026-03-05T13:44:45Z",
+      "updatedAt": "2026-03-05T13:44:45Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 51,
+      "id": "I_kwDOItQjb87wG04x",
+      "title": "[IESG Review Gorry] Provide supporting material for linear measure",
+      "url": "https://github.com/getCUJO/QoOID/issues/51",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## - Comment\n> Please provide supporting material to explain how the linear distance measure\n> is to be used as a standard method.\n\n[IK] I am not sure I fully understand what you are saying. Could you maybe provide a little bit more context to / rephrase your comment?",
+      "createdAt": "2026-03-05T13:45:17Z",
+      "updatedAt": "2026-04-08T08:14:25Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "[GF] If you review does not find this, do not worry.",
+          "createdAt": "2026-04-08T08:14:25Z",
+          "updatedAt": "2026-04-08T08:14:25Z"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "id": "I_kwDOItQjb87wG1ZR",
+      "title": "[IESG Review Gorry] Sketch how to use continuous measurements",
+      "url": "https://github.com/getCUJO/QoOID/issues/52",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "comment"
+      ],
+      "body": "> ## - Comment\n> How does your reporting work with continuous measurements? Which data points do\n> you include in distributions or percentiles reported?  Last hour, day, week,\n> month, year, decade?\n\n[IK] There are different ways to implement this in practice (as you also sketch) but I would argue that mandating a specific approach is among the aspects we see in the scope for future standardization activities. We can maybe try to include some considerations on this in the operational considerations section but would refrain from focusing on a single approach. ",
+      "createdAt": "2026-03-05T13:45:43Z",
+      "updatedAt": "2026-03-05T13:45:43Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -72,7 +858,7 @@
       "number": 1,
       "id": "PR_kwDOItQjb85MA6Ks",
       "title": "Typos and nits",
-      "url": "https://github.com/domoslabs/QoOID/pull/1",
+      "url": "https://github.com/getCUJO/QoOID/pull/1",
       "state": "MERGED",
       "author": "Kevsy",
       "authorAssociation": "CONTRIBUTOR",
@@ -81,7 +867,7 @@
       "body": "",
       "createdAt": "2023-03-14T15:53:57Z",
       "updatedAt": "2023-03-16T11:30:52Z",
-      "baseRepository": "domoslabs/QoOID",
+      "baseRepository": "getCUJO/QoOID",
       "baseRefName": "main",
       "baseRefOid": "4a34a085fdbebbd870d63079688e0c308349e0d3",
       "headRepository": "Kevsy/QoOID",
@@ -100,7 +886,7 @@
       "number": 2,
       "id": "PR_kwDOItQjb85MeY07",
       "title": "Suggested additions inc. mobile considerations",
-      "url": "https://github.com/domoslabs/QoOID/pull/2",
+      "url": "https://github.com/getCUJO/QoOID/pull/2",
       "state": "CLOSED",
       "author": "Kevsy",
       "authorAssociation": "CONTRIBUTOR",
@@ -109,7 +895,7 @@
       "body": "",
       "createdAt": "2023-03-20T17:28:59Z",
       "updatedAt": "2023-03-20T17:30:34Z",
-      "baseRepository": "domoslabs/QoOID",
+      "baseRepository": "getCUJO/QoOID",
       "baseRefName": "main",
       "baseRefOid": "5ebc02e931e0e00a49d16db68608d90527e5b86e",
       "headRepository": "Kevsy/QoOID",
@@ -126,7 +912,7 @@
       "number": 4,
       "id": "PR_kwDOItQjb85MozBB",
       "title": "Added cellular network considerations",
-      "url": "https://github.com/domoslabs/QoOID/pull/4",
+      "url": "https://github.com/getCUJO/QoOID/pull/4",
       "state": "MERGED",
       "author": "Kevsy",
       "authorAssociation": "CONTRIBUTOR",
@@ -135,7 +921,7 @@
       "body": "Also changed 'bandwidth' to 'throughput' where necessary, to avoid ambiguity.",
       "createdAt": "2023-03-22T12:13:54Z",
       "updatedAt": "2023-03-22T15:16:19Z",
-      "baseRepository": "domoslabs/QoOID",
+      "baseRepository": "getCUJO/QoOID",
       "baseRefName": "main",
       "baseRefOid": "5ebc02e931e0e00a49d16db68608d90527e5b86e",
       "headRepository": "Kevsy/QoOID",
@@ -155,7 +941,7 @@
             "abbreviatedOid": "77a70c4"
           },
           "author": "bjornite",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-03-22T15:16:11Z",
@@ -163,6 +949,900 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOItQjb85VH_YO",
+      "title": "Added implementation status",
+      "url": "https://github.com/getCUJO/QoOID/pull/5",
+      "state": "MERGED",
+      "author": "bjornite",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-07-10T20:00:03Z",
+      "updatedAt": "2023-07-10T20:00:19Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "ffb31be492b969aedc7afb4d1186da897d06a7c6",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "ietf117",
+      "headRefOid": "d9fbaa910a24d4bb8a7ac2fa71e643c24a12dbbf",
+      "closedAt": "2023-07-10T20:00:11Z",
+      "mergedAt": "2023-07-10T20:00:11Z",
+      "mergedBy": "bjornite",
+      "mergeCommit": {
+        "oid": "a8657810080b4135b4ca0ab32f9f1c37c3cfd8f1"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOItQjb85l5fxo",
+      "title": "Fix a small typo in draft-olden-ippm-qoo.md",
+      "url": "https://github.com/getCUJO/QoOID/pull/11",
+      "state": "MERGED",
+      "author": "hawkinsw",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-03T03:51:59Z",
+      "updatedAt": "2024-02-08T12:29:24Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "c24a9acb4877a684b72ce98f8ad0fdfae423b886",
+      "headRepository": "hawkinsw/QoOID",
+      "headRefName": "patch-1",
+      "headRefOid": "5ff7e3271a10319397b4acc250db28c674344f01",
+      "closedAt": "2024-02-08T12:29:24Z",
+      "mergedAt": "2024-02-08T12:29:24Z",
+      "mergedBy": "bjornite",
+      "mergeCommit": {
+        "oid": "a7edbf847a35da74b251fc4cb0067e3056543159"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb85vd1iW",
+          "commit": {
+            "abbreviatedOid": "5ff7e32"
+          },
+          "author": "bjornite",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-08T12:28:02Z",
+          "updatedAt": "2024-02-08T12:28:02Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOItQjb86cEwcU",
+      "title": "Nits",
+      "url": "https://github.com/getCUJO/QoOID/pull/17",
+      "state": "MERGED",
+      "author": "ike-kunze",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Nits.",
+      "createdAt": "2025-06-25T14:49:10Z",
+      "updatedAt": "2026-01-02T13:50:10Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "06ab553da2d375e2b887ddaced480a5a14ac1657",
+      "headRepository": "ike-kunze/QoOID",
+      "headRefName": "nits",
+      "headRefOid": "110485f6ddb00592da3703cf092defd867626e0f",
+      "closedAt": "2026-01-02T13:50:10Z",
+      "mergedAt": "2026-01-02T13:50:10Z",
+      "mergedBy": "cj-bjorn-monclair",
+      "mergeCommit": {
+        "oid": "de25fecf6f227deea7933be457394dae7816fa46"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87X9PVG",
+          "commit": {
+            "abbreviatedOid": "a6b786f"
+          },
+          "author": "cj-bjorn-monclair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-02T13:47:10Z",
+          "updatedAt": "2026-01-02T13:47:10Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOItQjb87AJ7N7",
+      "title": "Address AD review, Early Perfmetrdir review, Remaining WGLC, additional feedback",
+      "url": "https://github.com/getCUJO/QoOID/pull/18",
+      "state": "MERGED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-01-29T14:57:34Z",
+      "updatedAt": "2026-01-29T15:58:12Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "de25fecf6f227deea7933be457394dae7816fa46",
+      "headRepository": "cj-ike-kunze/QoOID",
+      "headRefName": "ad_review",
+      "headRefOid": "03a7dd8ff37cd817c9084173c4942bd6c42829ea",
+      "closedAt": "2026-01-29T15:58:12Z",
+      "mergedAt": "2026-01-29T15:58:12Z",
+      "mergedBy": "cj-bjorn-monclair",
+      "mergeCommit": {
+        "oid": "8fe4de4b61ae0501d4c4f4b65a64fe8f521c05d3"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87d8awl",
+          "commit": {
+            "abbreviatedOid": "03a7dd8"
+          },
+          "author": "cj-bjorn-monclair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-29T15:58:05Z",
+          "updatedAt": "2026-01-29T15:58:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOItQjb87AWs8V",
+      "title": "Minor changes",
+      "url": "https://github.com/getCUJO/QoOID/pull/19",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "* minor edits\r\n* add missing references + help readers with explicit references to sections of a doc where to look at\r\n* reword to avoid that some references be normative (P.X)",
+      "createdAt": "2026-01-30T10:00:01Z",
+      "updatedAt": "2026-01-30T11:18:12Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "8fe4de4b61ae0501d4c4f4b65a64fe8f521c05d3",
+      "headRepository": "boucadair/QoOID",
+      "headRefName": "patch-1",
+      "headRefOid": "bce4b99762a93b24fb50ab9ff47a61c239d64daf",
+      "closedAt": "2026-01-30T11:18:11Z",
+      "mergedAt": "2026-01-30T11:18:11Z",
+      "mergedBy": "cj-bjorn-monclair",
+      "mergeCommit": {
+        "oid": "c42affad6940418f1b1b9392bb5de85799c101be"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87eMDjd",
+          "commit": {
+            "abbreviatedOid": "bce4b99"
+          },
+          "author": "cj-bjorn-monclair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-30T11:18:05Z",
+          "updatedAt": "2026-01-30T11:18:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOItQjb87EXHxP",
+      "title": "Address IETF LC Feedback",
+      "url": "https://github.com/getCUJO/QoOID/pull/20",
+      "state": "MERGED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "cj-bjorn-monclair"
+      ],
+      "labels": [],
+      "body": "- Clarify that Quality Attenuation is composable\r\n- Extend presentation of QoO calculation in overview\r\n- Restructure to focus on core contribution\r\n    - Move \"how to create performance requirement specification\" to Operational Considerations\r\n    - Move example measurement techniques to section on measurement methodology\r\n    - Move comparison of different quality metrics to the end of the draft + add QoO in the comparison\r\n- Add subsection on Composability and Use Cases to Operational Considerations\r\n- Change QoO calculations to pseudocode",
+      "createdAt": "2026-02-17T13:36:06Z",
+      "updatedAt": "2026-02-19T11:02:20Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "c42affad6940418f1b1b9392bb5de85799c101be",
+      "headRepository": "cj-ike-kunze/QoOID",
+      "headRefName": "ietf-lc",
+      "headRefOid": "b1a9f0fe6554c2483d76651d7fbcdab902eaa3c9",
+      "closedAt": "2026-02-19T11:02:19Z",
+      "mergedAt": "2026-02-19T11:02:19Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "34ea5d623800a899fbb6d303d6f13ed2638a8b80"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87jvMG-",
+          "commit": {
+            "abbreviatedOid": "7ec7f7b"
+          },
+          "author": "cj-bjorn-monclair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-02-18T16:03:48Z",
+          "updatedAt": "2026-02-18T16:03:48Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "nit: at latency_percentile[i] is a tad more precise?",
+              "createdAt": "2026-02-18T16:03:48Z",
+              "updatedAt": "2026-02-18T16:03:48Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOItQjb87E2RzZ",
+      "title": "Fix Reference",
+      "url": "https://github.com/getCUJO/QoOID/pull/21",
+      "state": "MERGED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "cj-ike-kunze"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-02-19T11:11:24Z",
+      "updatedAt": "2026-02-19T11:11:59Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "34ea5d623800a899fbb6d303d6f13ed2638a8b80",
+      "headRepository": "cj-ike-kunze/QoOID",
+      "headRefName": "ietf-lc",
+      "headRefOid": "49313476ec373d88d390d5b5caec54438edbdf0c",
+      "closedAt": "2026-02-19T11:11:59Z",
+      "mergedAt": "2026-02-19T11:11:59Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "67f7a72001eab347fe2a42014cdb897cfca85649"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOItQjb87FFtq0",
+      "title": "minor edits",
+      "url": "https://github.com/getCUJO/QoOID/pull/22",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "* fix nits\r\n* add a pointer for incremental deployment\r\n* split long para\r\n* move the comparaison to an appendix",
+      "createdAt": "2026-02-20T07:35:24Z",
+      "updatedAt": "2026-03-02T09:46:19Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "67f7a72001eab347fe2a42014cdb897cfca85649",
+      "headRepository": "boucadair/QoOID",
+      "headRefName": "main",
+      "headRefOid": "3b9965bdf6cf6a2b3f0eb6158f2306a7175fa4b4",
+      "closedAt": "2026-03-02T09:46:19Z",
+      "mergedAt": "2026-03-02T09:46:19Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "da0c139c9a695a9277e88d433bc85441930a6066"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 53,
+      "id": "PR_kwDOItQjb87IbDPd",
+      "title": "move FUT to an appendix + add warning this is not representative",
+      "url": "https://github.com/getCUJO/QoOID/pull/53",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #48\r\n\r\nI do see a value in keeping the study but we need to have some cautions about the scope/need other efforts",
+      "createdAt": "2026-03-06T07:16:34Z",
+      "updatedAt": "2026-03-09T08:25:57Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "da0c139c9a695a9277e88d433bc85441930a6066",
+      "headRepository": "boucadair/QoOID",
+      "headRefName": "patch-2",
+      "headRefOid": "307b9d8d726793dc04755039e0da5aee547c2a49",
+      "closedAt": "2026-03-09T08:25:57Z",
+      "mergedAt": "2026-03-09T08:25:57Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "25dd95bbf1755ef05186e75feb81aad745a8fa4d"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 54,
+      "id": "PR_kwDOItQjb87IbzT-",
+      "title": "definition of optimal performance",
+      "url": "https://github.com/getCUJO/QoOID/pull/54",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #47",
+      "createdAt": "2026-03-06T08:19:46Z",
+      "updatedAt": "2026-03-06T11:02:26Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "da0c139c9a695a9277e88d433bc85441930a6066",
+      "headRepository": "boucadair/QoOID",
+      "headRefName": "patch-3",
+      "headRefOid": "5fe288cbd728bfe0741d6d0a25b23374f2e23664",
+      "closedAt": "2026-03-06T11:02:26Z",
+      "mergedAt": "2026-03-06T11:02:26Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "c52f89da60eb39ad9d8288b6519e47bda29438eb"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 55,
+      "id": "PR_kwDOItQjb87Ii9Q7",
+      "title": "update links to see rendered version/diffs",
+      "url": "https://github.com/getCUJO/QoOID/pull/55",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-03-06T16:30:47Z",
+      "updatedAt": "2026-03-18T11:15:16Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "c52f89da60eb39ad9d8288b6519e47bda29438eb",
+      "headRepository": "boucadair/QoOID",
+      "headRefName": "patch-4",
+      "headRefOid": "10a63ff51154db73e2bcc2413e6a3fb7ecacba2e",
+      "closedAt": "2026-03-18T11:15:16Z",
+      "mergedAt": "2026-03-18T11:15:16Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "4aaa2d8f6250f88efe5cc1c7a6c377898ef6dbc6"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 56,
+      "id": "PR_kwDOItQjb87I_ddg",
+      "title": "Align Use of Bandwidth/Capacity/Throughput (Fixes #40)",
+      "url": "https://github.com/getCUJO/QoOID/pull/56",
+      "state": "MERGED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-03-09T08:01:39Z",
+      "updatedAt": "2026-03-09T08:04:30Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "c52f89da60eb39ad9d8288b6519e47bda29438eb",
+      "headRepository": "cj-ike-kunze/QoOID",
+      "headRefName": "issue-40",
+      "headRefOid": "be52d635bf21ae13cfb3ff192483d91482e70c5b",
+      "closedAt": "2026-03-09T08:04:18Z",
+      "mergedAt": "2026-03-09T08:04:18Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "e0779f2e7d5851d4e6a94370c7929b195ce8ab5c"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 57,
+      "id": "PR_kwDOItQjb87KaLtP",
+      "title": "Condense S1. Integrate former S3 and S5. Sharpen req language. Former S4 -> appendix.",
+      "url": "https://github.com/getCUJO/QoOID/pull/57",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR provides a suggestion for addressing several issues as part of a larger rewrite + restructuring.\r\n\r\n#34 #35 The PR significantly condenses the introduction and eliminates redundancies in the former S1 to S5.\r\nAs part of these changes, the former S3 (QoO Overview) is now integrated in the full QoO Framework Section (former Sec 5).\r\n\r\n#38 The PR moves the \"design considerations\" (former S4) to the appendix and instead provides a brief design considerations summary in a dedicated background section.\r\n\r\n#36 The dedicated background section now includes a brief paragraph about Quality Attenuation and the Operational Considerations section includes a focused disambiguation between Quality Attenuation, QoO, QoS, and QoE.\r\n\r\n#25 #33 The PR aligns definitions of the QoO framework and defines more explicitly what exactly the framework entails already in the introduction.\r\n\r\n#27 The PR provides a more clearly structured QoO framework section and more clearly states what is required. This issue is also partially addresses by moving the design considerations section to the appendix (see also #38) ; corresponding changes to that are currently still missing.\r\n\r\n#37 The PR provides a more neutral description of the QoO framework.\r\n\r\n#42 The PR clarifies throughout the document (starting with Section 1.1) that some aspects are out of scope and expected to be addressed by future documents.\r\n\r\n#44 The PR embeds the sentence in the text. \r\n\r\n#46 The PR provides a short additional comment on why the approach is discouraged.\r\n\r\nCorresponding change that is still missing:\r\n- Rephrase text in the design considerations section to emphasize that those are design considerations for the QoO framework and not requirements for implementations.",
+      "createdAt": "2026-03-13T16:00:28Z",
+      "updatedAt": "2026-04-08T08:06:11Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "25dd95bbf1755ef05186e75feb81aad745a8fa4d",
+      "headRepository": "cj-ike-kunze/QoOID",
+      "headRefName": "condense-s1-to-s4",
+      "headRefOid": "2d8dbdde6af111eddfe431a2cd76d449665f296f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "#31 The PR includes a small anchor in the \"Reporting Measurement Results\" section on path variability with more information provided in a dedicated \"Path stability\" section within the operational considerations section\r\n#32 The PR touches upon load balancing in the \"Measurement Considerations\" section with more context provided in the above mentioned path stability section.",
+          "createdAt": "2026-03-17T12:26:49Z",
+          "updatedAt": "2026-03-17T12:26:49Z"
+        },
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "#43 The PR removes the mentioned paragraph.",
+          "createdAt": "2026-04-08T08:06:11Z",
+          "updatedAt": "2026-04-08T08:06:11Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 58,
+      "id": "PR_kwDOItQjb87LhVpi",
+      "title": "Bump actions/checkout from 4 to 6",
+      "url": "https://github.com/getCUJO/QoOID/pull/58",
+      "state": "OPEN",
+      "author": "dependabot",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "dependencies",
+        "github_actions"
+      ],
+      "body": "Bumps [actions/checkout](https://github.com/actions/checkout) from 4 to 6.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/checkout/releases\">actions/checkout's releases</a>.</em></p>\n<blockquote>\n<h2>v6.0.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update README to include Node.js 24 support details and requirements by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2248\">actions/checkout#2248</a></li>\n<li>Persist creds to a separate file by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2286\">actions/checkout#2286</a></li>\n<li>v6-beta by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2298\">actions/checkout#2298</a></li>\n<li>update readme/changelog for v6 by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2311\">actions/checkout#2311</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/checkout/compare/v5.0.0...v6.0.0\">https://github.com/actions/checkout/compare/v5.0.0...v6.0.0</a></p>\n<h2>v6-beta</h2>\n<h2>What's Changed</h2>\n<p>Updated persist-credentials to store the credentials under <code>$RUNNER_TEMP</code> instead of directly in the local git config.</p>\n<p>This requires a minimum Actions Runner version of <a href=\"https://github.com/actions/runner/releases/tag/v2.329.0\">v2.329.0</a> to access the persisted credentials for <a href=\"https://docs.github.com/en/actions/tutorials/use-containerized-services/create-a-docker-container-action\">Docker container action</a> scenarios.</p>\n<h2>v5.0.1</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Port v6 cleanup to v5 by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2301\">actions/checkout#2301</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/checkout/compare/v5...v5.0.1\">https://github.com/actions/checkout/compare/v5...v5.0.1</a></p>\n<h2>v5.0.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update actions checkout to use node 24 by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2226\">actions/checkout#2226</a></li>\n<li>Prepare v5.0.0 release by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2238\">actions/checkout#2238</a></li>\n</ul>\n<h2>\u26a0\ufe0f Minimum Compatible Runner Version</h2>\n<p><strong>v2.327.1</strong><br />\n<a href=\"https://github.com/actions/runner/releases/tag/v2.327.1\">Release Notes</a></p>\n<p>Make sure your runner is updated to this version or newer to use this release.</p>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/checkout/compare/v4...v5.0.0\">https://github.com/actions/checkout/compare/v4...v5.0.0</a></p>\n<h2>v4.3.1</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Port v6 cleanup to v4 by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2305\">actions/checkout#2305</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/checkout/compare/v4...v4.3.1\">https://github.com/actions/checkout/compare/v4...v4.3.1</a></p>\n<h2>v4.3.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>docs: update README.md by <a href=\"https://github.com/motss\"><code>@\u200bmotss</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1971\">actions/checkout#1971</a></li>\n<li>Add internal repos for checking out multiple repositories by <a href=\"https://github.com/mouismail\"><code>@\u200bmouismail</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1977\">actions/checkout#1977</a></li>\n<li>Documentation update - add recommended permissions to Readme by <a href=\"https://github.com/benwells\"><code>@\u200bbenwells</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2043\">actions/checkout#2043</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/checkout/blob/main/CHANGELOG.md\">actions/checkout's changelog</a>.</em></p>\n<blockquote>\n<h1>Changelog</h1>\n<h2>v6.0.2</h2>\n<ul>\n<li>Fix tag handling: preserve annotations and explicit fetch-tags by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2356\">actions/checkout#2356</a></li>\n</ul>\n<h2>v6.0.1</h2>\n<ul>\n<li>Add worktree support for persist-credentials includeIf by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2327\">actions/checkout#2327</a></li>\n</ul>\n<h2>v6.0.0</h2>\n<ul>\n<li>Persist creds to a separate file by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2286\">actions/checkout#2286</a></li>\n<li>Update README to include Node.js 24 support details and requirements by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2248\">actions/checkout#2248</a></li>\n</ul>\n<h2>v5.0.1</h2>\n<ul>\n<li>Port v6 cleanup to v5 by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2301\">actions/checkout#2301</a></li>\n</ul>\n<h2>v5.0.0</h2>\n<ul>\n<li>Update actions checkout to use node 24 by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2226\">actions/checkout#2226</a></li>\n</ul>\n<h2>v4.3.1</h2>\n<ul>\n<li>Port v6 cleanup to v4 by <a href=\"https://github.com/ericsciple\"><code>@\u200bericsciple</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2305\">actions/checkout#2305</a></li>\n</ul>\n<h2>v4.3.0</h2>\n<ul>\n<li>docs: update README.md by <a href=\"https://github.com/motss\"><code>@\u200bmotss</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1971\">actions/checkout#1971</a></li>\n<li>Add internal repos for checking out multiple repositories by <a href=\"https://github.com/mouismail\"><code>@\u200bmouismail</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1977\">actions/checkout#1977</a></li>\n<li>Documentation update - add recommended permissions to Readme by <a href=\"https://github.com/benwells\"><code>@\u200bbenwells</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2043\">actions/checkout#2043</a></li>\n<li>Adjust positioning of user email note and permissions heading by <a href=\"https://github.com/joshmgross\"><code>@\u200bjoshmgross</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2044\">actions/checkout#2044</a></li>\n<li>Update README.md by <a href=\"https://github.com/nebuk89\"><code>@\u200bnebuk89</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2194\">actions/checkout#2194</a></li>\n<li>Update CODEOWNERS for actions by <a href=\"https://github.com/TingluoHuang\"><code>@\u200bTingluoHuang</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2224\">actions/checkout#2224</a></li>\n<li>Update package dependencies by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/2236\">actions/checkout#2236</a></li>\n</ul>\n<h2>v4.2.2</h2>\n<ul>\n<li><code>url-helper.ts</code> now leverages well-known environment variables by <a href=\"https://github.com/jww3\"><code>@\u200bjww3</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1941\">actions/checkout#1941</a></li>\n<li>Expand unit test coverage for <code>isGhes</code> by <a href=\"https://github.com/jww3\"><code>@\u200bjww3</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1946\">actions/checkout#1946</a></li>\n</ul>\n<h2>v4.2.1</h2>\n<ul>\n<li>Check out other refs/* by commit if provided, fall back to ref by <a href=\"https://github.com/orhantoy\"><code>@\u200borhantoy</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1924\">actions/checkout#1924</a></li>\n</ul>\n<h2>v4.2.0</h2>\n<ul>\n<li>Add Ref and Commit outputs by <a href=\"https://github.com/lucacome\"><code>@\u200blucacome</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1180\">actions/checkout#1180</a></li>\n<li>Dependency updates by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a>- <a href=\"https://redirect.github.com/actions/checkout/pull/1777\">actions/checkout#1777</a>, <a href=\"https://redirect.github.com/actions/checkout/pull/1872\">actions/checkout#1872</a></li>\n</ul>\n<h2>v4.1.7</h2>\n<ul>\n<li>Bump the minor-npm-dependencies group across 1 directory with 4 updates by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1739\">actions/checkout#1739</a></li>\n<li>Bump actions/checkout from 3 to 4 by <a href=\"https://github.com/dependabot\"><code>@\u200bdependabot</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1697\">actions/checkout#1697</a></li>\n<li>Check out other refs/* by commit by <a href=\"https://github.com/orhantoy\"><code>@\u200borhantoy</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1774\">actions/checkout#1774</a></li>\n<li>Pin actions/checkout's own workflows to a known, good, stable version. by <a href=\"https://github.com/jww3\"><code>@\u200bjww3</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1776\">actions/checkout#1776</a></li>\n</ul>\n<h2>v4.1.6</h2>\n<ul>\n<li>Check platform to set archive extension appropriately by <a href=\"https://github.com/cory-miller\"><code>@\u200bcory-miller</code></a> in <a href=\"https://redirect.github.com/actions/checkout/pull/1732\">actions/checkout#1732</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/checkout/commit/de0fac2e4500dabe0009e67214ff5f5447ce83dd\"><code>de0fac2</code></a> Fix tag handling: preserve annotations and explicit fetch-tags (<a href=\"https://redirect.github.com/actions/checkout/issues/2356\">#2356</a>)</li>\n<li><a href=\"https://github.com/actions/checkout/commit/064fe7f3312418007dea2b49a19844a9ee378f49\"><code>064fe7f</code></a> Add orchestration_id to git user-agent when ACTIONS_ORCHESTRATION_ID is set (...</li>\n<li><a href=\"https://github.com/actions/checkout/commit/8e8c483db84b4bee98b60c0593521ed34d9990e8\"><code>8e8c483</code></a> Clarify v6 README (<a href=\"https://redirect.github.com/actions/checkout/issues/2328\">#2328</a>)</li>\n<li><a href=\"https://github.com/actions/checkout/commit/033fa0dc0b82693d8986f1016a0ec2c5e7d9cbb1\"><code>033fa0d</code></a> Add worktree support for persist-credentials includeIf (<a href=\"https://redirect.github.com/actions/checkout/issues/2327\">#2327</a>)</li>\n<li><a href=\"https://github.com/actions/checkout/commit/c2d88d3ecc89a9ef08eebf45d9637801dcee7eb5\"><code>c2d88d3</code></a> Update all references from v5 and v4 to v6 (<a href=\"https://redirect.github.com/actions/checkout/issues/2314\">#2314</a>)</li>\n<li><a href=\"https://github.com/actions/checkout/commit/1af3b93b6815bc44a9784bd300feb67ff0d1eeb3\"><code>1af3b93</code></a> update readme/changelog for v6 (<a href=\"https://redirect.github.com/actions/checkout/issues/2311\">#2311</a>)</li>\n<li><a href=\"https://github.com/actions/checkout/commit/71cf2267d89c5cb81562390fa70a37fa40b1305e\"><code>71cf226</code></a> v6-beta (<a href=\"https://redirect.github.com/actions/checkout/issues/2298\">#2298</a>)</li>\n<li><a href=\"https://github.com/actions/checkout/commit/069c6959146423d11cd0184e6accf28f9d45f06e\"><code>069c695</code></a> Persist creds to a separate file (<a href=\"https://redirect.github.com/actions/checkout/issues/2286\">#2286</a>)</li>\n<li><a href=\"https://github.com/actions/checkout/commit/ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493\"><code>ff7abcd</code></a> Update README to include Node.js 24 support details and requirements (<a href=\"https://redirect.github.com/actions/checkout/issues/2248\">#2248</a>)</li>\n<li><a href=\"https://github.com/actions/checkout/commit/08c6903cd8c0fde910a37f88322edcfb5dd907a8\"><code>08c6903</code></a> Prepare v5.0.0 release (<a href=\"https://redirect.github.com/actions/checkout/issues/2238\">#2238</a>)</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/checkout/compare/v4...v6\">compare view</a></li>\n</ul>\n</details>\n<br />\n",
+      "createdAt": "2026-03-18T12:04:00Z",
+      "updatedAt": "2026-04-13T12:27:44Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "dependabot/github_actions/actions/checkout-6",
+      "headRefOid": "0e208cbd646955c7cf657eddb7a5aa100dd5af33",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 59,
+      "id": "PR_kwDOItQjb87LhVxe",
+      "title": "Bump actions/upload-artifact from 4 to 7",
+      "url": "https://github.com/getCUJO/QoOID/pull/59",
+      "state": "OPEN",
+      "author": "dependabot",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "dependencies",
+        "github_actions"
+      ],
+      "body": "Bumps [actions/upload-artifact](https://github.com/actions/upload-artifact) from 4 to 7.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/upload-artifact/releases\">actions/upload-artifact's releases</a>.</em></p>\n<blockquote>\n<h2>v7.0.0</h2>\n<h2>v7 What's new</h2>\n<h3>Direct Uploads</h3>\n<p>Adds support for uploading single files directly (unzipped). Callers can set the new <code>archive</code> parameter to <code>false</code> to skip zipping the file during upload. Right now, we only support single files. The action will fail if the glob passed resolves to multiple files. The <code>name</code> parameter is also ignored with this setting. Instead, the name of the artifact will be the name of the uploaded file.</p>\n<h3>ESM</h3>\n<p>To support new versions of the <code>@actions/*</code> packages, we've upgraded the package to ESM.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Add proxy integration test by <a href=\"https://github.com/Link\"><code>@\u200bLink</code></a>- in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/754\">actions/upload-artifact#754</a></li>\n<li>Upgrade the module to ESM and bump dependencies by <a href=\"https://github.com/danwkennedy\"><code>@\u200bdanwkennedy</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/762\">actions/upload-artifact#762</a></li>\n<li>Support direct file uploads by <a href=\"https://github.com/danwkennedy\"><code>@\u200bdanwkennedy</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/764\">actions/upload-artifact#764</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/Link\"><code>@\u200bLink</code></a>- made their first contribution in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/754\">actions/upload-artifact#754</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/upload-artifact/compare/v6...v7.0.0\">https://github.com/actions/upload-artifact/compare/v6...v7.0.0</a></p>\n<h2>v6.0.0</h2>\n<h2>v6 - What's new</h2>\n<blockquote>\n<p>[!IMPORTANT]\nactions/upload-artifact@v6 now runs on Node.js 24 (<code>runs.using: node24</code>) and requires a minimum Actions Runner version of 2.327.1. If you are using self-hosted runners, ensure they are updated before upgrading.</p>\n</blockquote>\n<h3>Node.js 24</h3>\n<p>This release updates the runtime to Node.js 24. v5 had preliminary support for Node.js 24, however this action was by default still running on Node.js 20. Now this action by default will run on Node.js 24.</p>\n<h2>What's Changed</h2>\n<ul>\n<li>Upload Artifact Node 24 support by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/719\">actions/upload-artifact#719</a></li>\n<li>fix: update <code>@\u200bactions/artifact</code> for Node.js 24 punycode deprecation by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/744\">actions/upload-artifact#744</a></li>\n<li>prepare release v6.0.0 for Node.js 24 support by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/745\">actions/upload-artifact#745</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/upload-artifact/compare/v5.0.0...v6.0.0\">https://github.com/actions/upload-artifact/compare/v5.0.0...v6.0.0</a></p>\n<h2>v5.0.0</h2>\n<h2>What's Changed</h2>\n<p><strong>BREAKING CHANGE:</strong> this update supports Node <code>v24.x</code>. This is not a breaking change per-se but we're treating it as such.</p>\n<ul>\n<li>Update README.md by <a href=\"https://github.com/GhadimiR\"><code>@\u200bGhadimiR</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/681\">actions/upload-artifact#681</a></li>\n<li>Update README.md by <a href=\"https://github.com/nebuk89\"><code>@\u200bnebuk89</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/712\">actions/upload-artifact#712</a></li>\n<li>Readme: spell out the first use of GHES by <a href=\"https://github.com/danwkennedy\"><code>@\u200bdanwkennedy</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/727\">actions/upload-artifact#727</a></li>\n<li>Update GHES guidance to include reference to Node 20 version by <a href=\"https://github.com/patrikpolyak\"><code>@\u200bpatrikpolyak</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/725\">actions/upload-artifact#725</a></li>\n<li>Bump <code>@actions/artifact</code> to <code>v4.0.0</code></li>\n<li>Prepare <code>v5.0.0</code> by <a href=\"https://github.com/danwkennedy\"><code>@\u200bdanwkennedy</code></a> in <a href=\"https://redirect.github.com/actions/upload-artifact/pull/734\">actions/upload-artifact#734</a></li>\n</ul>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/043fb46d1a93c77aae656e7c1c64a875d1fc6a0a\"><code>043fb46</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/upload-artifact/issues/797\">#797</a> from actions/yacaovsnc/update-dependency</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/634250c1388765ea7ed0f053e636f1f399000b94\"><code>634250c</code></a> Include changes in typespec/ts-http-runtime 0.3.5</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/e454baaac2be505c9450e11b8f3215c6fc023ce8\"><code>e454baa</code></a> Readme: bump all the example versions to v7 (<a href=\"https://redirect.github.com/actions/upload-artifact/issues/796\">#796</a>)</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/74fad66b98a6d799dc004d3353ccd0e6f6b2530e\"><code>74fad66</code></a> Update the readme with direct upload details (<a href=\"https://redirect.github.com/actions/upload-artifact/issues/795\">#795</a>)</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/bbbca2ddaa5d8feaa63e36b76fdaad77386f024f\"><code>bbbca2d</code></a> Support direct file uploads (<a href=\"https://redirect.github.com/actions/upload-artifact/issues/764\">#764</a>)</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/589182c5a4cec8920b8c1bce3e2fab1c97a02296\"><code>589182c</code></a> Upgrade the module to ESM and bump dependencies (<a href=\"https://redirect.github.com/actions/upload-artifact/issues/762\">#762</a>)</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/47309c993abb98030a35d55ef7ff34b7fa1074b5\"><code>47309c9</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/upload-artifact/issues/754\">#754</a> from actions/Link-/add-proxy-integration-tests</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/02a8460834e70dab0ce194c64360c59dc1475ef0\"><code>02a8460</code></a> Add proxy integration test</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/b7c566a772e6b6bfb58ed0dc250532a479d7789f\"><code>b7c566a</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/upload-artifact/issues/745\">#745</a> from actions/upload-artifact-v6-release</li>\n<li><a href=\"https://github.com/actions/upload-artifact/commit/e516bc8500aaf3d07d591fcd4ae6ab5f9c391d5b\"><code>e516bc8</code></a> docs: correct description of Node.js 24 support in README</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/upload-artifact/compare/v4...v7\">compare view</a></li>\n</ul>\n</details>\n<br />\n",
+      "createdAt": "2026-03-18T12:04:05Z",
+      "updatedAt": "2026-04-13T12:27:44Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "dependabot/github_actions/actions/upload-artifact-7",
+      "headRefOid": "8712170c3c6afaa9c52f374d5d89de90a3070b56",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 60,
+      "id": "PR_kwDOItQjb87LhV3Y",
+      "title": "Bump actions/cache from 4 to 5",
+      "url": "https://github.com/getCUJO/QoOID/pull/60",
+      "state": "OPEN",
+      "author": "dependabot",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "dependencies",
+        "github_actions"
+      ],
+      "body": "Bumps [actions/cache](https://github.com/actions/cache) from 4 to 5.\n<details>\n<summary>Release notes</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/cache/releases\">actions/cache's releases</a>.</em></p>\n<blockquote>\n<h2>v5.0.0</h2>\n<blockquote>\n<p>[!IMPORTANT]\n<strong><code>actions/cache@v5</code> runs on the Node.js 24 runtime and requires a minimum Actions Runner version of <code>2.327.1</code>.</strong></p>\n<p>If you are using self-hosted runners, ensure they are updated before upgrading.</p>\n</blockquote>\n<hr />\n<h2>What's Changed</h2>\n<ul>\n<li>Upgrade to use node24 by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/cache/pull/1630\">actions/cache#1630</a></li>\n<li>Prepare v5.0.0 release by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/cache/pull/1684\">actions/cache#1684</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/cache/compare/v4.3.0...v5.0.0\">https://github.com/actions/cache/compare/v4.3.0...v5.0.0</a></p>\n<h2>v4.3.0</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Add note on runner versions by <a href=\"https://github.com/GhadimiR\"><code>@\u200bGhadimiR</code></a> in <a href=\"https://redirect.github.com/actions/cache/pull/1642\">actions/cache#1642</a></li>\n<li>Prepare <code>v4.3.0</code> release by <a href=\"https://github.com/Link\"><code>@\u200bLink</code></a>- in <a href=\"https://redirect.github.com/actions/cache/pull/1655\">actions/cache#1655</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/GhadimiR\"><code>@\u200bGhadimiR</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/cache/pull/1642\">actions/cache#1642</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/cache/compare/v4...v4.3.0\">https://github.com/actions/cache/compare/v4...v4.3.0</a></p>\n<h2>v4.2.4</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update README.md by <a href=\"https://github.com/nebuk89\"><code>@\u200bnebuk89</code></a> in <a href=\"https://redirect.github.com/actions/cache/pull/1620\">actions/cache#1620</a></li>\n<li>Upgrade <code>@actions/cache</code> to <code>4.0.5</code> and move <code>@protobuf-ts/plugin</code> to dev depdencies by <a href=\"https://github.com/Link\"><code>@\u200bLink</code></a>- in <a href=\"https://redirect.github.com/actions/cache/pull/1634\">actions/cache#1634</a></li>\n<li>Prepare release <code>4.2.4</code> by <a href=\"https://github.com/Link\"><code>@\u200bLink</code></a>- in <a href=\"https://redirect.github.com/actions/cache/pull/1636\">actions/cache#1636</a></li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/nebuk89\"><code>@\u200bnebuk89</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/cache/pull/1620\">actions/cache#1620</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/cache/compare/v4...v4.2.4\">https://github.com/actions/cache/compare/v4...v4.2.4</a></p>\n<h2>v4.2.3</h2>\n<h2>What's Changed</h2>\n<ul>\n<li>Update to use <code>@\u200bactions/cache</code> 4.0.3 package &amp; prepare for new release by <a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> in <a href=\"https://redirect.github.com/actions/cache/pull/1577\">actions/cache#1577</a> (SAS tokens for cache entries are now masked in debug logs)</li>\n</ul>\n<h2>New Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/salmanmkc\"><code>@\u200bsalmanmkc</code></a> made their first contribution in <a href=\"https://redirect.github.com/actions/cache/pull/1577\">actions/cache#1577</a></li>\n</ul>\n<p><strong>Full Changelog</strong>: <a href=\"https://github.com/actions/cache/compare/v4.2.2...v4.2.3\">https://github.com/actions/cache/compare/v4.2.2...v4.2.3</a></p>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Changelog</summary>\n<p><em>Sourced from <a href=\"https://github.com/actions/cache/blob/main/RELEASES.md\">actions/cache's changelog</a>.</em></p>\n<blockquote>\n<h1>Releases</h1>\n<h2>How to prepare a release</h2>\n<blockquote>\n<p>[!NOTE]<br />\nRelevant for maintainers with write access only.</p>\n</blockquote>\n<ol>\n<li>Switch to a new branch from <code>main</code>.</li>\n<li>Run <code>npm test</code> to ensure all tests are passing.</li>\n<li>Update the version in <a href=\"https://github.com/actions/cache/blob/main/package.json\"><code>https://github.com/actions/cache/blob/main/package.json</code></a>.</li>\n<li>Run <code>npm run build</code> to update the compiled files.</li>\n<li>Update this <a href=\"https://github.com/actions/cache/blob/main/RELEASES.md\"><code>https://github.com/actions/cache/blob/main/RELEASES.md</code></a> with the new version and changes in the <code>## Changelog</code> section.</li>\n<li>Run <code>licensed cache</code> to update the license report.</li>\n<li>Run <code>licensed status</code> and resolve any warnings by updating the <a href=\"https://github.com/actions/cache/blob/main/.licensed.yml\"><code>https://github.com/actions/cache/blob/main/.licensed.yml</code></a> file with the exceptions.</li>\n<li>Commit your changes and push your branch upstream.</li>\n<li>Open a pull request against <code>main</code> and get it reviewed and merged.</li>\n<li>Draft a new release <a href=\"https://github.com/actions/cache/releases\">https://github.com/actions/cache/releases</a> use the same version number used in <code>package.json</code>\n<ol>\n<li>Create a new tag with the version number.</li>\n<li>Auto generate release notes and update them to match the changes you made in <code>RELEASES.md</code>.</li>\n<li>Toggle the set as the latest release option.</li>\n<li>Publish the release.</li>\n</ol>\n</li>\n<li>Navigate to <a href=\"https://github.com/actions/cache/actions/workflows/release-new-action-version.yml\">https://github.com/actions/cache/actions/workflows/release-new-action-version.yml</a>\n<ol>\n<li>There should be a workflow run queued with the same version number.</li>\n<li>Approve the run to publish the new version and update the major tags for this action.</li>\n</ol>\n</li>\n</ol>\n<h2>Changelog</h2>\n<h3>5.0.4</h3>\n<ul>\n<li>Bump <code>minimatch</code> to v3.1.5 (fixes ReDoS via globstar patterns)</li>\n<li>Bump <code>undici</code> to v6.24.1 (WebSocket decompression bomb protection, header validation fixes)</li>\n<li>Bump <code>fast-xml-parser</code> to v5.5.6</li>\n</ul>\n<h3>5.0.3</h3>\n<ul>\n<li>Bump <code>@actions/cache</code> to v5.0.5 (Resolves: <a href=\"https://github.com/actions/cache/security/dependabot/33\">https://github.com/actions/cache/security/dependabot/33</a>)</li>\n<li>Bump <code>@actions/core</code> to v2.0.3</li>\n</ul>\n<h3>5.0.2</h3>\n<ul>\n<li>Bump <code>@actions/cache</code> to v5.0.3 <a href=\"https://redirect.github.com/actions/cache/pull/1692\">#1692</a></li>\n</ul>\n<h3>5.0.1</h3>\n<ul>\n<li>Update <code>@azure/storage-blob</code> to <code>^12.29.1</code> via <code>@actions/cache@5.0.1</code> <a href=\"https://redirect.github.com/actions/cache/pull/1685\">#1685</a></li>\n</ul>\n<h3>5.0.0</h3>\n<blockquote>\n<p>[!IMPORTANT]\n<code>actions/cache@v5</code> runs on the Node.js 24 runtime and requires a minimum Actions Runner version of <code>2.327.1</code>.</p>\n</blockquote>\n<!-- raw HTML omitted -->\n</blockquote>\n<p>... (truncated)</p>\n</details>\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/actions/cache/commit/668228422ae6a00e4ad889ee87cd7109ec5666a7\"><code>6682284</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/cache/issues/1738\">#1738</a> from actions/prepare-v5.0.4</li>\n<li><a href=\"https://github.com/actions/cache/commit/e34039626f957d3e3e50843d15c1b20547fc90e2\"><code>e340396</code></a> Update RELEASES</li>\n<li><a href=\"https://github.com/actions/cache/commit/8a671105293e81530f1af99863cdf94550aba1a6\"><code>8a67110</code></a> Add licenses</li>\n<li><a href=\"https://github.com/actions/cache/commit/1865903e1b0cb750dda9bc5c58be03424cc62830\"><code>1865903</code></a> Update dependencies &amp; patch security vulnerabilities</li>\n<li><a href=\"https://github.com/actions/cache/commit/565629816435f6c0b50676926c9b05c254113c0c\"><code>5656298</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/cache/issues/1722\">#1722</a> from RyPeck/patch-1</li>\n<li><a href=\"https://github.com/actions/cache/commit/4e380d19e192ace8e86f23f32ca6fdec98a673c6\"><code>4e380d1</code></a> Fix cache key in examples.md for bun.lock</li>\n<li><a href=\"https://github.com/actions/cache/commit/b7e8d49f17405cc70c1c120101943203c98d3a4b\"><code>b7e8d49</code></a> Merge pull request <a href=\"https://redirect.github.com/actions/cache/issues/1701\">#1701</a> from actions/Link-/fix-proxy-integration-tests</li>\n<li><a href=\"https://github.com/actions/cache/commit/984a21b1cb176a0936f4edafb42be88978f93ef1\"><code>984a21b</code></a> Add traffic sanity check step</li>\n<li><a href=\"https://github.com/actions/cache/commit/acf2f1f76affe1ef80eee8e56dfddd3b3e5f0fba\"><code>acf2f1f</code></a> Fix resolution</li>\n<li><a href=\"https://github.com/actions/cache/commit/95a07c51324af6001b4d6ab8dff29f4dfadc2531\"><code>95a07c5</code></a> Add wait for proxy</li>\n<li>Additional commits viewable in <a href=\"https://github.com/actions/cache/compare/v4...v5\">compare view</a></li>\n</ul>\n</details>\n<br />\n",
+      "createdAt": "2026-03-18T12:04:10Z",
+      "updatedAt": "2026-04-13T12:27:41Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "dependabot/github_actions/actions/cache-5",
+      "headRefOid": "d5d6d057b52ac5f60145f9393aa11d1af3952294",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 61,
+      "id": "PR_kwDOItQjb87NOPjE",
+      "title": "Bump martinthomson/i-d-template from 0bc4b608ae41182aae46cbc51463f6bbf12ce845 to cad990c4f607b15b93d36da5970010806affad24",
+      "url": "https://github.com/getCUJO/QoOID/pull/61",
+      "state": "CLOSED",
+      "author": "dependabot",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "dependencies",
+        "github_actions"
+      ],
+      "body": "Bumps [martinthomson/i-d-template](https://github.com/martinthomson/i-d-template) from 0bc4b608ae41182aae46cbc51463f6bbf12ce845 to cad990c4f607b15b93d36da5970010806affad24.\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/cad990c4f607b15b93d36da5970010806affad24\"><code>cad990c</code></a> Suppress some warnings from pip/bundler</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/caf0e3a45df5b72d8e822b1d9f086e0accc89826\"><code>caf0e3a</code></a> Simplify python version check</li>\n<li>See full diff in <a href=\"https://github.com/martinthomson/i-d-template/compare/0bc4b608ae41182aae46cbc51463f6bbf12ce845...cad990c4f607b15b93d36da5970010806affad24\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "createdAt": "2026-03-25T05:24:56Z",
+      "updatedAt": "2026-04-01T05:31:39Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "17acd824b2d0d70c147b6c379fcd15d2d8b1c218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "dependabot/github_actions/martinthomson/i-d-template-cad990c4f607b15b93d36da5970010806affad24",
+      "headRefOid": "4091edbddcb69019bc36215d1610418b95234826",
+      "closedAt": "2026-04-01T05:31:38Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "dependabot",
+          "authorAssociation": "NONE",
+          "body": "Superseded by #62.",
+          "createdAt": "2026-04-01T05:31:38Z",
+          "updatedAt": "2026-04-01T05:31:38Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 62,
+      "id": "PR_kwDOItQjb87PJXsF",
+      "title": "Bump martinthomson/i-d-template from 0bc4b608ae41182aae46cbc51463f6bbf12ce845 to 99d8dba3934aed8be22bd8d7f435c6a905dfffea",
+      "url": "https://github.com/getCUJO/QoOID/pull/62",
+      "state": "OPEN",
+      "author": "dependabot",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "dependencies",
+        "github_actions"
+      ],
+      "body": "Bumps [martinthomson/i-d-template](https://github.com/martinthomson/i-d-template) from 0bc4b608ae41182aae46cbc51463f6bbf12ce845 to 99d8dba3934aed8be22bd8d7f435c6a905dfffea.\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/99d8dba3934aed8be22bd8d7f435c6a905dfffea\"><code>99d8dba</code></a> Spring cleaning of action versions</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/2644ded9113b0c9dc6255d35db03f975a10a7092\"><code>2644ded</code></a> Merge pull request <a href=\"https://redirect.github.com/martinthomson/i-d-template/issues/517\">#517</a> from thomas-fossati/main</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/6a4a481a93eded3b0dbbfb9ccdafaf3075d800e4\"><code>6a4a481</code></a> docs: tip about aasvg compatibility with xml2rfc</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/a1840c6c290f88c7ae3904a501441d99ea69ac3e\"><code>a1840c6</code></a> Remove aasvg from the CI image</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/8a050d83135bce8ab88d56f26b70bd6794a8cdb1\"><code>8a050d8</code></a> Do the python version check when creating the venv and avoid warning when the...</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/25cc2211f7bd97f86812a029b7ec09d89fafd1b0\"><code>25cc221</code></a> Add some diagnostics to the log</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/cad990c4f607b15b93d36da5970010806affad24\"><code>cad990c</code></a> Suppress some warnings from pip/bundler</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/caf0e3a45df5b72d8e822b1d9f086e0accc89826\"><code>caf0e3a</code></a> Simplify python version check</li>\n<li>See full diff in <a href=\"https://github.com/martinthomson/i-d-template/compare/0bc4b608ae41182aae46cbc51463f6bbf12ce845...99d8dba3934aed8be22bd8d7f435c6a905dfffea\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "createdAt": "2026-04-01T05:31:36Z",
+      "updatedAt": "2026-04-13T12:28:28Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "dependabot/github_actions/martinthomson/i-d-template-99d8dba3934aed8be22bd8d7f435c6a905dfffea",
+      "headRefOid": "e51473eff0b03e610750da66a8d427ae2df68529",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 63,
+      "id": "PR_kwDOItQjb87Qu8RA",
+      "title": "Clarify relevant techniques + add citable references",
+      "url": "https://github.com/getCUJO/QoOID/pull/63",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses #24 by clarifying some of the related techniques and adding citable references.",
+      "createdAt": "2026-04-08T07:58:22Z",
+      "updatedAt": "2026-04-13T14:14:43Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "17acd824b2d0d70c147b6c379fcd15d2d8b1c218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "fix-24",
+      "headRefOid": "66190979757942a64ddc37568629f02b835f6a04",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87zsFTh",
+          "commit": {
+            "abbreviatedOid": "4999c4f"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "nit",
+          "createdAt": "2026-04-10T08:42:22Z",
+          "updatedAt": "2026-04-10T08:42:46Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\n* DNS response latency measurements ({{Section 2.8 of RFC8517}}, {{?RFC8912}})\n```",
+              "createdAt": "2026-04-10T08:42:22Z",
+              "updatedAt": "2026-04-10T08:42:46Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "id": "PR_kwDOItQjb87QzKFG",
+      "title": "Clarify, restructure, and extend measurement metadata",
+      "url": "https://github.com/getCUJO/QoOID/pull/64",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses issue #29 by:\r\n\r\n- Clarifying the required measurement metadata by adding units and references\r\n- Extending the required measurement metadata to enable broader utility\r\n- Restructuring and grouping the required measurement metadata",
+      "createdAt": "2026-04-08T12:16:04Z",
+      "updatedAt": "2026-04-13T14:16:10Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "17acd824b2d0d70c147b6c379fcd15d2d8b1c218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "issue-29",
+      "headRefOid": "cfe1ab92ee16123cd30a9f426da9ce5eabdd6d4e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87zsGYv",
+          "commit": {
+            "abbreviatedOid": "0b83690"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "nits",
+          "createdAt": "2026-04-10T08:43:21Z",
+          "updatedAt": "2026-04-10T08:45:57Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\n* Description of the measurement method, including:\n```",
+              "createdAt": "2026-04-10T08:43:21Z",
+              "updatedAt": "2026-04-10T08:45:57Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\n  * Protocol layer used for measurements (ICMP, TCP, UDP, ...)\n```",
+              "createdAt": "2026-04-10T08:43:46Z",
+              "updatedAt": "2026-04-10T08:45:57Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "... is not an example ;-)",
+              "createdAt": "2026-04-10T08:43:59Z",
+              "updatedAt": "2026-04-10T08:45:57Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\n  * Measurement class (Active, Passive, or Hybrid) {{RFC7799}}\n```",
+              "createdAt": "2026-04-10T08:44:21Z",
+              "updatedAt": "2026-04-10T08:45:57Z"
+            },
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\n* Measurement configuration, including:\n```",
+              "createdAt": "2026-04-10T08:44:32Z",
+              "updatedAt": "2026-04-10T08:45:57Z"
+            },
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\n* Description of the measurement path, including:\n```",
+              "createdAt": "2026-04-10T08:44:54Z",
+              "updatedAt": "2026-04-10T08:45:57Z"
+            },
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\n* Description of the measurement duration, including:\n```",
+              "createdAt": "2026-04-10T08:45:28Z",
+              "updatedAt": "2026-04-10T08:45:57Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "id": "PR_kwDOItQjb87Qz51U",
+      "title": "Add discussion about continuous measurements ",
+      "url": "https://github.com/getCUJO/QoOID/pull/65",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses #52 by adding considerations for handling continuous measurements to the operational considerations section.",
+      "createdAt": "2026-04-08T13:00:33Z",
+      "updatedAt": "2026-04-13T14:16:25Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "17acd824b2d0d70c147b6c379fcd15d2d8b1c218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "issue-52",
+      "headRefOid": "274d8ade0d32efc500fd28629e3432466497de19",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87zsK7j",
+          "commit": {
+            "abbreviatedOid": "0c6a564"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-04-10T08:47:12Z",
+          "updatedAt": "2026-04-10T08:49:06Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\nFixed time windows (e.g., last hour, last day, or last week) are simple to implement\n```",
+              "createdAt": "2026-04-10T08:47:12Z",
+              "updatedAt": "2026-04-10T08:49:06Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "id": "PR_kwDOItQjb87R-Bid",
+      "title": "Extend security and safety considerations",
+      "url": "https://github.com/getCUJO/QoOID/pull/66",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses #28 and #50:\r\n- Clarifies security/safety implications of active measurements\r\n- Clarifies possible privacy impact of passive measurements\r\n- Adds relevant references to previous IPPM work.\r\n\r\nNote that the second sentence mentioned in #28 has been removed as part of PR #57.",
+      "createdAt": "2026-04-13T12:02:54Z",
+      "updatedAt": "2026-04-13T12:02:54Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "17acd824b2d0d70c147b6c379fcd15d2d8b1c218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "security-safety",
+      "headRefOid": "064602c6fc8ce55380fee7b9903f9a506d964a97",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 67,
+      "id": "PR_kwDOItQjb87R-Zh7",
+      "title": "chore: update github workflows",
+      "url": "https://github.com/getCUJO/QoOID/pull/67",
+      "state": "MERGED",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Update github workflows to address deprecation of upload-artifact (https://github.blog/changelog/2024-04-16-deprecation-notice-v3-of-the-artifact-actions/).",
+      "createdAt": "2026-04-13T12:25:59Z",
+      "updatedAt": "2026-04-13T12:26:41Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "17acd824b2d0d70c147b6c379fcd15d2d8b1c218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "upload-artifact",
+      "headRefOid": "239b0b72cd8fb8b24dbc94f43d24d7e9f52779f4",
+      "closedAt": "2026-04-13T12:26:36Z",
+      "mergedAt": "2026-04-13T12:26:36Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 68,
+      "id": "PR_kwDOItQjb87R_MUs",
+      "title": "Rephrase 'different figures' statement",
+      "url": "https://github.com/getCUJO/QoOID/pull/68",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses #41 by rephrasing the 'different figures' statement, emphasizing that the numbers are only examples that depend on a number of things, and highlighting how future standardization can help derive more representative numbers. ",
+      "createdAt": "2026-04-13T13:12:21Z",
+      "updatedAt": "2026-04-13T13:12:21Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "issue-41",
+      "headRefOid": "99113a15a3ed30d8ca648491a48b173f1ebccec0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 69,
+      "id": "PR_kwDOItQjb87SAUK3",
+      "title": "Add references for volatile networks section.",
+      "url": "https://github.com/getCUJO/QoOID/pull/69",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses #49 by providing two references for the volatile network section.",
+      "createdAt": "2026-04-13T14:12:04Z",
+      "updatedAt": "2026-04-13T14:12:04Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "issue-49",
+      "headRefOid": "b14116bb0979d8e9f947289810420e6be2cb2d50",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
