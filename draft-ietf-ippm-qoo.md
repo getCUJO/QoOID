@@ -228,7 +228,7 @@ performance measurements.
 
 This document and the QoO framework assume that network quality can be represented by a minimum required throughput, a set of latency percentiles, and packet loss rates with the expectation that these measurables will ultimately also capture changes to additional factors.
 Hence, similar to Quality Attenuation {{TR-452.1}}, the QoO framework assesses the network state based on latency distributions and packet loss probabilities and additionally considers throughput.
-This design ensures composability {{RFC6049}}, enabling network operators to achieve fault isolation ({{Section 5.4.4 of I-D.ietf-opsawg-rfc5706bis}}), advanced root-cause analyses from within the network ({{Section 5.4.3 of I-D.ietf-opsawg-rfc5706bis}}), and network planning while supporting comprehensive end-to-end tests.
+This design ensures spatial composability {{RFC6049}}, enabling network operators to achieve fault isolation ({{Section 5.4.4 of I-D.ietf-opsawg-rfc5706bis}}), advanced root-cause analyses from within the network ({{Section 5.4.3 of I-D.ietf-opsawg-rfc5706bis}}), and network planning while supporting comprehensive end-to-end tests.
 
 
 
@@ -339,7 +339,7 @@ The cumulative distribution function of the IRV captures the likelihood that a p
 The IRV incorporates packet loss by treating lost packets as infinite (or too late to be of use, i.e., not arriving within an application‑specific time threshold) latency, similar to the One-Way Loss Metric for IP Performance Metrics (IPPM) {{RFC7680}}, which defines packet loss as packets that fail to arrive within a specified time threshold.
 The "intangible mass" of the IRV represents the probability that a packet never completes within any useful time (i.e., is lost or arrives too late).
 
-Quality Attenuation enables composition of network segments as two distributions can be composed using convolution.
+Quality Attenuation enables spatial composition {{!RFC6049}} of network segments as two distributions can be composed using convolution.
 Measurements from different network segments can be combined to derive end-to-end quality assessments, or end-to-end measurements can be decomposed to isolate the contribution of individual segments.
 This composability enables network operators to perform fault isolation and root cause analysis by identifying which portions of a network path contribute most to performance degradation.
 
@@ -358,7 +358,7 @@ Application developers need the ability to express quality-focused network perfo
 The QoO framework addresses this need by enabling both simple and complex requirement specifications, accommodating developers with varying levels of networking expertise.
 
 Network operators need tools for fault isolation, performance comparison, and bottleneck identification.
-The QoO framework addresses this need through its use of latency distributions and packet loss rates, whose composability enables operators to measure network segments independently, combine results to understand end-to-end quality, or decompose measurements to isolate problem areas, enabling network analysis in general.
+The QoO framework addresses this need through its use of latency distributions and packet loss rates, whose spatial composability enables operators to measure network segments independently, combine results to understand end-to-end quality, or decompose measurements to isolate problem areas, enabling network analysis in general.
 Additionally, operators can use the underlying raw measurement results to derive Quality Attenuation measures if more fine-grained insight is needed (see {{quality-assessment-landscape}}).
 
 Overall, the QoO framework design acknowledges that all stakeholders ultimately care about the performance of applications running over a network by
@@ -1405,24 +1405,23 @@ application performance, assuming that measurements cover the properties of
 the end-to-end network path that the application uses.
 "Easy to Articulate Application Requirements" refers to the ease with which
 application-specific requirements can be expressed using the respective metric.
-"Composable" indicates whether the metric supports mathematical composition
-to enable detailed network analysis.
+"Composable" indicates whether the metric supports spatial composition as
+described in {{req-network}} and {{RFC6049}}: the ability to combine
+measurements from individual path segments to derive end-to-end properties,
+or to decompose end-to-end measurements to isolate per-segment contributions.
 
 
 ## Throughput
 
-Throughput is related to user-observable application
-outcomes because there must be enough available capacity in the network. Adding extra
-available capacity above a certain threshold will, at best, receive diminishing returns
-(and any returns are often due to reduced latency). It is not possible to
-assess optimal or unacceptable application performance based on throughput
-alone for most applications. Throughput can be compared to a variety of
-application requirements, but since there is no direct correlation between
-throughput and application performance, it is not possible to conclude that an
-application will work well even if it is known that sufficient throughput is
-achievable.
+Throughput relates to user-observable application outcomes as acceptable
+performance is impossible when throughput falls below an application's minimum requirement.
+Above that minimum threshold, the relationship weakens and additional capacity above a certain threshold will, at best, yield diminishing returns (and any returns are often due to reduced latency).
+While throughput can be compared to a variety of application requirements, it is not generally possible to conclude from sufficient throughput alone that an application will work well.
 
-Throughput cannot be composed.
+Throughput is not composable in the spatial sense as the throughput
+of a path A-B is governed by the bottleneck link (i.e., the minimum
+of the individual segment capacities).
+If, for example, B is the bottleneck, the throughput of A cannot be determined from the throughput of A-B and B as the throughput of A-B is the same as the throughput of B.
 
 ## Mean Latency
 Mean latency relates to user-observable application outcomes in the sense that
@@ -1441,7 +1440,9 @@ application performance. It does not work as well for applications that are very
 sensitive to overly delayed packets because the 99th percentile disregards all
 information about the delays of the worst 1% of packets.
 
-It is not possible to compose 99th-percentile values.
+It is not possible to compose 99th-percentile values as the Nth percentile of a
+composed distribution cannot in general be derived from the Nth percentile of
+its constituent distributions without access to the full distributions.
 
 ## Variance of Latency
 The variance of latency can be calculated from any collection of samples, but
@@ -1498,10 +1499,10 @@ directly, or the Quality Attenuation value describing the time-to-completion of
 a user-observable outcome can be computed if the Quality Attenuation of each
 sub-goal required to reach the desired outcome is known {{Haeri22}}.
 
-Quality Attenuation is composable because the convolution of Quality Attenuation
-values allows computing the time it takes to reach specific outcomes given
-the Quality Attenuation of each sub-goal and the causal dependency conditions
-between them {{Haeri22}}.
+Quality Attenuation is composable via convolution of the underlying
+distributions, which allows computing the time it takes to reach specific
+outcomes given the Quality Attenuation of each sub-goal and the causal
+dependency conditions between them {{Haeri22}}.
 
 ## Quality of Outcome {#comparison-qoo}
 
@@ -1514,12 +1515,13 @@ measurements, QoO can assess how well a wide range of applications are
 expected to perform under given network conditions.
 
 The underlying Quality Attenuation measurements used in QoO are
-mathematically composable, as latency distributions can be composed using
-convolution {{TR-452.1}}. This composability extends to QoO in the sense
+mathematically composable via convolution {{TR-452.1}}. This composability extends to QoO in the sense
 that operators can measure individual network segments, compose the
 underlying Quality Attenuation distributions, and then compute QoO scores
-from the composed result.
-
+from the composed result. This composability requires the full distributional
+representation. When QoO score calculation is based only on scalar
+percentile summaries (see {{measurement-considerations}}), this composability
+is not available.
 
 # Preliminary Insights From a Small-Scale User Testing Campaign {#user-testing}
 
