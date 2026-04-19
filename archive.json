@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-16T00:31:33.227909+00:00",
+  "timestamp": "2026-04-19T00:29:15.847596+00:00",
   "repo": "getCUJO/QoOID",
   "labels": [
     {
@@ -1891,9 +1891,9 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "This PR addresses concerns expressed in the tsvart and artart reviews about composability:\r\n- Clarify that spatial composition is needed\r\n- Provide example why throughput and P99 are not composable\r\n- Add explicit remark that QoO composability requires full distributions",
+      "body": "This PR addresses concerns expressed in the tsvart and artart reviews about composability (captured in #30):\r\n- Clarify that spatial composition is needed\r\n- Provide example why throughput and P99 are not composable\r\n- Add explicit remark that QoO composability requires full distributions",
       "createdAt": "2026-04-15T13:08:56Z",
-      "updatedAt": "2026-04-15T13:08:56Z",
+      "updatedAt": "2026-04-16T10:02:05Z",
       "baseRepository": "getCUJO/QoOID",
       "baseRefName": "main",
       "baseRefOid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218",
