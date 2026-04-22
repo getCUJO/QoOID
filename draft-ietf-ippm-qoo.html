@@ -1701,15 +1701,16 @@ commonly accepted set of percentiles spanning from the 0th to the 100th in a
 logarithmic-like progression has been suggested by others <span>[<a href="#BITAG" class="cite xref">BITAG</a>]</span> and is
 recommended here: [0th, 10th, 25th, 50th, 75th, 90th, 95th, 99th, 99.9th,
 100th].<a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-4">Depending on the measurement conditions, results also have different implications.
-When measurements are taken
-during periods of network load, the result naturally includes latency under
-load. In scenarios such as passive monitoring of production traffic, capturing
-artificially loaded conditions may not always be feasible, whereas passively
-observing the actual network load may be possible.
-Internet forwarding paths can also shift on a variety of timescales due to routing changes, load balancing, or traffic engineering, meaning a measurement reflects the network's state only during the sampling period.
+<p id="section-3.1.1-4">The choice of measurement methodology also needs to account for network conditions and their variability.
+Idle-state measurements capture baseline characteristics unaffected by competing traffic, whereas measurements taken under load reflect conditions that are more likely to challenge application performance, such as elevated latencies and queuing.
+Both active and passive methods can capture either state, although with different degrees of control.
+Passive monitoring of production traffic usually reflects actual network load but may not always allow capturing artificially loaded conditions.
+Active measurements can target artificially loaded conditions by generating synthetic traffic equivalent to the application load alongside the probes but capturing the actual or idle network conditions may not be possible depending on the footprint of the measurement method.
+Furthermore, when performing active measurements or generating artificial load, care must be taken not to degrade the network under test or inadvertently enable denial-of-service abuse <span>[<a href="#RFC2330" class="cite xref">RFC2330</a>]</span><span>[<a href="#RFC4656" class="cite xref">RFC4656</a>]</span>.
+See <a href="#dos-risks" class="auto internal xref">Section 6.3</a> for specific mitigations.<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-5">Internet forwarding paths can also shift on a variety of timescales due to routing changes, load balancing, or traffic engineering, meaning a measurement reflects the network's state only during the sampling period.
 Such factors need to be considered when conducting performance measurements.
-See <a href="#path-stability" class="auto internal xref">Section 4.4</a> for a discussion of the operational implications, and <a href="#volatile-networks" class="auto internal xref">Section 5.1</a> for the more severe case of volatile environments such as mobile cellular networks.<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+See <a href="#path-stability" class="auto internal xref">Section 4.4</a> for a discussion of the operational implications, and <a href="#volatile-networks" class="auto internal xref">Section 5.1</a> for the more severe case of volatile environments such as mobile cellular networks.<a href="#section-3.1.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="reporting-measurement-results">
@@ -2471,7 +2472,9 @@ and the intended use case.<a href="#section-5.6-1" class="pilcrow">¶</a></p>
 quality based on probabilistic outcomes derived from latency, packet loss, and
 throughput measurements. While the framework itself is primarily analytical and
 does not define a new protocol, some security considerations arise from its
-deployment and use.<a href="#section-6-1" class="pilcrow">¶</a></p>
+deployment and use.
+In addition to the considerations discussed below, implementers are also encouraged to consider
+the security considerations outlined in <span>[<a href="#RFC7594" class="cite xref">RFC7594</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <div id="measurement-integrity-and-authenticity">
 <section id="section-6.1">
         <h3 id="name-measurement-integrity-and-a">
@@ -2523,7 +2526,7 @@ methodologies.<a href="#section-6.2-3.1.1" class="pilcrow">¶</a></p>
         </ul>
 </section>
 </div>
-<div id="denial-of-service-dos-risks">
+<div id="dos-risks">
 <section id="section-6.3">
         <h3 id="name-denial-of-service-dos-risks">
 <a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-denial-of-service-dos-risks" class="section-name selfRef">Denial-of-Service (DoS) Risks</a>
@@ -2531,11 +2534,12 @@ methodologies.<a href="#section-6.2-3.1.1" class="pilcrow">¶</a></p>
 <p id="section-6.3-1">Active measurement techniques used to gather QoO data (e.g., TWAMP, STAMP, and
 synthetic traffic generation) can place additional load on a network. If not
 properly rate-limited, this may inadvertently degrade services offered by a network or be exploited
-by malicious actors to launch DoS attacks.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+by malicious actors to launch DoS attacks <span>[<a href="#RFC2330" class="cite xref">RFC2330</a>]</span>.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <p id="section-6.3-2">To mitigate these risks, the following is recommended:<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6.3-3.1">
-            <p id="section-6.3-3.1.1">Implement rate-limiting and access control for active measurement tools.<a href="#section-6.3-3.1.1" class="pilcrow">¶</a></p>
+            <p id="section-6.3-3.1.1">Implement rate-limiting and access control for active measurement tools, e.g., similar to recommendations
+for the One-way Active Measurement Protocol <span>[<a href="#RFC4656" class="cite xref">RFC4656</a>]</span>.<a href="#section-6.3-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.3-3.2">
             <p id="section-6.3-3.2.1">Ensure that measurement traffic does not interfere with critical services.<a href="#section-6.3-3.2.1" class="pilcrow">¶</a></p>
@@ -2574,8 +2578,8 @@ validation of requirement definitions.<a href="#section-6.4-3.2.1" class="pilcro
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
       </h2>
 <p id="section-7-1">QoO measurements may involve collecting detailed performance data from end-user
-devices or applications. Depending on the deployment model, this includes
-metadata such as IP addresses, timestamps, or application usage patterns.<a href="#section-7-1" class="pilcrow">¶</a></p>
+devices or applications, especially in the context of passive measurements <span>[<a href="#RFC2330" class="cite xref">RFC2330</a>]</span>.
+Depending on the deployment model, this includes metadata such as IP addresses, timestamps, or application usage patterns.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">To protect user privacy:<a href="#section-7-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7-3.1">
@@ -2869,6 +2873,10 @@ updated:<a href="#section-9.2-1.9.1" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Moreno, N.</span>, <span class="refAuthor">Dsouza, F.</span>, <span class="refAuthor">Kassler, A.</span>, <span class="refAuthor">Pullem, F.</span>, <span class="refAuthor">Xu, B.</span>, <span class="refAuthor">Amend, M.</span>, and <span class="refAuthor">C. Choi</span>, <span class="refTitle">"QoS and Capacity Prediction for 5G Network Slicing"</span>, <span class="refContent">IEEE</span>, <span class="seriesInfo">2025 21st International Conference on Network and Service Management (CNSM) pp. 1-5</span>, <span class="seriesInfo">DOI 10.23919/cnsm67658.2025.11297458</span>, <time datetime="2025-10" class="refDate">October 2025</time>, <span>&lt;<a href="https://doi.org/10.23919/cnsm67658.2025.11297458">https://doi.org/10.23919/cnsm67658.2025.11297458</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC2330">[RFC2330]</dt>
+        <dd>
+<span class="refAuthor">Paxson, V.</span>, <span class="refAuthor">Almes, G.</span>, <span class="refAuthor">Mahdavi, J.</span>, and <span class="refAuthor">M. Mathis</span>, <span class="refTitle">"Framework for IP Performance Metrics"</span>, <span class="seriesInfo">RFC 2330</span>, <span class="seriesInfo">DOI 10.17487/RFC2330</span>, <time datetime="1998-05" class="refDate">May 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2330">https://www.rfc-editor.org/rfc/rfc2330</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2681">[RFC2681]</dt>
         <dd>
 <span class="refAuthor">Almes, G.</span>, <span class="refAuthor">Kalidindi, S.</span>, and <span class="refAuthor">M. Zekauskas</span>, <span class="refTitle">"A Round-trip Delay Metric for IPPM"</span>, <span class="seriesInfo">RFC 2681</span>, <span class="seriesInfo">DOI 10.17487/RFC2681</span>, <time datetime="1999-09" class="refDate">September 1999</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2681">https://www.rfc-editor.org/rfc/rfc2681</a>&gt;</span>. </dd>
@@ -2880,6 +2888,10 @@ updated:<a href="#section-9.2-1.9.1" class="pilcrow">¶</a></p>
 <dt id="RFC3393">[RFC3393]</dt>
         <dd>
 <span class="refAuthor">Demichelis, C.</span> and <span class="refAuthor">P. Chimento</span>, <span class="refTitle">"IP Packet Delay Variation Metric for IP Performance Metrics (IPPM)"</span>, <span class="seriesInfo">RFC 3393</span>, <span class="seriesInfo">DOI 10.17487/RFC3393</span>, <time datetime="2002-11" class="refDate">November 2002</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3393">https://www.rfc-editor.org/rfc/rfc3393</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4656">[RFC4656]</dt>
+        <dd>
+<span class="refAuthor">Shalunov, S.</span>, <span class="refAuthor">Teitelbaum, B.</span>, <span class="refAuthor">Karp, A.</span>, <span class="refAuthor">Boote, J.</span>, and <span class="refAuthor">M. Zekauskas</span>, <span class="refTitle">"A One-way Active Measurement Protocol (OWAMP)"</span>, <span class="seriesInfo">RFC 4656</span>, <span class="seriesInfo">DOI 10.17487/RFC4656</span>, <time datetime="2006-09" class="refDate">September 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4656">https://www.rfc-editor.org/rfc/rfc4656</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5218">[RFC5218]</dt>
         <dd>
@@ -2904,6 +2916,10 @@ updated:<a href="#section-9.2-1.9.1" class="pilcrow">¶</a></p>
 <dt id="RFC6703">[RFC6703]</dt>
         <dd>
 <span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Ramachandran, G.</span>, and <span class="refAuthor">G. Maguluri</span>, <span class="refTitle">"Reporting IP Network Performance Metrics: Different Points of View"</span>, <span class="seriesInfo">RFC 6703</span>, <span class="seriesInfo">DOI 10.17487/RFC6703</span>, <time datetime="2012-08" class="refDate">August 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6703">https://www.rfc-editor.org/rfc/rfc6703</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7594">[RFC7594]</dt>
+        <dd>
+<span class="refAuthor">Eardley, P.</span>, <span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Burbridge, T.</span>, <span class="refAuthor">Aitken, P.</span>, and <span class="refAuthor">A. Akhter</span>, <span class="refTitle">"A Framework for Large-Scale Measurement of Broadband Performance (LMAP)"</span>, <span class="seriesInfo">RFC 7594</span>, <span class="seriesInfo">DOI 10.17487/RFC7594</span>, <time datetime="2015-09" class="refDate">September 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7594">https://www.rfc-editor.org/rfc/rfc7594</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7679">[RFC7679]</dt>
         <dd>
