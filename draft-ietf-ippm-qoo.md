@@ -91,11 +91,11 @@ informative:
   RFC8762: # STAMP
   RFC9000: # QUIC
   RFC9197: # Data Fields for In Situ Operations, Administration, and Maintenance (IOAM)
-  RFC9312: # QUIC Manageability
   RFC9318: # IAB Workshop report
   RFC9341: #Alternate-Marking Method for Passive and Hybrid Performance Monitoring
   RFC9817: # COIN Use Cases
   I-D.ietf-opsawg-rfc5706bis:
+  I-D.ietf-ippm-responsiveness:
   # SHARED:
   #   title: "The Internet is a Shared Network"
   #   author:
@@ -197,7 +197,10 @@ informative:
     seriesinfo:
       ITU-T: P.1401
     date: January 2020
-
+  TCPHandshake: DOI.10.1145/3482898.3483366
+  TCPContinuous: DOI.10.1145/3544216.3544222
+  Throughputtest: DOI.10.1145/3579448
+  LatencyEstimation: DOI.10.1145/3651890.3672243
 
 --- abstract
 This document introduces the Quality of Outcome (QoO) network quality score and the corresponding QoO framework as an
@@ -397,20 +400,20 @@ network technology independent, meaning it can be gathered in an end-user
 application, within some network equipment, or anywhere in between. Passive
 methods rely on observing and time-stamping packets traversing the network.
 Examples of this include TCP SYN and SYN/ACK packets ({{Section 2.2 of RFC8517}}) and
-the QUIC spin bit {{RFC9000}}{{RFC9312}}.
+the QUIC spin bit {{RFC9000}}{{?RFC9312}}.
 Similar considerations apply to packet loss measurements while throughput measurements usually involve active testing.
 
 In addition to measurement approaches standardized in the QED framework {{TR-452.1}}, some relevant techniques are:
 
 * Active probing with the Two-Way Active Measurement Protocol (TWAMP) Light {{RFC5357}}, the Simple Two-Way Active Measurement Protocol (STAMP) {{RFC8762}}, or the Isochronous Round-Trip Tester (IRTT)
   {{IRTT}}
-* Latency Under Load Tests
-* Speed Tests with latency measures
-* Simulating real traffic
-* End-to-end measurements of real traffic
-* TCP SYN ACK or DNS Lookup RTT Capture
-* On-Path Telemetry methods (IOAM {{RFC9197}}, AltMark {{RFC9341}})
-* Estimation
+* On-path telemetry methods (IOAM {{RFC9197}}, AltMark {{RFC9341}})
+* Latency tests under loaded network conditions {{I-D.ietf-ippm-responsiveness}}
+* Throughput tests with included latency measures {{Throughputtest}}
+* DNS response latency measurements ({{Section 2.8 of RFC8517}}, {{?RFC8912}})
+* Passive TCP / QUIC handshake measurements {{TCPHandshake}}{{?RFC9312}}
+* Continuous passive TCP / QUIC measurements {{TCPContinuous}}{{?RFC9312}}
+* Simulating or estimating real traffic {{LatencyEstimation}}
 
 ### Measurement Considerations {#measurement-considerations}
 
@@ -446,16 +449,28 @@ See {{path-stability}} for a discussion of the operational implications, and {{v
 This document defines a minimum viable framework, and often trades precision for simplicity to facilitate adoption and usability in many different contexts.
 To assess the corresponding loss of precision and account for the underspecification of the measurement methodology, each measurement must be accompanied by the following metadata in order to support reproducibility and enable confidence analysis, even across QoO deplyoments:
 
-* Description of the measurement path, including the endpoints (source and destination), network segments traversed, measurement points (if applicable), and direction (uplink, downlink, or bidirectional)
-* Timestamp of first sample
-* Total duration of the sampling period
-* Number of samples collected
-* Sampling method, including:
-  * Cyclic: One sample every N milliseconds (specify N)
-  * Burst: X samples every N milliseconds (specify X and N)
-  * Passive: Opportunistic sampling of live traffic (non-uniform intervals)
+* Description of the measurement method, including:
+  * Standard name (if applicable) or reference
+  * Measurement class (Active, Passive, or Hybrid) {{RFC7799}}
+  * Protocol layer used for measurements (ICMP, TCP, UDP, ...)
+* Measurement configuration, including:
+  * Probe packet size  (if applicable)
+  * Traffic class of probed traffic
+  * Sampling method, including but not limited to
+    * Cyclic: One sample every N milliseconds (specify N)
+    * Burst: X samples every N milliseconds (specify X and N)
+    * Passive: Opportunistic sampling of live traffic (non-uniform intervals)
+* Description of the measurement path, including:
+  * Endpoints (source and destination)
+  * Network segments traversed
+  * Measurement points (if applicable)
+  * Direction (two-way, one-way uplink, one-way downlink)
+* Description of the measurement duration, including:
+  * Timestamp of first sample (e.g., in the format used in TWAMP {{?RFC5357}}{{?RFC8877}})
+  * Total duration of the sampling period (in milliseconds)
+  * Number of samples collected
 
-These metadata elements are essential for interpreting the precision and
+These metadata elements are required for interpreting the precision and
 reliability of the measurements. As demonstrated in {{QoOSimStudy}} and discussed in {{simulation-insights}}, low
 sampling frequencies and short measurement durations can lead to misleadingly
 optimistic or imprecise QoO scores.
@@ -818,6 +833,41 @@ application are deduced:
 
 These guidelines are non-normative but reflect empirical evidence on how QoO
 performs.
+
+
+## Continuous Measurements {#continuous-measurements}
+
+The QoO framework does not define measurement periods: it can be applied to
+measurements taken over a specific, bounded interval (e.g., when conducting
+a scheduled test run) as well as to continuous measurements collected from
+live traffic over an extended period. Deployments may use
+either mode depending on the use case and available infrastructure {{?RFC6703}}.
+
+When measurements are collected continuously, implementations must decide how
+to window or aggregate samples into the latency distribution and packet loss
+estimate used to compute a QoO score.
+Several approaches are possible, and each involves trade-offs:
+
+Fixed time windows (e.g., last hour, last day, or last week) are simple to implement
+and compare across operators. Longer windows smooth out short-term
+anomalies but may obscure recent degradation; shorter windows are more
+responsive but less stable.
+
+Rolling or sliding windows of the most recent N samples or
+the most recent T seconds provide a continuously updated view of network quality,
+balancing responsiveness with stability.
+
+Measurements can also be grouped around specific events, such as user sessions or
+application usage periods. This approach can improve relevance for end-user-facing
+scores but may introduce selection bias.
+
+The choice of windowing strategy affects which percentiles are observed and
+therefore the resulting QoO score. Implementations should document the windowing
+strategy used alongside the reported QoO scores and the measurement approach
+to ensure results are interpretable and comparable.
+Standardization of specific windowing approaches is considered
+out of scope for this document and left for future work.
+
 
 ## A Subjective Approach to Creating Network Performance Requirement Specifications {#spec-creation}
 This document does not define a standardized approach for creating a quality-focused network performance requirement specification.

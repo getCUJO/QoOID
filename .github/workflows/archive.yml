@@ -18,12 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout"
-      uses: actions/checkout@v2
-
-    # Note: No caching for this build!
+      uses: actions/checkout@v4
 
     - name: "Update Archive"
-      uses: martinthomson/i-d-template@v1
+      uses: martinthomson/i-d-template@0bc4b608ae41182aae46cbc51463f6bbf12ce845
       env:
         ARCHIVE_FULL: ${{ inputs.archive_full }}
       with:
@@ -31,12 +29,13 @@ jobs:
         token: ${{ github.token }}
 
     - name: "Update GitHub Pages"
-      uses: martinthomson/i-d-template@v1
+      uses: martinthomson/i-d-template@0bc4b608ae41182aae46cbc51463f6bbf12ce845
       with:
         make: gh-archive
         token: ${{ github.token }}
 
     - name: "Save Archive"
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
+        name: archive
         path: archive.json
