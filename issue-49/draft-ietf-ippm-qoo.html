@@ -14,7 +14,7 @@ approach to network quality assessment designed to align with the needs of
 application developers, users, and operators. 
        By leveraging the Quality Attenuation metric, QoO provides a method for defining and evaluating application-specific, quality-focused network performance requirements to enable insights for network optimization and simple Quality of Service scores for end-users. 
     " name="description">
-<meta content="xml2rfc 3.32.0" name="generator">
+<meta content="xml2rfc 3.33.0" name="generator">
 <meta content="Quality Attenuation" name="keyword">
 <meta content="Application Outcomes" name="keyword">
 <meta content="Quality of Outcome" name="keyword">
@@ -22,14 +22,14 @@ application developers, users, and operators.
 <meta content="Network quality" name="keyword">
 <meta content="draft-ietf-ippm-qoo-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.32.0
-    Python 3.12.12
+  xml2rfc 3.33.0
+    Python 3.12.13
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.0.2
-    platformdirs 4.9.4
+    platformdirs 4.9.6
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
@@ -1058,7 +1058,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Monclair, et al.</td>
-<td class="center">Expires 15 October 2026</td>
+<td class="center">Expires 24 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1071,12 +1071,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ippm-qoo-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-13" class="published">13 April 2026</time>
+<time datetime="2026-04-22" class="published">22 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-15">15 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-24">24 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1137,7 +1137,7 @@ application developers, users, and operators.<a href="#section-abstract-1" class
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1242,6 +1242,9 @@ application developers, users, and operators.<a href="#section-abstract-1" class
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
                 <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-sensitity-to-sampling-accur" class="internal xref">Sensitity to Sampling Accuracy</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.6">
+                <p id="section-toc.1-1.6.2.6.1"><a href="#section-6.6" class="auto internal xref">6.6</a>.  <a href="#name-continuous-measurements" class="internal xref">Continuous Measurements</a></p>
 </li>
             </ul>
 </li>
@@ -1801,25 +1804,25 @@ However, in addition to measurement approaches standardized in the QED framework
 <span>[<a href="#IRTT" class="cite xref">IRTT</a>]</span><a href="#section-5.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-4.2">
-            <p id="section-5.1-4.2.1">Latency Under Load Tests<a href="#section-5.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-4.2.1">On-path telemetry methods (IOAM <span>[<a href="#RFC9197" class="cite xref">RFC9197</a>]</span>, AltMark <span>[<a href="#RFC9341" class="cite xref">RFC9341</a>]</span>)<a href="#section-5.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-4.3">
-            <p id="section-5.1-4.3.1">Speed Tests with latency measures<a href="#section-5.1-4.3.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-4.3.1">Latency tests under loaded network conditions <span>[<a href="#I-D.ietf-ippm-responsiveness" class="cite xref">I-D.ietf-ippm-responsiveness</a>]</span><a href="#section-5.1-4.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-4.4">
-            <p id="section-5.1-4.4.1">Simulating real traffic<a href="#section-5.1-4.4.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-4.4.1">Throughput tests with included latency measures <span>[<a href="#Throughputtest" class="cite xref">Throughputtest</a>]</span><a href="#section-5.1-4.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-4.5">
-            <p id="section-5.1-4.5.1">End-to-end measurements of real traffic<a href="#section-5.1-4.5.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-4.5.1">DNS response latency measurements (<span><a href="https://rfc-editor.org/rfc/rfc8517#section-2.8" class="relref">Section 2.8</a> of [<a href="#RFC8517" class="cite xref">RFC8517</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>)<a href="#section-5.1-4.5.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-4.6">
-            <p id="section-5.1-4.6.1">TCP SYN ACK or DNS Lookup RTT Capture<a href="#section-5.1-4.6.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-4.6.1">Passive TCP / QUIC handshake measurements <span>[<a href="#TCPHandshake" class="cite xref">TCPHandshake</a>]</span><span>[<a href="#RFC9312" class="cite xref">RFC9312</a>]</span><a href="#section-5.1-4.6.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-4.7">
-            <p id="section-5.1-4.7.1">On-Path Telemetry methods (IOAM <span>[<a href="#RFC9197" class="cite xref">RFC9197</a>]</span>, AltMark <span>[<a href="#RFC9341" class="cite xref">RFC9341</a>]</span>)<a href="#section-5.1-4.7.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-4.7.1">Continuous passive TCP / QUIC measurements <span>[<a href="#TCPContinuous" class="cite xref">TCPContinuous</a>]</span><span>[<a href="#RFC9312" class="cite xref">RFC9312</a>]</span><a href="#section-5.1-4.7.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-4.8">
-            <p id="section-5.1-4.8.1">Estimation<a href="#section-5.1-4.8.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-4.8.1">Simulating or estimating real traffic <span>[<a href="#LatencyEstimation" class="cite xref">LatencyEstimation</a>]</span><a href="#section-5.1-4.8.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-5.1-5">Modeling full latency distributions may be too complex to allow for easy
@@ -1849,33 +1852,77 @@ constraints vary across devices, applications, and deployment environments.<a hr
 be accompanied by the following metadata:<a href="#section-5.1-10" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.1-11.1">
-            <p id="section-5.1-11.1.1">Description of the measurement path, including the endpoints (source and destination), network segments traversed, measurement points (if applicable), and direction (uplink, downlink, or bidirectional)<a href="#section-5.1-11.1.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-11.1.1">Description of the measurement method, including:<a href="#section-5.1-11.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.1-11.1.2.1">
+                <p id="section-5.1-11.1.2.1.1">Standard name (if applicable) or reference<a href="#section-5.1-11.1.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-5.1-11.1.2.2">
+                <p id="section-5.1-11.1.2.2.1">Measurement class (Active, Passive, or Hybrid) <span>[<a href="#RFC7799" class="cite xref">RFC7799</a>]</span><a href="#section-5.1-11.1.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-5.1-11.1.2.3">
+                <p id="section-5.1-11.1.2.3.1">Protocol layer used for measurements (ICMP, TCP, UDP, ...)<a href="#section-5.1-11.1.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
 </li>
           <li class="normal" id="section-5.1-11.2">
-            <p id="section-5.1-11.2.1">Timestamp of first sample<a href="#section-5.1-11.2.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-11.2.1">Measurement configuration, including:<a href="#section-5.1-11.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.1-11.2.2.1">
+                <p id="section-5.1-11.2.2.1.1">Probe packet size  (if applicable)<a href="#section-5.1-11.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-5.1-11.2.2.2">
+                <p id="section-5.1-11.2.2.2.1">Traffic class of probed traffic<a href="#section-5.1-11.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-5.1-11.2.2.3">
+                <p id="section-5.1-11.2.2.3.1">Sampling method, including but not limited to<a href="#section-5.1-11.2.2.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.1-11.2.2.3.2.1">
+                    <p id="section-5.1-11.2.2.3.2.1.1">Cyclic: One sample every N milliseconds (specify N)<a href="#section-5.1-11.2.2.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+                  <li class="normal" id="section-5.1-11.2.2.3.2.2">
+                    <p id="section-5.1-11.2.2.3.2.2.1">Burst: X samples every N milliseconds (specify X and N)<a href="#section-5.1-11.2.2.3.2.2.1" class="pilcrow">¶</a></p>
+</li>
+                  <li class="normal" id="section-5.1-11.2.2.3.2.3">
+                    <p id="section-5.1-11.2.2.3.2.3.1">Passive: Opportunistic sampling of live traffic (non-uniform intervals)<a href="#section-5.1-11.2.2.3.2.3.1" class="pilcrow">¶</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
 </li>
           <li class="normal" id="section-5.1-11.3">
-            <p id="section-5.1-11.3.1">Total duration of the sampling period<a href="#section-5.1-11.3.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-11.3.1">Description of the measurement path, including:<a href="#section-5.1-11.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.1-11.3.2.1">
+                <p id="section-5.1-11.3.2.1.1">Endpoints (source and destination)<a href="#section-5.1-11.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-5.1-11.3.2.2">
+                <p id="section-5.1-11.3.2.2.1">Network segments traversed<a href="#section-5.1-11.3.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-5.1-11.3.2.3">
+                <p id="section-5.1-11.3.2.3.1">Measurement points (if applicable)<a href="#section-5.1-11.3.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-5.1-11.3.2.4">
+                <p id="section-5.1-11.3.2.4.1">Direction (two-way, one-way uplink, one-way downlink)<a href="#section-5.1-11.3.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
 </li>
           <li class="normal" id="section-5.1-11.4">
-            <p id="section-5.1-11.4.1">Number of samples collected<a href="#section-5.1-11.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-5.1-11.5">
-            <p id="section-5.1-11.5.1">Sampling method, including:<a href="#section-5.1-11.5.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-11.4.1">Description of the measurement duration, including:<a href="#section-5.1-11.4.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1-11.5.2.1">
-                <p id="section-5.1-11.5.2.1.1">Cyclic: One sample every N milliseconds (specify N)<a href="#section-5.1-11.5.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5.1-11.4.2.1">
+                <p id="section-5.1-11.4.2.1.1">Timestamp of first sample (e.g., in the format used in TWAMP <span>[<a href="#RFC5357" class="cite xref">RFC5357</a>]</span><span>[<a href="#RFC8877" class="cite xref">RFC8877</a>]</span>)<a href="#section-5.1-11.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-5.1-11.5.2.2">
-                <p id="section-5.1-11.5.2.2.1">Burst: X samples every N milliseconds (specify X and N)<a href="#section-5.1-11.5.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-5.1-11.4.2.2">
+                <p id="section-5.1-11.4.2.2.1">Total duration of the sampling period (in milliseconds)<a href="#section-5.1-11.4.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-5.1-11.5.2.3">
-                <p id="section-5.1-11.5.2.3.1">Passive: Opportunistic sampling of live traffic (non-uniform intervals)<a href="#section-5.1-11.5.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-5.1-11.4.2.3">
+                <p id="section-5.1-11.4.2.3.1">Number of samples collected<a href="#section-5.1-11.4.2.3.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
         </ul>
-<p id="section-5.1-12">These metadata elements are essential for interpreting the precision and
+<p id="section-5.1-12">These metadata elements are required for interpreting the precision and
 reliability of the measurements. As demonstrated in <span>[<a href="#QoOSimStudy" class="cite xref">QoOSimStudy</a>]</span>, low
 sampling frequencies and short measurement durations can lead to misleadingly
 optimistic or imprecise QoO scores.<a href="#section-5.1-12" class="pilcrow">¶</a></p>
@@ -2282,6 +2329,38 @@ scores accurately reflect application performance.<a href="#section-6.5-5.3.1" c
         </ul>
 <p id="section-6.5-6">These guidelines are non-normative but reflect empirical evidence on how QoO
 performs.<a href="#section-6.5-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="continuous-measurements">
+<section id="section-6.6">
+        <h3 id="name-continuous-measurements">
+<a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-continuous-measurements" class="section-name selfRef">Continuous Measurements</a>
+        </h3>
+<p id="section-6.6-1">The QoO framework does not define measurement periods: it can be applied to
+measurements taken over a specific, bounded interval (e.g., when conducting
+a scheduled test run) as well as to continuous measurements collected from
+live traffic over an extended period. Deployments may use
+either mode depending on the use case and available infrastructure <span>[<a href="#RFC6703" class="cite xref">RFC6703</a>]</span>.<a href="#section-6.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.6-2">When measurements are collected continuously, implementations must decide how
+to window or aggregate samples into the latency distribution and packet loss
+estimate used to compute a QoO score.
+Several approaches are possible, and each involves trade-offs:<a href="#section-6.6-2" class="pilcrow">¶</a></p>
+<p id="section-6.6-3">Fixed time windows (e.g., last hour, last day, or last week) are simple to implement
+and compare across operators. Longer windows smooth out short-term
+anomalies but may obscure recent degradation; shorter windows are more
+responsive but less stable.<a href="#section-6.6-3" class="pilcrow">¶</a></p>
+<p id="section-6.6-4">Rolling or sliding windows of the most recent N samples or
+the most recent T seconds provide a continuously updated view of network quality,
+balancing responsiveness with stability.<a href="#section-6.6-4" class="pilcrow">¶</a></p>
+<p id="section-6.6-5">Measurements can also be grouped around specific events, such as user sessions or
+application usage periods. This approach can improve relevance for end-user-facing
+scores but may introduce selection bias.<a href="#section-6.6-5" class="pilcrow">¶</a></p>
+<p id="section-6.6-6">The choice of windowing strategy affects which percentiles are observed and
+therefore the resulting QoO score. Implementations should document the windowing
+strategy used alongside the reported QoO scores and the measurement approach
+to ensure results are interpretable and comparable.
+Standardization of specific windowing approaches is considered
+out of scope for this document and left for future work.<a href="#section-6.6-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2736,6 +2815,10 @@ updated:<a href="#section-11.2-1.9.1" class="pilcrow">¶</a></p>
         <dd>
 <span class="refTitle">"Mind Your Outcomes: The ΔQSD Paradigm for Quality-Centric Systems Development and Its Application to a Blockchain Case Study"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.mdpi.com/2073-431X/11/3/45">https://www.mdpi.com/2073-431X/11/3/45</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="I-D.ietf-ippm-responsiveness">[I-D.ietf-ippm-responsiveness]</dt>
+        <dd>
+<span class="refAuthor">Paasch, C.</span>, <span class="refAuthor">Meyer, R.</span>, <span class="refAuthor">Cheshire, S.</span>, and <span class="refAuthor">W. Hawkins</span>, <span class="refTitle">"Responsiveness under Working Conditions"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ippm-responsiveness-08</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ippm-responsiveness-08">https://datatracker.ietf.org/doc/html/draft-ietf-ippm-responsiveness-08</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-rfc5706bis">[I-D.ietf-opsawg-rfc5706bis]</dt>
         <dd>
 <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Clarke, J.</span>, <span class="refAuthor">Farrel, A.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Pignataro, C.</span>, and <span class="refAuthor">R. Chen</span>, <span class="refTitle">"Guidelines for Considering Operations and Management in IETF Specifications"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-rfc5706bis-04</span>, <time datetime="2026-03-15" class="refDate">15 March 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-rfc5706bis-04">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-rfc5706bis-04</a>&gt;</span>. </dd>
@@ -2755,6 +2838,10 @@ updated:<a href="#section-11.2-1.9.1" class="pilcrow">¶</a></p>
 <dt id="Kelly">[Kelly]</dt>
         <dd>
 <span class="refAuthor">Kelly, F. P.</span>, <span class="refTitle">"Networks of Queues"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.cambridge.org/core/journals/advances-in-applied-probability/article/abs/networks-of-queues/38A1EA868A62B09C77A073BECA1A1B56">https://www.cambridge.org/core/journals/advances-in-applied-probability/article/abs/networks-of-queues/38A1EA868A62B09C77A073BECA1A1B56</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="LatencyEstimation">[LatencyEstimation]</dt>
+        <dd>
+<span class="refAuthor">Li, C.</span>, <span class="refAuthor">Nasr-Esfahany, A.</span>, <span class="refAuthor">Zhao, K.</span>, <span class="refAuthor">Noorbakhsh, K.</span>, <span class="refAuthor">Goyal, P.</span>, <span class="refAuthor">Alizadeh, M.</span>, and <span class="refAuthor">T. Anderson</span>, <span class="refTitle">"m3: Accurate Flow-Level Performance Estimation using Machine Learning"</span>, <span class="refContent">ACM</span>, <span class="seriesInfo">Proceedings of the ACM SIGCOMM 2024 Conference pp. 813-827</span>, <span class="seriesInfo">DOI 10.1145/3651890.3672243</span>, <time datetime="2024-08" class="refDate">August 2024</time>, <span>&lt;<a href="https://doi.org/10.1145/3651890.3672243">https://doi.org/10.1145/3651890.3672243</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="P.10">[P.10]</dt>
         <dd>
@@ -2824,6 +2911,10 @@ updated:<a href="#section-11.2-1.9.1" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Morton, A.</span>, <span class="refTitle">"Round-Trip Packet Loss Metrics"</span>, <span class="seriesInfo">RFC 6673</span>, <span class="seriesInfo">DOI 10.17487/RFC6673</span>, <time datetime="2012-08" class="refDate">August 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6673">https://www.rfc-editor.org/rfc/rfc6673</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC6703">[RFC6703]</dt>
+        <dd>
+<span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Ramachandran, G.</span>, and <span class="refAuthor">G. Maguluri</span>, <span class="refTitle">"Reporting IP Network Performance Metrics: Different Points of View"</span>, <span class="seriesInfo">RFC 6703</span>, <span class="seriesInfo">DOI 10.17487/RFC6703</span>, <time datetime="2012-08" class="refDate">August 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6703">https://www.rfc-editor.org/rfc/rfc6703</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7679">[RFC7679]</dt>
         <dd>
 <span class="refAuthor">Almes, G.</span>, <span class="refAuthor">Kalidindi, S.</span>, <span class="refAuthor">Zekauskas, M.</span>, and <span class="refAuthor">A. Morton, Ed.</span>, <span class="refTitle">"A One-Way Delay Metric for IP Performance Metrics (IPPM)"</span>, <span class="seriesInfo">STD 81</span>, <span class="seriesInfo">RFC 7679</span>, <span class="seriesInfo">DOI 10.17487/RFC7679</span>, <time datetime="2016-01" class="refDate">January 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7679">https://www.rfc-editor.org/rfc/rfc7679</a>&gt;</span>. </dd>
@@ -2860,6 +2951,14 @@ updated:<a href="#section-11.2-1.9.1" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Mirsky, G.</span>, <span class="refAuthor">Jun, G.</span>, <span class="refAuthor">Nydell, H.</span>, and <span class="refAuthor">R. Foote</span>, <span class="refTitle">"Simple Two-Way Active Measurement Protocol"</span>, <span class="seriesInfo">RFC 8762</span>, <span class="seriesInfo">DOI 10.17487/RFC8762</span>, <time datetime="2020-03" class="refDate">March 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8762">https://www.rfc-editor.org/rfc/rfc8762</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8877">[RFC8877]</dt>
+        <dd>
+<span class="refAuthor">Mizrahi, T.</span>, <span class="refAuthor">Fabini, J.</span>, and <span class="refAuthor">A. Morton</span>, <span class="refTitle">"Guidelines for Defining Packet Timestamps"</span>, <span class="seriesInfo">RFC 8877</span>, <span class="seriesInfo">DOI 10.17487/RFC8877</span>, <time datetime="2020-09" class="refDate">September 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8877">https://www.rfc-editor.org/rfc/rfc8877</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8912">[RFC8912]</dt>
+        <dd>
+<span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Eardley, P.</span>, and <span class="refAuthor">K. D'Souza</span>, <span class="refTitle">"Initial Performance Metrics Registry Entries"</span>, <span class="seriesInfo">RFC 8912</span>, <span class="seriesInfo">DOI 10.17487/RFC8912</span>, <time datetime="2021-11" class="refDate">November 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8912">https://www.rfc-editor.org/rfc/rfc8912</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9000">[RFC9000]</dt>
         <dd>
 <span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
@@ -2895,6 +2994,18 @@ updated:<a href="#section-11.2-1.9.1" class="pilcrow">¶</a></p>
 <dt id="RRUL">[RRUL]</dt>
         <dd>
 <span class="refTitle">"Real-time response under load test specification"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.bufferbloat.net/projects/bloat/wiki/RRUL_Spec/">https://www.bufferbloat.net/projects/bloat/wiki/RRUL_Spec/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TCPContinuous">[TCPContinuous]</dt>
+        <dd>
+<span class="refAuthor">Sengupta, S.</span>, <span class="refAuthor">Kim, H.</span>, and <span class="refAuthor">J. Rexford</span>, <span class="refTitle">"Continuous in-network round-trip time monitoring"</span>, <span class="refContent">ACM</span>, <span class="seriesInfo">Proceedings of the ACM SIGCOMM 2022 Conference pp. 473-485</span>, <span class="seriesInfo">DOI 10.1145/3544216.3544222</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://doi.org/10.1145/3544216.3544222">https://doi.org/10.1145/3544216.3544222</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TCPHandshake">[TCPHandshake]</dt>
+        <dd>
+<span class="refAuthor">Apostolaki, M.</span>, <span class="refAuthor">Singla, A.</span>, and <span class="refAuthor">L. Vanbever</span>, <span class="refTitle">"Performance-Driven Internet Path Selection"</span>, <span class="refContent">ACM</span>, <span class="seriesInfo">Proceedings of the ACM SIGCOMM Symposium on SDN Research (SOSR) pp. 41-53</span>, <span class="seriesInfo">DOI 10.1145/3482898.3483366</span>, <time datetime="2021-10" class="refDate">October 2021</time>, <span>&lt;<a href="https://doi.org/10.1145/3482898.3483366">https://doi.org/10.1145/3482898.3483366</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Throughputtest">[Throughputtest]</dt>
+        <dd>
+<span class="refAuthor">MacMillan, K.</span>, <span class="refAuthor">Mangla, T.</span>, <span class="refAuthor">Saxon, J.</span>, <span class="refAuthor">Marwell, N.</span>, and <span class="refAuthor">N. Feamster</span>, <span class="refTitle">"A Comparative Analysis of Ookla Speedtest and Measurement Labs Network Diagnostic Test (NDT7)"</span>, <span class="refContent">Association for Computing Machinery (ACM)</span>, <span class="seriesInfo">Proceedings of the ACM on Measurement and Analysis of Computing Systems vol. 7, no. 1, pp. 1-26</span>, <span class="seriesInfo">DOI 10.1145/3579448</span>, <time datetime="2023-02" class="refDate">February 2023</time>, <span>&lt;<a href="https://doi.org/10.1145/3579448">https://doi.org/10.1145/3579448</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="XboxNetReqs">[XboxNetReqs]</dt>
       <dd>

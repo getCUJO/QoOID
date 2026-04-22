@@ -5,8 +5,8 @@
 IP Performance Measurement                             B. I. T. Monclair
 Internet-Draft                                                  M. Olden
 Intended status: Informational                             I. Kunze, Ed.
-Expires: 15 October 2026                                         CUJO AI
-                                                           13 April 2026
+Expires: 24 October 2026                                         CUJO AI
+                                                           22 April 2026
 
 
                         Quality of Outcome (QoO)
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 October 2026.
+   This Internet-Draft will expire on 24 October 2026.
 
 Copyright Notice
 
@@ -96,6 +96,7 @@ Table of Contents
      6.3.  Deployment Considerations
      6.4.  Adaptive Applications
      6.5.  Sensitity to Sampling Accuracy
+     6.6.  Continuous Measurements
    7.  Known Weaknesses and Open Questions
      7.1.  Volatile Networks
      7.2.  Missing Temporal Information in Distributions.
@@ -679,19 +680,22 @@ Table of Contents
       Protocol (STAMP) [RFC8762], or the Isochronous Round-Trip Tester
       (IRTT) [IRTT]
 
-   *  Latency Under Load Tests
+   *  On-path telemetry methods (IOAM [RFC9197], AltMark [RFC9341])
 
-   *  Speed Tests with latency measures
+   *  Latency tests under loaded network conditions
+      [I-D.ietf-ippm-responsiveness]
 
-   *  Simulating real traffic
+   *  Throughput tests with included latency measures [Throughputtest]
 
-   *  End-to-end measurements of real traffic
+   *  DNS response latency measurements (Section 2.8 of [RFC8517],
+      [RFC8912])
 
-   *  TCP SYN ACK or DNS Lookup RTT Capture
+   *  Passive TCP / QUIC handshake measurements [TCPHandshake][RFC9312]
 
-   *  On-Path Telemetry methods (IOAM [RFC9197], AltMark [RFC9341])
+   *  Continuous passive TCP / QUIC measurements
+      [TCPContinuous][RFC9312]
 
-   *  Estimation
+   *  Simulating or estimating real traffic [LatencyEstimation]
 
    Modeling full latency distributions may be too complex to allow for
    easy adoption of the framework.  Instead, reporting latency at
@@ -728,27 +732,49 @@ Table of Contents
    To support reproducibility and enable confidence analysis, each
    measurement must be accompanied by the following metadata:
 
-   *  Description of the measurement path, including the endpoints
-      (source and destination), network segments traversed, measurement
-      points (if applicable), and direction (uplink, downlink, or
-      bidirectional)
+   *  Description of the measurement method, including:
 
-   *  Timestamp of first sample
+      -  Standard name (if applicable) or reference
 
-   *  Total duration of the sampling period
+      -  Measurement class (Active, Passive, or Hybrid) [RFC7799]
 
-   *  Number of samples collected
+      -  Protocol layer used for measurements (ICMP, TCP, UDP, ...)
 
-   *  Sampling method, including:
+   *  Measurement configuration, including:
 
-      -  Cyclic: One sample every N milliseconds (specify N)
+      -  Probe packet size (if applicable)
 
-      -  Burst: X samples every N milliseconds (specify X and N)
+      -  Traffic class of probed traffic
 
-      -  Passive: Opportunistic sampling of live traffic (non-uniform
-         intervals)
+      -  Sampling method, including but not limited to
 
-   These metadata elements are essential for interpreting the precision
+         o  Cyclic: One sample every N milliseconds (specify N)
+
+         o  Burst: X samples every N milliseconds (specify X and N)
+
+         o  Passive: Opportunistic sampling of live traffic (non-uniform
+            intervals)
+
+   *  Description of the measurement path, including:
+
+      -  Endpoints (source and destination)
+
+      -  Network segments traversed
+
+      -  Measurement points (if applicable)
+
+      -  Direction (two-way, one-way uplink, one-way downlink)
+
+   *  Description of the measurement duration, including:
+
+      -  Timestamp of first sample (e.g., in the format used in TWAMP
+         [RFC5357][RFC8877])
+
+      -  Total duration of the sampling period (in milliseconds)
+
+      -  Number of samples collected
+
+   These metadata elements are required for interpreting the precision
    and reliability of the measurements.  As demonstrated in
    [QoOSimStudy], low sampling frequencies and short measurement
    durations can lead to misleadingly optimistic or imprecise QoO
@@ -1187,6 +1213,42 @@ Table of Contents
    These guidelines are non-normative but reflect empirical evidence on
    how QoO performs.
 
+6.6.  Continuous Measurements
+
+   The QoO framework does not define measurement periods: it can be
+   applied to measurements taken over a specific, bounded interval
+   (e.g., when conducting a scheduled test run) as well as to continuous
+   measurements collected from live traffic over an extended period.
+   Deployments may use either mode depending on the use case and
+   available infrastructure [RFC6703].
+
+   When measurements are collected continuously, implementations must
+   decide how to window or aggregate samples into the latency
+   distribution and packet loss estimate used to compute a QoO score.
+   Several approaches are possible, and each involves trade-offs:
+
+   Fixed time windows (e.g., last hour, last day, or last week) are
+   simple to implement and compare across operators.  Longer windows
+   smooth out short-term anomalies but may obscure recent degradation;
+   shorter windows are more responsive but less stable.
+
+   Rolling or sliding windows of the most recent N samples or the most
+   recent T seconds provide a continuously updated view of network
+   quality, balancing responsiveness with stability.
+
+   Measurements can also be grouped around specific events, such as user
+   sessions or application usage periods.  This approach can improve
+   relevance for end-user-facing scores but may introduce selection
+   bias.
+
+   The choice of windowing strategy affects which percentiles are
+   observed and therefore the resulting QoO score.  Implementations
+   should document the windowing strategy used alongside the reported
+   QoO scores and the measurement approach to ensure results are
+   interpretable and comparable.  Standardization of specific windowing
+   approaches is considered out of scope for this document and left for
+   future work.
+
 7.  Known Weaknesses and Open Questions
 
    The described QoO framework simplifies the comparison between network
@@ -1556,6 +1618,14 @@ Table of Contents
               Case Study", n.d.,
               <https://www.mdpi.com/2073-431X/11/3/45>.
 
+   [I-D.ietf-ippm-responsiveness]
+              Paasch, C., Meyer, R., Cheshire, S., and W. Hawkins,
+              "Responsiveness under Working Conditions", Work in
+              Progress, Internet-Draft, draft-ietf-ippm-responsiveness-
+              08, 20 October 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
+              responsiveness-08>.
+
    [I-D.ietf-opsawg-rfc5706bis]
               Claise, B., Clarke, J., Farrel, A., Barguil, S.,
               Pignataro, C., and R. Chen, "Guidelines for Considering
@@ -1582,6 +1652,14 @@ Table of Contents
               <https://www.cambridge.org/core/journals/advances-in-
               applied-probability/article/abs/networks-of-
               queues/38A1EA868A62B09C77A073BECA1A1B56>.
+
+   [LatencyEstimation]
+              Li, C., Nasr-Esfahany, A., Zhao, K., Noorbakhsh, K.,
+              Goyal, P., Alizadeh, M., and T. Anderson, "m3: Accurate
+              Flow-Level Performance Estimation using Machine Learning",
+              ACM, Proceedings of the ACM SIGCOMM 2024 Conference pp.
+              813-827, DOI 10.1145/3651890.3672243, August 2024,
+              <https://doi.org/10.1145/3651890.3672243>.
 
    [P.10]     ITU-T, "Vocabulary for performance, quality of service and
               quality of experience", ITU-T P.10/G.100, November 2017,
@@ -1662,6 +1740,11 @@ Table of Contents
               DOI 10.17487/RFC6673, August 2012,
               <https://www.rfc-editor.org/rfc/rfc6673>.
 
+   [RFC6703]  Morton, A., Ramachandran, G., and G. Maguluri, "Reporting
+              IP Network Performance Metrics: Different Points of View",
+              RFC 6703, DOI 10.17487/RFC6703, August 2012,
+              <https://www.rfc-editor.org/rfc/rfc6703>.
+
    [RFC7679]  Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton,
               Ed., "A One-Way Delay Metric for IP Performance Metrics
               (IPPM)", STD 81, RFC 7679, DOI 10.17487/RFC7679, January
@@ -1708,6 +1791,16 @@ Table of Contents
               DOI 10.17487/RFC8762, March 2020,
               <https://www.rfc-editor.org/rfc/rfc8762>.
 
+   [RFC8877]  Mizrahi, T., Fabini, J., and A. Morton, "Guidelines for
+              Defining Packet Timestamps", RFC 8877,
+              DOI 10.17487/RFC8877, September 2020,
+              <https://www.rfc-editor.org/rfc/rfc8877>.
+
+   [RFC8912]  Morton, A., Bagnulo, M., Eardley, P., and K. D'Souza,
+              "Initial Performance Metrics Registry Entries", RFC 8912,
+              DOI 10.17487/RFC8912, November 2021,
+              <https://www.rfc-editor.org/rfc/rfc8912>.
+
    [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
               DOI 10.17487/RFC9000, May 2021,
@@ -1750,6 +1843,29 @@ Table of Contents
    [RRUL]     "Real-time response under load test specification", n.d.,
               <https://www.bufferbloat.net/projects/bloat/wiki/
               RRUL_Spec/>.
+
+   [TCPContinuous]
+              Sengupta, S., Kim, H., and J. Rexford, "Continuous in-
+              network round-trip time monitoring", ACM, Proceedings of
+              the ACM SIGCOMM 2022 Conference pp. 473-485,
+              DOI 10.1145/3544216.3544222, August 2022,
+              <https://doi.org/10.1145/3544216.3544222>.
+
+   [TCPHandshake]
+              Apostolaki, M., Singla, A., and L. Vanbever, "Performance-
+              Driven Internet Path Selection", ACM, Proceedings of the
+              ACM SIGCOMM Symposium on SDN Research (SOSR) pp. 41-53,
+              DOI 10.1145/3482898.3483366, October 2021,
+              <https://doi.org/10.1145/3482898.3483366>.
+
+   [Throughputtest]
+              MacMillan, K., Mangla, T., Saxon, J., Marwell, N., and N.
+              Feamster, "A Comparative Analysis of Ookla Speedtest and
+              Measurement Labs Network Diagnostic Test (NDT7)",
+              Association for Computing Machinery (ACM), Proceedings of
+              the ACM on Measurement and Analysis of Computing
+              Systems vol. 7, no. 1, pp. 1-26, DOI 10.1145/3579448,
+              February 2023, <https://doi.org/10.1145/3579448>.
 
    [XboxNetReqs]
               Microsoft, "Understanding your remote play setup test
