@@ -870,7 +870,7 @@ performs.
 This document does not define a standardized approach for creating a quality-focused network performance requirement specification.
 Instead, this section provides general guidance on and a rough outline for deriving an admittingly subjective requirement specification, aiming to create a basis for future standardization efforts focusing on developing a standardized, objective requirement creation framework.
 Additional information is provided in {{QoOAppQualityReqs}}.
-Direct use of the approach described below in production scenarios is discouraged.
+Direct use of the approach described below in production scenarios is discouraged due to its inherently subjective nature.
 
 When determining quality-focused network performance requirements for an
 application, the goal is to identify the network conditions where application performance is optimal and where it becomes unacceptable.
