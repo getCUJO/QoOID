@@ -14,7 +14,7 @@ approach to network quality assessment designed to align with the needs of
 application developers, users, and operators. 
        By leveraging the Quality Attenuation metric, QoO provides a method for defining and evaluating application-specific, quality-focused network performance requirements to enable insights for network optimization and simple Quality of Service scores for end-users. 
     " name="description">
-<meta content="xml2rfc 3.32.0" name="generator">
+<meta content="xml2rfc 3.33.0" name="generator">
 <meta content="Quality Attenuation" name="keyword">
 <meta content="Application Outcomes" name="keyword">
 <meta content="Quality of Outcome" name="keyword">
@@ -22,14 +22,14 @@ application developers, users, and operators.
 <meta content="Network quality" name="keyword">
 <meta content="draft-ietf-ippm-qoo-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.32.0
-    Python 3.12.12
+  xml2rfc 3.33.0
+    Python 3.12.13
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.0.2
-    platformdirs 4.9.4
+    platformdirs 4.9.6
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
@@ -1058,7 +1058,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Monclair, et al.</td>
-<td class="center">Expires 15 October 2026</td>
+<td class="center">Expires 24 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1071,12 +1071,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ippm-qoo-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-13" class="published">13 April 2026</time>
+<time datetime="2026-04-22" class="published">22 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-15">15 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-24">24 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1137,7 +1137,7 @@ application developers, users, and operators.<a href="#section-abstract-1" class
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1242,6 +1242,9 @@ application developers, users, and operators.<a href="#section-abstract-1" class
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
                 <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-sensitity-to-sampling-accur" class="internal xref">Sensitity to Sampling Accuracy</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.6">
+                <p id="section-toc.1-1.6.2.6.1"><a href="#section-6.6" class="auto internal xref">6.6</a>.  <a href="#name-continuous-measurements" class="internal xref">Continuous Measurements</a></p>
 </li>
             </ul>
 </li>
@@ -2284,6 +2287,38 @@ scores accurately reflect application performance.<a href="#section-6.5-5.3.1" c
 performs.<a href="#section-6.5-6" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="continuous-measurements">
+<section id="section-6.6">
+        <h3 id="name-continuous-measurements">
+<a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-continuous-measurements" class="section-name selfRef">Continuous Measurements</a>
+        </h3>
+<p id="section-6.6-1">The QoO framework does not define measurement periods: it can be applied to
+measurements taken over a specific, bounded interval (e.g., when conducting
+a scheduled test run) as well as to continuous measurements collected from
+live traffic over an extended period. Deployments may use
+either mode depending on the use case and available infrastructure <span>[<a href="#RFC6703" class="cite xref">RFC6703</a>]</span>.<a href="#section-6.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.6-2">When measurements are collected continuously, implementations must decide how
+to window or aggregate samples into the latency distribution and packet loss
+estimate used to compute a QoO score.
+Several approaches are possible, and each involves trade-offs:<a href="#section-6.6-2" class="pilcrow">¶</a></p>
+<p id="section-6.6-3">Fixed time windows (e.g., last hour, last day, or last week) are simple to implement
+and compare across operators. Longer windows smooth out short-term
+anomalies but may obscure recent degradation; shorter windows are more
+responsive but less stable.<a href="#section-6.6-3" class="pilcrow">¶</a></p>
+<p id="section-6.6-4">Rolling or sliding windows of the most recent N samples or
+the most recent T seconds provide a continuously updated view of network quality,
+balancing responsiveness with stability.<a href="#section-6.6-4" class="pilcrow">¶</a></p>
+<p id="section-6.6-5">Measurements can also be grouped around specific events, such as user sessions or
+application usage periods. This approach can improve relevance for end-user-facing
+scores but may introduce selection bias.<a href="#section-6.6-5" class="pilcrow">¶</a></p>
+<p id="section-6.6-6">The choice of windowing strategy affects which percentiles are observed and
+therefore the resulting QoO score. Implementations should document the windowing
+strategy used alongside the reported QoO scores and the measurement approach
+to ensure results are interpretable and comparable.
+Standardization of specific windowing approaches is considered
+out of scope for this document and left for future work.<a href="#section-6.6-6" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="weakness-questions">
@@ -2815,6 +2850,10 @@ updated:<a href="#section-11.2-1.9.1" class="pilcrow">¶</a></p>
 <dt id="RFC6673">[RFC6673]</dt>
         <dd>
 <span class="refAuthor">Morton, A.</span>, <span class="refTitle">"Round-Trip Packet Loss Metrics"</span>, <span class="seriesInfo">RFC 6673</span>, <span class="seriesInfo">DOI 10.17487/RFC6673</span>, <time datetime="2012-08" class="refDate">August 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6673">https://www.rfc-editor.org/rfc/rfc6673</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6703">[RFC6703]</dt>
+        <dd>
+<span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Ramachandran, G.</span>, and <span class="refAuthor">G. Maguluri</span>, <span class="refTitle">"Reporting IP Network Performance Metrics: Different Points of View"</span>, <span class="seriesInfo">RFC 6703</span>, <span class="seriesInfo">DOI 10.17487/RFC6703</span>, <time datetime="2012-08" class="refDate">August 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6703">https://www.rfc-editor.org/rfc/rfc6703</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7679">[RFC7679]</dt>
         <dd>

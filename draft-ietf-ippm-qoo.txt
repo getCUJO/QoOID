@@ -5,8 +5,8 @@
 IP Performance Measurement                             B. I. T. Monclair
 Internet-Draft                                                  M. Olden
 Intended status: Informational                             I. Kunze, Ed.
-Expires: 15 October 2026                                         CUJO AI
-                                                           13 April 2026
+Expires: 24 October 2026                                         CUJO AI
+                                                           22 April 2026
 
 
                         Quality of Outcome (QoO)
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 October 2026.
+   This Internet-Draft will expire on 24 October 2026.
 
 Copyright Notice
 
@@ -96,6 +96,7 @@ Table of Contents
      6.3.  Deployment Considerations
      6.4.  Adaptive Applications
      6.5.  Sensitity to Sampling Accuracy
+     6.6.  Continuous Measurements
    7.  Known Weaknesses and Open Questions
      7.1.  Volatile Networks
      7.2.  Missing Temporal Information in Distributions.
@@ -1187,6 +1188,42 @@ Table of Contents
    These guidelines are non-normative but reflect empirical evidence on
    how QoO performs.
 
+6.6.  Continuous Measurements
+
+   The QoO framework does not define measurement periods: it can be
+   applied to measurements taken over a specific, bounded interval
+   (e.g., when conducting a scheduled test run) as well as to continuous
+   measurements collected from live traffic over an extended period.
+   Deployments may use either mode depending on the use case and
+   available infrastructure [RFC6703].
+
+   When measurements are collected continuously, implementations must
+   decide how to window or aggregate samples into the latency
+   distribution and packet loss estimate used to compute a QoO score.
+   Several approaches are possible, and each involves trade-offs:
+
+   Fixed time windows (e.g., last hour, last day, or last week) are
+   simple to implement and compare across operators.  Longer windows
+   smooth out short-term anomalies but may obscure recent degradation;
+   shorter windows are more responsive but less stable.
+
+   Rolling or sliding windows of the most recent N samples or the most
+   recent T seconds provide a continuously updated view of network
+   quality, balancing responsiveness with stability.
+
+   Measurements can also be grouped around specific events, such as user
+   sessions or application usage periods.  This approach can improve
+   relevance for end-user-facing scores but may introduce selection
+   bias.
+
+   The choice of windowing strategy affects which percentiles are
+   observed and therefore the resulting QoO score.  Implementations
+   should document the windowing strategy used alongside the reported
+   QoO scores and the measurement approach to ensure results are
+   interpretable and comparable.  Standardization of specific windowing
+   approaches is considered out of scope for this document and left for
+   future work.
+
 7.  Known Weaknesses and Open Questions
 
    The described QoO framework simplifies the comparison between network
@@ -1642,6 +1679,11 @@ Table of Contents
    [RFC6673]  Morton, A., "Round-Trip Packet Loss Metrics", RFC 6673,
               DOI 10.17487/RFC6673, August 2012,
               <https://www.rfc-editor.org/rfc/rfc6673>.
+
+   [RFC6703]  Morton, A., Ramachandran, G., and G. Maguluri, "Reporting
+              IP Network Performance Metrics: Different Points of View",
+              RFC 6703, DOI 10.17487/RFC6703, August 2012,
+              <https://www.rfc-editor.org/rfc/rfc6703>.
 
    [RFC7679]  Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton,
               Ed., "A One-Way Delay Metric for IP Performance Metrics
