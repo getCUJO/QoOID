@@ -680,19 +680,22 @@ Table of Contents
       Protocol (STAMP) [RFC8762], or the Isochronous Round-Trip Tester
       (IRTT) [IRTT]
 
-   *  Latency Under Load Tests
+   *  On-path telemetry methods (IOAM [RFC9197], AltMark [RFC9341])
 
-   *  Speed Tests with latency measures
+   *  Latency tests under loaded network conditions
+      [I-D.ietf-ippm-responsiveness]
 
-   *  Simulating real traffic
+   *  Throughput tests with included latency measures [Throughputtest]
 
-   *  End-to-end measurements of real traffic
+   *  DNS response latency measurements (Section 2.8 of [RFC8517],
+      [RFC8912])
 
-   *  TCP SYN ACK or DNS Lookup RTT Capture
+   *  Passive TCP / QUIC handshake measurements [TCPHandshake][RFC9312]
 
-   *  On-Path Telemetry methods (IOAM [RFC9197], AltMark [RFC9341])
+   *  Continuous passive TCP / QUIC measurements
+      [TCPContinuous][RFC9312]
 
-   *  Estimation
+   *  Simulating or estimating real traffic [LatencyEstimation]
 
    Modeling full latency distributions may be too complex to allow for
    easy adoption of the framework.  Instead, reporting latency at
@@ -1582,6 +1585,14 @@ Table of Contents
               Case Study", n.d.,
               <https://www.mdpi.com/2073-431X/11/3/45>.
 
+   [I-D.ietf-ippm-responsiveness]
+              Paasch, C., Meyer, R., Cheshire, S., and W. Hawkins,
+              "Responsiveness under Working Conditions", Work in
+              Progress, Internet-Draft, draft-ietf-ippm-responsiveness-
+              08, 20 October 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
+              responsiveness-08>.
+
    [I-D.ietf-opsawg-rfc5706bis]
               Claise, B., Clarke, J., Farrel, A., Barguil, S.,
               Pignataro, C., and R. Chen, "Guidelines for Considering
@@ -1608,6 +1619,14 @@ Table of Contents
               <https://www.cambridge.org/core/journals/advances-in-
               applied-probability/article/abs/networks-of-
               queues/38A1EA868A62B09C77A073BECA1A1B56>.
+
+   [LatencyEstimation]
+              Li, C., Nasr-Esfahany, A., Zhao, K., Noorbakhsh, K.,
+              Goyal, P., Alizadeh, M., and T. Anderson, "m3: Accurate
+              Flow-Level Performance Estimation using Machine Learning",
+              ACM, Proceedings of the ACM SIGCOMM 2024 Conference pp.
+              813-827, DOI 10.1145/3651890.3672243, August 2024,
+              <https://doi.org/10.1145/3651890.3672243>.
 
    [P.10]     ITU-T, "Vocabulary for performance, quality of service and
               quality of experience", ITU-T P.10/G.100, November 2017,
@@ -1731,6 +1750,11 @@ Table of Contents
               DOI 10.17487/RFC8762, March 2020,
               <https://www.rfc-editor.org/rfc/rfc8762>.
 
+   [RFC8912]  Morton, A., Bagnulo, M., Eardley, P., and K. D'Souza,
+              "Initial Performance Metrics Registry Entries", RFC 8912,
+              DOI 10.17487/RFC8912, November 2021,
+              <https://www.rfc-editor.org/rfc/rfc8912>.
+
    [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
               DOI 10.17487/RFC9000, May 2021,
@@ -1773,6 +1797,29 @@ Table of Contents
    [RRUL]     "Real-time response under load test specification", n.d.,
               <https://www.bufferbloat.net/projects/bloat/wiki/
               RRUL_Spec/>.
+
+   [TCPContinuous]
+              Sengupta, S., Kim, H., and J. Rexford, "Continuous in-
+              network round-trip time monitoring", ACM, Proceedings of
+              the ACM SIGCOMM 2022 Conference pp. 473-485,
+              DOI 10.1145/3544216.3544222, August 2022,
+              <https://doi.org/10.1145/3544216.3544222>.
+
+   [TCPHandshake]
+              Apostolaki, M., Singla, A., and L. Vanbever, "Performance-
+              Driven Internet Path Selection", ACM, Proceedings of the
+              ACM SIGCOMM Symposium on SDN Research (SOSR) pp. 41-53,
+              DOI 10.1145/3482898.3483366, October 2021,
+              <https://doi.org/10.1145/3482898.3483366>.
+
+   [Throughputtest]
+              MacMillan, K., Mangla, T., Saxon, J., Marwell, N., and N.
+              Feamster, "A Comparative Analysis of Ookla Speedtest and
+              Measurement Labs Network Diagnostic Test (NDT7)",
+              Association for Computing Machinery (ACM), Proceedings of
+              the ACM on Measurement and Analysis of Computing
+              Systems vol. 7, no. 1, pp. 1-26, DOI 10.1145/3579448,
+              February 2023, <https://doi.org/10.1145/3579448>.
 
    [XboxNetReqs]
               Microsoft, "Understanding your remote play setup test
