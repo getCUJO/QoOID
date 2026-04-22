@@ -197,6 +197,8 @@ informative:
     seriesinfo:
       ITU-T: P.1401
     date: January 2020
+  QoSPrediction: DOI.10.23919/CNSM67658.2025.11297458
+  CellularPredictability: DOI.10.1109/MASS62177.2024.00018
   TCPHandshake: DOI.10.1145/3482898.3483366
   TCPContinuous: DOI.10.1145/3544216.3544222
   Throughputtest: DOI.10.1145/3579448
@@ -915,8 +917,8 @@ the measured distributions.
 
 ## Volatile Networks {#volatile-networks}
 Volatile networks - in particular, mobile cellular networks - pose a challenge
-for network quality prediction, with the level of assurance of the prediction
-likely to decrease as session duration increases. Historic network conditions
+for network quality prediction {{CellularPredictability}}, with the level of assurance of the prediction
+likely to decrease as session duration increases {{QoSPrediction}}. Historic network conditions
 for a given cell may help indicate times of network load or reduced transmission
 power, and their effect on throughput/latency/loss. However, as terminals are
 mobile, the available capacity for a given terminal can change by an
