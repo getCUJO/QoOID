@@ -2064,8 +2064,13 @@ A.2.  Requirements from End-Users
       update in VR ([RFC9817]; see [G.1051] for latency measurement and
       interactivity scoring)
 
-   Note that developers of similar applications may have arrived at
-   different figures.
+   These numbers only serve as examples and their exact value depends on
+   the specific application and the test methodology used to derive
+   them, such that they are not to be interpreted as universally
+   applicable (see also Section 3.2.2 and Section 4.9).  Instead,
+   additional standardization efforts are needed to derive more
+   universally applicable thresholds for different classes of
+   applications.
 
 A.3.  Requirements from Application and Platform Developers
 
