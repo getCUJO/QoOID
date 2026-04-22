@@ -1182,7 +1182,8 @@ QoO = min(QoO_latency, QoO_loss, QoO_throughput) = min(50, 75, 100) = 50
    efforts focusing on developing a standardized, objective requirement
    creation framework.  Additional information is provided in
    [QoOAppQualityReqs].  Direct use of the approach described below in
-   production scenarios is discouraged.
+   production scenarios is discouraged due to its inherently subjective
+   nature.
 
    When determining quality-focused network performance requirements for
    an application, the goal is to identify the network conditions where
