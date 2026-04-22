@@ -732,27 +732,49 @@ Table of Contents
    To support reproducibility and enable confidence analysis, each
    measurement must be accompanied by the following metadata:
 
-   *  Description of the measurement path, including the endpoints
-      (source and destination), network segments traversed, measurement
-      points (if applicable), and direction (uplink, downlink, or
-      bidirectional)
+   *  Description of the measurement method, including:
 
-   *  Timestamp of first sample
+      -  Standard name (if applicable) or reference
 
-   *  Total duration of the sampling period
+      -  Measurement class (Active, Passive, or Hybrid) [RFC7799]
 
-   *  Number of samples collected
+      -  Protocol layer used for measurements (ICMP, TCP, UDP, ...)
 
-   *  Sampling method, including:
+   *  Measurement configuration, including:
 
-      -  Cyclic: One sample every N milliseconds (specify N)
+      -  Probe packet size (if applicable)
 
-      -  Burst: X samples every N milliseconds (specify X and N)
+      -  Traffic class of probed traffic
 
-      -  Passive: Opportunistic sampling of live traffic (non-uniform
-         intervals)
+      -  Sampling method, including but not limited to
 
-   These metadata elements are essential for interpreting the precision
+         o  Cyclic: One sample every N milliseconds (specify N)
+
+         o  Burst: X samples every N milliseconds (specify X and N)
+
+         o  Passive: Opportunistic sampling of live traffic (non-uniform
+            intervals)
+
+   *  Description of the measurement path, including:
+
+      -  Endpoints (source and destination)
+
+      -  Network segments traversed
+
+      -  Measurement points (if applicable)
+
+      -  Direction (two-way, one-way uplink, one-way downlink)
+
+   *  Description of the measurement duration, including:
+
+      -  Timestamp of first sample (e.g., in the format used in TWAMP
+         [RFC5357][RFC8877])
+
+      -  Total duration of the sampling period (in milliseconds)
+
+      -  Number of samples collected
+
+   These metadata elements are required for interpreting the precision
    and reliability of the measurements.  As demonstrated in
    [QoOSimStudy], low sampling frequencies and short measurement
    durations can lead to misleadingly optimistic or imprecise QoO
@@ -1749,6 +1771,11 @@ Table of Contents
               Two-Way Active Measurement Protocol", RFC 8762,
               DOI 10.17487/RFC8762, March 2020,
               <https://www.rfc-editor.org/rfc/rfc8762>.
+
+   [RFC8877]  Mizrahi, T., Fabini, J., and A. Morton, "Guidelines for
+              Defining Packet Timestamps", RFC 8877,
+              DOI 10.17487/RFC8877, September 2020,
+              <https://www.rfc-editor.org/rfc/rfc8877>.
 
    [RFC8912]  Morton, A., Bagnulo, M., Eardley, P., and K. D'Souza,
               "Initial Performance Metrics Registry Entries", RFC 8912,
