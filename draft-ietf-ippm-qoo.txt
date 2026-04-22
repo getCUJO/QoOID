@@ -1225,10 +1225,11 @@ QoO = min(QoO_latency, QoO_loss, QoO_throughput) = min(50, 75, 100) = 50
 5.1.  Volatile Networks
 
    Volatile networks - in particular, mobile cellular networks - pose a
-   challenge for network quality prediction, with the level of assurance
-   of the prediction likely to decrease as session duration increases.
-   Historic network conditions for a given cell may help indicate times
-   of network load or reduced transmission power, and their effect on
+   challenge for network quality prediction [CellularPredictability],
+   with the level of assurance of the prediction likely to decrease as
+   session duration increases [QoSPrediction].  Historic network
+   conditions for a given cell may help indicate times of network load
+   or reduced transmission power, and their effect on
    throughput/latency/loss.  However, as terminals are mobile, the
    available capacity for a given terminal can change by an order of
    magnitude within seconds due to physical radio factors.  These
@@ -1549,6 +1550,16 @@ QoO = min(QoO_latency, QoO_loss, QoO_throughput) = min(50, 75, 100) = 50
               "Bufferbloat: Dark buffers in the Internet", n.d.,
               <https://queue.acm.org/detail.cfm?id=2071893>.
 
+   [CellularPredictability]
+              Basit, O., Dinh, P., Khan, I., Kong, Z., Hu, Y.,
+              Koutsonikolas, D., Lee, M., and C. Liu, "On the
+              Predictability of Fine-Grained Cellular Network Throughput
+              Using Machine Learning Models", IEEE, 2024 IEEE 21st
+              International Conference on Mobile Ad-Hoc and Smart
+              Systems (MASS) pp. 47-56,
+              DOI 10.1109/mass62177.2024.00018, September 2024,
+              <https://doi.org/10.1109/mass62177.2024.00018>.
+
    [CSGO]     Xu, X., Liu, S., and M. Claypool, "The Effects of Network
               Latency on Counter-strike: Global Offensive Players",
               IEEE, 2022 14th International Conference on Quality of
@@ -1651,6 +1662,14 @@ QoO = min(QoO_latency, QoO_loss, QoO_throughput) = min(50, 75, 100) = 50
               Monclair, B. I. T., "Application Outcome Aware Root Cause
               Analysis", n.d., <https://domos.ai/storage/
               LaiW4tJQ2kj4OOTiZbnf48MbS22rQHcZQmCriih9-published.pdf>.
+
+   [QoSPrediction]
+              Moreno, N., Dsouza, F., Kassler, A., Pullem, F., Xu, B.,
+              Amend, M., and C. Choi, "QoS and Capacity Prediction for
+              5G Network Slicing", IEEE, 2025 21st International
+              Conference on Network and Service Management (CNSM) pp.
+              1-5, DOI 10.23919/cnsm67658.2025.11297458, October 2025,
+              <https://doi.org/10.23919/cnsm67658.2025.11297458>.
 
    [RFC2681]  Almes, G., Kalidindi, S., and M. Zekauskas, "A Round-trip
               Delay Metric for IPPM", RFC 2681, DOI 10.17487/RFC2681,
