@@ -1415,7 +1415,7 @@ score is calculated based on such performance requirements and network
 performance measurements.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">This document and the QoO framework assume that network quality can be represented by a minimum required throughput, a set of latency percentiles, and packet loss rates with the expectation that these measurables will ultimately also capture changes to additional factors.
 Hence, similar to Quality Attenuation <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>, the QoO framework assesses the network state based on latency distributions and packet loss probabilities and additionally considers throughput.
-This design ensures composability <span>[<a href="#RFC6049" class="cite xref">RFC6049</a>]</span>, enabling network operators to achieve fault isolation (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-rfc5706bis-04#section-5.4.4" class="relref">Section 5.4.4</a> of [<a href="#I-D.ietf-opsawg-rfc5706bis" class="cite xref">I-D.ietf-opsawg-rfc5706bis</a>]</span>), advanced root-cause analyses from within the network (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-rfc5706bis-04#section-5.4.3" class="relref">Section 5.4.3</a> of [<a href="#I-D.ietf-opsawg-rfc5706bis" class="cite xref">I-D.ietf-opsawg-rfc5706bis</a>]</span>), and network planning while supporting comprehensive end-to-end tests.<a href="#section-1-4" class="pilcrow">¶</a></p>
+This design ensures spatial composability <span>[<a href="#RFC6049" class="cite xref">RFC6049</a>]</span>, enabling network operators to achieve fault isolation (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-rfc5706bis-04#section-5.4.4" class="relref">Section 5.4.4</a> of [<a href="#I-D.ietf-opsawg-rfc5706bis" class="cite xref">I-D.ietf-opsawg-rfc5706bis</a>]</span>), advanced root-cause analyses from within the network (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-rfc5706bis-04#section-5.4.3" class="relref">Section 5.4.3</a> of [<a href="#I-D.ietf-opsawg-rfc5706bis" class="cite xref">I-D.ietf-opsawg-rfc5706bis</a>]</span>), and network planning while supporting comprehensive end-to-end tests.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <div id="whats-in-whats-out">
 <section id="section-1.1">
         <h3 id="name-whats-in-whats-out">
@@ -1575,7 +1575,7 @@ Quality Attenuation uses a latency distribution as the basis for an Improper Ran
 The cumulative distribution function of the IRV captures the likelihood that a packet "completes" within any given time, e.g., that it is received by the receiver when one-way latency is assessed.
 The IRV incorporates packet loss by treating lost packets as infinite (or too late to be of use, i.e., not arriving within an application‑specific time threshold) latency, similar to the One-Way Loss Metric for IP Performance Metrics (IPPM) <span>[<a href="#RFC7680" class="cite xref">RFC7680</a>]</span>, which defines packet loss as packets that fail to arrive within a specified time threshold.
 The "intangible mass" of the IRV represents the probability that a packet never completes within any useful time (i.e., is lost or arrives too late).<a href="#section-2.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.1-3">Quality Attenuation enables composition of network segments as two distributions can be composed using convolution.
+<p id="section-2.1-3">Quality Attenuation enables spatial composition <span>[<a href="#RFC6049" class="cite xref">RFC6049</a>]</span> of network segments as two distributions can be composed using convolution.
 Measurements from different network segments can be combined to derive end-to-end quality assessments, or end-to-end measurements can be decomposed to isolate the contribution of individual segments.
 This composability enables network operators to perform fault isolation and root cause analysis by identifying which portions of a network path contribute most to performance degradation.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 </section>
@@ -1594,7 +1594,7 @@ The QoO framework addresses this need by basing the QoO score on objective QoS m
 <p id="section-2.2-4">Application developers need the ability to express quality-focused network performance requirements for their applications across all relevant dimensions of network quality (latency, packet loss, throughput) in order to test or state their network requirements.
 The QoO framework addresses this need by enabling both simple and complex requirement specifications, accommodating developers with varying levels of networking expertise.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
 <p id="section-2.2-5">Network operators need tools for fault isolation, performance comparison, and bottleneck identification.
-The QoO framework addresses this need through its use of latency distributions and packet loss rates, whose composability enables operators to measure network segments independently, combine results to understand end-to-end quality, or decompose measurements to isolate problem areas, enabling network analysis in general.
+The QoO framework addresses this need through its use of latency distributions and packet loss rates, whose spatial composability enables operators to measure network segments independently, combine results to understand end-to-end quality, or decompose measurements to isolate problem areas, enabling network analysis in general.
 Additionally, operators can use the underlying raw measurement results to derive Quality Attenuation measures if more fine-grained insight is needed (see <a href="#quality-assessment-landscape" class="auto internal xref">Section 4.1</a>).<a href="#section-2.2-5" class="pilcrow">¶</a></p>
 <p id="section-2.2-6">Overall, the QoO framework design acknowledges that all stakeholders ultimately care about the performance of applications running over a network by<a href="#section-2.2-6" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-2.2-7">
@@ -3328,24 +3328,23 @@ application performance, assuming that measurements cover the properties of
 the end-to-end network path that the application uses.
 "Easy to Articulate Application Requirements" refers to the ease with which
 application-specific requirements can be expressed using the respective metric.
-"Composable" indicates whether the metric supports mathematical composition
-to enable detailed network analysis.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+"Composable" indicates whether the metric supports spatial composition as
+described in <a href="#req-network" class="auto internal xref">Appendix A.4</a> and <span>[<a href="#RFC6049" class="cite xref">RFC6049</a>]</span>: the ability to combine
+measurements from individual path segments to derive end-to-end properties,
+or to decompose end-to-end measurements to isolate per-segment contributions.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 <div id="throughput">
 <section id="appendix-B.1">
         <h3 id="name-throughput">
 <a href="#appendix-B.1" class="section-number selfRef">B.1. </a><a href="#name-throughput" class="section-name selfRef">Throughput</a>
         </h3>
-<p id="appendix-B.1-1">Throughput is related to user-observable application
-outcomes because there must be enough available capacity in the network. Adding extra
-available capacity above a certain threshold will, at best, receive diminishing returns
-(and any returns are often due to reduced latency). It is not possible to
-assess optimal or unacceptable application performance based on throughput
-alone for most applications. Throughput can be compared to a variety of
-application requirements, but since there is no direct correlation between
-throughput and application performance, it is not possible to conclude that an
-application will work well even if it is known that sufficient throughput is
-achievable.<a href="#appendix-B.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-B.1-2">Throughput cannot be composed.<a href="#appendix-B.1-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.1-1">Throughput relates to user-observable application outcomes as acceptable
+performance is impossible when throughput falls below an application's minimum requirement.
+Above that minimum threshold, the relationship weakens and additional capacity above a certain threshold will, at best, yield diminishing returns (and any returns are often due to reduced latency).
+While throughput can be compared to a variety of application requirements, it is not generally possible to conclude from sufficient throughput alone that an application will work well.<a href="#appendix-B.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.1-2">Throughput is not composable in the spatial sense as the throughput
+of a path A-B is governed by the bottleneck link (i.e., the minimum
+of the individual segment capacities).
+If, for example, B is the bottleneck, the throughput of A cannot be determined from the throughput of A-B and B as the throughput of A-B is the same as the throughput of B.<a href="#appendix-B.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="mean-latency">
@@ -3372,7 +3371,9 @@ a playback buffer, then the 99th percentile can be a good metric for measuring
 application performance. It does not work as well for applications that are very
 sensitive to overly delayed packets because the 99th percentile disregards all
 information about the delays of the worst 1% of packets.<a href="#appendix-B.3-1" class="pilcrow">¶</a></p>
-<p id="appendix-B.3-2">It is not possible to compose 99th-percentile values.<a href="#appendix-B.3-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.3-2">It is not possible to compose 99th-percentile values as the Nth percentile of a
+composed distribution cannot in general be derived from the Nth percentile of
+its constituent distributions without access to the full distributions.<a href="#appendix-B.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="variance-of-latency">
@@ -3453,10 +3454,10 @@ packet loss distributions into a single variable <span>[<a href="#TR-452.1" clas
 directly, or the Quality Attenuation value describing the time-to-completion of
 a user-observable outcome can be computed if the Quality Attenuation of each
 sub-goal required to reach the desired outcome is known <span>[<a href="#Haeri22" class="cite xref">Haeri22</a>]</span>.<a href="#appendix-B.9-1" class="pilcrow">¶</a></p>
-<p id="appendix-B.9-2">Quality Attenuation is composable because the convolution of Quality Attenuation
-values allows computing the time it takes to reach specific outcomes given
-the Quality Attenuation of each sub-goal and the causal dependency conditions
-between them <span>[<a href="#Haeri22" class="cite xref">Haeri22</a>]</span>.<a href="#appendix-B.9-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.9-2">Quality Attenuation is composable via convolution of the underlying
+distributions, which allows computing the time it takes to reach specific
+outcomes given the Quality Attenuation of each sub-goal and the causal
+dependency conditions between them <span>[<a href="#Haeri22" class="cite xref">Haeri22</a>]</span>.<a href="#appendix-B.9-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="comparison-qoo">
@@ -3472,11 +3473,13 @@ incorporating latency distributions, packet loss rates, and throughput
 measurements, QoO can assess how well a wide range of applications are
 expected to perform under given network conditions.<a href="#appendix-B.10-1" class="pilcrow">¶</a></p>
 <p id="appendix-B.10-2">The underlying Quality Attenuation measurements used in QoO are
-mathematically composable, as latency distributions can be composed using
-convolution <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>. This composability extends to QoO in the sense
+mathematically composable via convolution <span>[<a href="#TR-452.1" class="cite xref">TR-452.1</a>]</span>. This composability extends to QoO in the sense
 that operators can measure individual network segments, compose the
 underlying Quality Attenuation distributions, and then compute QoO scores
-from the composed result.<a href="#appendix-B.10-2" class="pilcrow">¶</a></p>
+from the composed result. This composability requires the full distributional
+representation. When QoO score calculation is based only on scalar
+percentile summaries (see <a href="#measurement-considerations" class="auto internal xref">Section 3.1.1</a>), this composability
+is not available.<a href="#appendix-B.10-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
