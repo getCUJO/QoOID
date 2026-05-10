@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-23T00:32:49.439988+00:00",
+  "timestamp": "2026-05-10T00:36:43.534403+00:00",
   "repo": "getCUJO/QoOID",
   "labels": [
     {
@@ -283,7 +283,7 @@
       "id": "I_kwDOItQjb87wFsuE",
       "title": "[IESG Review Gorry] Add references for the additional \"relevant techniques\"",
       "url": "https://github.com/getCUJO/QoOID/issues/24",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -292,16 +292,24 @@
       ],
       "body": "> Please provide citable references for each technique!\n\nhttps://github.com/getCUJO/QoOID/blob/da0c139c9a695a9277e88d433bc85441930a6066/draft-ietf-ippm-qoo.md?plain=1#L591",
       "createdAt": "2026-03-05T12:49:19Z",
-      "updatedAt": "2026-03-05T13:20:48Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:33:19Z",
+      "closedAt": "2026-05-08T10:33:19Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:33:19Z",
+          "updatedAt": "2026-05-08T10:33:19Z"
+        }
+      ]
     },
     {
       "number": 25,
       "id": "I_kwDOItQjb87wFuzT",
       "title": "[IESG Review Gorry] (Introduction of) Section 5 - Clarify QoO Framework",
       "url": "https://github.com/getCUJO/QoOID/issues/25",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -310,9 +318,17 @@
       ],
       "body": "`- Can you instead make clear what the IETF-defined framework includes?`\n\n",
       "createdAt": "2026-03-05T12:51:08Z",
-      "updatedAt": "2026-03-13T15:44:23Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:27:11Z",
+      "closedAt": "2026-05-08T10:27:11Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:27:11Z",
+          "updatedAt": "2026-05-08T10:27:11Z"
+        }
+      ]
     },
     {
       "number": 26,
@@ -335,7 +351,7 @@
       "id": "I_kwDOItQjb87wF2vr",
       "title": "[IESG Review Gorry] Enhance clarity of requirements-related text",
       "url": "https://github.com/getCUJO/QoOID/issues/27",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -344,16 +360,24 @@
       ],
       "body": "> ## S4 and S5 - DISCUSS\n> The document uses a lot of descriptive language to indicate requirements, but\n> does not use any requirements language - RFC2119 language is acceptable in an\n> Informational document, should the working group require this. At the moment I\n> feel many of the requirements are just expressed as aspirations, and not\n> sufficiently well-defined to allow someone to know whether a specific instance\n> complies with the framework. I think this needs to be addressed, because\n> without this the value of this being archived in the RFC series is doubtful.\n> For example, this seems a strong requirement: \u201c   The framework is agnostic to\n> traffic direction but mandates that measurements specify whether latency is\n> one-way or round-trip.\u201d There are further instances (see also my review\n> comments).\n\n\n> ##  S5.1 - DISCUSS\n> Why is this not a requirement: \u201cImplementers should document their precision\n> assessment methodology\u201d - It would seem without this, the other requirements\n> are moot, if I misunderstood, please help to understand and find better text.\n\n\n> ## S 5.2 - Comment\n> Why is this not \u201cMUST\u201d:\n> \u201cTherefore, the network requirements must include a minimum throughput\n> requirement.\u201d\n\n\n> ## S 5.2 - Comment\n> Why is this not \u201cMUST\u201d:\n> \u201cWhether the requirements are one-way or two-way must be specified.\u201d",
       "createdAt": "2026-03-05T12:57:11Z",
-      "updatedAt": "2026-03-05T13:21:01Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:32:30Z",
+      "closedAt": "2026-05-08T10:32:30Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:32:30Z",
+          "updatedAt": "2026-05-08T10:32:30Z"
+        }
+      ]
     },
     {
       "number": 28,
       "id": "I_kwDOItQjb87wF4xL",
       "title": "[IESG Review Gorry] Add references / Discuss safety of the measurements",
       "url": "https://github.com/getCUJO/QoOID/issues/28",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -362,16 +386,24 @@
       ],
       "body": "> ## S5 - DISCUSS\n> \u201c   When measurements are taken during periods of network load, the\n>    result naturally includes latency under load.  In scenarios such as\n>    passive monitoring of production traffic, capturing artificially\n>    loaded conditions may not always be feasible, whereas passively\n>    observing the actual network load may be possible.\u201d\n> - This general statement could be true, but seems to lack any IETF statement\n> around the safety of such measurements. Please update the text to provide this,\n> for example by citing other IPPM work where this has been stated. Similarly the\n> later statement: \u201cby generating artificial traffic to a level at least\n> equivalent to the application traffic load\u201c.",
       "createdAt": "2026-03-05T12:58:44Z",
-      "updatedAt": "2026-03-05T13:21:06Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:32:25Z",
+      "closedAt": "2026-05-08T10:32:25Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:32:25Z",
+          "updatedAt": "2026-05-08T10:32:25Z"
+        }
+      ]
     },
     {
       "number": 29,
       "id": "I_kwDOItQjb87wF9h2",
       "title": "[IESG Review Gorry] Add metadata specification + clarify language",
       "url": "https://github.com/getCUJO/QoOID/issues/29",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -380,9 +412,17 @@
       ],
       "body": "> ## S5.1 - DISCUSS\n> I suggest the essential \u201cmetadata\u201d is under-specified (sometimes omitting units\n> and details), please check carefully. \n> Section 5 discusses composable metrics.\n> Please revise the text to address the TSVART review on the intention of this\n> text. For instance why is the following requirement not  at least a\u201cSHOULD\u201d :\n> \u201ceach measurement must be accompanied by the following metadata:\u201d\n>         \u2043       In some cases. the stated metadata provides no units or\n>         expected accuracy for the listed elements. Please specify.\n> The section is followed  by text that says:\n> \u201cThese metadata elements are essential for interpreting the precision\n>    and reliability of the measurements.\u201d\n>         \u2043       Is this really required, i.e. essential - making this a\n>         normative list of required meta data, or \u201cuseful\u201d? - Please clarify the\n>         language.\n",
       "createdAt": "2026-03-05T13:02:25Z",
-      "updatedAt": "2026-03-05T13:21:10Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:32:35Z",
+      "closedAt": "2026-05-08T10:32:35Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:32:35Z",
+          "updatedAt": "2026-05-08T10:32:35Z"
+        }
+      ]
     },
     {
       "number": 30,
@@ -458,7 +498,7 @@
       "id": "I_kwDOItQjb87wGKdM",
       "title": "[IESG Review Gorry] Align \"framework\" description",
       "url": "https://github.com/getCUJO/QoOID/issues/33",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -467,16 +507,24 @@
       ],
       "body": "> ## S1 - Comment\n> \u201cThis document defines a \u201cminimum viable framework,\u201d and later the \u201cgeneral\n> framework\u201d - please update the text to explain which is intended. - \n> ",
       "createdAt": "2026-03-05T13:11:56Z",
-      "updatedAt": "2026-03-05T13:22:36Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:32:42Z",
+      "closedAt": "2026-05-08T10:32:42Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:32:42Z",
+          "updatedAt": "2026-05-08T10:32:42Z"
+        }
+      ]
     },
     {
       "number": 34,
       "id": "I_kwDOItQjb87wGdQy",
       "title": "[IESG Review Gorry] Condense Introduction & Section 2",
       "url": "https://github.com/getCUJO/QoOID/issues/34",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -485,16 +533,24 @@
       ],
       "body": "> Overall I\n> found the introduction and section 2 were not clear and likely were far too\n> verbose, which seemed to mask the salient points that were being introduced. A\n> more concise introduction focussed on the key points would be easier to\n> understand. There is already a detailed overview in section 2.\n\nIke: \nI am a bit confused about the points you make about section 2.\nAre you saying that it is unclear and too verbose (as you say at the beginning of this comment) or is it a detailed overview (as you say at the end)?\nAs the overview is actually in Section 3, are you mainly saying that the Terminology section is too verbose? If yes, which of the definitions do you feel are too verbose? Happy to try and condense the definitions, too, but would be good to know which we should focus on.",
       "createdAt": "2026-03-05T13:26:04Z",
-      "updatedAt": "2026-03-05T13:26:04Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:32:49Z",
+      "closedAt": "2026-05-08T10:32:49Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:32:49Z",
+          "updatedAt": "2026-05-08T10:32:49Z"
+        }
+      ]
     },
     {
       "number": 35,
       "id": "I_kwDOItQjb87wGecw",
       "title": "[IESG Review Gorry] Condensing Section 1 - 4",
       "url": "https://github.com/getCUJO/QoOID/issues/35",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -503,16 +559,24 @@
       ],
       "body": "> ## S1 - Comment\n> There is some repeated discussion across sections 1-4. I found that this\n> obscured, rather than provided background and these section would certainly\n> benefit from more review and revision to condense the material. \n",
       "createdAt": "2026-03-05T13:27:03Z",
-      "updatedAt": "2026-03-05T13:27:03Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:32:55Z",
+      "closedAt": "2026-05-08T10:32:55Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:32:55Z",
+          "updatedAt": "2026-05-08T10:32:55Z"
+        }
+      ]
     },
     {
       "number": 36,
       "id": "I_kwDOItQjb87wGfbS",
       "title": "[IESG Review Gorry] Add brief description of TR-452.1 in Section 5(?)",
       "url": "https://github.com/getCUJO/QoOID/issues/36",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -521,16 +585,24 @@
       ],
       "body": "> Please consider\n> if they could be more focussed on the essential background points. TR-452.1 is\n> mentioned, but this is not an IETF standard, please add a brief description of\n> the key relevant details relating to the present specification.",
       "createdAt": "2026-03-05T13:27:52Z",
-      "updatedAt": "2026-03-05T13:27:52Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:31:52Z",
+      "closedAt": "2026-05-08T10:31:52Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:31:52Z",
+          "updatedAt": "2026-05-08T10:31:52Z"
+        }
+      ]
     },
     {
       "number": 37,
       "id": "I_kwDOItQjb87wGhVr",
       "title": "[IESG Review Gorry] Reduce \"sales-pitch\" style",
       "url": "https://github.com/getCUJO/QoOID/issues/37",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -539,16 +611,24 @@
       ],
       "body": "> ## S1 - Comment\n> The statement: \" Quality\n>    Attenuation meets most of the requirements for a meaningful network\n>    quality score set out in Section 4.1: it is composable, captures the\n>    ability of a network to satisfy application requirements, and can be\n>    compared to a variety of application needs.\"\n> - This text reads like a very strong statement for an IETF document, and more\n> like a sales-pitch. If there was strong consensus within the WG on this item,\n> please provide some reference - the Shepherd report suggests not - in which\n> case, please revise this statement, to simple facts. Similarly, \"owever,\n> educated assessments of expected outcomes remain achievable\". Similarly\n> asserting optimality is a very strong statement, much more than stating that\n> this can be used to \"optimise\", see: \"one for optimal application performance\".\n> Similarly, this looks like a significant over-statement for a standards\n> document: \" If these requirements are met, network operators can monitor and\n> test their network and understand where the true bottlenecks are, regardless of\n> network technology.\" \u201cThe novelty of Quality Attenuation lies in its unified\n> treatment of latency and loss within a single distributional framework.\u201c Please\n> remove the word novelty, this is not applicable to an SDO document. Please\n> simply state: \u201cThe Quality Attenuation framework provides unified treatment of\n> latency and loss within a single distributional framework.\u201c Please consider\n> changing: \u201c   Importantly, the framework does not enforce a minimum sample\n> count.\u201d to \u201cThis framework does not enforce a minimum sample count.\u201d - Please\n> do check the entire document carefully to avoid inadvertently making marketing\n> statements, that might be acceptable in a published paper, but are\n> inappropriate for an RFC.\n\n> ##  S5 - Comment.\n> I was very surprised to see the statement on \u201cnovelty\u201d in this sentence. The\n> IETF does not normally make claims on the novelty of its protocols, rather\n> specifications and other documents are normally based on their utility. Please\n> re-consider this statement:\n>      \u201cThe novelty of Quality Attenuation lies in\n>    its unified treatment of latency and loss within a single\n>    distributional framework...\u201d",
       "createdAt": "2026-03-05T13:29:27Z",
-      "updatedAt": "2026-03-05T13:29:27Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:31:56Z",
+      "closedAt": "2026-05-08T10:31:56Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:31:56Z",
+          "updatedAt": "2026-05-08T10:31:56Z"
+        }
+      ]
     },
     {
       "number": 38,
       "id": "I_kwDOItQjb87wGiSf",
       "title": "[IESG Review Gorry] Describe intent for requirements more precisely",
       "url": "https://github.com/getCUJO/QoOID/issues/38",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -557,9 +637,17 @@
       ],
       "body": "> ## S4 - Comment\n> Sections 4 and 5 discuss topics around requirements but do not actually provide\n> clear requirements. There are requirements in the related specification of\n> TR-452.1, but the current text included in the document seems to motivate the\n> idea rather than specify things.  At least this needs to be explained what are\n> these requirements for? - specifying metrics? the framework itself? something\n> else?\n",
       "createdAt": "2026-03-05T13:30:15Z",
-      "updatedAt": "2026-03-05T13:30:15Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:29:51Z",
+      "closedAt": "2026-05-08T10:29:51Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:29:51Z",
+          "updatedAt": "2026-05-08T10:29:51Z"
+        }
+      ]
     },
     {
       "number": 39,
@@ -610,7 +698,7 @@
       "id": "I_kwDOItQjb87wGr_o",
       "title": "[IESG Review Gorry] Consider rewording / realigning \"different figures\" statement",
       "url": "https://github.com/getCUJO/QoOID/issues/41",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -619,16 +707,24 @@
       ],
       "body": "> ## S4.3 - Comment\n> I found the following statement rather odd: \u201cNote that developers of similar\n> applications may have arrived at different figures.\u201d This may be true how does\n> it impact the framework being defined and the need for standards?\n\n[IK] This note was mainly added to address previous comments requesting us to emphasise that the presented numbers are only examples, so it is not directly focused on the QoO framework. \nWe could, however, cross-reference to Section 6.1 to highlight that such aspects need to be considered when defining network performance requirements. ",
       "createdAt": "2026-03-05T13:38:03Z",
-      "updatedAt": "2026-03-05T13:38:03Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:29:40Z",
+      "closedAt": "2026-05-08T10:29:40Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:29:40Z",
+          "updatedAt": "2026-05-08T10:29:40Z"
+        }
+      ]
     },
     {
       "number": 42,
       "id": "I_kwDOItQjb87wGtDk",
       "title": "[IESG Review Gorry] Clarify intent / considerations for \"future standardization activities\"",
       "url": "https://github.com/getCUJO/QoOID/issues/42",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -637,16 +733,24 @@
       ],
       "body": "> > ## S 5.2 - Comment\n> I am unsure what to understand by \u201cStill, it might be beneficial for future\n>    standardization activities to converge on a fixed set of general\n>    percentiles or for specific applications / application classes to\n>    make QoO measurements between different networks or providers more\n>    comparable.\u201d\n> - Please explain in text.",
       "createdAt": "2026-03-05T13:38:56Z",
-      "updatedAt": "2026-03-05T13:38:56Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:29:45Z",
+      "closedAt": "2026-05-08T10:29:45Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:29:45Z",
+          "updatedAt": "2026-05-08T10:29:45Z"
+        }
+      ]
     },
     {
       "number": 43,
       "id": "I_kwDOItQjb87wGuTu",
       "title": "[IESG Review Gorry] Rephrase Paragraph in Section 5.2",
       "url": "https://github.com/getCUJO/QoOID/issues/43",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -655,16 +759,24 @@
       ],
       "body": "> ## S 5.2 - Comment\n> This text seems to require additional work to render it suitable for an RFC:\n> \u201cTo that aim, first recall the key design goal of establishing a\n>    quantifiable distance between optimal and unacceptable network\n>    conditions, thereby enabling an objective assessment of relative\n>    quality.  Accordingly, the requirements specification is extended to\n>    define both the network performance required for achieving optimal\n>    application performance and the lower network performance threshold\n>    below which the application performance is considered unacceptable.\u201d\n>         \u2043       Please avoid the style of a technical paper, and simply state\n>         what is required, or must be clarified,\n\n> ## S5.2 - Comment\n> Please reconsider this accademic argument and replace by specification text:\n> \u201c To that aim, first recall the key design goal of establishing..\u201d",
       "createdAt": "2026-03-05T13:39:57Z",
-      "updatedAt": "2026-03-05T13:40:57Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:28:47Z",
+      "closedAt": "2026-05-08T10:28:47Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:28:47Z",
+          "updatedAt": "2026-05-08T10:28:47Z"
+        }
+      ]
     },
     {
       "number": 44,
       "id": "I_kwDOItQjb87wGvGk",
       "title": "[IESG Review Gorry] Reword sentence in Section 5.2",
       "url": "https://github.com/getCUJO/QoOID/issues/44",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -673,16 +785,24 @@
       ],
       "body": "> ## S5.2 - Comment\n> \u201cA fully specified requirement can be thought of as specifying\u201d - This is not\n> good text for an RFC, please reword as either an example or a clear statement.\n",
       "createdAt": "2026-03-05T13:40:37Z",
-      "updatedAt": "2026-03-05T13:40:37Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:28:39Z",
+      "closedAt": "2026-05-08T10:28:39Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:28:39Z",
+          "updatedAt": "2026-05-08T10:28:39Z"
+        }
+      ]
     },
     {
       "number": 45,
       "id": "I_kwDOItQjb87wGwnN",
       "title": "[IESG Review Gorry] Remove redundant \"one-way\" requirement",
       "url": "https://github.com/getCUJO/QoOID/issues/45",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -691,8 +811,8 @@
       ],
       "body": "##\nThe requirement to specify if a measurement was \u201cone-way\u201d seems to be defined\nin two places. Please remove one.",
       "createdAt": "2026-03-05T13:41:51Z",
-      "updatedAt": "2026-04-08T08:10:22Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-08T10:28:33Z",
+      "closedAt": "2026-05-08T10:28:33Z",
       "comments": [
         {
           "author": "cj-ike-kunze",
@@ -707,6 +827,13 @@
           "body": "After re-checking this issue, one of the \"one-way\" requirements relates to measurements (i.e., that measurements need to specify if they are one-way) and the other relates to network performance requirements (i.e., if the performance requirements are one-way).\nSo no changes needed.",
           "createdAt": "2026-04-08T08:10:22Z",
           "updatedAt": "2026-04-08T08:10:22Z"
+        },
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "No need for action.",
+          "createdAt": "2026-05-08T10:28:33Z",
+          "updatedAt": "2026-05-08T10:28:33Z"
         }
       ]
     },
@@ -769,7 +896,7 @@
       "id": "I_kwDOItQjb87wGzQ6",
       "title": "[IESG Review Gorry] Provide Reference",
       "url": "https://github.com/getCUJO/QoOID/issues/49",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -778,8 +905,8 @@
       ],
       "body": "> ## S7.1 - Comment\n> - Please provide a citable reference.",
       "createdAt": "2026-03-05T13:44:01Z",
-      "updatedAt": "2026-04-08T08:12:41Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-08T10:28:23Z",
+      "closedAt": "2026-05-08T10:28:22Z",
       "comments": [
         {
           "author": "cj-ike-kunze",
@@ -787,6 +914,13 @@
           "body": "This issue refers to Section 7.1. Volatile Networks.",
           "createdAt": "2026-04-08T08:12:41Z",
           "updatedAt": "2026-04-08T08:12:41Z"
+        },
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:28:23Z",
+          "updatedAt": "2026-05-08T10:28:23Z"
         }
       ]
     },
@@ -795,7 +929,7 @@
       "id": "I_kwDOItQjb87wG0PS",
       "title": "[IESG Review Gorry] Update Security Considerations",
       "url": "https://github.com/getCUJO/QoOID/issues/50",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -804,9 +938,17 @@
       ],
       "body": "> ## S8 - Comment\n> - Other IPPM documents have included detailed security considerations. Relevant\n> security considerations need to be cited here.\n> ## S8 - Comment\n> \u201cIf not properly rate-limited, this may inadvertently\n>    degrade services offered by a network or be exploited by malicious\n>    actors to launch DoS attacks.\u201d\n> - This is very true, and the relevant security considerations need to be cited\n> here.\n\nCheck for clear omissions.",
       "createdAt": "2026-03-05T13:44:45Z",
-      "updatedAt": "2026-03-05T13:44:45Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-08T10:28:14Z",
+      "closedAt": "2026-05-08T10:28:14Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:28:14Z",
+          "updatedAt": "2026-05-08T10:28:14Z"
+        }
+      ]
     },
     {
       "number": 51,
@@ -839,7 +981,7 @@
       "id": "I_kwDOItQjb87wG1ZR",
       "title": "[IESG Review Gorry] Sketch how to use continuous measurements",
       "url": "https://github.com/getCUJO/QoOID/issues/52",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -848,7 +990,63 @@
       ],
       "body": "> ## - Comment\n> How does your reporting work with continuous measurements? Which data points do\n> you include in distributions or percentiles reported?  Last hour, day, week,\n> month, year, decade?\n\n[IK] There are different ways to implement this in practice (as you also sketch) but I would argue that mandating a specific approach is among the aspects we see in the scope for future standardization activities. We can maybe try to include some considerations on this in the operational considerations section but would refrain from focusing on a single approach. ",
       "createdAt": "2026-03-05T13:45:43Z",
-      "updatedAt": "2026-03-05T13:45:43Z",
+      "updatedAt": "2026-05-08T10:27:45Z",
+      "closedAt": "2026-05-08T10:27:45Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-08T10:27:45Z",
+          "updatedAt": "2026-05-08T10:27:45Z"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "id": "I_kwDOItQjb88AAAABBo52Tg",
+      "title": "[IESG Review Gorry] Follow Up 1 - Tighten and formalize measurement considerations",
+      "url": "https://github.com/getCUJO/QoOID/issues/74",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> (1) There is this new text:\n> \n> \"Furthermore, when performing active measurements or generating\n>    artificial load, care must be taken not to degrade the network under\n>    test or inadvertently enable denial-of-service abuse\n>    [RFC2330][RFC4656].\"\n> \n> - I would really really encourage this to be made more formal than simply requiring care. \n> - For example at least, \u201csuch measures need to be designed to avoid significant impact \u2026\n> - I\u2019d also much rather this explicitly refers the readers to the safety measures in [RFC2330] and [RFC4656]\n> -  I expect the responsible AD may be able to provide other more recent examples that would be important to also include, for instance the load rate adjustment methods in draft-ietf-ippm-capacity-protocol?",
+      "createdAt": "2026-05-08T08:27:24Z",
+      "updatedAt": "2026-05-08T08:27:40Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 75,
+      "id": "I_kwDOItQjb88AAAABBo6aLQ",
+      "title": "[IESG Review Gorry] Follow Up 2 - Tighten Text on Multipath",
+      "url": "https://github.com/getCUJO/QoOID/issues/75",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> (2) I see new text in section 4.5 on Multipath Protocols:    \n>                  \n>                 \"A related challenge arises when the application itself uses a    \n>                 transport protocol that exploits multiple paths concurrently, such as    \n>                 Multipath TCP (MPTCP) [RFC8684] or Multipath QUIC    \n>                 [I-D.ietf-quic-multipath].  In such cases, application traffic can be    \n>                 spread across several paths simultaneously, and a single-flow    \n>                 measurement necessarily follows only one of them.  Such single-path    \n>                 QoO measurements may therefore underestimate aggregate capacity and    \n>                 fail to represent the full latency and loss distribution that the    \n>                 application actually experiences across its concurrent paths.    \n>                 Implementers deploying QoO alongside multipath-capable applications    \n>                 should account for this by measuring across multiple representative    \n>                 flow tuples or by using passive monitoring of the actual application    \n>                 traffic.  As with path diversity and load-driven variation, this    \n>                 means that a QoO score reflects only the conditions observable on the    \n>                 measured path subset during the sampling period.\"\n> \n> - That text is generally OK, and welcome. \n> - HOWEVER it is very important to assert that the scheduling to determine which path is used for which data is application dependent with many possible policies, including, but note restricted to: preference for a specific path; desire for lower latency; desire for equal balance of traffic; desire to optimise aggregate capacity; desire to minimise path changes, etc.  \n> - There must not be an assumption that the expectation is to only aggregate throughput and the current text can be read as assuming only capacity aggregation - which could lead to very odd conclusions if using  measuring across multiple flow tuples, indeed I am unsure how that could be safely done in a generic way. In contrast, passive measurement to me do seem viable and promising.",
+      "createdAt": "2026-05-08T08:29:01Z",
+      "updatedAt": "2026-05-08T08:29:10Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 76,
+      "id": "I_kwDOItQjb88AAAABBo66Vg",
+      "title": "[IESG Review Gorry] Follow Up 3 - Iterate 'Volatile Networks' section",
+      "url": "https://github.com/getCUJO/QoOID/issues/76",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> (3) I see new text in section 4.5 on Volatile Networks, and I have comments:  \n> \n> - \u201cin particular, mobile cellular networks\u201d, presumably any radio-based network of which mobile cellular is an example?\n> \n> - I am unsure the whole section is quite right, but seems like it would benefit from some rewording. In my mind this currently describes network segments, such as radio or cellular systems, but it should apply if these formed only a part of the Internet path, perhaps connected to on aggregation link and then onwards to say a CDN. Hence, the language is odd for an IETF Specification. \n> - In particular also: The use of the word \u201cterminal\u201d here doesn\u2019t resonate well with other IETF work and I suspect is not defined in the IETF context (e.g. for a path includes a mobile network segment, and I see the measurement still being taken from an Internet endpoint - be that within a device; or connected via another link/network indirectly.  \n> - As another example the term: \u201cindividual terminal\u201d perhaps ought to be: \u201ca test endpoint connected to the mobile network or one that uses a path including a mobile network\u201d.]",
+      "createdAt": "2026-05-08T08:30:20Z",
+      "updatedAt": "2026-05-08T08:30:20Z",
       "closedAt": null,
       "comments": []
     }
