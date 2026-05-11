@@ -765,11 +765,19 @@ These challenges are even more pronounced for mobile cellular networks, where pa
 
 
 ## Multipath Protocols {#multipath-protocols}
-A related challenge arises when the application itself uses a transport protocol that exploits multiple paths concurrently, such as Multipath TCP (MPTCP) {{?RFC8684}} or Multipath QUIC {{?I-D.ietf-quic-multipath}}.
-In such cases, application traffic can be spread across several paths simultaneously, and a single-flow measurement necessarily follows only one of them.
-Such single-path QoO measurements may therefore underestimate aggregate capacity and fail to represent the full latency and loss distribution that the application actually experiences across its concurrent paths.
-Implementers deploying QoO alongside multipath-capable applications should account for this by measuring across multiple representative flow tuples or by using passive monitoring of the actual application traffic.
-As with path diversity and load-driven variation, this means that a QoO score reflects only the conditions observable on the measured path subset during the sampling period.
+A related challenge arises when the application itself uses a transport protocol that exploits multiple paths concurrently, such as Multipath TCP {{?RFC8684}} or Multipath QUIC {{?I-D.ietf-quic-multipath}}.
+In such cases, the scheduling of traffic across paths is application-dependent and governed by many possible policies, including preferring a specific path, minimizing latency, maximizing aggregate capacity, distributing traffic equally, or minimizing path churn.
+
+Single-flow measurements necessarily only follow one of the available paths at a time and may therefore fail to represent the full distribution of latency and loss conditions that the application actually experiences across its concurrent paths.
+Measuring across multiple flow tuples can provide a more comprehensive view, but the correct weighting of per-path measurements cannot be determined without knowing how the application distributes its traffic.
+
+Passive monitoring of the actual application traffic is the most reliable approach for capturing the effect of multipath scheduling, as it directly observes which paths and proportions the application uses, but it may require visibility at multiple vantage points and may not always be feasible.
+
+Even when the scheduling policy and per-path conditions are known, aggregating per-path scores into a single application-level QoO score requires further assumptions about how each path's conditions affect the overall experience.
+A simplified, policy-agnostic approach is to use the worst score of available paths as the overall score.
+This approach is conservative and does not depend on assumptions about traffic distribution, although it may underestimate overall quality when the application avoids the worst path.
+
+As with path diversity and load-driven variation, a QoO score reflects only the conditions observable on the measured path subset during the sampling period.
 
 ## Adaptive Applications
 
