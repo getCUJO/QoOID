@@ -437,8 +437,10 @@ Idle-state measurements capture baseline characteristics unaffected by competing
 Both active and passive methods can capture either state, although with different degrees of control.
 Passive monitoring of production traffic usually reflects actual network load but may not always allow capturing heavily loaded conditions.
 Active measurements can target heavily loaded conditions by generating synthetic traffic equivalent to the application load alongside the probes but capturing the actual or idle network conditions may not be possible depending on the footprint of the measurement method.
-Furthermore, when performing active measurements or generating artificial load, care must be taken not to degrade the network under test or inadvertently enable denial-of-service abuse {{?RFC2330}}{{?RFC4656}}.
-See {{dos-risks}} for specific mitigations.
+
+Performing active measurements or generating artificial load can degrade the network under test or inadvertently enable denial-of-service (DoS) abuse {{?RFC2330}}.
+Hence, corresponding methodology needs to be designed to avoid significant impact, e.g., by only permitting authenticated measurements ({{Section 6.2 of ?RFC4656}}) or including rate limits and other safeguards against self-induced congestion ({{Section 4.2 of ?RFC9946}}).
+{{dos-risks}} provides additional mitigation strategies, mostly focusing on DoS.
 
 Internet forwarding paths can also shift on a variety of timescales due to routing changes, load balancing, or traffic engineering, meaning a measurement reflects the network's state only during the sampling period.
 Such factors need to be considered when conducting performance measurements.
