@@ -904,18 +904,18 @@ QoO does so by comparing measured conditions against application-specific, quali
 The following section discusses some known limitations. A general assumption underlying the framework is that factors not explicitly captured by QoO (such as temporal packet ordering, fine-grained throughput variations, or the full shape of the latency distribution) will inevitably influence the observed latency and packet loss behavior, so that QoO indirectly accounts for their effects.
 
 ## Volatile Networks {#volatile-networks}
-Volatile networks pose a challenge for network quality prediction , 
-with the level of assurance of the prediction likely to decrease as session duration increases 
-{{QoSPrediction}}. Where the volatile network is a segment forming part of an Internet path 
+Volatile networks pose a challenge for network quality prediction,
+with the level of assurance of the prediction likely to decrease as session duration increases
+{{QoSPrediction}}. Where the volatile network is a segment forming part of an Internet path
 then it will typically form the bottleneck of that path.
 
-Radio access networks are prone to volatility: the available capacity 
-for a given user device can change by an order of magnitude within seconds due to physical radio factors. 
+Radio access networks are prone to volatility: the available capacity
+for a given user device can change by an order of magnitude within seconds due to physical radio factors.
 This is especially the case in mobile cellular networks ({{CellularPredictability}}) due to the increased
 transmission distance and the difficulty of adding new access points or repeaters (in comparison to e.g. Wi-Fi).
-Other factors in cellular volatility include whether the user device is at the edge of a radio cell or undergoing cell handover, 
+Other factors in cellular volatility include whether the user device is at the edge of a radio cell or undergoing cell handover,
 the radio interference and fading from the local environment, and any switch between radio
-bearers with differing capacity and transmission-time intervals (e.g., 3GPP 4G and 5G). This volatility 
+bearers with differing capacity and transmission-time intervals (e.g., 3GPP 4G and 5G). This volatility
 applies on both dowlink (cell tower to device) and uplink (device to cell tower), albeit uplink
 incurs an additional factor of the reduced transmit power available to a user's battery-powered device.
 
