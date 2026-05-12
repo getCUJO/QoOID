@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-05-10T00:36:43.534403+00:00",
+  "timestamp": "2026-05-12T00:34:50.210220+00:00",
   "repo": "getCUJO/QoOID",
   "labels": [
     {
@@ -429,7 +429,7 @@
       "id": "I_kwDOItQjb87wF_qE",
       "title": "[IESG Review Gorry] Clarify Composable Metrics (Waiting for Clarification)",
       "url": "https://github.com/getCUJO/QoOID/issues/30",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -438,16 +438,24 @@
       ],
       "body": "> Section 5 discusses composable metrics.\n> Please revise the text to address the TSVART review on the intention of this\n> text.\n\nClarification question:\n\n> One clarification question regarding our discussion of composable metrics: as far as I understand J\u00f6rg\u2019s review (which you seem to pick up here), he refers to the \u201ccomparison to other network quality metrics\u201d which used to be in Section 5 and is now in Section 10.\n> Could you perhaps clarify what exact \u201cdiscussion\u201d of composable metrics in Section 5.1 you are referring to? As far as I can tell, the only mention of composability in that paragraph is about the composability-\u201ceasier deployment\u201d trade-off and I am unsure about what exact text revisions you have in mind for this paragraph. \n\n\n[GF] Sorry: I read multiple versions, I will re-read the next version and see if this comment can disappear in the light of the previous change.",
       "createdAt": "2026-03-05T13:04:04Z",
-      "updatedAt": "2026-03-06T14:44:06Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-11T08:00:00Z",
+      "closedAt": "2026-05-11T08:00:00Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-11T08:00:00Z",
+          "updatedAt": "2026-05-11T08:00:00Z"
+        }
+      ]
     },
     {
       "number": 31,
       "id": "I_kwDOItQjb87wGBwP",
       "title": "[IESG Review Gorry] Discuss Path Variation",
       "url": "https://github.com/getCUJO/QoOID/issues/31",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -456,16 +464,24 @@
       ],
       "body": "> ##  S5.1 - DISCUSS\n> The requirement: \u201cThe repeatability of measurements under similar network\n> conditions\u201d does not seem to discuss path variation - either at L2, L3 (e.g.\n> ECMP/Routing) and L4 - multi-path and cos mechanisms. Please clarify how this\n> impact this requirement.\n\nIke: The considerations in S5.1 focus on the measurement capabilities in general with the underlying assumption of a \u201cstable\u201d measurement path. We cover the path variation aspect to some extent in 4.1 and 6.3 but I would agree that it could make sense to discuss path variation more explicitly. We\u2019ll check to see where it makes the most sense to discuss this aspect and where cross-referencing in the document is appropriate.",
       "createdAt": "2026-03-05T13:05:40Z",
-      "updatedAt": "2026-03-05T13:21:23Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-05-11T07:59:53Z",
+      "closedAt": "2026-05-11T07:59:53Z",
+      "comments": [
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-11T07:59:53Z",
+          "updatedAt": "2026-05-11T07:59:53Z"
+        }
+      ]
     },
     {
       "number": 32,
       "id": "I_kwDOItQjb87wGJce",
       "title": "[IESG Review Gorry] Clarify load balancing impact",
       "url": "https://github.com/getCUJO/QoOID/issues/32",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -474,8 +490,8 @@
       ],
       "body": "> ## S6.1 - DISCUSS\n> Does a  measurement consider  load balancing along the forwarding path? (I\n> think the referenced work in TR-452.1 is about a network segment, rather than\n> an Internet Path, and hence this seems an important part of ensuring this is\n> relevant as an Internet metric).\n\n[IK] I am a bit confused what \u201cmeasurement\u201d you are referring to here as S6.1 focuses on considerations for the network performance spec and not on the measurements. \nCould you perhaps clarify the intention of your comment and what exactly you refer to? ",
       "createdAt": "2026-03-05T13:11:13Z",
-      "updatedAt": "2026-03-16T14:28:30Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-11T08:00:18Z",
+      "closedAt": "2026-05-11T08:00:18Z",
       "comments": [
         {
           "author": "cj-ike-kunze",
@@ -490,6 +506,13 @@
           "body": "This is about S5.1 in -07",
           "createdAt": "2026-03-16T14:28:30Z",
           "updatedAt": "2026-03-16T14:28:30Z"
+        },
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in -09 version.",
+          "createdAt": "2026-05-11T08:00:18Z",
+          "updatedAt": "2026-05-11T08:00:18Z"
         }
       ]
     },
@@ -955,7 +978,7 @@
       "id": "I_kwDOItQjb87wG04x",
       "title": "[IESG Review Gorry] Provide supporting material for linear measure",
       "url": "https://github.com/getCUJO/QoOID/issues/51",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -964,8 +987,8 @@
       ],
       "body": "> ## - Comment\n> Please provide supporting material to explain how the linear distance measure\n> is to be used as a standard method.\n\n[IK] I am not sure I fully understand what you are saying. Could you maybe provide a little bit more context to / rephrase your comment?",
       "createdAt": "2026-03-05T13:45:17Z",
-      "updatedAt": "2026-04-08T08:14:25Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-11T08:00:53Z",
+      "closedAt": "2026-05-11T08:00:53Z",
       "comments": [
         {
           "author": "cj-ike-kunze",
@@ -973,6 +996,13 @@
           "body": "[GF] If you review does not find this, do not worry.",
           "createdAt": "2026-04-08T08:14:25Z",
           "updatedAt": "2026-04-08T08:14:25Z"
+        },
+        {
+          "author": "cj-ike-kunze",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Did not make changes for this.",
+          "createdAt": "2026-05-11T08:00:53Z",
+          "updatedAt": "2026-05-11T08:00:53Z"
         }
       ]
     },
@@ -1046,9 +1076,17 @@
       "labels": [],
       "body": "> (3) I see new text in section 4.5 on Volatile Networks, and I have comments:  \n> \n> - \u201cin particular, mobile cellular networks\u201d, presumably any radio-based network of which mobile cellular is an example?\n> \n> - I am unsure the whole section is quite right, but seems like it would benefit from some rewording. In my mind this currently describes network segments, such as radio or cellular systems, but it should apply if these formed only a part of the Internet path, perhaps connected to on aggregation link and then onwards to say a CDN. Hence, the language is odd for an IETF Specification. \n> - In particular also: The use of the word \u201cterminal\u201d here doesn\u2019t resonate well with other IETF work and I suspect is not defined in the IETF context (e.g. for a path includes a mobile network segment, and I see the measurement still being taken from an Internet endpoint - be that within a device; or connected via another link/network indirectly.  \n> - As another example the term: \u201cindividual terminal\u201d perhaps ought to be: \u201ca test endpoint connected to the mobile network or one that uses a path including a mobile network\u201d.]",
       "createdAt": "2026-05-08T08:30:20Z",
-      "updatedAt": "2026-05-08T08:30:20Z",
+      "updatedAt": "2026-05-11T10:32:10Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "Kevsy",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Changes made in PR #78 \n\n> \u201cin particular, mobile cellular networks\u201d, presumably any radio-based network of which mobile cellular is an example?\nAmended accordingly - with an explanation of why cellular radio is a particular challenge vs e.g. Wi-Fi.\n\n> I am unsure the whole section is quite right, but seems like it would benefit from some rewording. In my mind this currently describes network segments, such as radio or cellular systems, but it should apply if these formed only a part of the Internet path, perhaps connected to on aggregation link and then onwards to say a CDN. Hence, the language is odd for an IETF Specification.\n\nExplained that this is the radio access network, a network segment as part of the overall Internet path, and that it will typically be the location in that path of any bottleneck.\n\n> In particular also: The use of the word \u201cterminal\u201d here doesn\u2019t resonate well with other IETF work and I suspect is not defined in the IETF context (e.g. for a path includes a mobile network segment, and I see the measurement still being taken from an Internet endpoint - be that within a device; or connected via another link/network indirectly.\n\nI've changed to 'device', hopefully that works.\n\n> As another example the term: \u201cindividual terminal\u201d perhaps ought to be: \u201ca test endpoint connected to the mobile network or one that uses a path including a mobile network\u201d.]\n\nWell, we don't want it to be the test endpoint - because we want to measure the individual device, which has its own state based on its received signal strength, battery power, CPU, local environment etc. - but I've changed it to say 'device' as per comment above.\n\nHope that helps but happy to tweak accordingly.\n\n\n",
+          "createdAt": "2026-05-11T10:32:10Z",
+          "updatedAt": "2026-05-11T10:32:10Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -2174,6 +2212,84 @@
       "mergeCommit": {
         "oid": "ff83de0e3c2f57dd097ab0c748db02bc26f39c42"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 77,
+      "id": "PR_kwDOItQjb87aK0fH",
+      "title": "Formalize and concretize measurement considerations (addresses #74)",
+      "url": "https://github.com/getCUJO/QoOID/pull/77",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses #74 by:\r\n- switching from \"care must be taken\" to more specific formulation\r\n- Adding concrete pointers to mitigations",
+      "createdAt": "2026-05-11T08:36:22Z",
+      "updatedAt": "2026-05-11T08:36:22Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "ff83de0e3c2f57dd097ab0c748db02bc26f39c42",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "fix-74",
+      "headRefOid": "ccb1eca63226d9c6720493318a11901d564d877e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 78,
+      "id": "PR_kwDOItQjb87aM7Tp",
+      "title": "docs: Clarify challenges of volatile networks in QoS prediction",
+      "url": "https://github.com/getCUJO/QoOID/pull/78",
+      "state": "OPEN",
+      "author": "Kevsy",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Revised section on volatile networks per feedback in issue #76",
+      "createdAt": "2026-05-11T10:15:11Z",
+      "updatedAt": "2026-05-11T10:24:55Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "ff83de0e3c2f57dd097ab0c748db02bc26f39c42",
+      "headRepository": "Kevsy/QoOID",
+      "headRefName": "patch-1",
+      "headRefOid": "3458ae568396c1467c22e27cc18847b0428ad49d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 79,
+      "id": "PR_kwDOItQjb87aOgw8",
+      "title": "Expand considerations on QoO for multipath protocols (addresses #75)",
+      "url": "https://github.com/getCUJO/QoOID/pull/79",
+      "state": "OPEN",
+      "author": "cj-ike-kunze",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR addresses #75 by:\r\n- explicitly pointing out the impact of application-dependent scheduling policies\r\n- contrasting \"generic\" single- and multi-flow measurements with passive monitoring of actual application traffic\r\n- highlighting challenges even with knowledge of per-path conditions and scheduling policy",
+      "createdAt": "2026-05-11T11:26:42Z",
+      "updatedAt": "2026-05-11T11:26:42Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "ff83de0e3c2f57dd097ab0c748db02bc26f39c42",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "fix-75",
+      "headRefOid": "2de4d8487f54c425063ac492381673312f0113ed",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
