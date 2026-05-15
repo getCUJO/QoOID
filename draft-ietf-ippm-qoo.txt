@@ -5,8 +5,8 @@
 IP Performance Measurement                             B. I. T. Monclair
 Internet-Draft                                                  M. Olden
 Intended status: Informational                             I. Kunze, Ed.
-Expires: 24 October 2026                                         CUJO AI
-                                                           22 April 2026
+Expires: 16 November 2026                                        CUJO AI
+                                                             15 May 2026
 
 
                         Quality of Outcome (QoO)
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 October 2026.
+   This Internet-Draft will expire on 16 November 2026.
 
 Copyright Notice
 
@@ -538,10 +538,15 @@ Table of Contents
    synthetic traffic equivalent to the application load alongside the
    probes but capturing the actual or idle network conditions may not be
    possible depending on the footprint of the measurement method.
-   Furthermore, when performing active measurements or generating
-   artificial load, care must be taken not to degrade the network under
-   test or inadvertently enable denial-of-service abuse
-   [RFC2330][RFC4656].  See Section 6.3 for specific mitigations.
+
+   Performing active measurements or generating artificial load can
+   degrade the network under test or inadvertently enable denial-of-
+   service (DoS) abuse [RFC2330].  Hence, corresponding methodology
+   needs to be designed to avoid significant impact, e.g., by only
+   permitting authenticated measurements (Section 6.2 of [RFC4656]) or
+   including rate limits and other safeguards against self-induced
+   congestion (Section 4.2 of [RFC9946]).  Section 6.3 provides
+   additional mitigation strategies, mostly focusing on DoS.
 
    Internet forwarding paths can also shift on a variety of timescales
    due to routing changes, load balancing, or traffic engineering,
@@ -1847,6 +1852,11 @@ QoO = min(QoO_latency, QoO_loss, QoO_throughput) = min(50, 75, 100) = 50
               X., Griffin, D., and M. Rio, "Use Cases for In-Network
               Computing", RFC 9817, DOI 10.17487/RFC9817, August 2025,
               <https://www.rfc-editor.org/rfc/rfc9817>.
+
+   [RFC9946]  Morton, A., Ciavattone, L., and R. Geib, Ed., "The UDP
+              Speed Test Protocol (UDPSTP) for One-Way IP Capacity
+              Metric Measurement", RFC 9946, DOI 10.17487/RFC9946, April
+              2026, <https://www.rfc-editor.org/rfc/rfc9946>.
 
    [RPM]      "Responsiveness under Working Conditions", July 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
