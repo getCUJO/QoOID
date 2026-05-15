@@ -2198,11 +2198,15 @@ Implementers also need to decide whether measurement traffic is steered consiste
         <h3 id="name-multipath-protocols">
 <a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-multipath-protocols" class="section-name selfRef">Multipath Protocols</a>
         </h3>
-<p id="section-4.5-1">A related challenge arises when the application itself uses a transport protocol that exploits multiple paths concurrently, such as Multipath TCP (MPTCP) <span>[<a href="#RFC8684" class="cite xref">RFC8684</a>]</span> or Multipath QUIC <span>[<a href="#I-D.ietf-quic-multipath" class="cite xref">I-D.ietf-quic-multipath</a>]</span>.
-In such cases, application traffic can be spread across several paths simultaneously, and a single-flow measurement necessarily follows only one of them.
-Such single-path QoO measurements may therefore underestimate aggregate capacity and fail to represent the full latency and loss distribution that the application actually experiences across its concurrent paths.
-Implementers deploying QoO alongside multipath-capable applications should account for this by measuring across multiple representative flow tuples or by using passive monitoring of the actual application traffic.
-As with path diversity and load-driven variation, this means that a QoO score reflects only the conditions observable on the measured path subset during the sampling period.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.5-1">A related challenge arises when the application itself uses a transport protocol that exploits multiple paths concurrently, such as Multipath TCP <span>[<a href="#RFC8684" class="cite xref">RFC8684</a>]</span> or Multipath QUIC <span>[<a href="#I-D.ietf-quic-multipath" class="cite xref">I-D.ietf-quic-multipath</a>]</span>.
+In such cases, the scheduling of traffic across paths is application-dependent and governed by many possible policies, including preferring a specific path, minimizing latency, maximizing aggregate capacity, distributing traffic equally, or minimizing path churn.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.5-2">Single-flow measurements necessarily only follow one of the available paths at a time and may therefore fail to represent the full distribution of latency and loss conditions that the application actually experiences across its concurrent paths.
+Measuring across multiple flow tuples can provide a more comprehensive view, but the correct weighting of per-path measurements cannot be determined without knowing how the application distributes its traffic.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
+<p id="section-4.5-3">Passive monitoring of the actual application traffic is the most reliable approach for capturing the effect of multipath scheduling, as it directly observes which paths and proportions the application uses, but it may require visibility at multiple vantage points and may not always be feasible.<a href="#section-4.5-3" class="pilcrow">¶</a></p>
+<p id="section-4.5-4">Even when the scheduling policy and per-path conditions are known, aggregating per-path scores into a single application-level QoO score requires further assumptions about how each path's conditions affect the overall experience.
+A simplified, policy-agnostic approach is to use the worst score of available paths as the overall score.
+This approach is conservative and does not depend on assumptions about traffic distribution, although it may underestimate overall quality when the application avoids the worst path.<a href="#section-4.5-4" class="pilcrow">¶</a></p>
+<p id="section-4.5-5">As with path diversity and load-driven variation, a QoO score reflects only the conditions observable on the measured path subset during the sampling period.<a href="#section-4.5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="adaptive-applications">
