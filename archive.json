@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-05-12T00:34:50.210220+00:00",
+  "timestamp": "2026-05-17T00:38:09.198592+00:00",
   "repo": "getCUJO/QoOID",
   "labels": [
     {
@@ -335,15 +335,15 @@
       "id": "I_kwDOItQjb87wFxP5",
       "title": "IESG Review Gorry",
       "url": "https://github.com/getCUJO/QoOID/issues/26",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "https://mailarchive.ietf.org/arch/msg/ippm/JL50JEHvxOvsjMBG22cdS65FX6w/",
       "createdAt": "2026-03-05T12:53:04Z",
-      "updatedAt": "2026-03-05T12:53:04Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-15T06:53:35Z",
+      "closedAt": "2026-05-15T06:53:35Z",
       "comments": []
     },
     {
@@ -1037,15 +1037,15 @@
       "id": "I_kwDOItQjb88AAAABBo52Tg",
       "title": "[IESG Review Gorry] Follow Up 1 - Tighten and formalize measurement considerations",
       "url": "https://github.com/getCUJO/QoOID/issues/74",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> (1) There is this new text:\n> \n> \"Furthermore, when performing active measurements or generating\n>    artificial load, care must be taken not to degrade the network under\n>    test or inadvertently enable denial-of-service abuse\n>    [RFC2330][RFC4656].\"\n> \n> - I would really really encourage this to be made more formal than simply requiring care. \n> - For example at least, \u201csuch measures need to be designed to avoid significant impact \u2026\n> - I\u2019d also much rather this explicitly refers the readers to the safety measures in [RFC2330] and [RFC4656]\n> -  I expect the responsible AD may be able to provide other more recent examples that would be important to also include, for instance the load rate adjustment methods in draft-ietf-ippm-capacity-protocol?",
       "createdAt": "2026-05-08T08:27:24Z",
-      "updatedAt": "2026-05-08T08:27:40Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-15T06:53:30Z",
+      "closedAt": "2026-05-15T06:53:30Z",
       "comments": []
     },
     {
@@ -1053,15 +1053,15 @@
       "id": "I_kwDOItQjb88AAAABBo6aLQ",
       "title": "[IESG Review Gorry] Follow Up 2 - Tighten Text on Multipath",
       "url": "https://github.com/getCUJO/QoOID/issues/75",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> (2) I see new text in section 4.5 on Multipath Protocols:    \n>                  \n>                 \"A related challenge arises when the application itself uses a    \n>                 transport protocol that exploits multiple paths concurrently, such as    \n>                 Multipath TCP (MPTCP) [RFC8684] or Multipath QUIC    \n>                 [I-D.ietf-quic-multipath].  In such cases, application traffic can be    \n>                 spread across several paths simultaneously, and a single-flow    \n>                 measurement necessarily follows only one of them.  Such single-path    \n>                 QoO measurements may therefore underestimate aggregate capacity and    \n>                 fail to represent the full latency and loss distribution that the    \n>                 application actually experiences across its concurrent paths.    \n>                 Implementers deploying QoO alongside multipath-capable applications    \n>                 should account for this by measuring across multiple representative    \n>                 flow tuples or by using passive monitoring of the actual application    \n>                 traffic.  As with path diversity and load-driven variation, this    \n>                 means that a QoO score reflects only the conditions observable on the    \n>                 measured path subset during the sampling period.\"\n> \n> - That text is generally OK, and welcome. \n> - HOWEVER it is very important to assert that the scheduling to determine which path is used for which data is application dependent with many possible policies, including, but note restricted to: preference for a specific path; desire for lower latency; desire for equal balance of traffic; desire to optimise aggregate capacity; desire to minimise path changes, etc.  \n> - There must not be an assumption that the expectation is to only aggregate throughput and the current text can be read as assuming only capacity aggregation - which could lead to very odd conclusions if using  measuring across multiple flow tuples, indeed I am unsure how that could be safely done in a generic way. In contrast, passive measurement to me do seem viable and promising.",
       "createdAt": "2026-05-08T08:29:01Z",
-      "updatedAt": "2026-05-08T08:29:10Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-15T06:53:26Z",
+      "closedAt": "2026-05-15T06:53:26Z",
       "comments": []
     },
     {
@@ -1069,15 +1069,15 @@
       "id": "I_kwDOItQjb88AAAABBo66Vg",
       "title": "[IESG Review Gorry] Follow Up 3 - Iterate 'Volatile Networks' section",
       "url": "https://github.com/getCUJO/QoOID/issues/76",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> (3) I see new text in section 4.5 on Volatile Networks, and I have comments:  \n> \n> - \u201cin particular, mobile cellular networks\u201d, presumably any radio-based network of which mobile cellular is an example?\n> \n> - I am unsure the whole section is quite right, but seems like it would benefit from some rewording. In my mind this currently describes network segments, such as radio or cellular systems, but it should apply if these formed only a part of the Internet path, perhaps connected to on aggregation link and then onwards to say a CDN. Hence, the language is odd for an IETF Specification. \n> - In particular also: The use of the word \u201cterminal\u201d here doesn\u2019t resonate well with other IETF work and I suspect is not defined in the IETF context (e.g. for a path includes a mobile network segment, and I see the measurement still being taken from an Internet endpoint - be that within a device; or connected via another link/network indirectly.  \n> - As another example the term: \u201cindividual terminal\u201d perhaps ought to be: \u201ca test endpoint connected to the mobile network or one that uses a path including a mobile network\u201d.]",
       "createdAt": "2026-05-08T08:30:20Z",
-      "updatedAt": "2026-05-11T10:32:10Z",
-      "closedAt": null,
+      "updatedAt": "2026-05-15T06:53:19Z",
+      "closedAt": "2026-05-15T06:53:19Z",
       "comments": [
         {
           "author": "Kevsy",
@@ -2220,78 +2220,126 @@
       "id": "PR_kwDOItQjb87aK0fH",
       "title": "Formalize and concretize measurement considerations (addresses #74)",
       "url": "https://github.com/getCUJO/QoOID/pull/77",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This PR addresses #74 by:\r\n- switching from \"care must be taken\" to more specific formulation\r\n- Adding concrete pointers to mitigations",
       "createdAt": "2026-05-11T08:36:22Z",
-      "updatedAt": "2026-05-11T08:36:22Z",
+      "updatedAt": "2026-05-15T06:49:51Z",
       "baseRepository": "getCUJO/QoOID",
       "baseRefName": "main",
       "baseRefOid": "ff83de0e3c2f57dd097ab0c748db02bc26f39c42",
       "headRepository": "getCUJO/QoOID",
       "headRefName": "fix-74",
       "headRefOid": "ccb1eca63226d9c6720493318a11901d564d877e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-05-15T06:49:44Z",
+      "mergedAt": "2026-05-15T06:49:43Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "ef8924f92278f52c52905bd896511f34a5e00a1e"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87_vfnk",
+          "commit": {
+            "abbreviatedOid": "ccb1eca"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "This text addresses my previous concerns on this section.",
+          "createdAt": "2026-05-14T14:13:01Z",
+          "updatedAt": "2026-05-14T14:13:01Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 78,
       "id": "PR_kwDOItQjb87aM7Tp",
       "title": "docs: Clarify challenges of volatile networks in QoS prediction",
       "url": "https://github.com/getCUJO/QoOID/pull/78",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "Kevsy",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Revised section on volatile networks per feedback in issue #76",
       "createdAt": "2026-05-11T10:15:11Z",
-      "updatedAt": "2026-05-11T10:24:55Z",
+      "updatedAt": "2026-05-15T06:50:10Z",
       "baseRepository": "getCUJO/QoOID",
       "baseRefName": "main",
       "baseRefOid": "ff83de0e3c2f57dd097ab0c748db02bc26f39c42",
       "headRepository": "Kevsy/QoOID",
       "headRefName": "patch-1",
       "headRefOid": "3458ae568396c1467c22e27cc18847b0428ad49d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-05-15T06:50:10Z",
+      "mergedAt": "2026-05-15T06:50:09Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "54dfb158f740ec94cb3275ae69dfdb8773ee2c34"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87_vdC6",
+          "commit": {
+            "abbreviatedOid": "3458ae5"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "For me, this does address my previous comment on this text.",
+          "createdAt": "2026-05-14T14:11:35Z",
+          "updatedAt": "2026-05-14T14:11:35Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 79,
       "id": "PR_kwDOItQjb87aOgw8",
       "title": "Expand considerations on QoO for multipath protocols (addresses #75)",
       "url": "https://github.com/getCUJO/QoOID/pull/79",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cj-ike-kunze",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This PR addresses #75 by:\r\n- explicitly pointing out the impact of application-dependent scheduling policies\r\n- contrasting \"generic\" single- and multi-flow measurements with passive monitoring of actual application traffic\r\n- highlighting challenges even with knowledge of per-path conditions and scheduling policy",
       "createdAt": "2026-05-11T11:26:42Z",
-      "updatedAt": "2026-05-11T11:26:42Z",
+      "updatedAt": "2026-05-15T06:50:43Z",
       "baseRepository": "getCUJO/QoOID",
       "baseRefName": "main",
       "baseRefOid": "ff83de0e3c2f57dd097ab0c748db02bc26f39c42",
       "headRepository": "getCUJO/QoOID",
       "headRefName": "fix-75",
       "headRefOid": "2de4d8487f54c425063ac492381673312f0113ed",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-05-15T06:50:38Z",
+      "mergedAt": "2026-05-15T06:50:38Z",
+      "mergedBy": "cj-ike-kunze",
+      "mergeCommit": {
+        "oid": "befb86ef551e08db9b1f5b81b73816139f9892b4"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOItQjb87_vZnh",
+          "commit": {
+            "abbreviatedOid": "2de4d84"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "This text looks OK to me, thanks for making these changes.",
+          "createdAt": "2026-05-14T14:09:56Z",
+          "updatedAt": "2026-05-14T14:09:56Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
