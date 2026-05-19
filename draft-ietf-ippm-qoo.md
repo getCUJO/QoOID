@@ -261,7 +261,7 @@ the transmission of data. This encompasses both the physical infrastructure and
 the logical protocols that govern data transmission. The network may support
 various communication patterns and may span multiple administrative domains.
 
-Network Segment:
+Network segment:
 : A portion of the complete end-to-end network path between application
 endpoints. A network segment may represent a specific administrative domain (e.g., access network,
 transit network, or server-side infrastructure), a particular technology domain (e.g., Wi-Fi or cellular),
@@ -286,7 +286,7 @@ based on how closely measured network conditions meet application-specific, qual
 network performance requirements. QoO is a QoS indicator that may be
 related to, but cannot be considered the same as, the actual QoE of end-users.
 
-QoO Score:
+QoO score:
 : A numerical value that represents the distance-based assessment of
 network quality relative to application-specific, quality-focused network performance requirements for optimal and unacceptable application performance, typically expressed as a percentage.
 
@@ -312,7 +312,7 @@ Composability:
 measurements to be combined across different network segments or decomposed to
 isolate specific network components for analysis and troubleshooting.
 
-Accuracy and Precision:
+Accuracy and precision:
 : "Accuracy" refers to how close measurements are to
 the value that reflects the real conditions. "Precision" refers to the consistency
 and repeatability of measurements. These terms are used with their standard
@@ -1553,4 +1553,4 @@ The authors would like to thank Karl Magnus Kalvik, Olav Nedrelid, and Knut Joar
 
 The authors would like to thank Gavin Young, Brendan Black, Kevin Smith, Gino Dion, Mayur Sarode, Greg Mirsky, Wim De Ketelaere, Peter Thompson, and Neil Davies for their contributions to the initial version of this document.
 
-The authors would like to thank Gorry Fairhurst, Jörg Ott, Paul Aitken, Mohamed Boucadair, Stuart Cheshire, Neil Davies, Guiseppe Fioccola, Ruediger Geib, Will Hawkins, Marcus Ihlar, Mehmet Şükrü Kuran, Paul Kyzivat, Jason Livingood, Greg Mirsky, Tal Mizrahi, Luis Miguel Contreras Murillo, Tommy Pauly, Alexander Raake, Werner Robitza, Kevin Smith, Martin Thomson, and Michael Welzl for their feedback and input to this document throughout the IETF process.
+The authors would like to thank Paul Aitken, Mohamed Boucadair, Stuart Cheshire, Neil Davies, Gorry Fairhurst, Guiseppe Fioccola, Ruediger Geib, Will Hawkins, Marcus Ihlar, Mehmet Şükrü Kuran, Paul Kyzivat, Jason Livingood, Greg Mirsky, Tal Mizrahi, Luis Miguel Contreras Murillo, Jörg Ott, Tommy Pauly, Alexander Raake, Werner Robitza, Kevin Smith, Martin Thomson, and Michael Welzl for their feedback and input to this document throughout the IETF process.
