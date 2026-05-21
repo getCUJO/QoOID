@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-05-17T00:38:09.198592+00:00",
+  "timestamp": "2026-05-21T00:42:25.496783+00:00",
   "repo": "getCUJO/QoOID",
   "labels": [
     {
@@ -2107,7 +2107,7 @@
       "id": "PR_kwDOItQjb87ShYcJ",
       "title": "Bump martinthomson/i-d-template from 0bc4b608ae41182aae46cbc51463f6bbf12ce845 to 7b8eb97cf0daa28cc14be5c87ec4c35b10577974",
       "url": "https://github.com/getCUJO/QoOID/pull/70",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dependabot",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -2117,18 +2117,26 @@
       ],
       "body": "Bumps [martinthomson/i-d-template](https://github.com/martinthomson/i-d-template) from 0bc4b608ae41182aae46cbc51463f6bbf12ce845 to 7b8eb97cf0daa28cc14be5c87ec4c35b10577974.\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/7b8eb97cf0daa28cc14be5c87ec4c35b10577974\"><code>7b8eb97</code></a> Merge pull request <a href=\"https://redirect.github.com/martinthomson/i-d-template/issues/518\">#518</a> from thibmeu/main</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/5a127fdce621ff79ce780814f1c943311cb0b824\"><code>5a127fd</code></a> Add issues and pull-requests read permissions to archive workflow</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/99d8dba3934aed8be22bd8d7f435c6a905dfffea\"><code>99d8dba</code></a> Spring cleaning of action versions</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/2644ded9113b0c9dc6255d35db03f975a10a7092\"><code>2644ded</code></a> Merge pull request <a href=\"https://redirect.github.com/martinthomson/i-d-template/issues/517\">#517</a> from thomas-fossati/main</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/6a4a481a93eded3b0dbbfb9ccdafaf3075d800e4\"><code>6a4a481</code></a> docs: tip about aasvg compatibility with xml2rfc</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/a1840c6c290f88c7ae3904a501441d99ea69ac3e\"><code>a1840c6</code></a> Remove aasvg from the CI image</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/8a050d83135bce8ab88d56f26b70bd6794a8cdb1\"><code>8a050d8</code></a> Do the python version check when creating the venv and avoid warning when the...</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/25cc2211f7bd97f86812a029b7ec09d89fafd1b0\"><code>25cc221</code></a> Add some diagnostics to the log</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/cad990c4f607b15b93d36da5970010806affad24\"><code>cad990c</code></a> Suppress some warnings from pip/bundler</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/caf0e3a45df5b72d8e822b1d9f086e0accc89826\"><code>caf0e3a</code></a> Simplify python version check</li>\n<li>See full diff in <a href=\"https://github.com/martinthomson/i-d-template/compare/0bc4b608ae41182aae46cbc51463f6bbf12ce845...7b8eb97cf0daa28cc14be5c87ec4c35b10577974\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
       "createdAt": "2026-04-15T05:16:37Z",
-      "updatedAt": "2026-04-15T05:16:38Z",
+      "updatedAt": "2026-05-20T09:59:35Z",
       "baseRepository": "getCUJO/QoOID",
       "baseRefName": "main",
       "baseRefOid": "0c416ed8c3e42f68a4db9185d97f22c1aa41b218",
       "headRepository": "getCUJO/QoOID",
       "headRefName": "dependabot/github_actions/martinthomson/i-d-template-7b8eb97cf0daa28cc14be5c87ec4c35b10577974",
       "headRefOid": "4da81e4f6915d3c91654720c488f5133071d2a6f",
-      "closedAt": null,
+      "closedAt": "2026-05-20T09:59:33Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "dependabot",
+          "authorAssociation": "NONE",
+          "body": "Superseded by #80.",
+          "createdAt": "2026-05-20T09:59:32Z",
+          "updatedAt": "2026-05-20T09:59:32Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -2340,6 +2348,35 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 80,
+      "id": "PR_kwDOItQjb87ddzq6",
+      "title": "Bump martinthomson/i-d-template from 0bc4b608ae41182aae46cbc51463f6bbf12ce845 to 26db81478fccb7c11ba58761d7ab5166bc2fc889",
+      "url": "https://github.com/getCUJO/QoOID/pull/80",
+      "state": "OPEN",
+      "author": "dependabot",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "dependencies",
+        "github_actions"
+      ],
+      "body": "Bumps [martinthomson/i-d-template](https://github.com/martinthomson/i-d-template) from 0bc4b608ae41182aae46cbc51463f6bbf12ce845 to 26db81478fccb7c11ba58761d7ab5166bc2fc889.\n<details>\n<summary>Commits</summary>\n<ul>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/26db81478fccb7c11ba58761d7ab5166bc2fc889\"><code>26db814</code></a> Direct stderr for installer tool checks</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/954478b89ef0ad40b02de75527a818edcb8154bf\"><code>954478b</code></a> Close summary</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/f6ec7a7f51abcf55d8d54a89706ac8e9e6654fc4\"><code>f6ec7a7</code></a> Update setup instructions</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/6d0cf0a3874f892a972d8b596a519186bcde79e0\"><code>6d0cf0a</code></a> Hide noisy python version check</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/7b8eb97cf0daa28cc14be5c87ec4c35b10577974\"><code>7b8eb97</code></a> Merge pull request <a href=\"https://redirect.github.com/martinthomson/i-d-template/issues/518\">#518</a> from thibmeu/main</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/5a127fdce621ff79ce780814f1c943311cb0b824\"><code>5a127fd</code></a> Add issues and pull-requests read permissions to archive workflow</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/99d8dba3934aed8be22bd8d7f435c6a905dfffea\"><code>99d8dba</code></a> Spring cleaning of action versions</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/2644ded9113b0c9dc6255d35db03f975a10a7092\"><code>2644ded</code></a> Merge pull request <a href=\"https://redirect.github.com/martinthomson/i-d-template/issues/517\">#517</a> from thomas-fossati/main</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/6a4a481a93eded3b0dbbfb9ccdafaf3075d800e4\"><code>6a4a481</code></a> docs: tip about aasvg compatibility with xml2rfc</li>\n<li><a href=\"https://github.com/martinthomson/i-d-template/commit/a1840c6c290f88c7ae3904a501441d99ea69ac3e\"><code>a1840c6</code></a> Remove aasvg from the CI image</li>\n<li>Additional commits viewable in <a href=\"https://github.com/martinthomson/i-d-template/compare/0bc4b608ae41182aae46cbc51463f6bbf12ce845...26db81478fccb7c11ba58761d7ab5166bc2fc889\">compare view</a></li>\n</ul>\n</details>\n<br />\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.\n\n[//]: # (dependabot-automerge-start)\n[//]: # (dependabot-automerge-end)\n\n---\n\n<details>\n<summary>Dependabot commands and options</summary>\n<br />\n\nYou can trigger Dependabot actions by commenting on this PR:\n- `@dependabot rebase` will rebase this PR\n- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it\n- `@dependabot show <dependency name> ignore conditions` will show all of the ignore conditions of the specified dependency\n- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)\n\n\n</details>",
+      "createdAt": "2026-05-20T09:59:29Z",
+      "updatedAt": "2026-05-20T09:59:30Z",
+      "baseRepository": "getCUJO/QoOID",
+      "baseRefName": "main",
+      "baseRefOid": "712cf4ac7ce5ab12af1d60ef00db25ecdd961657",
+      "headRepository": "getCUJO/QoOID",
+      "headRefName": "dependabot/github_actions/martinthomson/i-d-template-26db81478fccb7c11ba58761d7ab5166bc2fc889",
+      "headRefOid": "d0fca9341c34bc2ed4a775f296c478fab4b7e47c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
